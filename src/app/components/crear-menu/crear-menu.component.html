@@ -1,0 +1,122 @@
+<body>
+
+
+    <header>
+
+
+        <section id="title">
+
+            <div id="titulo">
+                Sistema de relaciones exteriores
+                <br />
+                Módulo de movilidad académica - Crear menú
+            </div>
+
+        </section>
+
+        <section id="body">
+
+            <div id="name">
+                <h3> Crear </h3>
+            </div>
+
+            <br />
+
+            <form  [formGroup]="formularioCrearMenu"   class="row justify-content-center form">
+
+                <div class="form-group col-md-2">
+                    <label for="tipoMenu" class=" label"> Tipo menú * </label>
+                  </div>
+            
+                  <div class="form-group col-md-4">
+                    <select class="form-control" formControlName="tipo_menu" [class.is-invalid]="getNoValido('tipo_menu')">
+                      <option value="">Seleccione..</option>
+                      <option value="item 1">acceso </option>
+                    </select>
+            
+                  </div>
+
+                <div class="form-group col-md-2">
+                    <label for="descripcionMenu" class=" label "> Descripción * </label>
+                </div>
+
+
+                <div class="form-group col-md-4">
+                    <input type="text" formControlName="descripcion_menu" class="form-control" 
+                        [class.is-invalid]="getNoValido('descripcion_menu')" />
+                    <small class="mensaje-error" *ngIf="getNoValido('descripcion_menu')">
+                        El campo descripción es obligatorio.
+                    </small>
+
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="fechaInicioVigencia" class="label "> Fecha inicio vigencia *</label>
+                  </div>
+            
+                  <div class="form-group col-md-4">
+                    <input required readonly class="input input-date1" 
+                      [matDatepicker]="fechaInicioVigencia" formControlName="fecha_inicio_vigencia" (click)="fechaInicioVigencia.open()"
+                      [class.is-invalid]="getNoValido('fecha_inicio_vigencia')" />
+                    <small class="mensaje-error" *ngIf="getNoValido('fecha_inicio_vigencia')">
+                      El campo fecha inicio vigencia es obligatorio.
+                    </small>
+                    <mat-datepicker #fechaInicioVigencia></mat-datepicker>
+                        
+                  </div>
+
+
+                  <div class="form-group col-md-2">
+                    <label for="fechaFinVigencia" class="label "> Fecha fin vigencia * </label>
+                  </div>
+            
+                  <div class="form-group col-md-4">
+                    <input required readonly class="input input-date1" 
+                      [matDatepicker]="fechaFinVigencia" formControlName="fecha_fin_vigencia" (click)="fechaFinVigencia.open()"
+                      [class.is-invalid]="getNoValido('fecha_fin_vigencia')" />
+                    <small class="mensaje-error" *ngIf="getNoValido('fecha_fin_vigencia')">
+                      El campo fecha fin vigencia es obligatorio.
+                    </small>
+                    <mat-datepicker #fechaFinVigencia></mat-datepicker>
+                        
+                  </div>
+
+                
+
+
+
+
+                <div class="form-group col-md-6">
+                    <div class="row justify-content-end">
+
+                        <button class="submit"  type="submit" (click)="  guardarFormulario()" (click)="openDialog()"> Guardar </button>
+
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <div class="row justify-content-start">
+
+                        <button class="submit" type=""> Cancelar </button>
+
+
+                    </div>
+                </div>
+
+
+
+            </form>
+
+
+              <p> (*) Información requerida </p>
+
+        </section>
+
+    </header>
+
+
+
+
+
+
+</body>

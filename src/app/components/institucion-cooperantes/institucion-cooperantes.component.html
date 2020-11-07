@@ -1,0 +1,259 @@
+<body>
+
+
+    <header>
+
+
+        <section id="title">
+
+            <div id="titulo">
+                Sistema de relaciones exteriores
+                <br />
+                Módulo de movilidad académica - Instituciones cooperantes
+            </div>
+
+        </section>
+
+
+    </header>
+
+    <section id="body">
+
+        <div id="name">
+            <h3> Crear</h3>
+        </div>
+
+        <br />
+
+        <form  [formGroup]="formularioInstitucionCooperante" class="row justify-content-center form">
+
+            <div  class="form-group col-md-2">
+                <label for="nombreInstitucion" class="label ">Nombre *</label>
+              </div>
+        
+              <div class="form-group col-md-4">
+                <input type="text" class="form-control" formControlName="nombre_institucion" 
+                [class.is-invalid]="getNoValido('nombre_institucion')" />
+              <small class="mensaje-error" *ngIf="getNoValido('nombre_institucion')">
+                El campo nombre es obligatorio.
+              </small>
+                       
+              </div>
+
+            <div class="form-group col-md-2">
+                <label for="pais" class=" label ">País </label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control" id="pais" formControlName="pais"
+                [class.is-invalid]="getNoValido('pais')">
+                <option value="">Seleccione..</option>
+                <option *ngFor="let pais of paises"  value="{{pais._id}}"> {{pais.nombre_pais}}  </option>                </select>
+
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="departamento" class=" label ">Departamento </label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control" formControlName="departamento" [class.is-invalid]="getNoValido('departamento')">
+                    <option value="">Seleccione..</option>
+                    <option *ngFor="let departamento of departamentos"  value="{{departamento._id}}"> {{departamento.nombre_departamento}}  </option>
+                </select>
+
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="ciudad" class=" label ">Ciudad </label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control" id="ciudad" formControlName="ciudad" [class.is-invalid]="getNoValido('ciudad')">
+                    <option value="">Seleccione..</option>
+                    <option *ngFor="let ciudad of ciudades"  value="{{ciudad._id}}">{{ciudad.nombre_ciudad}}</option>
+                </select>
+
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="direccion" class="label ">Dirección *</label>
+              </div>
+        
+              <div class="form-group col-md-4">
+                <input type="text" class="form-control"  formControlName="direccion" 
+                [class.is-invalid]="getNoValido('direccion')" />
+              <small class="mensaje-error" *ngIf="getNoValido('direccion')">
+                El campo dirección es obligatorio.
+              </small>
+                       
+              </div>
+
+              <div class="form-group col-md-2">
+                <label for="telefono" class="label ">Teléfono *</label>
+              </div>
+        
+              <div class="form-group col-md-4">
+                <input type="text" class="form-control"  formControlName="telefono" 
+                [class.is-invalid]="getNoValido('telefono')" />
+              <small class="mensaje-error" *ngIf="getNoValido('telefono')">
+                El campo teléfono es obligatorio.
+              </small>
+                       
+              </div>
+
+
+              <div class="form-group col-md-2">
+                <label for="correo" class="label ">Correo *</label>
+              </div>
+        
+              <div class="form-group col-md-4">
+                <input type="text" class="form-control"  formControlName="email" placeholder="correo@hotmail.com"
+                [class.is-invalid]="getNoValido('email')" />
+              <small class="mensaje-error" *ngIf="getNoValido('email')">
+                El campo correo es obligatorio.
+              </small>
+                       
+              </div>
+
+              
+              <div class="form-group col-md-2">
+                <label ></label>
+              </div>
+        
+              <div class="form-group col-md-4">
+                    
+              </div>
+
+
+                <div class="form-group col-md-6">
+                    <div class="row justify-content-end">
+
+                        <button class="submit"  type="submit" (click)="guardarFormulario()"> Crear </button>
+
+                    </div>
+                </div> 
+
+                <div class="form-group col-md-6">
+                    <div class="row justify-content-start">
+
+                        <button class="submit"  type=""> Cancelar </button>
+
+
+                    </div>
+                </div>
+
+        </form>
+
+    </section>
+
+
+    <section id="body">
+
+        <div id="name">
+            <h3> Criterios de consulta</h3>
+        </div>
+
+        <br />
+
+        <form class="row justify-content-center form">
+
+          
+              <div class="form-group col-md-2">
+                <label for="nombre_institucion" class=" label ">Nombre </label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control" id="nombre_institucion">
+                    <option value="">Seleccione..</option>
+                </select>
+
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="pais" class=" label ">País </label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control" id="pais">
+                    <option value="">Seleccione..</option>
+                </select>
+
+            </div>
+
+         
+
+
+                <div class="form-group col-md-6">
+                    <div class="row justify-content-end">
+
+                        <button class="submit"  type="submit"> Consultar </button>
+
+                    </div>
+                </div> 
+
+                <div class="form-group col-md-6">
+                    <div class="row justify-content-start">
+
+                        <button class="submit"  type=""> Cancelar </button>
+
+
+                    </div>
+                </div>
+
+
+
+        </form>
+
+
+
+
+    </section>
+
+
+    <section id="body">
+
+        <div id="name">
+            <h3> Listado de inscritos</h3>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="center"> Id </th>
+                    <th scope="col" class="center"> Nombre </th>
+                    <th scope="col" class="center"> País </th>
+                    <th scope="col" class="center"> Ciudad </th>
+                    <th scope="col" class="center"> Correo </th>
+                    <th scope="col" class="center"> Teléfono </th>
+                    <th scope="col" class="center"> Acciones </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td> <button class="editar" (click)="openDialog()"> Editar </button>
+                        <button class="btn btn-danger" ></button>
+                    </td>
+                 
+                        
+                   
+                </tr>
+               
+
+            </tbody>
+        </table>
+
+
+    </section>
+
+
+
+
+</body>

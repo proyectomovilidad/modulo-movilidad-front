@@ -1,0 +1,21 @@
+.editar {
+
+    display: block;
+    padding: 8px;
+    background: #C6DEFF;
+    color: black;
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+    border-radius: initial;
+    border-color: lightblue;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 30%;
+    height: 25px;
+    margin-right: 3%;
+
+
+}

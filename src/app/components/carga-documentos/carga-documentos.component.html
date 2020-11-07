@@ -1,0 +1,67 @@
+<body>
+
+    <header>
+
+        <section id="titulo">
+            Sistema de relaciones exteriores
+            <br />
+            Módulo de movilidad académica - Carga de documentos
+        </section>
+
+    </header>
+
+
+    <section id="body">
+
+
+        <div id="name">
+            <h3> Listado de documentos</h3>
+        </div>
+
+        <br />
+
+        <form [formGroup]="formularioDocumentos">
+
+
+
+            <table class="table table-bordered">
+
+                <thead>
+                    <tr>
+                        <th scope="col" class="center"> Nombre </th>
+                        <th scope="col" class="center">Carga de archivo</th>
+                        <th scope="col" class="center">Observaciones</th>
+                        <th scope="col" class="center">Estado</th>
+                        <th scope="col" class="center">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody formArrayName="campo">
+                    <tr *ngFor="let control of campo.controls; let i= index">
+
+
+                        <td>
+                            <input class="form-control" type="text" [formControlName]="i" />
+
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="btn btn-danger" (click) = "eliminarCampo(i)"></button>
+                        </td>
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+
+
+            <button type="button" class="submit" (click)="agregarCampo()"> Agregar campo </button>
+
+        </form>
+
+
+    </section>
+</body> 

@@ -1,0 +1,72 @@
+<body>
+
+
+    <header>
+
+
+        <section id="title">
+
+            <div id="titulo">
+                Sistema de relaciones exteriores
+                <br />
+                Módulo de movilidad académica - Acceso modulo de movilidad académica
+            </div>
+
+        </section>
+
+        <section id="body">
+
+            <div id="name">
+                <h3> Datos de ingreso </h3>
+            </div>
+
+            <br />
+
+            <form [formGroup]="formularioAcceso" class="row justify-content-center form " >
+
+
+                <div class=" form-group col-md-6 ">
+                    <label for="usuario" class="label ">Usuario *</label>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" formControlName="usuario" placeholder="Usuario" 
+                    [class.is-invalid]="getNoValido('usuario')"/>
+        <small class="mensaje-error" *ngIf="getNoValido('usuario')">
+        El campo usuario es obligatorio.
+        </small>
+                </div>
+
+                <div class=" form-group col-md-6 ">
+                    <label for="contrasena" class="label ">Contrasena *</label>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="Contraseña" 
+                    [class.is-invalid]="getNoValido('usuario')"/>
+        <small class="mensaje-error" *ngIf="getNoValido('usuario')">
+        El campo usuario es obligatorio.
+        </small>
+                </div>
+
+                <button class="submit" style="font-weight: bold;" (click)="guardarFormulario()"> Guardar </button>
+      
+
+
+            </form>
+
+            <p> (*) Información requerida</p>
+
+
+
+
+        </section>
+
+    </header>
+
+
+
+
+
+
+</body>
