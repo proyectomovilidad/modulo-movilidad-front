@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CiudadesService } from './../../services/ciudades.service';
+import { PaisesService } from './../../services/paises.service';
+import { InscripcionExternoService } from './../../services/inscripcion-externo.service';
+import { DepartamentosService } from './../../services/departamentos.service';
+import { InstitucionCooperanteService } from './../../services/institucion-cooperante.service';
 
 @Component({
   selector: 'app-incripcion-externo',
@@ -9,8 +14,22 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class IncripcionExternoComponent implements OnInit {
 
+  public ciudades: any;
+  public paises: any;
+  public departamentos: any; 
+  public instituciones: any;
+  
+
+
   public formularioInscripcionExterno: FormGroup;
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder,
+    public InscripcionExternoService: InscripcionExternoService,
+    public PaisesService: PaisesService,
+    public DepartamentosService: DepartamentosService,
+    public CiudadesService: CiudadesService,
+    public InstitucionCooperanteService: InstitucionCooperanteService,
+
+    ) { 
 
       this.formularioInscripcionExterno = this.formBuilder.group({
         
@@ -19,7 +38,6 @@ export class IncripcionExternoComponent implements OnInit {
         primer_nombre: ['', Validators.required],
         primer_apellido: ['', Validators.required],
         genero: ['', Validators.required],
-        sede: ['', Validators.required],
         programa_acad: ['', Validators.required],
         prog_acad_uis: ['', Validators.required],
         fecha_nacimiento: [Date, Validators.required],
@@ -29,13 +47,14 @@ export class IncripcionExternoComponent implements OnInit {
         ciudad: ['', Validators.required],
         direccion: ['', Validators.required],
         semestre: ['', Validators.required],
-        promedio: ['', Validators.required],
+        promedio: [0, Validators.required],
         cred_cursados: [0, Validators.required],
         cred_cursar: [0, Validators.required],
         periodo_inscrip: ['', Validators.required],
+        fecha_inscripcion: [Date, Validators.required],
         ano_inscrip: ['', Validators.required],
         celular: [0, Validators.required],
-        correo: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$') ]],
+        correo: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
         tipo_movilidad: ['', Validators.required],
         nombre_institucion: ['', Validators.required]
         
@@ -44,7 +63,13 @@ export class IncripcionExternoComponent implements OnInit {
   
     }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void>  {
+
+    this.ciudades = await this.CiudadesService.getCiudad();
+    this.paises = await this.PaisesService.getPais();
+    this.departamentos = await this.DepartamentosService.getDepartamento();
+    this.instituciones = await this.InstitucionCooperanteService.getInstitucionCooperante();
+    
   }
 
  
@@ -53,18 +78,55 @@ export class IncripcionExternoComponent implements OnInit {
     this.formularioInscripcionExterno.get(input).touched;
   }
 
-  guardarFormulario() {
-
+ async guardarFormulario() {
     if (this.formularioInscripcionExterno.invalid) {
-
       return Object.values(this.formularioInscripcionExterno.controls).forEach(control => {
-
         control.markAsTouched();
-        
-      });
-
-    
+      });   
     }
+
+    const inscribirExterno = this.formularioInscripcionExterno.value;
+    console.log(inscribirExterno)
+
+    const aspExtPersonal = { 
+
+      tipo_doc_id: inscribirExterno.tipo_doc_id,
+      documento_id: inscribirExterno.documento_id,
+      primer_nombre: inscribirExterno.primer_nombre,
+      primer_apellido:inscribirExterno.primer_apellido,
+      genero:inscribirExterno.genero,
+      fecha_nacimiento:inscribirExterno.fecha_nacimiento,
+      pais_nacimiento:inscribirExterno.pais_nacimiento,
+      pais_res:inscribirExterno.pais_res,
+      departamento:inscribirExterno.departamento,
+      ciudad: inscribirExterno.ciudad,
+      direccion: inscribirExterno.direccion,
+      celular:inscribirExterno.celular,
+      correo:inscribirExterno.correo,
+    }
+
+    const inscribirExternoAcademic = this.formularioInscripcionExterno.value;
+
+    const aspExtAcademic = {
+     
+      semestre: inscribirExternoAcademic.semestre ,      
+      promedio:inscribirExternoAcademic.promedio,
+      programa_acad: inscribirExternoAcademic.programa_acad,
+      cred_cursados: inscribirExternoAcademic.cred_cursados,
+      cred_cursar: inscribirExternoAcademic.cred_cursar ,
+      periodo_inscrip: inscribirExternoAcademic.periodo_inscrip ,
+      ano_inscrip: inscribirExternoAcademic.ano_inscrip  ,
+      nombre_institucion: inscribirExternoAcademic. nombre_institucion,
+      fecha_inscripcion: inscribirExternoAcademic.fecha_inscripcion,
+      prog_acad_uis: inscribirExternoAcademic.prog_acad_uis
+    }
+
+
+    const aspExtPersonalGuardado = await this.InscripcionExternoService.saveAspExtPersonal(aspExtPersonal);
+    console.log(aspExtPersonalGuardado);
+
+    const aspExtAcademicGuardado = await this.InscripcionExternoService.saveAspExtAcademic(aspExtAcademic);
+    console.log(aspExtAcademicGuardado);
 
     this.formularioInscripcionExterno.reset();
   }

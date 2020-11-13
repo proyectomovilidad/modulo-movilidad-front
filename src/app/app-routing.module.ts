@@ -21,6 +21,8 @@ import { EditarInstitucionComponent } from './components/editar-institucion/edit
 import { EstudiantesMovilidadComponent } from './components/estudiantes-movilidad/estudiantes-movilidad.component';
 import { TipoDocumentoComponent } from './components/tipo-documento/tipo-documento.component';
 import { TipoApoyoComponent } from './components/tipo-apoyo/tipo-apoyo.component';
+import { EntidadFinancieraComponent } from './components/entidad-financiera/entidad-financiera.component';
+import { ProfesoresComponent } from './components/profesores/profesores.component';
 
 const appRoutes: Routes = [
 
@@ -44,6 +46,9 @@ const appRoutes: Routes = [
   {path: 'estudiantes-movilidad', component:EstudiantesMovilidadComponent},
   {path: 'tipo-documento', component:TipoDocumentoComponent},
   {path: 'tipo-apoyo', component:TipoApoyoComponent},
+  {path: 'entidad-financiera', component:EntidadFinancieraComponent},
+  {path: 'profesores', component:ProfesoresComponent},
+
 
   {path: '**', component: ErrorComponent }
 

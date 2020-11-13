@@ -16,55 +16,54 @@
 
     </header>
 
-
+ 
     <section id="body">
 
+
         <div id="name">
-            <h3> Selección clase de solicitud</h3>
+            <h3> Listado solicitudes </h3>
         </div>
 
         <br />
 
-        <form class="row justify-content-center ">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="center"> Id </th>
+                    <th scope="col" class="center"> Nombre solicitud </th>
+                    <th scope="col" class="center"> Estado solicitud </th>
+                   
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>
+                                              
 
-            <div class="form-group col-md-6">
-                <label for="tipoApoyo" class=" label ">Tipo apoyo * </label>
-            </div>
+                    </td>
+                    <td></td>
+                  
+                   
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>
+                       
+                    </td>
+                    <td></td>
+                    
+                    
+                </tr>
 
-            <div class="form-group col-md-6">
-                <select class="form-control" id="nombre_tipo_apoyo">
-                    <option value="">Seleccione..</option>
-                    <option value="item 1"> dato</option>
-                </select>
-
-            </div>
-
-
-            <div class="form-group col-md-6">
-                <div class="row justify-content-end">
-
-                    <button class="boton col-md-2" style="font-weight: bold;" type="submit"> Guardar </button>
-
-                </div>
-            </div>
-
-            <div class="form-group col-md-6">
-                <div class="row justify-content-start">
-
-                    <button class="boton col-md-2" style="font-weight: bold;" type=""> Cancelar </button>
-
-
-                </div>
-            </div>
-
-
-
-        </form>
-
-        <p> (*) Información requerida </p>
-
+            </tbody>
+        </table>
 
     </section>
+
+
+
 
     <section id="body">
 
@@ -74,7 +73,19 @@
 
         <br />
 
-        <form [formGroup]="formularioSolicitudApoyos" class="row justify-content-center">
+        <form [formGroup]="formularioSolicitudApoyos" class="row justify-content-center form">
+
+            <div class="form-group col-md-2">
+                <label for="tipoApoyo" class=" label ">Tipo apoyo * </label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control" id="tipo_apoyo" formControlName="tipo_apoyo" 
+                [class.is-invalid]="getNoValido('tipo_apoyo')">
+                  <option value="">Seleccione..</option>
+                  <option value="item 1">Seleccione..</option>               
+                </select>
+            </div>
 
             <div class="form-group col-md-2">
                 <label for="entidadFinanciera" class=" label ">Entidad financiera *</label>
@@ -112,8 +123,13 @@
             <div class="form-group col-md-4">
                 <select class="form-control" formControlName="estrato"
                 [class.is-invalid]="getNoValido('estrato')">
-                <option value="">Seleccione..</option> 
-                <option value="item 1"> dato</option>
+                <option value="">Seleccione..</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
                 </select>
             </div>
 
@@ -125,7 +141,8 @@
                 <select class="form-control" formControlName="tipo_cuenta"
                 [class.is-invalid]="getNoValido('tipo_cuenta')">
                 <option value="">Seleccione..</option> 
-                <option value="item 1"> dato</option>
+                <option value="ahorros"> ahorros</option>
+                <option value="corriente"> corriente</option>
                 </select>
             </div>
 
@@ -143,19 +160,11 @@
 
             </div>
 
-            <div class=" form-group col-md-2 ">
-                <label for="" class=" "> </label>
-            </div>
-
-            <div class="form-group col-md-4">
-
-            </div>
-
-
+        
             <div class="form-group col-md-6">
                 <div class="row justify-content-end">
 
-                    <button class="boton col-md-2" style="font-weight: bold;" (click)="  guardarFormulario()"> Guardar </button>
+                    <button class="submit" style="font-weight: bold;" (click)=" guardarFormulario()"> Guardar </button>
 
                 </div>
             </div>

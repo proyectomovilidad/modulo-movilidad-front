@@ -9,16 +9,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module'
 
 import { InscripcionEstudianteService } from './services/inscripcion-estudiante.service';
+import { InscripcionExternoService } from './services/inscripcion-externo.service';
 import { InstitucionCooperanteService } from './services/institucion-cooperante.service';
 import { DepartamentosService } from './services/departamentos.service';
 import { PaisesService } from './services/paises.service';
 import { CiudadesService } from './services/ciudades.service';
-import { TipoApoyoService } from './services/tipo-apoyo.service'
-import {ProgramaAcademicoService}  from './services/programa-academico.service';
+import { TipoApoyoService } from './services/tipo-apoyo.service';
+import { ProgramasService } from './services/programas.service';
+import { TiposDocumentosIdService } from './services/tipos-documentos-id.service';
+import { SolicitudApoyoService } from './services/solicitud-apoyo.service';
+import { EntidadFinancieraService } from './services/entidad-financiera.service';
+import { ProfesoresService } from './services/profesores.service';
+import { TipoDocumentoService } from './services/tipo-documento.service';
+
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-
 
 
 import { AppComponent } from './app.component';
@@ -45,6 +51,8 @@ import { EstudiantesMovilidadComponent } from './components/estudiantes-movilida
 import { TipoDocumentoComponent } from './components/tipo-documento/tipo-documento.component';
 import { TipoApoyoComponent } from './components/tipo-apoyo/tipo-apoyo.component'
 import { from } from 'rxjs';
+import { EntidadFinancieraComponent } from './components/entidad-financiera/entidad-financiera.component';
+import { ProfesoresComponent } from './components/profesores/profesores.component';
 
 
 
@@ -73,12 +81,14 @@ import { from } from 'rxjs';
     EditarInstitucionComponent,
     EstudiantesMovilidadComponent,
     TipoDocumentoComponent,
-    TipoApoyoComponent
+    TipoApoyoComponent,
+    EntidadFinancieraComponent,
+    ProfesoresComponent
   ],
   entryComponents: [ObservacionesComponent],
   imports: [
 
-    BrowserModule,
+BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
@@ -89,12 +99,20 @@ import { from } from 'rxjs';
   providers: [
     appRoutingProviders,
     InscripcionEstudianteService,
+    InscripcionExternoService,
     InstitucionCooperanteService,
     DepartamentosService,
     PaisesService,
     CiudadesService,
     TipoApoyoService,
-    ProgramaAcademicoService],
+    SolicitudApoyoService,
+    ProgramasService,
+    TiposDocumentosIdService,
+    EntidadFinancieraService,
+    ProfesoresService,
+    TipoDocumentoService,
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

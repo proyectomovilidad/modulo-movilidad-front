@@ -6,7 +6,8 @@ import { PaisesService } from './../../services/paises.service';
 import { DepartamentosService } from './../../services/departamentos.service';
 import { CiudadesService } from './../../services/ciudades.service';
 import { InstitucionCooperanteService } from './../../services/institucion-cooperante.service';
-import { ProgramaAcademicoService } from './../../services/programa-academico.service';
+import { ProgramasService } from './../../services/programas.service';
+import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
 
 @Component({
   selector: 'app-inscripcion-estudiante',
@@ -20,6 +21,7 @@ export class InscripcionEstudianteComponent implements OnInit {
   public departamentos: any;
   public institucionesCooperantes: any;
   public programas : any;
+  public documentosId : any;
 
   public formularioInscripcionEstudiante: FormGroup;
 
@@ -29,7 +31,8 @@ export class InscripcionEstudianteComponent implements OnInit {
     public DepartamentosService: DepartamentosService,
     public CiudadesService: CiudadesService,
     public InstitucionCooperanteService: InstitucionCooperanteService,
-    public ProgramaAcademicoService: ProgramaAcademicoService,
+    public ProgramasService: ProgramasService,
+    public TiposDocumentosIdService: TiposDocumentosIdService,
   ) 
   
   {
@@ -47,7 +50,7 @@ export class InscripcionEstudianteComponent implements OnInit {
       departamento: ['', Validators.required],
       ciudad: ['', Validators.required],
       direccion: ['', Validators.required],
-      estrato: [0, Validators.required],
+      estrato: ['', Validators.required],
       semestre: ['', Validators.required],
       promedio: ['', Validators.required],
       cred_cursados: [0, Validators.required],
@@ -67,7 +70,9 @@ export class InscripcionEstudianteComponent implements OnInit {
     this.paises = await this.PaisesService.getPais();
     this.departamentos = await this.DepartamentosService.getDepartamento();
     this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
-    this.programas = await this.ProgramaAcademicoService.getProgramaAcademico();
+    this.programas = await this.ProgramasService.getProgramaAcademico();
+    this.documentosId = await this.TiposDocumentosIdService.getTipoDocumentoId();
+
 
 
   }
@@ -100,6 +105,7 @@ export class InscripcionEstudianteComponent implements OnInit {
       departamento: inscribirEstudiante.departamento,
       ciudad: inscribirEstudiante.ciudad,
       direccion: inscribirEstudiante.direccion,
+      estrato: inscribirEstudiante.estrato,
       celular: inscribirEstudiante.celular,
       correo: inscribirEstudiante.correo
     }

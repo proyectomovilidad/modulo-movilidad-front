@@ -24,7 +24,7 @@ export class InstitucionCooperanteService {
 
 
   public getInstitucionCooperante(): Promise<any> {
-    const url = `${environment.backend.institucionCooperante}getInstitucionCooperante/`;
+    const url = `${environment.backend.institucionCooperante}getInstitucionCooperante`;
     return this.httpClient.get<any>(url).toPromise();
   }
 }

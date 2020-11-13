@@ -8,12 +8,21 @@ export const environment = {
   backend: {
     aspUisPersonal: BASE + '/aspUisPersonal/',
     aspUisAcademic: BASE + '/aspUisAcademic/',
+    aspExtPersonal: BASE + '/aspExtPersonal/',
+    aspExtAcademic: BASE + '/aspExtAcademic/',
     institucionCooperante: BASE + '/institucionCooperante/',
     ciudad: BASE + '/ciudad/',
     pais: BASE + '/pais/',
     departamento: BASE + '/departamento/',
     tipoApoyo: BASE + '/tipoApoyo/',
+    solicitudPresentada: BASE + '/solicitudPresentada/',
     programaAcademico : BASE + '/programaAcademico/',
+    tipoDocumentoId: BASE +'/tipoDocId/',
+    entidadFinanciera : BASE + '/entidadFinanciera/',
+    profesores: BASE + '/profesores/',
+    tipoDocumento: BASE + '/tipoDocumento/',
+
+
     
     
     

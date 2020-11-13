@@ -111,6 +111,9 @@
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="genero"  [class.is-invalid]="getNoValido('genero')">
             <option value="">Seleccione..</option>
+            <option value="item 1">Femenino</option>
+            <option value="item 2">Masculino</option>
+            <option value="item 3">Otro</option>
           </select>
 
         </div>
@@ -139,6 +142,7 @@
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="pais_nacimiento" [class.is-invalid]="getNoValido('pais_nacimiento')" >
             <option value="">Seleccione..</option>
+            <option *ngFor="let pais of paises"  value="{{pais._id}}"> {{pais.nombre_pais}}  </option>
           </select>
         </div>
 
@@ -149,6 +153,7 @@
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="pais_res" [class.is-invalid]="getNoValido('pais_res')" >
             <option value="">Seleccione..</option>
+            <option *ngFor="let pais of paises"  value="{{pais._id}}"> {{pais.nombre_pais}}  </option>
           </select>
         
         </div>
@@ -160,6 +165,7 @@
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="departamento" [class.is-invalid]="getNoValido('departamento')" >
             <option value="">Seleccione..</option>
+            <option *ngFor="let departamento of departamentos"  value="{{departamento._id}}"> {{departamento.nombre_departamento}}  </option>
          
           </select>
         
@@ -172,6 +178,8 @@
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="ciudad" [class.is-invalid]="getNoValido('ciudad')" >
             <option value="">Seleccione..</option>
+            <option *ngFor="let ciudad of ciudades"  value="{{ciudad._id}}">{{ciudad.nombre_ciudad}}</option>
+
          
           </select>
          
@@ -217,11 +225,11 @@
         </div>
 
         <div class="form-group col-md-4">
-          <input type="email" class="form-control" id="correo" placeholder="correo@hotmail.com" 
+          <input type="email" class="form-control" formControlName="correo" placeholder="correo@hotmail.com" 
           [class.is-invalid]="getNoValido('correo')"/>
           <small class="mensaje-error" *ngIf="getNoValido('correo')">
           El campo correo es obligatorio.
-          </small>
+          </small> 
 
         </div>
 
@@ -245,6 +253,16 @@
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="semestre" [class.is-invalid]="getNoValido('semestre')" >
             <option value="">Seleccione..</option>
+            <option value="item 1"> primer </option>
+            <option value="item 2"> segundo </option>
+            <option value="item 3"> tercer </option>
+            <option value="item 4"> cuarto </option>
+            <option value="item 5"> quinto </option>
+            <option value="item 6"> sexto </option>
+            <option value="item 7"> séptimo </option>
+            <option value="item 8"> octavo </option>
+            <option value="item 9"> noveno </option>
+            <option value="item 10"> décimo </option>
           </select>
         </div>
 
@@ -291,7 +309,8 @@
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="ano_inscrip" [class.is-invalid]="getNoValido('ano_inscrip')" >
             <option value="">Seleccione..</option>
-                    </select>
+            <option value="item 1">Seleccione..</option>
+          </select>
          </div>
 
         <div class="form-group col-md-2">
@@ -301,8 +320,25 @@
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="periodo_inscrip" [class.is-invalid]="getNoValido('periodo_inscrip')" >
             <option value="">Seleccione..</option>
+            <option value="item 1"> 1 </option>
+            <option value="item 1"> 2 </option>
           </select>
         </div>
+
+        
+      <div class="form-group col-md-2">
+        <label for="fechaInscripcion" class="label ">Fecha de inscripción *</label>
+      </div>
+
+      <div class="form-group col-md-4">
+        <input required readonly class="input input-date1" placeholder="fecha inscripcion"
+          [matDatepicker]="fechaInscripcion" formControlName="fecha_inscripcion" (click)="fechaInscripcion.open()"
+          [class.is-invalid]="getNoValido('fecha_inscripcion')" />
+        <small class="mensaje-error" *ngIf="getNoValido('fecha_inscripcion')">
+          El campo fecha de inscripción es obligatorio.
+        </small>
+        <mat-datepicker #fechaInscripcion></mat-datepicker>
+      </div>
 
         <div class="form-group col-md-2">
           <label for="institucionCooperante" class="label "> Universidad de origen *</label>
@@ -311,6 +347,9 @@
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="nombre_institucion" [class.is-invalid]="getNoValido('nombre_institucion')" >
             <option value="">Seleccione..</option>
+            <option value="dato">Seleccione..</option>
+
+
           </select>
         </div>
      
@@ -321,6 +360,8 @@
         <div class="form-group col-md-4">
           <select class="form-control"  formControlName="prog_acad_uis" [class.is-invalid]="getNoValido('prog_acad_uis')" >
             <option value="">Seleccione..</option>
+            <option value="item 1"> 1 </option>
+            <option value="item 1"> 2 </option>
           </select>
         
         </div>
@@ -333,6 +374,8 @@
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="tipo_movilidad" [class.is-invalid]="getNoValido('tipo_movilidad')" >
             <option value="">Seleccione..</option>
+            <option value="item 1"> 1 </option>
+            <option value="item 1"> 2 </option>
           </select>
         </div>
 
@@ -343,15 +386,9 @@
         <div class="form-group col-md-4">
           <select class="form-control" id="institucionCooperante" placeholder="Institución cooperante" >
             <option>Seleccione..</option>
+            <option value="item 1"> 1 </option>
+            <option value="item 1"> 2 </option>
           </select>
-          </div>
-
-          <div class=" form-group col-md-2 ">
-            <label for="" class=" "> </label>
-          </div>
-  
-          <div class="form-group col-md-4">
-           
           </div>
 
           <div class=" form-group col-md-2 ">
@@ -365,7 +402,7 @@
         <div class="form-group col-md-6">
           <div class="row justify-content-end">
 
-            <button class="submit" style="font-weight: bold;" (click)="  guardarFormulario()"> Guardar </button>
+            <button class="submit" style="font-weight: bold;" (click)="guardarFormulario()"> Guardar </button>
 
           </div>
         </div>

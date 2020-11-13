@@ -48,7 +48,8 @@
                 <select class="form-control" id="pais" formControlName="pais"
                 [class.is-invalid]="getNoValido('pais')">
                 <option value="">Seleccione..</option>
-                <option *ngFor="let pais of paises"  value="{{pais._id}}"> {{pais.nombre_pais}}  </option>                </select>
+                <option *ngFor="let pais of paises"  value="{{pais._id}}"> {{pais.nombre_pais}}  </option>     
+                       </select>
 
             </div>
 

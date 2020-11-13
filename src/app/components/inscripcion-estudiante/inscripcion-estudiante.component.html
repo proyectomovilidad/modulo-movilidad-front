@@ -38,9 +38,12 @@
       </div>
 
       <div class="form-group col-md-4">
-        <select class="form-control" formControlName="tipo_doc_id" [class.is-invalid]="getNoValido('tipo_doc_id')">
+        <select class="form-control" id="tipoDocumentoId" formControlName="tipo_doc_id" 
+        [class.is-invalid]="getNoValido('tipo_doc_id')">
           <option value="">Seleccione..</option>
-          <option value="item 1"> dato </option>
+          <option value="item 1">Seleccione..</option>
+        
+        
         </select>
 
       </div>
@@ -110,8 +113,10 @@
       <div class="form-group col-md-4">
         <select class="form-control" formControlName="genero" [class.is-invalid]="getNoValido('genero')">
           <option value="">Seleccione..</option>
-          <option value="item 1"> dato </option>
-
+          <option value="item 1"> Femenino </option>
+          <option value="item 2"> Masculino </option>
+          <option value="item 3"> Otro </option>
+        
         </select>
 
       </div>
@@ -134,13 +139,16 @@
       </div>
 
       <div class="form-group col-md-4">
-        <select class="form-control" formControlName="programa_acad" [class.is-invalid]="getNoValido('programa_acad')">
+        <select class="form-control" id="programaAcademico" formControlName="programa_acad" 
+          [class.is-invalid]="getNoValido('programa_acad')">
           <option value="">Seleccione..</option>
-          <option value="item 1"> dato </option>
-        </select>
+          <option value="item 1">Seleccione..</option>
+          
 
+        </select>
       </div>
 
+  
       <div class="form-group col-md-2">
         <label for="fechaNacimiento" class="label ">Fecha de nacimiento *</label>
       </div>
@@ -206,6 +214,26 @@
         </small>
 
       </div>
+
+      <div class="form-group col-md-2">
+        <label for="estrato" class="label ">Estrato *</label>
+      </div>
+
+
+      <div class="form-group col-md-4">
+        <select class="form-control" id="estrato" formControlName="estrato"
+          [class.is-invalid]="getNoValido('estrato')">
+          <option value="">Seleccione..</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+
+      </div>
+
 
       <div class="form-group col-md-2">
         <label for="semestre" class=" label">Semestre*</label>
@@ -377,6 +405,14 @@
           <option>Seleccione..</option>
         </select>
 
+      </div>
+
+      <div class=" form-group col-md-2 ">
+        <label for="" class=" "> </label>
+      </div>
+
+      <div class="form-group col-md-4">
+       
       </div>
 
  

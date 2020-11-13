@@ -12,8 +12,6 @@ export class PaisesService {
 
   constructor (private httpClient: HttpClient) {  }
 
-
-
   public getPais(): Promise < any > {
   const url = `${environment.backend.pais}getPais/`;
   return this.httpClient.get<any>(url).toPromise();

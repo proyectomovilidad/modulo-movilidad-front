@@ -9,7 +9,7 @@
             <div id="titulo">
                 Sistema de relaciones exteriores
                 <br />
-                Módulo de movilidad académica - Apoyos
+                Módulo de movilidad académica - Entidad financiera
             </div>
 
         </section>
@@ -25,19 +25,19 @@
 
         <br />
 
-        <form  [formGroup]="formularioCrearApoyo" class="row justify-content-center form">
+        <form  [formGroup]="formularioCrearEntidad" class="row justify-content-center form">
 
 
 
             <div class="form-group col-md-2">
-                <label for="nombreApoyo" class="label ">Nombre apoyo *</label>
+                <label for="nombreEntidad" class="label ">Nombre entidad financiera *</label>
               </div>
         
               <div class="form-group col-md-4">
-                <input type="text" formControlName="nombre_tipo_apoyo" class="form-control" placeholder="Nombre apoyo"
-                  [class.is-invalid]="getNoValido('nombre_tipo_apoyo')" />
-                <small class="mensaje-error" *ngIf="getNoValido('nombre_tipo_apoyo')">
-                  El campo nombre apoyo es obligatorio.
+                <input type="text" formControlName="nombre_entidad" class="form-control" placeholder="Nombre entidad financiera"
+                  [class.is-invalid]="getNoValido('nombre_entidad')" />
+                <small class="mensaje-error" *ngIf="getNoValido('nombre_entidad')">
+                  El campo nombre entidad es obligatorio.
                 </small>
         
               </div>
@@ -98,7 +98,7 @@
             </div>
 
             <div class=" form-group col-md-2 ">
-                <label for="nombre" class="label ">Nombre * </label>
+                <label for="nombre" class="label ">Nombre entidad * </label>
             </div>
 
             <div class="form-group col-md-4">
@@ -137,14 +137,14 @@
     <section id="body">
 
         <div id="name">
-            <h3> Listado de documentos</h3>
+            <h3> Listado de entidades financieras</h3>
         </div>
 
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th scope="col" class="center"> Id </th>
-                    <th scope="col" class="center"> Nombre </th>
+                    <th scope="col" class="center"> Nombre entidad </th>
                     <th scope="col" class="center"> Acciones </th>
                 </tr>
             </thead>
