@@ -23,6 +23,7 @@ import { TipoDocumentoComponent } from './components/tipo-documento/tipo-documen
 import { TipoApoyoComponent } from './components/tipo-apoyo/tipo-apoyo.component';
 import { EntidadFinancieraComponent } from './components/entidad-financiera/entidad-financiera.component';
 import { ProfesoresComponent } from './components/profesores/profesores.component';
+import { ConveniosComponent } from './components/convenios/convenios.component';
 
 const appRoutes: Routes = [
 
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
   {path: 'tipo-apoyo', component:TipoApoyoComponent},
   {path: 'entidad-financiera', component:EntidadFinancieraComponent},
   {path: 'profesores', component:ProfesoresComponent},
+  {path: 'convenios', component:ConveniosComponent},
 
 
   {path: '**', component: ErrorComponent }

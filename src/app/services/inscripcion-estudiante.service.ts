@@ -34,7 +34,12 @@ export class InscripcionEstudianteService {
   }
 
   public getAspUisPersonal(_id: any): Promise<any> {
-    const url = `${environment.backend.ciudad}getAspUisPersonalById/:_id`;
+    const url = `${environment.backend.aspUisAcademic}getAspUisPersonalById/:_id`;
+    return this.httpClient.get<any>(url).toPromise();
+  }
+
+  public getAllAspUisPersonal(): Promise<any> {
+    const url = `${environment.backend.aspUisPersonal}getAspiranteUisPersonal/`;
     return this.httpClient.get<any>(url).toPromise();
   }
 

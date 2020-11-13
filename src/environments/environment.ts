@@ -21,6 +21,7 @@ export const environment = {
     entidadFinanciera : BASE + '/entidadFinanciera/',
     profesores: BASE + '/profesores/',
     tipoDocumento: BASE + '/tipoDocumento/',
+    tipoMovilidad: BASE + '/tipoMovilidad/'
 
 
     

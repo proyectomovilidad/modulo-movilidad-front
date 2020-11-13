@@ -34,6 +34,13 @@
                         <th scope="col" class="center">Estado</th>
                         <th scope="col" class="center">Acciones</th>
                     </tr>
+                    
+                    <tr style="border: 1px solid blue;" *ngFor="let estudiante of estudiantes">
+                        <td style="border: 1px solid blue;"> {{estudiante.primer_nombre}}</td>
+                        <td style="border: 1px solid blue;"> <button (click) = "caragarDatos(estudiante._id)"> cargar </button> </td>
+                        <td style="border: 1px solid blue;"> {{estudiante._id}}</td>
+                        <td style="border: 1px solid blue;"> {{estudiante._id}}</td>
+                    </tr>
                 </thead>
 
                 <tbody formArrayName="campo">

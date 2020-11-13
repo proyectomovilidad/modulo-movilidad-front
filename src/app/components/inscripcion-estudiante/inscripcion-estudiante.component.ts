@@ -8,6 +8,9 @@ import { CiudadesService } from './../../services/ciudades.service';
 import { InstitucionCooperanteService } from './../../services/institucion-cooperante.service';
 import { ProgramasService } from './../../services/programas.service';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
+import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
+
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-inscripcion-estudiante',
@@ -22,6 +25,7 @@ export class InscripcionEstudianteComponent implements OnInit {
   public institucionesCooperantes: any;
   public programas : any;
   public documentosId : any;
+  public tiposMovilidad: any;
 
   public formularioInscripcionEstudiante: FormGroup;
 
@@ -33,6 +37,8 @@ export class InscripcionEstudianteComponent implements OnInit {
     public InstitucionCooperanteService: InstitucionCooperanteService,
     public ProgramasService: ProgramasService,
     public TiposDocumentosIdService: TiposDocumentosIdService,
+    public TipoMovilidadService: TipoMovilidadService,
+    private route: ActivatedRoute,
   ) 
   
   {
@@ -72,6 +78,7 @@ export class InscripcionEstudianteComponent implements OnInit {
     this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
     this.programas = await this.ProgramasService.getProgramaAcademico();
     this.documentosId = await this.TiposDocumentosIdService.getTipoDocumentoId();
+    this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
 
 
 

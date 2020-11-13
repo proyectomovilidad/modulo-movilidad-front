@@ -21,6 +21,8 @@ import { SolicitudApoyoService } from './services/solicitud-apoyo.service';
 import { EntidadFinancieraService } from './services/entidad-financiera.service';
 import { ProfesoresService } from './services/profesores.service';
 import { TipoDocumentoService } from './services/tipo-documento.service';
+import { TipoMovilidadService } from './services/tipo-movilidad.service';
+
 
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -53,6 +55,7 @@ import { TipoApoyoComponent } from './components/tipo-apoyo/tipo-apoyo.component
 import { from } from 'rxjs';
 import { EntidadFinancieraComponent } from './components/entidad-financiera/entidad-financiera.component';
 import { ProfesoresComponent } from './components/profesores/profesores.component';
+import { ConveniosComponent } from './components/convenios/convenios.component';
 
 
 
@@ -83,7 +86,8 @@ import { ProfesoresComponent } from './components/profesores/profesores.componen
     TipoDocumentoComponent,
     TipoApoyoComponent,
     EntidadFinancieraComponent,
-    ProfesoresComponent
+    ProfesoresComponent,
+    ConveniosComponent
   ],
   entryComponents: [ObservacionesComponent],
   imports: [
@@ -111,6 +115,7 @@ BrowserModule,
     EntidadFinancieraService,
     ProfesoresService,
     TipoDocumentoService,
+    TipoMovilidadService,
     
   ],
   bootstrap: [AppComponent]
