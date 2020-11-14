@@ -22,6 +22,7 @@ import { EntidadFinancieraService } from './services/entidad-financiera.service'
 import { ProfesoresService } from './services/profesores.service';
 import { TipoDocumentoService } from './services/tipo-documento.service';
 import { TipoMovilidadService } from './services/tipo-movilidad.service';
+import { ConveniosService } from './services/convenios.service';
 
 
 
@@ -116,6 +117,7 @@ BrowserModule,
     ProfesoresService,
     TipoDocumentoService,
     TipoMovilidadService,
+    ConveniosService,
     
   ],
   bootstrap: [AppComponent]
