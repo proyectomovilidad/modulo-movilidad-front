@@ -23,6 +23,7 @@ export const environment = {
     tipoDocumento: BASE + '/tipoDocumento/',
     tipoMovilidad: BASE + '/tipoMovilidad/',
     convenio: BASE + '/convenio/',
+    tipoConvenio: BASE + '/tipoConvenio/',
 
 
 

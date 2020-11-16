@@ -42,7 +42,7 @@
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="tipo_doc_id"  [class.is-invalid]="getNoValido('tipo_doc_id')">
             <option value="">Seleccione..</option>
-            <option>Seleccione..</option>
+            <option *ngFor="let documentoId of documentosId"  value="{{documentoId._id}}"> {{documentoId.nombre_documentoId}}  </option>
           </select>
         </div>
 
@@ -347,7 +347,7 @@
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="nombre_institucion" [class.is-invalid]="getNoValido('nombre_institucion')" >
             <option value="">Seleccione..</option>
-            <option value="dato">Seleccione..</option>
+            <option *ngFor="let institucionCooperante of institucionesCooperantes"  value="{{institucionCooperante._id}}"> {{institucionCooperante.nombre_institucion}}  </option>
 
 
           </select>
@@ -360,8 +360,7 @@
         <div class="form-group col-md-4">
           <select class="form-control"  formControlName="prog_acad_uis" [class.is-invalid]="getNoValido('prog_acad_uis')" >
             <option value="">Seleccione..</option>
-            <option value="item 1"> 1 </option>
-            <option value="item 1"> 2 </option>
+            <option *ngFor="let programa of programas"  value="{{programa._id}}"> {{programa.nombre_programaAcademico}}  </option>
           </select>
         
         </div>
@@ -374,8 +373,7 @@
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="tipo_movilidad" [class.is-invalid]="getNoValido('tipo_movilidad')" >
             <option value="">Seleccione..</option>
-            <option value="item 1"> 1 </option>
-            <option value="item 1"> 2 </option>
+            <option *ngFor="let tipoMovilidad of tiposMovilidad"  value="{{tipoMovilidad._id}}"> {{tipoMovilidad.nombre_movilidad}}  </option>
           </select>
         </div>
 
@@ -386,8 +384,7 @@
         <div class="form-group col-md-4">
           <select class="form-control" id="institucionCooperante" placeholder="Institución cooperante" >
             <option>Seleccione..</option>
-            <option value="item 1"> 1 </option>
-            <option value="item 1"> 2 </option>
+            <option value="Universidad Industrial de Santander"> Universidad Industrial de Santander </option>
           </select>
           </div>
 

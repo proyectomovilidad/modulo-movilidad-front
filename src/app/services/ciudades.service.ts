@@ -11,8 +11,8 @@ export class CiudadesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getCiudad(): Promise<any> {
-    const url = `${environment.backend.ciudad}getCiudad/`;
-    return this.httpClient.get<any>(url).toPromise();
+  public getCiudades(codigo_departamento): Promise<any> {
+    const url = `${environment.backend.ciudad}getCiudades/`
+    return this.httpClient.post<any>(url, { codigo_departamento: codigo_departamento }).toPromise()
   }
 }

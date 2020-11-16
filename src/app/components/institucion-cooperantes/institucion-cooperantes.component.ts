@@ -43,8 +43,8 @@ export class InstitucionCooperantesComponent implements OnInit {
 
   async ngOnInit(): Promise <void> {
     this.paises = await this.PaisesService.getPais();
-    this.departamentos = await this.DepartamentosService.getDepartamento();
-    this.ciudades = await this.CiudadesService.getCiudad();
+    this.departamentos = await this.DepartamentosService.getDepartamentos();
+    this.ciudades = await this.CiudadesService.getCiudades();
 
     
   }

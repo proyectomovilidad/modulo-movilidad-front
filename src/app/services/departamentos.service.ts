@@ -12,8 +12,9 @@ export class DepartamentosService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getDepartamento(): Promise < any > {
-    const url = `${environment.backend.departamento}getDepartamento/`;
-    return this.httpClient.get<any>(url).toPromise();
-}
+  public getDepartamentos(codigo_pais): Promise < any > {
+    const url = `${environment.backend.departamento}getDepartamentos/`
+    return this.httpClient.post<any>(url, {codigo_pais: codigo_pais}).toPromise()
+  }
+  
 }

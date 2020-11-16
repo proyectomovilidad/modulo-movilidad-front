@@ -6,6 +6,7 @@ import { InstitucionCooperanteService } from './../../services/institucion-coope
 import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
 import { ProgramasService } from './../../services/programas.service';
 import { ConveniosService } from './../../services/convenios.service';
+import { TipoConvenioService } from './../../services/tipo-convenio.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class ConveniosComponent implements OnInit {
   public institucionesCooperantes: any;
   public programas: any;
   public tiposMovilidad: any;
+  public tiposConvenio: any;
 
 
   public formularioCrearConvenio: FormGroup;
@@ -29,6 +31,7 @@ export class ConveniosComponent implements OnInit {
     public InstitucionCooperanteService: InstitucionCooperanteService,
     public ProgramasService: ProgramasService,
     public TipoMovilidadService: TipoMovilidadService,
+    public TipoConvenioService: TipoConvenioService
 
   ) {
     this.formularioCrearConvenio = this.formBuilder.group({
@@ -57,6 +60,8 @@ export class ConveniosComponent implements OnInit {
     this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
     this.programas = await this.ProgramasService.getProgramaAcademico();
     this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
+    this.tiposConvenio = await this.TipoConvenioService.getTipoConvenio();
+
 
   }
 

@@ -23,8 +23,8 @@ export class InscripcionEstudianteComponent implements OnInit {
   public paises: any;
   public departamentos: any;
   public institucionesCooperantes: any;
-  public programas : any;
-  public documentosId : any;
+  public programas: any;
+  public documentosId: any;
   public tiposMovilidad: any;
 
   public formularioInscripcionEstudiante: FormGroup;
@@ -39,9 +39,7 @@ export class InscripcionEstudianteComponent implements OnInit {
     public TiposDocumentosIdService: TiposDocumentosIdService,
     public TipoMovilidadService: TipoMovilidadService,
     private route: ActivatedRoute,
-  ) 
-  
-  {
+  ) {
     this.formularioInscripcionEstudiante = this.formBuilder.group({
       codigo_est: [0, Validators.required],
       tipo_doc_id: ['', Validators.required],
@@ -72,9 +70,9 @@ export class InscripcionEstudianteComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.ciudades = await this.CiudadesService.getCiudad();
+    //this.ciudades = await this.CiudadesService.getCiudades();
     this.paises = await this.PaisesService.getPais();
-    this.departamentos = await this.DepartamentosService.getDepartamento();
+    //this.departamentos = await this.DepartamentosService.getDepartamentos();
     this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
     this.programas = await this.ProgramasService.getProgramaAcademico();
     this.documentosId = await this.TiposDocumentosIdService.getTipoDocumentoId();
@@ -119,17 +117,17 @@ export class InscripcionEstudianteComponent implements OnInit {
 
 
     const inscribirEstudianteAcademic = this.formularioInscripcionEstudiante.value;
-  
+
     const aspUisAcademic = {
       codigo_est: inscribirEstudianteAcademic.codigo_est,
-      semestre: inscribirEstudianteAcademic.semestre ,      
-      promedio:inscribirEstudianteAcademic.promedio,
+      semestre: inscribirEstudianteAcademic.semestre,
+      promedio: inscribirEstudianteAcademic.promedio,
       programa_acad: inscribirEstudianteAcademic.programa_acad,
       cred_cursados: inscribirEstudianteAcademic.cred_cursados,
-      cred_cursar: inscribirEstudianteAcademic.cred_cursar ,
-      periodo_inscrip: inscribirEstudianteAcademic.periodo_inscrip ,
-      ano_inscrip: inscribirEstudianteAcademic.ano_inscrip  ,
-      fecha_inscripcion: inscribirEstudianteAcademic.fecha_inscripcion 
+      cred_cursar: inscribirEstudianteAcademic.cred_cursar,
+      periodo_inscrip: inscribirEstudianteAcademic.periodo_inscrip,
+      ano_inscrip: inscribirEstudianteAcademic.ano_inscrip,
+      fecha_inscripcion: inscribirEstudianteAcademic.fecha_inscripcion
     }
 
     const aspUisPersonalGuardado = await this.InscripcionEstudianteService.saveAspUisPersonal(aspUisPersonal);
@@ -137,7 +135,26 @@ export class InscripcionEstudianteComponent implements OnInit {
 
     const aspUisAcademicGuardado = await this.InscripcionEstudianteService.saveAspUisAcademic(aspUisAcademic);
     console.log(aspUisAcademicGuardado);
-    
+
     this.formularioInscripcionEstudiante.reset();
   }
+
+  onOptionsSelectedDepartment(codigo_pais: string) {
+      //this.locationClear()
+      this.DepartamentosService.getDepartamentos(codigo_pais).then((state) => {
+        this.departamentos = state
+      })
+  }
+
+  onOptionsSelectedCity(codigo_departamento: string) {
+    this.CiudadesService.getCiudades(codigo_departamento).then((cities) => {
+      this.ciudades = cities
+    })
+  }
+
+  locationClear() {
+    this.departamentos = []
+    this.ciudades = []
+  }
+
 }

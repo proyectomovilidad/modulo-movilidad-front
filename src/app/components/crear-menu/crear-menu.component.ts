@@ -40,9 +40,7 @@ export class CrearMenuComponent implements OnInit {
   guardarFormulario() {
 
     if (this.formularioCrearMenu.invalid) {
-
       return Object.values(this.formularioCrearMenu.controls).forEach(control => {
-
         control.markAsTouched();
         
       });

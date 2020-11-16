@@ -128,7 +128,10 @@
       <div class="form-group col-md-4">
         <select class="form-control" formControlName="sede" [class.is-invalid]="getNoValido('sede')">
           <option value="">Seleccione..</option>
-          <option value="item 1"> dato </option>
+          <option value="Barbosa"> Barbosa </option>
+          <option value="Socorro"> Socorro </option>
+          <option value="Malaga"> Málaga </option>
+          <option value="Bucaramanga"> Bucaramanga </option>
         </select>
       </div>
 
@@ -168,24 +171,24 @@
       </div>
 
       <div class="form-group col-md-4">
-        <select class="form-control" id="pais" formControlName="pais_nacimiento"
-          [class.is-invalid]="getNoValido('pais_nacimiento')">
+        <select #country class="form-control" id="pais" formControlName="pais_nacimiento"
+          [class.is-invalid]="getNoValido('pais_nacimiento')" (change)='onOptionsSelectedDepartment(country.value)'>
           <option value="">Seleccione..</option>
-          <option *ngFor="let pais of paises"  value="{{pais._id}}"> {{pais.nombre_pais}}  </option>
+          <option *ngFor="let pais of paises"  value="{{pais.codigo_pais}}"> {{pais.nombre_pais}}  </option>
         </select>
 
       </div>
+
 
       <div class="form-group col-md-2">
         <label for="departamentoResidencia" class="label ">Departamento residencia *</label>
       </div>
 
       <div class="form-group col-md-4">
-        <select class="form-control" formControlName="departamento" [class.is-invalid]="getNoValido('departamento')">
-          <option value="">Seleccione..</option>
-          <option *ngFor="let departamento of departamentos"  value="{{departamento._id}}"> {{departamento.nombre_departamento}}  </option>
+        <select #department class="form-control" formControlName="departamento" [class.is-invalid]="getNoValido('departamento')" (change)='onOptionsSelectedCity(department.value)'>
+          <option value="" selected>Seleccione..</option>
+          <option *ngFor="let departamento of departamentos"  value="{{departamento.codigo_departamento}}"> {{departamento.nombre_departamento}}  </option>
         </select>
-
       </div>
 
       <div class="form-group col-md-2">
@@ -194,7 +197,7 @@
 
       <div class="form-group col-md-4">
         <select class="form-control" formControlName="ciudad" [class.is-invalid]="getNoValido('ciudad')">
-          <option value="">Seleccione..</option>
+          <option value="" selected>Seleccione..</option>
           <option *ngFor="let ciudad of ciudades"  value="{{ciudad._id}}">{{ciudad.nombre_ciudad}}</option>
         </select>
 
@@ -388,7 +391,7 @@
         <select class="form-control" formControlName="nombre_institucion"
           [class.is-invalid]="getNoValido('nombre_institucion')">
           <option value="">Seleccione..</option>
-          <option value="item 1">dato</option>
+          <option *ngFor="let institucionCooperante of institucionesCooperantes"  value="{{institucionCooperante._id}}"> {{institucionCooperante.nombre_institucion}}  </option>
          
         </select>
 
@@ -401,6 +404,7 @@
       <div class="form-group col-md-4">
         <select class="form-control" id="institucionCooperanteSegundaOpcion" placeholder="Institución cooperante ">
           <option>Seleccione..</option>
+          <option *ngFor="let institucionCooperante of institucionesCooperantes"  value="{{institucionCooperante._id}}"> {{institucionCooperante.nombre_institucion}}  </option>
         </select>
 
       </div>

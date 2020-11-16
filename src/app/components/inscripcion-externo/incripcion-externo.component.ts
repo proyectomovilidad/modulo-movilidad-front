@@ -6,8 +6,12 @@ import { PaisesService } from './../../services/paises.service';
 import { InscripcionExternoService } from './../../services/inscripcion-externo.service';
 import { DepartamentosService } from './../../services/departamentos.service';
 import { InstitucionCooperanteService } from './../../services/institucion-cooperante.service';
+import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
+import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
+import { ProgramasService } from './../../services/programas.service';
 
-@Component({
+
+@Component({ 
   selector: 'app-incripcion-externo',
   templateUrl: './incripcion-externo.component.html',
   styleUrls: ['./incripcion-externo.component.css']
@@ -16,8 +20,11 @@ export class IncripcionExternoComponent implements OnInit {
 
   public ciudades: any;
   public paises: any;
-  public departamentos: any; 
-  public instituciones: any;
+  public departamentos: any;
+  public institucionesCooperantes: any;
+  public programas : any;
+  public documentosId : any;
+  public tiposMovilidad: any;
   
 
 
@@ -28,7 +35,10 @@ export class IncripcionExternoComponent implements OnInit {
     public DepartamentosService: DepartamentosService,
     public CiudadesService: CiudadesService,
     public InstitucionCooperanteService: InstitucionCooperanteService,
-
+    public ProgramasService: ProgramasService,
+    public TiposDocumentosIdService: TiposDocumentosIdService,
+    public TipoMovilidadService: TipoMovilidadService,
+    
     ) { 
 
       this.formularioInscripcionExterno = this.formBuilder.group({
@@ -65,11 +75,13 @@ export class IncripcionExternoComponent implements OnInit {
 
   async ngOnInit(): Promise<void>  {
 
-    this.ciudades = await this.CiudadesService.getCiudad();
+    this.ciudades = await this.CiudadesService.getCiudades();
     this.paises = await this.PaisesService.getPais();
-    this.departamentos = await this.DepartamentosService.getDepartamento();
-    this.instituciones = await this.InstitucionCooperanteService.getInstitucionCooperante();
-    
+    this.departamentos = await this.DepartamentosService.getDepartamentos();
+    this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
+    this.programas = await this.ProgramasService.getProgramaAcademico();
+    this.documentosId = await this.TiposDocumentosIdService.getTipoDocumentoId();
+    this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
   }
 
  

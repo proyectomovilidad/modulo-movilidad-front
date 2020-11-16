@@ -100,7 +100,10 @@
                     [class.is-invalid]="getNoValido('estado_convenio')">
                     <option value="">Seleccione..</option>
                     <option value="activo">Activo</option>
-                    <option value="activo">Inactivo</option>
+                    <option value="inactivo">Inactivo</option>
+                    <option value="vigente">Vigente</option>
+                    <option value="no vigente">No vigente</option>
+
                 </select>
             </div>
 
@@ -160,7 +163,7 @@
                 <select class="form-control"  formControlName="tipo_convenio"
                     [class.is-invalid]="getNoValido('tipo_convenio')">
                     <option value="">Seleccione..</option>
-                    <option value="item 1">Seleccione..</option>
+                    <option *ngFor="let tipoConvenio of tiposConvenio"  value="{{tipoConvenio._id}}"> {{tipoConvenio.nombre_tipo_convenio}}  </option>     
                 </select>
             </div>
 
@@ -259,6 +262,8 @@
             <div class="form-group col-md-4">
                 <select class="form-control" id="tipoMovilidad" required>
                     <option value="">Seleccione..</option>
+                    <option *ngFor="let tipoMovilidad of tiposMovilidad"  value="{{tipoMovilidad._id}}"> {{tipoMovilidad.nombre_movilidad}}  </option>     
+
                 </select>
 
             </div>

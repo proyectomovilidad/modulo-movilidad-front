@@ -23,6 +23,8 @@ import { ProfesoresService } from './services/profesores.service';
 import { TipoDocumentoService } from './services/tipo-documento.service';
 import { TipoMovilidadService } from './services/tipo-movilidad.service';
 import { ConveniosService } from './services/convenios.service';
+import { TipoConvenioService } from './services/tipo-convenio.service';
+
 
 
 
@@ -88,7 +90,8 @@ import { ConveniosComponent } from './components/convenios/convenios.component';
     TipoApoyoComponent,
     EntidadFinancieraComponent,
     ProfesoresComponent,
-    ConveniosComponent
+    ConveniosComponent,
+    
   ],
   entryComponents: [ObservacionesComponent],
   imports: [
@@ -118,6 +121,7 @@ BrowserModule,
     TipoDocumentoService,
     TipoMovilidadService,
     ConveniosService,
+    TipoConvenioService,
     
   ],
   bootstrap: [AppComponent]
