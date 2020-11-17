@@ -24,6 +24,10 @@ export const environment = {
     tipoMovilidad: BASE + '/tipoMovilidad/',
     convenio: BASE + '/convenio/',
     tipoConvenio: BASE + '/tipoConvenio/',
+    convocatoria: BASE + '/convocatoria/',
+    tipoProyecto: BASE + '/tipoProyecto/',
+
+
 
 
 

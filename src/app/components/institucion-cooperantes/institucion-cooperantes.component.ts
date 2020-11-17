@@ -43,10 +43,6 @@ export class InstitucionCooperantesComponent implements OnInit {
 
   async ngOnInit(): Promise <void> {
     this.paises = await this.PaisesService.getPais();
-    this.departamentos = await this.DepartamentosService.getDepartamentos();
-    this.ciudades = await this.CiudadesService.getCiudades();
-
-    
   }
 
   getNoValido(input: string) {
@@ -85,6 +81,17 @@ export class InstitucionCooperantesComponent implements OnInit {
     this.dialog.open(EditarInstitucionComponent);
   }
 
+  onOptionsSelectedDepartment(codigo_pais: string) {
+    this.DepartamentosService.getDepartamentos(codigo_pais).then((state) => {
+      this.departamentos = state
+    })
+}
+
+onOptionsSelectedCity(codigo_departamento: string) {
+  this.CiudadesService.getCiudades(codigo_departamento).then((cities) => {
+    this.ciudades = cities
+  })
+}
 
 
 }

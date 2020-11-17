@@ -140,7 +140,6 @@ export class InscripcionEstudianteComponent implements OnInit {
   }
 
   onOptionsSelectedDepartment(codigo_pais: string) {
-      //this.locationClear()
       this.DepartamentosService.getDepartamentos(codigo_pais).then((state) => {
         this.departamentos = state
       })
@@ -150,11 +149,6 @@ export class InscripcionEstudianteComponent implements OnInit {
     this.CiudadesService.getCiudades(codigo_departamento).then((cities) => {
       this.ciudades = cities
     })
-  }
-
-  locationClear() {
-    this.departamentos = []
-    this.ciudades = []
   }
 
 }

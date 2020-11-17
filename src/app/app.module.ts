@@ -24,6 +24,8 @@ import { TipoDocumentoService } from './services/tipo-documento.service';
 import { TipoMovilidadService } from './services/tipo-movilidad.service';
 import { ConveniosService } from './services/convenios.service';
 import { TipoConvenioService } from './services/tipo-convenio.service';
+import { ConvocatoriaService } from './services/convocatoria.service';
+import { TipoProyectoService } from './services/tipo-proyecto.service';
 
 
 
@@ -59,6 +61,7 @@ import { from } from 'rxjs';
 import { EntidadFinancieraComponent } from './components/entidad-financiera/entidad-financiera.component';
 import { ProfesoresComponent } from './components/profesores/profesores.component';
 import { ConveniosComponent } from './components/convenios/convenios.component';
+import { ConvocatoriaComponent } from './components/convocatoria/convocatoria.component';
 
 
 
@@ -91,6 +94,7 @@ import { ConveniosComponent } from './components/convenios/convenios.component';
     EntidadFinancieraComponent,
     ProfesoresComponent,
     ConveniosComponent,
+    ConvocatoriaComponent,
     
   ],
   entryComponents: [ObservacionesComponent],
@@ -122,6 +126,8 @@ BrowserModule,
     TipoMovilidadService,
     ConveniosService,
     TipoConvenioService,
+    ConvocatoriaService,
+    TipoProyectoService
     
   ],
   bootstrap: [AppComponent]

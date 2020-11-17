@@ -45,10 +45,10 @@
             </div>
 
             <div class="form-group col-md-4">
-                <select class="form-control" id="pais" formControlName="pais"
-                [class.is-invalid]="getNoValido('pais')">
+                <select #country class="form-control" id="pais" formControlName="pais"
+                [class.is-invalid]="getNoValido('pais')"  (change)='onOptionsSelectedDepartment(country.value)'>
                 <option value="">Seleccione..</option>
-                <option *ngFor="let pais of paises"  value="{{pais._id}}"> {{pais.nombre_pais}}  </option>     
+                <option *ngFor="let pais of paises"  value="{{pais.codigo_pais}}"> {{pais.nombre_pais}}  </option>     
                        </select>
 
             </div>
@@ -58,9 +58,10 @@
             </div>
 
             <div class="form-group col-md-4">
-                <select class="form-control" formControlName="departamento" [class.is-invalid]="getNoValido('departamento')">
+                <select #department class="form-control" formControlName="departamento" [class.is-invalid]="getNoValido('departamento')"
+                (change)='onOptionsSelectedCity(department.value)'>
                     <option value="">Seleccione..</option>
-                    <option *ngFor="let departamento of departamentos"  value="{{departamento._id}}"> {{departamento.nombre_departamento}}  </option>
+                    <option *ngFor="let departamento of departamentos"  value="{{departamento.codigo_departamento}}"> {{departamento.nombre_departamento}}  </option>
                 </select>
 
             </div>

@@ -141,7 +141,7 @@
       </div>
 
       <div class="form-group col-md-4">
-        <select class="form-control"  formControlName="programa_acad" >
+        <select class="form-control"  formControlName="programa_acad"  [class.is-invalid]="getNoValido('programa_acad')">
           <option value="">Seleccione..</option>
           <option *ngFor="let programa of programas"  value="{{programa._id}}"> {{programa.nombre_programaAcademico}}  </option>
           
@@ -200,7 +200,7 @@
           <option value="" selected>Seleccione..</option>
           <option *ngFor="let ciudad of ciudades"  value="{{ciudad._id}}">{{ciudad.nombre_ciudad}}</option>
         </select>
-
+ 
       </div>
 
       <div class="form-group col-md-2">
@@ -302,8 +302,8 @@
         <select class="form-control" formControlName="periodo_inscrip"
           [class.is-invalid]="getNoValido('periodo_inscrip')">
           <option value="">Seleccione..</option>
-          <option value="item 1"> 1 </option>
-          <option value="item 1"> 2 </option>
+          <option value=" 1"> 1 </option>
+          <option value=" 2"> 2 </option>
         </select>
 
       </div>

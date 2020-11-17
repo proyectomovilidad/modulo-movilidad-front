@@ -74,16 +74,13 @@ export class IncripcionExternoComponent implements OnInit {
     }
 
   async ngOnInit(): Promise<void>  {
-
-    this.ciudades = await this.CiudadesService.getCiudades();
     this.paises = await this.PaisesService.getPais();
-    this.departamentos = await this.DepartamentosService.getDepartamentos();
     this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
     this.programas = await this.ProgramasService.getProgramaAcademico();
     this.documentosId = await this.TiposDocumentosIdService.getTipoDocumentoId();
     this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
   }
-
+ 
  
   getNoValido(input: string) {
     return this.formularioInscripcionExterno.get(input).invalid && 
@@ -142,5 +139,18 @@ export class IncripcionExternoComponent implements OnInit {
 
     this.formularioInscripcionExterno.reset();
   }
+
+  
+  onOptionsSelectedDepartment(codigo_pais: string) {
+    this.DepartamentosService.getDepartamentos(codigo_pais).then((state) => {
+      this.departamentos = state
+    })
+}
+
+onOptionsSelectedCity(codigo_departamento: string) {
+  this.CiudadesService.getCiudades(codigo_departamento).then((cities) => {
+    this.ciudades = cities
+  })
+}
 
 }

@@ -2,8 +2,6 @@
 
 
     <header>
-
-
         <section id="title">
 
             <div id="titulo">
@@ -13,8 +11,6 @@
             </div>
 
         </section>
-
-
     </header>
 
     <section id="body">
@@ -32,7 +28,7 @@
             </div>
 
             <div class="form-group col-md-4">
-                <select class="form-control" id="ano" required>
+                <select class="form-control" id="ano" >
                     <option value="">Seleccione..</option>
                 </select>
 
@@ -45,6 +41,8 @@
             <div class="form-group col-md-4">
                 <select class="form-control" id="periodo">
                     <option value="">Seleccione..</option>
+                    <option value=" 1"> 1 </option>
+                    <option value=" 2"> 2 </option>
                 </select>
 
             </div>
@@ -54,8 +52,10 @@
             </div>
 
             <div class="form-group col-md-4">
-                <select class="form-control" id="tipoMovilidad" required>
+                <select class="form-control" id="tipoMovilidad" >
                     <option value="">Seleccione..</option>
+                    <option *ngFor="let tipoMovilidad of tiposMovilidad"  value="{{tipoMovilidad._id}}"> {{tipoMovilidad.nombre_movilidad}}  </option>
+
                 </select>
 
             </div>
@@ -65,8 +65,10 @@
             </div>
 
             <div class="form-group col-md-4">
-                <select class="form-control" id="institucionCooperante" placeholder="Institución cooperante" required>
+                <select class="form-control" id="institucionCooperante" placeholder="Institución cooperante" >
                     <option value="">Seleccione..</option>
+                    <option *ngFor="let institucion of instituciones"  value="{{institucion._id}}"> {{institucion.nombre_institucion}}  </option>
+
                 </select>
 
             </div>

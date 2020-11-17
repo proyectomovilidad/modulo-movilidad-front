@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
+import { InstitucionCooperanteService } from './../../services/institucion-cooperante.service';
 @Component({
   selector: 'app-estudiantes-movilidad',
   templateUrl: './estudiantes-movilidad.component.html',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstudiantesMovilidadComponent implements OnInit {
 
-  constructor() { }
+  public tiposMovilidad: any;
+  public instituciones: any;
 
-  ngOnInit(): void {
+  constructor(
+    public TipoMovilidadService: TipoMovilidadService,
+    public InstitucionCooperanteService: InstitucionCooperanteService,
+  ) { }
+
+  async ngOnInit(): Promise<void> {
+
+    this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
+    this.instituciones = await this.InstitucionCooperanteService.getInstitucionCooperante();
+
+        
   }
 
 }
