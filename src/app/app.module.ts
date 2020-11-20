@@ -38,7 +38,6 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './components/index/index.component';
 import { InscripcionEstudianteComponent } from './components/inscripcion-estudiante/inscripcion-estudiante.component';
 import { IncripcionExternoComponent } from './components/inscripcion-externo/incripcion-externo.component';
-import { ConsultarEstadoComponent } from './components/consultar-estado/consultar-estado.component';
 import { CambiarEstadoComponent } from './components/cambiar-estado/cambiar-estado.component';
 import { ErrorComponent } from './components/error/error.component';
 import { CargaDocumentosComponent } from './components/carga-documentos/carga-documentos.component';
@@ -65,6 +64,8 @@ import { ConvocatoriaComponent } from './components/convocatoria/convocatoria.co
 import { EditarInscripcionComponent } from './components/editar-inscripcion/editar-inscripcion.component';
 import { DatosEstudianteComponent } from './components/datos-estudiante/datos-estudiante.component';
 import { DatosInstitucionComponent } from './components/datos-institucion/datos-institucion.component';
+import { EditarDocumentoComponent } from './components/editar-documento/editar-documento.component';
+import { ProfesoresModuloComponent } from './components/profesores-modulo/profesores-modulo.component';
 
 
 
@@ -76,7 +77,6 @@ import { DatosInstitucionComponent } from './components/datos-institucion/datos-
     IncripcionExternoComponent,
     IndexComponent,
     ErrorComponent,
-    ConsultarEstadoComponent,
     CambiarEstadoComponent,
     CargaDocumentosComponent,
     AccesoComponent,
@@ -101,6 +101,8 @@ import { DatosInstitucionComponent } from './components/datos-institucion/datos-
     EditarInscripcionComponent,
     DatosEstudianteComponent,
     DatosInstitucionComponent,
+    EditarDocumentoComponent,
+    ProfesoresModuloComponent,
     
   ],
   entryComponents: [ObservacionesComponent],

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TipoDocumentoService } from './../../services/tipo-documento.service';
+
 
 @Component({
   selector: 'app-consultar-documentos',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsultarDocumentosComponent implements OnInit {
 
-  constructor() { }
+  public documentos: any;
 
-  ngOnInit(): void {
-  }
+  constructor(private router: Router,
+    private TipoDocumentoService: TipoDocumentoService
+    ) { }
+
+    async ngOnInit(): Promise<void> {
+      this.documentos = await this.TipoDocumentoService.getDocumento();
+    }
+
+    public editarDocumento(id: any) {
+      this.router.navigateByUrl('/editar-documento?_id=' + id);
+    }
+      
 
 }

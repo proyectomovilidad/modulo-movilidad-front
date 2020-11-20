@@ -27,50 +27,7 @@
 
         <form class="row justify-content-center form">
 
-            <div class="form-group col-md-2">
-                <label for="ano" class=" label ">Año </label>
-            </div>
-
-            <div class="form-group col-md-4">
-                <select class="form-control" id="ano" required>
-                    <option value="">Seleccione..</option>
-                </select>
-
-            </div>
-
-            <div class="form-group col-md-2">
-                <label for="periodo" class=" label ">Periodo </label>
-            </div>
-
-            <div class="form-group col-md-4">
-                <select class="form-control" id="periodo">
-                    <option value="">Seleccione..</option>
-                </select>
-
-            </div>
-
-            <div class="form-group col-md-2">
-                <label for="tipoMovilidad" class=" label ">Tipo de movilidad </label>
-            </div>
-
-            <div class="form-group col-md-4">
-                <select class="form-control" id="tipoMovilidad" required>
-                    <option value="">Seleccione..</option>
-                </select>
-
-            </div>
-
-            <div class="form-group col-md-2">
-                <label for="institucionCooperante" class=" label ">Institución cooperante </label>
-            </div>
-
-            <div class="form-group col-md-4">
-                <select class="form-control" id="institucionCooperante" placeholder="Institución cooperante" required>
-                    <option value="">Seleccione..</option>
-                </select>
-
-            </div>
-
+    
             <div class=" form-group col-md-2 ">
                 <label for="codigo" class="label ">Código estudiante </label>
             </div>
@@ -106,13 +63,7 @@
                     </div>
                 </div>
 
-
-
         </form>
-
-
-
-
     </section>
 
 
@@ -128,21 +79,18 @@
                     <th scope="col" class="center"> Id </th>
                     <th scope="col" class="center"> Nombre </th>
                     <th scope="col" class="center"> Estado </th>
-                    <th scope="col" class="center"> Tipo movilidad </th>
-                    <th scope="col" class="center"> Institución cooperante </th>
                     <th scope="col" class="center"> Acciones </th>
                 </tr>
             </thead>
             <tbody>
               
-                <tr>
+                <tr *ngFor="let documento of documentos"> 
                     
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{documento._id}}</td>
+                    <td>{{documento.nombre_documento}}</td>
+                    <td>{{documento.estado_documento}}</td>
+                    <td><button class="submit" (click)="editarDocumento(documento._id )"> Editar </button> </td>
+                
                 </tr>
 
             </tbody>

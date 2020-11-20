@@ -54,5 +54,15 @@ export class InscripcionEstudianteService {
     return this.httpClient.post<any>(url, aspUisAcademic, httpOptions).toPromise();
   }
 
+  public saveInscripcion(inscripcion: any): Promise<any> {
+    const url = `${environment.backend.inscripcion}`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.httpClient.post<any>(url, inscripcion, httpOptions).toPromise();
+  }
+
 
 }

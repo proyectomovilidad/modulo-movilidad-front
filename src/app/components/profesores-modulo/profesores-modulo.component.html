@@ -1,0 +1,112 @@
+<body> 
+
+    <header>
+        <section id="title">
+
+            <div id="titulo">
+                Sistema de relaciones exteriores
+                <br />
+                Módulo de movilidad académica - Profesores movilidad
+            </div>
+
+        </section>
+    </header>
+
+    <section id="body">
+
+        <div id="name">
+            <h3> Criterios de consulta</h3>
+        </div>
+
+        <br />
+
+        <form class="row justify-content-center form">
+
+  
+            <div class=" form-group col-md-2 ">
+                <label class="label ">Número documento </label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" placeholder="Número documento" >
+
+            </div>
+
+            <div class="form-group col-md-2">
+                <label class=" label ">Convocatoria </label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control">
+                    <option value="">Seleccione..</option>
+                    <option *ngFor="let convocatoria of convocatorias"  value="{{convocatoria._id}}">{{convocatoria.nombre_convocatoria}}</option>
+
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group col-md-6">
+                <div class="row justify-content-end">
+
+                    <button class="submit" type="submit"> Consultar </button>
+
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <div class="row justify-content-start">
+
+                    <button class="submit" type=""> Cancelar </button>
+
+
+                </div>
+            </div>
+
+
+
+        </form>
+
+
+
+
+    </section>
+
+
+    <section id="body">
+
+        <div id="name">
+            <h3> Listado de profesores</h3>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="center"> Id </th>
+                    <th scope="col" class="center"> Doc. Identidad </th>
+                    <th scope="col" class="center"> Nombre </th>
+                    <th scope="col" class="center"> Convocatoria </th>
+                    <th scope="col" class="center"> Duración </th>
+                    <th scope="col" class="center"> Acciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let profesor of profesores">
+
+                    <td >{{profesor._id}}</td>
+                    <td> {{profesor.documento_id}} </td>
+                    <td> {{profesor.primer_nombre}} {{profesor.primer_apellido}}  </td>
+                    <td>{{profesor.nombre_convocatoria}}</td>
+                    <td>{{profesor.duracion}} días</td>
+                    <td> <button class="submit" (click)="editarProfesor(profesor._id )"> Editar </button> </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </section>
+
+
+
+</body>

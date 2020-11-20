@@ -22,6 +22,11 @@ export class ProfesoresService {
     return this.httpClient.post<any>(url, profesores, httpOptions).toPromise();
   }
 
+  public getAllProfesores(): Promise<any> {
+    const url = `${environment.backend.profesores}getProfesores/`;
+    return this.httpClient.get<any>(url).toPromise();
+  }
+
 
 
 }

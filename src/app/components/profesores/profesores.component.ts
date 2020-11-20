@@ -1,20 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProfesoresService } from './../../services/profesores.service';
-
+import { Router } from '@angular/router';
+import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
+import { ConvocatoriaService } from './../../services/convocatoria.service';
 @Component({
   selector: 'app-profesores',
   templateUrl: './profesores.component.html',
   styleUrls: ['./profesores.component.css']
 })
 export class ProfesoresComponent implements OnInit {
+  public convocatorias: any;
+  public profesores: any;
+  public tiposDocumento: any;
+
 
   public formularioInscripcionProfesor: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
     private ProfesoresService: ProfesoresService,
+    private  ConvocatoriaService: ConvocatoriaService,
+    private TiposDocumentosIdService: TiposDocumentosIdService,
+    private router: Router,
   ) {
-
+ 
     this.formularioInscripcionProfesor = this.formBuilder.group({
       tipo_doc_id: ['', Validators.required],
       documento_id: [0, Validators.required],
@@ -36,7 +45,10 @@ export class ProfesoresComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.profesores = await this.ProfesoresService.getAllProfesores();
+    this.convocatorias = await this.ConvocatoriaService.getConvocatorias();
+    this.tiposDocumento = await this.TiposDocumentosIdService.getTipoDocumentoId();
   }
 
   getNoValido(input: string) {

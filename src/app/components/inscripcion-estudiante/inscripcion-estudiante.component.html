@@ -409,15 +409,18 @@
 
       </div>
 
-      <div class=" form-group col-md-2 ">
-        <label for="" class=" "> </label>
+      <div class="form-group col-md-2">
+        <label for="estado" class=" label">Estado *</label>
       </div>
 
       <div class="form-group col-md-4">
-       
+        <select class="form-control" formControlName="tipo_estado" [class.is-invalid]="getNoValido('tipo_estado')">
+          <option value="">Seleccione..</option>
+          <option value="Inscrito"> Inscrito </option>
+        </select>
       </div>
 
- 
+
       <div class="form-group col-md-6">
         <div class="row justify-content-end">
 

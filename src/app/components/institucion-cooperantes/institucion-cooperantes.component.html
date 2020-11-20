@@ -230,9 +230,8 @@
                     <td>  {{institucion.ciudad}}</td>
                     <td>  {{institucion.email}}</td>
                     <td>  {{institucion.telefono}}  </td>
-                    <td> <button class="editar" (click)="abrirEditarInstitucion()"> Editar </button>
-                        <button class="editar" (click)="abrirMostrarInstitucion()"> + </button>
-                        <button class="btn btn-danger" ></button>
+                    <td> 
+                        <button class="submit" (click)="editarInstitucion(institucion._id )"> Editar </button> 
                     </td>
                    
                 </tr>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TipoDocumentoService } from './../../services/tipo-documento.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tipo-documento',
@@ -10,9 +11,10 @@ import { TipoDocumentoService } from './../../services/tipo-documento.service';
 export class TipoDocumentoComponent implements OnInit {
 
   public formularioCrearDocumento: FormGroup;
-
+  public documentos: any;
 
   constructor(private formBuilder: FormBuilder,
+    private router: Router,
    public TipoDocumentoService: TipoDocumentoService) { 
 
     this.formularioCrearDocumento = this.formBuilder.group({
@@ -22,8 +24,13 @@ export class TipoDocumentoComponent implements OnInit {
   });
 }
 
-  ngOnInit(): void {
-  }
+async ngOnInit(): Promise<void> {
+  this.documentos = await this.TipoDocumentoService.getDocumento();
+}
+
+public editarDocumento(id: any) {
+  this.router.navigateByUrl('/editar-documento?_id=' + id);
+}
 
   getNoValido(input: string) {
     return this.formularioCrearDocumento.get(input).invalid &&

@@ -6,7 +6,6 @@ import { InscripcionEstudianteComponent } from './components/inscripcion-estudia
 import { IncripcionExternoComponent } from './components/inscripcion-externo/incripcion-externo.component';
 import { IndexComponent } from './components/index/index.component';
 import { ErrorComponent } from './components/error/error.component';
-import { ConsultarEstadoComponent } from './components/consultar-estado/consultar-estado.component';
 import { CambiarEstadoComponent } from './components/cambiar-estado/cambiar-estado.component';
 import { CargaDocumentosComponent } from './components/carga-documentos/carga-documentos.component';
 import { RevisionDocumentosComponent } from './components/revision-documentos/revision-documentos.component';
@@ -26,6 +25,8 @@ import { ProfesoresComponent } from './components/profesores/profesores.componen
 import { ConveniosComponent } from './components/convenios/convenios.component';
 import { ConvocatoriaComponent } from './components/convocatoria/convocatoria.component';
 import { EditarInscripcionComponent} from './components/editar-inscripcion/editar-inscripcion.component';
+import { EditarDocumentoComponent } from './components/editar-documento/editar-documento.component';
+import { ProfesoresModuloComponent } from './components/profesores-modulo/profesores-modulo.component';
 
 
 
@@ -36,7 +37,6 @@ const appRoutes: Routes = [
   {path: 'acceso', component: AccesoComponent},
   {path: 'inscripcion-externo', component: IncripcionExternoComponent},
   {path: 'inscripcion-estudiante', component: InscripcionEstudianteComponent},
-  {path: 'consultar-estado', component: ConsultarEstadoComponent},
   {path: 'cambiar-estado', component: CambiarEstadoComponent},
   {path: 'carga-documentos', component: CargaDocumentosComponent},
   {path: 'revision-documentos', component:RevisionDocumentosComponent},
@@ -56,6 +56,10 @@ const appRoutes: Routes = [
   {path: 'convenios', component:ConveniosComponent},
   {path: 'convocatoria', component:ConvocatoriaComponent},
   {path: 'editar-inscripcion', component:EditarInscripcionComponent},
+  {path: 'editar-documento', component:EditarDocumentoComponent},
+  {path: 'profesores-movilidad', component:ProfesoresModuloComponent},
+
+
 
   
 

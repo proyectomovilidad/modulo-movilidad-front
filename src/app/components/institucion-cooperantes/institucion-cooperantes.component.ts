@@ -24,11 +24,12 @@ export class InstitucionCooperantesComponent implements OnInit {
 
   public formularioInstitucionCooperante: FormGroup;
   constructor(private formBuilder: FormBuilder,
-    
+
     public InstitucionCooperanteService: InstitucionCooperanteService,
     public PaisesService: PaisesService,
     public DepartamentosService: DepartamentosService,
     public CiudadesService: CiudadesService,
+    private router: Router,
     public dialog: MatDialog) {
 
     this.formularioInstitucionCooperante = this.formBuilder.group({
@@ -44,7 +45,7 @@ export class InstitucionCooperantesComponent implements OnInit {
   }
 
 
-  async ngOnInit(): Promise <void> {
+  async ngOnInit(): Promise<void> {
     this.paises = await this.PaisesService.getPais();
     this.instituciones = await this.InstitucionCooperanteService.getAllInstitucionesCooperantes();
   }
@@ -60,7 +61,7 @@ export class InstitucionCooperantesComponent implements OnInit {
         control.markAsTouched();
       });
     }
-    const crearInstitucionCooperante =  this.formularioInstitucionCooperante.value;
+    const crearInstitucionCooperante = this.formularioInstitucionCooperante.value;
     console.log(crearInstitucionCooperante)
 
     const institucionCooperante = {
@@ -81,26 +82,27 @@ export class InstitucionCooperantesComponent implements OnInit {
     this.formularioInstitucionCooperante.reset();
   }
 
- abrirEditarInstitucion() {
-    this.dialog.open(EditarInstitucionComponent);
+  public editarInstitucion(id: any) {
+    this.router.navigateByUrl('/editar-institucion?_id=' + id);
   }
+    
 
-  abrirMostrarInstitucion() {
-    this.dialog.open(DatosInstitucionComponent);
+  abrirEditarInstitucion(institucion) {
+    console.log(institucion)
+    this.dialog.open(EditarInstitucionComponent, institucion);
   }
-
 
   onOptionsSelectedDepartment(codigo_pais: string) {
     this.DepartamentosService.getDepartamentos(codigo_pais).then((state) => {
       this.departamentos = state
     })
-}
+  }
 
-onOptionsSelectedCity(codigo_departamento: string) {
-  this.CiudadesService.getCiudades(codigo_departamento).then((cities) => {
-    this.ciudades = cities
-  })
-}
+  onOptionsSelectedCity(codigo_departamento: string) {
+    this.CiudadesService.getCiudades(codigo_departamento).then((cities) => {
+      this.ciudades = cities
+    })
+  }
 
 
 }

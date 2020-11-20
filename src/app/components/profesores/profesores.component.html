@@ -30,7 +30,7 @@
           <select class="form-control" id="tipoDocumentoId" formControlName="tipo_doc_id" 
           [class.is-invalid]="getNoValido('tipo_doc_id')">
             <option value="">Seleccione..</option>
-            <option value="item 1">Seleccione..</option>
+            <option *ngFor="let tipoDocumento of tiposDocumento"  value="{{tipoDocumento._id}}"> {{tipoDocumento.nombre_documentoId}}  </option>
           
           
           </select>
@@ -119,7 +119,7 @@
           <select class="form-control" id="nombre_convocatoria" formControlName="nombre_convocatoria" 
             [class.is-invalid]="getNoValido('nombre_convocatoria')">
             <option value="">Seleccione..</option>
-            <option value="item 1">Seleccione..</option>
+            <option *ngFor="let convocatoria of convocatorias"  value="{{convocatoria._id}}">{{convocatoria.nombre_convocatoria}}</option>
             
   
           </select>

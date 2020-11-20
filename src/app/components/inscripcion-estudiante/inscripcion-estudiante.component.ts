@@ -10,6 +10,7 @@ import { ProgramasService } from './../../services/programas.service';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
 import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
 
+
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -66,6 +67,7 @@ export class InscripcionEstudianteComponent implements OnInit {
       correo: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       tipo_movilidad: ['', Validators.required],
       nombre_institucion: ['', Validators.required],
+      tipo_estado: ['', Validators.required],
     });
   }
 
@@ -95,24 +97,26 @@ export class InscripcionEstudianteComponent implements OnInit {
         control.markAsTouched();
       });
     }
-    const inscribirEstudiante = this.formularioInscripcionEstudiante.value;
-    console.log(inscribirEstudiante)
+
+    const inscribirEstudiantePersonal = this.formularioInscripcionEstudiante.value;
+    console.log(inscribirEstudiantePersonal)
 
     const aspUisPersonal = {
-      codigo_est: inscribirEstudiante.codigo_est,
-      tipo_doc_id: inscribirEstudiante.tipo_doc_id,
-      documento_id: inscribirEstudiante.documento_id,
-      primer_nombre: inscribirEstudiante.primer_nombre,
-      primer_apellido: inscribirEstudiante.primer_apellido,
-      genero: inscribirEstudiante.genero,
-      fecha_nacimiento: inscribirEstudiante.fecha_nacimiento,
-      pais_nacimiento: inscribirEstudiante.pais_nacimiento,
-      departamento: inscribirEstudiante.departamento,
-      ciudad: inscribirEstudiante.ciudad,
-      direccion: inscribirEstudiante.direccion,
-      estrato: inscribirEstudiante.estrato,
-      celular: inscribirEstudiante.celular,
-      correo: inscribirEstudiante.correo
+      codigo_est: inscribirEstudiantePersonal.codigo_est,
+      tipo_doc_id: inscribirEstudiantePersonal.tipo_doc_id,
+      documento_id: inscribirEstudiantePersonal.documento_id,
+      primer_nombre: inscribirEstudiantePersonal.primer_nombre,
+      segundo_nombre: inscribirEstudiantePersonal.segundo_nombre,
+      primer_apellido: inscribirEstudiantePersonal.primer_apellido,
+      genero: inscribirEstudiantePersonal.genero,
+      fecha_nacimiento: inscribirEstudiantePersonal.fecha_nacimiento,
+      pais_nacimiento: inscribirEstudiantePersonal.pais_nacimiento,
+      departamento: inscribirEstudiantePersonal.departamento,
+      ciudad: inscribirEstudiantePersonal.ciudad,
+      direccion: inscribirEstudiantePersonal.direccion,
+      estrato: inscribirEstudiantePersonal.estrato,
+      celular: inscribirEstudiantePersonal.celular,
+      correo: inscribirEstudiantePersonal.correo
     }
 
 
@@ -130,11 +134,26 @@ export class InscripcionEstudianteComponent implements OnInit {
       fecha_inscripcion: inscribirEstudianteAcademic.fecha_inscripcion
     }
 
+    const inscribirEstudiante = this.formularioInscripcionEstudiante.value;
+
+    const inscribir = {
+
+      tipo_movilidad: inscribirEstudiante.tipo_movilidad,
+      nombre_institucion:  inscribirEstudiante.nombre_institucion,
+      tipo_estado: inscribirEstudiante.tipo_estado,
+      codigo_est: inscribirEstudiante.codigo_est
+
+    }
+
     const aspUisPersonalGuardado = await this.InscripcionEstudianteService.saveAspUisPersonal(aspUisPersonal);
     console.log(aspUisPersonalGuardado);
 
     const aspUisAcademicGuardado = await this.InscripcionEstudianteService.saveAspUisAcademic(aspUisAcademic);
     console.log(aspUisAcademicGuardado);
+
+    const inscritoGuardado = await this.InscripcionEstudianteService.saveInscripcion(inscribir);
+    console.log(inscritoGuardado);
+
 
     this.formularioInscripcionEstudiante.reset();
   }
