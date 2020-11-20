@@ -62,6 +62,9 @@ import { EntidadFinancieraComponent } from './components/entidad-financiera/enti
 import { ProfesoresComponent } from './components/profesores/profesores.component';
 import { ConveniosComponent } from './components/convenios/convenios.component';
 import { ConvocatoriaComponent } from './components/convocatoria/convocatoria.component';
+import { EditarInscripcionComponent } from './components/editar-inscripcion/editar-inscripcion.component';
+import { DatosEstudianteComponent } from './components/datos-estudiante/datos-estudiante.component';
+import { DatosInstitucionComponent } from './components/datos-institucion/datos-institucion.component';
 
 
 
@@ -95,6 +98,9 @@ import { ConvocatoriaComponent } from './components/convocatoria/convocatoria.co
     ProfesoresComponent,
     ConveniosComponent,
     ConvocatoriaComponent,
+    EditarInscripcionComponent,
+    DatosEstudianteComponent,
+    DatosInstitucionComponent,
     
   ],
   entryComponents: [ObservacionesComponent],

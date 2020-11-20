@@ -1,6 +1,4 @@
 <body>
-
-
     <header>
 
 
@@ -13,8 +11,6 @@
             </div>
 
         </section>
-
-
     </header>
 
     <section id="body">
@@ -183,9 +179,6 @@
 
             </div>
 
-         
-
-
                 <div class="form-group col-md-6">
                     <div class="row justify-content-end">
 
@@ -199,11 +192,8 @@
 
                         <button class="submit"  type=""> Cancelar </button>
 
-
                     </div>
                 </div>
-
-
 
         </form>
 
@@ -233,18 +223,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td> <button class="editar" (click)="openDialog()"> Editar </button>
+                <tr  *ngFor="let institucion of instituciones">
+                    <td> {{institucion.documento_id}} </td>
+                    <td> {{institucion.nombre_institucion}}</td>
+                    <td>  {{institucion.pais}}</td>
+                    <td>  {{institucion.ciudad}}</td>
+                    <td>  {{institucion.email}}</td>
+                    <td>  {{institucion.telefono}}  </td>
+                    <td> <button class="editar" (click)="abrirEditarInstitucion()"> Editar </button>
+                        <button class="editar" (click)="abrirMostrarInstitucion()"> + </button>
                         <button class="btn btn-danger" ></button>
                     </td>
-                 
-                        
                    
                 </tr>
                

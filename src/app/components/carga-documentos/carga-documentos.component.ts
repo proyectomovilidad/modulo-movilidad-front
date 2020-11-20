@@ -33,23 +33,16 @@ export class CargaDocumentosComponent implements OnInit {
   }
     
   crearCampo(){ 
-
     this.formularioDocumentos = this.formBuilder.group ({
 
       campo: this.formBuilder.array([
-
-       
       ]) 
     });
-
-    
   } 
   
 
   agregarCampo() {
-
-    this.campo.push(this.formBuilder.control('', Validators.required) );
-      
+    this.campo.push(this.formBuilder.control('', Validators.required) ); 
   }
 
   eliminarCampo( i : number) {

@@ -25,6 +25,8 @@ import { EntidadFinancieraComponent } from './components/entidad-financiera/enti
 import { ProfesoresComponent } from './components/profesores/profesores.component';
 import { ConveniosComponent } from './components/convenios/convenios.component';
 import { ConvocatoriaComponent } from './components/convocatoria/convocatoria.component';
+import { EditarInscripcionComponent} from './components/editar-inscripcion/editar-inscripcion.component';
+
 
 
 const appRoutes: Routes = [
@@ -53,6 +55,9 @@ const appRoutes: Routes = [
   {path: 'profesores', component:ProfesoresComponent},
   {path: 'convenios', component:ConveniosComponent},
   {path: 'convocatoria', component:ConvocatoriaComponent},
+  {path: 'editar-inscripcion', component:EditarInscripcionComponent},
+
+  
 
 
   {path: '**', component: ErrorComponent }

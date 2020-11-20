@@ -27,5 +27,15 @@ export class InstitucionCooperanteService {
     const url = `${environment.backend.institucionCooperante}getInstitucionCooperante`;
     return this.httpClient.get<any>(url).toPromise();
   }
+
+   public getInstitucionCooperanteById(_id: any): Promise<any> {
+    const url = `${environment.backend.institucionCooperante}getInstitucionCooperanteById/:_id`;
+    return this.httpClient.get<any>(url).toPromise();
+  }
+
+  public getAllInstitucionesCooperantes(): Promise<any> {
+    const url = `${environment.backend.institucionCooperante}getInstitucionCooperante/`;
+    return this.httpClient.get<any>(url).toPromise();
+  }
 }
  

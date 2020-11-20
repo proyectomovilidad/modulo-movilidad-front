@@ -6,6 +6,8 @@ import { PaisesService } from './../../services/paises.service';
 import { DepartamentosService } from './../../services/departamentos.service';
 import { CiudadesService } from './../../services/ciudades.service';
 import { InstitucionCooperanteService } from './../../services/institucion-cooperante.service';
+import { Router } from '@angular/router';
+import { DatosInstitucionComponent } from './../datos-institucion/datos-institucion.component';
 
 
 @Component({
@@ -18,6 +20,7 @@ export class InstitucionCooperantesComponent implements OnInit {
   public paises: any;
   public departamentos: any;
   public ciudades: any;
+  public instituciones: any;
 
   public formularioInstitucionCooperante: FormGroup;
   constructor(private formBuilder: FormBuilder,
@@ -43,6 +46,7 @@ export class InstitucionCooperantesComponent implements OnInit {
 
   async ngOnInit(): Promise <void> {
     this.paises = await this.PaisesService.getPais();
+    this.instituciones = await this.InstitucionCooperanteService.getAllInstitucionesCooperantes();
   }
 
   getNoValido(input: string) {
@@ -77,9 +81,14 @@ export class InstitucionCooperantesComponent implements OnInit {
     this.formularioInstitucionCooperante.reset();
   }
 
-  openDialog() {
+ abrirEditarInstitucion() {
     this.dialog.open(EditarInstitucionComponent);
   }
+
+  abrirMostrarInstitucion() {
+    this.dialog.open(DatosInstitucionComponent);
+  }
+
 
   onOptionsSelectedDepartment(codigo_pais: string) {
     this.DepartamentosService.getDepartamentos(codigo_pais).then((state) => {
