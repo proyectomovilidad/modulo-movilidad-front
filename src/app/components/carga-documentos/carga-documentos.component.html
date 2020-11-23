@@ -38,9 +38,11 @@
                     <tr *ngFor="let documento of documentos">
                         <td> {{documento.nombre_documento}}</td>
                         <td> <button (click)="caragarDatos(documento._id )"> cargar
-                            </button> </td>
+                        </button> </td>
                         <td> </td>
                         <td> {{documento.estado_documento}} </td>
+                        <td><button (click)="caragarDatos(documento._id )"> eliminar
+                        </button></td>
                     </tr>
                 </thead>
 

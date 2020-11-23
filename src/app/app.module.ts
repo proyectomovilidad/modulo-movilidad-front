@@ -66,6 +66,7 @@ import { DatosEstudianteComponent } from './components/datos-estudiante/datos-es
 import { DatosInstitucionComponent } from './components/datos-institucion/datos-institucion.component';
 import { EditarDocumentoComponent } from './components/editar-documento/editar-documento.component';
 import { ProfesoresModuloComponent } from './components/profesores-modulo/profesores-modulo.component';
+import { EditarProfesorComponent } from './components/editar-profesor/editar-profesor.component';
 
 
 
@@ -103,6 +104,7 @@ import { ProfesoresModuloComponent } from './components/profesores-modulo/profes
     DatosInstitucionComponent,
     EditarDocumentoComponent,
     ProfesoresModuloComponent,
+    EditarProfesorComponent,
     
   ],
   entryComponents: [ObservacionesComponent],

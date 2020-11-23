@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TipoDocumentoService } from './../../services/tipo-documento.service';
-
+import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
+import { InstitucionCooperanteService } from './../../services/institucion-cooperante.service';
+import { FormBuilder, FormGroup} from '@angular/forms';
+import { InscripcionEstudianteService } from './../../services/inscripcion-estudiante.service';
+import { InscripcionExternoService } from './../../services/inscripcion-externo.service';
 
 @Component({
   selector: 'app-consultar-documentos',
@@ -10,18 +14,27 @@ import { TipoDocumentoService } from './../../services/tipo-documento.service';
 })
 export class ConsultarDocumentosComponent implements OnInit {
 
-  public documentos: any;
+  public tiposMovilidad: any;
+  public instituciones: any;
+  public formularioDocumentos: FormGroup;
+  public estudiantes: any;
+  public externos: any;
+
+  public documentos: any; 
 
   constructor(private router: Router,
-    private TipoDocumentoService: TipoDocumentoService
+    private TipoDocumentoService: TipoDocumentoService,
+    private InscripcionEstudianteService: InscripcionEstudianteService,
+    private InscripcionExternoService: InscripcionExternoService
     ) { }
 
     async ngOnInit(): Promise<void> {
-      this.documentos = await this.TipoDocumentoService.getDocumento();
+      this.estudiantes = await this.InscripcionEstudianteService.getAllAspUisPersonal();
+      this.externos = await this.InscripcionExternoService.getAllAspExternoPersonal();
     }
 
-    public editarDocumento(id: any) {
-      this.router.navigateByUrl('/editar-documento?_id=' + id);
+    public revisarDocumento(id: any) {
+      this.router.navigateByUrl('/revision-documentos?_id=' + id);
     }
       
 

@@ -84,12 +84,12 @@
             </thead>
             <tbody>
               
-                <tr *ngFor="let documento of documentos"> 
+                <tr *ngFor="let estudiante of estudiantes"> 
                     
-                    <td>{{documento._id}}</td>
-                    <td>{{documento.nombre_documento}}</td>
-                    <td>{{documento.estado_documento}}</td>
-                    <td><button class="submit" (click)="editarDocumento(documento._id )"> Editar </button> </td>
+                    <td>{{estudiante._id}}</td>
+                    <td>{{estudiante.primer_nombre}} {{estudiante.primer_apellido}}</td>
+                    <td>{{estudiante.tipo_estado}}</td>
+                    <td><button class="submit" (click)="revisarDocumento(estudiante._id )"> Consultar </button> </td>
                 
                 </tr>
 

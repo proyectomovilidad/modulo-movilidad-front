@@ -60,6 +60,12 @@ export class InscripcionEstudianteService {
     return this.httpClient.get<any>(url).toPromise();
   }
 
+  public getAllAspUisAcademic(): Promise<any> {
+    const url = `${environment.backend.aspUisAcademic}getAspiranteUisAcademic/`;
+    return this.httpClient.get<any>(url).toPromise();
+  }
+
+
 
 
 
