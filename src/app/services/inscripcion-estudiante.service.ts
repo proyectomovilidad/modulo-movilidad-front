@@ -31,10 +31,10 @@ export class InscripcionEstudianteService {
       })
     };
     return this.httpClient.post<any>(url, aspUisPersonal, httpOptions).toPromise();
-  }
+  } 
 
   public getAspUisPersonal(_id: any): Promise<any> {
-    const url = `${environment.backend.aspUisAcademic}getAspUisPersonalById/:_id`;
+    const url = `${environment.backend.aspUisPersonal}getAspUisPersonalById/${_id}`;
     return this.httpClient.get<any>(url).toPromise();
   }
 
@@ -53,6 +53,15 @@ export class InscripcionEstudianteService {
     };
     return this.httpClient.post<any>(url, aspUisAcademic, httpOptions).toPromise();
   }
+
+  public getAspUisAcademic(_id: any): Promise<any> {
+   // const url = `${environment.backend.aspUisAcademic}getAspUisAcademicById/${_id}`;
+    const url = `${environment.backend.aspUisAcademic}getAspUisAcademicById/:_id`;
+    return this.httpClient.get<any>(url).toPromise();
+  }
+
+
+
 
   public saveInscripcion(inscripcion: any): Promise<any> {
     const url = `${environment.backend.inscripcion}`;

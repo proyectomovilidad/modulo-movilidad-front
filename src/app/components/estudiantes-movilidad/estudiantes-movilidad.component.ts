@@ -38,6 +38,7 @@ export class EstudiantesMovilidadComponent implements OnInit {
 
   public editarInscripcion(id: any) {
     this.router.navigateByUrl('/editar-inscripcion?_id=' + id);
+   // this.router.navigateByUrl('/editar-inscripcion/' + id);
   }
     
 

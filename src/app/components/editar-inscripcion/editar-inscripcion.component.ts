@@ -7,8 +7,8 @@ import { InstitucionCooperanteService } from './../../services/institucion-coope
 import { ProgramasService } from './../../services/programas.service';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
 import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
-
 import { ActivatedRoute } from '@angular/router';
+import { InscripcionEstudianteService } from './../../services/inscripcion-estudiante.service';
 
 @Component({
   selector: 'app-editar-inscripcion',
@@ -24,6 +24,8 @@ export class  EditarInscripcionComponent implements OnInit {
   public programas: any;
   public documentosId: any;
   public tiposMovilidad: any;
+  public estudiantes: any;
+  public academics: any;
 
   public formularioEditarEstudiante: FormGroup;
 
@@ -35,6 +37,7 @@ export class  EditarInscripcionComponent implements OnInit {
     public ProgramasService: ProgramasService,
     public TiposDocumentosIdService: TiposDocumentosIdService,
     public TipoMovilidadService: TipoMovilidadService,
+    public InscripcionEstudianteService:InscripcionEstudianteService,
     private route: ActivatedRoute,
   ) {
     this.formularioEditarEstudiante = this.formBuilder.group({
@@ -72,6 +75,11 @@ export class  EditarInscripcionComponent implements OnInit {
     this.programas = await this.ProgramasService.getProgramaAcademico();
     this.documentosId = await this.TiposDocumentosIdService.getTipoDocumentoId();
     this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
+    //this.estudiantes = await this.InscripcionEstudianteService.getAspUisPersonal(this.route.snapshot.paramMap.get('_id'));
+    //this.academics = await this.InscripcionEstudianteService.getAspUisAcademic(this.route.snapshot.paramMap.get('_id'));
+    //console.log(this.estudiantes[0])
+    //console.log(this.academics[0])
+  
 
 
 
@@ -114,7 +122,7 @@ export class  EditarInscripcionComponent implements OnInit {
     const editarEstudianteAcademic = this.formularioEditarEstudiante.value;
 
     const aspUisAcademic = {
-      codigo_est: editarEstudianteAcademic.codigo_est,
+      codigo_est: editarEstudianteAcademic._id,
       semestre: editarEstudianteAcademic.semestre,
       promedio: editarEstudianteAcademic.promedio,
       programa_acad: editarEstudianteAcademic.programa_acad,

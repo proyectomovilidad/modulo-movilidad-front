@@ -56,6 +56,7 @@ const appRoutes: Routes = [
   {path: 'convenios', component:ConveniosComponent},
   {path: 'convocatoria', component:ConvocatoriaComponent},
   {path: 'editar-inscripcion', component:EditarInscripcionComponent},
+ //{path: 'editar-inscripcion/:_id', component:EditarInscripcionComponent},
   {path: 'editar-documento', component:EditarDocumentoComponent},
   {path: 'profesores-movilidad', component:ProfesoresModuloComponent},
 

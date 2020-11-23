@@ -89,6 +89,13 @@ export class InscripcionEstudianteComponent implements OnInit {
       this.formularioInscripcionEstudiante.get(input).touched;
   }
 
+  async estudianteSave(aspUisPersonal: any) {
+    const aspUisPersonalGuardado = await this.InscripcionEstudianteService.saveAspUisPersonal(aspUisPersonal);
+    console.log(aspUisPersonalGuardado);
+    return aspUisPersonalGuardado;
+
+
+  }
 
 
   async guardarFormulario() {
@@ -139,29 +146,61 @@ export class InscripcionEstudianteComponent implements OnInit {
     const inscribir = {
 
       tipo_movilidad: inscribirEstudiante.tipo_movilidad,
-      nombre_institucion:  inscribirEstudiante.nombre_institucion,
+      nombre_institucion: inscribirEstudiante.nombre_institucion,
       tipo_estado: inscribirEstudiante.tipo_estado,
       codigo_est: inscribirEstudiante.codigo_est
 
     }
 
-    const aspUisPersonalGuardado = await this.InscripcionEstudianteService.saveAspUisPersonal(aspUisPersonal);
-    console.log(aspUisPersonalGuardado);
+    // const aspUisPersonalGuardado = await this.InscripcionEstudianteService.saveAspUisPersonal(aspUisPersonal);
+    //console.log(aspUisPersonalGuardado);
 
-    const aspUisAcademicGuardado = await this.InscripcionEstudianteService.saveAspUisAcademic(aspUisAcademic);
-    console.log(aspUisAcademicGuardado);
 
-    const inscritoGuardado = await this.InscripcionEstudianteService.saveInscripcion(inscribir);
-    console.log(inscritoGuardado);
+    this.estudianteSave(aspUisPersonal).then(res => {
+      if (res._id) {
+        aspUisAcademic.codigo_est = res._id
+        let aspUisAcademicGuardado: any;
+        this.InscripcionEstudianteService.saveAspUisAcademic(aspUisAcademic).then(res => {
+          aspUisAcademicGuardado = res
+          console.log(aspUisAcademicGuardado);
+        });
+
+      }
+
+    });
+
+    this.estudianteSave(aspUisPersonal).then(res => {
+      if (res._id) {
+        inscribir.codigo_est = res._id
+        let inscritoGuardado: any;
+        this.InscripcionEstudianteService.saveInscripcion(inscribir).then(res => {
+          inscritoGuardado = res
+          console.log(inscritoGuardado);
+        });
+
+      }
+
+    });
+    //const aspUisAcademicGuardado = await this.InscripcionEstudianteService.saveAspUisAcademic(aspUisAcademic);
+    //console.log(aspUisAcademicGuardado);
+
+   // const inscritoGuardado = await this.InscripcionEstudianteService.saveInscripcion(inscribir);
+    //console.log(inscritoGuardado);
 
 
     this.formularioInscripcionEstudiante.reset();
+
+
+
   }
 
+
+
+
   onOptionsSelectedDepartment(codigo_pais: string) {
-      this.DepartamentosService.getDepartamentos(codigo_pais).then((state) => {
-        this.departamentos = state
-      })
+    this.DepartamentosService.getDepartamentos(codigo_pais).then((state) => {
+      this.departamentos = state
+    })
   }
 
   onOptionsSelectedCity(codigo_departamento: string) {
