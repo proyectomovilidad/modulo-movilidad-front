@@ -34,15 +34,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr *ngFor="let documento of documentos">
                    
+                    <td>{{documento.nombre_documento}}</td>
                     <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>  {{documento.estado_documento}} </td>
                     <td> <button class="submit" (click)="openDialog()"> Editar </button></td>
 
                 </tr>
-               
 
             </tbody>
         </table>

@@ -1,6 +1,4 @@
 <body>
-
-
     <header>
 
 
@@ -13,8 +11,6 @@
             </div>
 
         </section>
-
-
     </header>
 
     <section id="body">
@@ -45,10 +41,10 @@
             </div>
 
             <div class="form-group col-md-4">
-                <select class="form-control" id="pais" formControlName="pais"
-                [class.is-invalid]="getNoValido('pais')">
+                <select #country class="form-control" id="pais" formControlName="pais"
+                [class.is-invalid]="getNoValido('pais')"  (change)='onOptionsSelectedDepartment(country.value)'>
                 <option value="">Seleccione..</option>
-                <option *ngFor="let pais of paises"  value="{{pais._id}}"> {{pais.nombre_pais}}  </option>     
+                <option *ngFor="let pais of paises"  value="{{pais.codigo_pais}}"> {{pais.nombre_pais}}  </option>     
                        </select>
 
             </div>
@@ -58,9 +54,10 @@
             </div>
 
             <div class="form-group col-md-4">
-                <select class="form-control" formControlName="departamento" [class.is-invalid]="getNoValido('departamento')">
+                <select #department class="form-control" formControlName="departamento" [class.is-invalid]="getNoValido('departamento')"
+                (change)='onOptionsSelectedCity(department.value)'>
                     <option value="">Seleccione..</option>
-                    <option *ngFor="let departamento of departamentos"  value="{{departamento._id}}"> {{departamento.nombre_departamento}}  </option>
+                    <option *ngFor="let departamento of departamentos"  value="{{departamento.codigo_departamento}}"> {{departamento.nombre_departamento}}  </option>
                 </select>
 
             </div>
@@ -167,6 +164,8 @@
             <div class="form-group col-md-4">
                 <select class="form-control" id="nombre_institucion">
                     <option value="">Seleccione..</option>
+                    <option *ngFor="let institucionCooperante of institucionesCooperantes"  value="{{institucionCooperante._id}}"> {{institucionCooperante.nombre_institucion}}  </option>
+
                 </select>
 
             </div>
@@ -178,12 +177,10 @@
             <div class="form-group col-md-4">
                 <select class="form-control" id="pais">
                     <option value="">Seleccione..</option>
+                    <option *ngFor="let pais of paises"  value="{{pais.codigo_pais}}"> {{pais.nombre_pais}}  </option>
                 </select>
 
             </div>
-
-         
-
 
                 <div class="form-group col-md-6">
                     <div class="row justify-content-end">
@@ -198,11 +195,8 @@
 
                         <button class="submit"  type=""> Cancelar </button>
 
-
                     </div>
                 </div>
-
-
 
         </form>
 
@@ -221,7 +215,6 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col" class="center"> Id </th>
                     <th scope="col" class="center"> Nombre </th>
                     <th scope="col" class="center"> País </th>
                     <th scope="col" class="center"> Ciudad </th>
@@ -232,18 +225,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td> <button class="editar" (click)="openDialog()"> Editar </button>
-                        <button class="btn btn-danger" ></button>
+                <tr  *ngFor="let institucion of instituciones">
+                    <td> {{institucion.nombre_institucion}}</td>
+                    <td>  {{institucion.pais}}</td>
+                    <td>  {{institucion.ciudad}}</td>
+                    <td>  {{institucion.email}}</td>
+                    <td>  {{institucion.telefono}}  </td>
+                    <td> 
+                        <button class="submit" (click)="editarInstitucion(institucion._id )"> Editar </button> 
                     </td>
-                 
-                        
                    
                 </tr>
                

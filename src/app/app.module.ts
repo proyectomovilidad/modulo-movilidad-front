@@ -24,6 +24,9 @@ import { TipoDocumentoService } from './services/tipo-documento.service';
 import { TipoMovilidadService } from './services/tipo-movilidad.service';
 import { ConveniosService } from './services/convenios.service';
 import { TipoConvenioService } from './services/tipo-convenio.service';
+import { ConvocatoriaService } from './services/convocatoria.service';
+import { TipoProyectoService } from './services/tipo-proyecto.service';
+import { InicioSesionService } from './services/inicio-sesion.service';
 
 
 
@@ -36,19 +39,15 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './components/index/index.component';
 import { InscripcionEstudianteComponent } from './components/inscripcion-estudiante/inscripcion-estudiante.component';
 import { IncripcionExternoComponent } from './components/inscripcion-externo/incripcion-externo.component';
-import { ConsultarEstadoComponent } from './components/consultar-estado/consultar-estado.component';
 import { CambiarEstadoComponent } from './components/cambiar-estado/cambiar-estado.component';
 import { ErrorComponent } from './components/error/error.component';
 import { CargaDocumentosComponent } from './components/carga-documentos/carga-documentos.component';
-import { AccesoComponent } from './components/acceso/acceso.component';
 import { RevisionDocumentosComponent } from './components/revision-documentos/revision-documentos.component';
 import { ConsultarDocumentosComponent } from './components/consultar-documentos/consultar-documentos.component';
 import { ObservacionesComponent } from './components/observaciones/observaciones.component';
 import { SolicitudApoyosComponent } from './components/solicitud-apoyos/solicitud-apoyos.component';
 import { SolicitudApoyosRelextComponent } from './components/solicitud-apoyos-relext/solicitud-apoyos-relext.component';
-import { AdministracionMenusComponent } from './components/administracion-menus/administracion-menus.component';
 import { CrearMenuComponent } from './components/crear-menu/crear-menu.component';
-import { ConsultarMenuComponent } from './components/consultar-menu/consultar-menu.component';
 import { GuardadoExitosoComponent } from './components/guardado-exitoso/guardado-exitoso.component';
 import { InstitucionCooperantesComponent } from './components/institucion-cooperantes/institucion-cooperantes.component';
 import { EditarInstitucionComponent } from './components/editar-institucion/editar-institucion.component';
@@ -59,6 +58,18 @@ import { from } from 'rxjs';
 import { EntidadFinancieraComponent } from './components/entidad-financiera/entidad-financiera.component';
 import { ProfesoresComponent } from './components/profesores/profesores.component';
 import { ConveniosComponent } from './components/convenios/convenios.component';
+import { ConvocatoriaComponent } from './components/convocatoria/convocatoria.component';
+import { EditarInscripcionComponent } from './components/editar-inscripcion/editar-inscripcion.component';
+import { DatosEstudianteComponent } from './components/datos-estudiante/datos-estudiante.component';
+import { DatosInstitucionComponent } from './components/datos-institucion/datos-institucion.component';
+import { EditarDocumentoComponent } from './components/editar-documento/editar-documento.component';
+import { ProfesoresModuloComponent } from './components/profesores-modulo/profesores-modulo.component';
+import { EditarProfesorComponent } from './components/editar-profesor/editar-profesor.component';
+import { ExternosMovilidadComponent } from './components/externos-movilidad/externos-movilidad.component';
+import { EditarExternoComponent } from './components/editar-externo/editar-externo.component';
+import { EditarConvenioComponent } from './components/editar-convenio/editar-convenio.component';
+import { InicioSesionComponent } from './components/inicio-sesion/inicio-sesion.component';
+import { EntornoMovilidadComponent } from './components/entorno-movilidad/entorno-movilidad.component';
 
 
 
@@ -70,18 +81,14 @@ import { ConveniosComponent } from './components/convenios/convenios.component';
     IncripcionExternoComponent,
     IndexComponent,
     ErrorComponent,
-    ConsultarEstadoComponent,
     CambiarEstadoComponent,
     CargaDocumentosComponent,
-    AccesoComponent,
     RevisionDocumentosComponent,
     ConsultarDocumentosComponent,
     ObservacionesComponent,
     SolicitudApoyosComponent,
     SolicitudApoyosRelextComponent,
-    AdministracionMenusComponent,
     CrearMenuComponent,
-    ConsultarMenuComponent,
     GuardadoExitosoComponent,
     InstitucionCooperantesComponent,
     EditarInstitucionComponent,
@@ -91,6 +98,18 @@ import { ConveniosComponent } from './components/convenios/convenios.component';
     EntidadFinancieraComponent,
     ProfesoresComponent,
     ConveniosComponent,
+    ConvocatoriaComponent,
+    EditarInscripcionComponent,
+    DatosEstudianteComponent,
+    DatosInstitucionComponent,
+    EditarDocumentoComponent,
+    ProfesoresModuloComponent,
+    EditarProfesorComponent,
+    ExternosMovilidadComponent,
+    EditarExternoComponent,
+    EditarConvenioComponent,
+    InicioSesionComponent,
+    EntornoMovilidadComponent,
     
   ],
   entryComponents: [ObservacionesComponent],
@@ -122,6 +141,9 @@ BrowserModule,
     TipoMovilidadService,
     ConveniosService,
     TipoConvenioService,
+    ConvocatoriaService,
+    TipoProyectoService,
+    InicioSesionService
     
   ],
   bootstrap: [AppComponent]

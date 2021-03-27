@@ -2,8 +2,6 @@
 
 
     <header>
-
-
         <section id="title">
 
             <div id="titulo">
@@ -13,8 +11,6 @@
             </div>
 
         </section>
-
-
     </header>
 
     <section id="body">
@@ -25,15 +21,19 @@
 
         <br />
 
-        <form class="row justify-content-center form">
+        <form [formGroup]="formularioConsultarEstudiante" class="row justify-content-center form">
 
             <div class="form-group col-md-2">
                 <label for="ano" class=" label ">Año </label>
             </div>
 
             <div class="form-group col-md-4">
-                <select class="form-control" id="ano" required>
+                <select class="form-control"  formControlName="ano_inscrip">
                     <option value="">Seleccione..</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
                 </select>
 
             </div>
@@ -43,8 +43,10 @@
             </div>
 
             <div class="form-group col-md-4">
-                <select class="form-control" id="periodo">
+                <select class="form-control" formControlName="periodo_inscrip">
                     <option value="">Seleccione..</option>
+                    <option value="1">1 </option>
+                    <option value="2">2 </option>
                 </select>
 
             </div>
@@ -54,8 +56,11 @@
             </div>
 
             <div class="form-group col-md-4">
-                <select class="form-control" id="tipoMovilidad" required>
+                <select class="form-control" formControlName="tipo_movilidad">
                     <option value="">Seleccione..</option>
+                    <option *ngFor="let tipoMovilidad of tiposMovilidad" value="{{tipoMovilidad._id}}">
+                        {{tipoMovilidad.nombre_movilidad}} </option>
+
                 </select>
 
             </div>
@@ -65,18 +70,20 @@
             </div>
 
             <div class="form-group col-md-4">
-                <select class="form-control" id="institucionCooperante" placeholder="Institución cooperante" required>
+                <select class="form-control" formControlName="nombre_institucion" placeholder="Institución cooperante">
                     <option value="">Seleccione..</option>
+                    <option *ngFor="let institucion of instituciones" value="{{institucion._id}}">
+                        {{institucion.nombre_institucion}} </option>
                 </select>
-
             </div>
 
             <div class=" form-group col-md-2 ">
-                <label for="codigo" class="label ">Código estudiante </label>
+                <label  class="label ">Código estudiante </label>
             </div>
 
             <div class="form-group col-md-4">
-                <input type="text" class="form-control" id="codigo" placeholder="Código estudiante" value="">
+                <input type="text" class="form-control" formControlName="codigo_est" placeholder="Código estudiante"
+                    value="">
 
             </div>
 
@@ -92,7 +99,8 @@
             <div class="form-group col-md-6">
                 <div class="row justify-content-end">
 
-                    <button class="submit" type="submit"> Consultar </button>
+                    <button class="submit" (click)="consultarEstudiante()"> Consultar </button>
+
 
                 </div>
             </div>
@@ -135,15 +143,41 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr *ngFor="let estudiante of estudiantes">
 
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+
+                    <td style="text-align: center;">
+                        <div *ngIf="estudiante.aspUisPersonal"> {{estudiante.aspUisPersonal.codigo_est}} </div>
+                        {{estudiante.codigo_est}}
+                    </td>
+                    <td style="text-align: center;">
+                        <div *ngIf="estudiante.aspUisPersonal"> {{estudiante.aspUisPersonal.documento_id}}</div>
+                        {{estudiante.documento_id}}
+                    </td>
+                    <td style="text-align: center;">
+                        <div *ngIf="estudiante.aspUisPersonal"> {{estudiante.aspUisPersonal.primer_nombre}}
+                            {{estudiante.aspUisPersonal.primer_apellido}}</div>
+                        {{estudiante.primer_nombre}} {{estudiante.primer_apellido}}
+                    </td>
+
+                    <td style="text-align: center;">
+                        <div *ngFor="let movilidad of tiposMovilidad">
+                            <div *ngIf="movilidad._id == estudiante.Inscripcion.tipo_movilidad">
+                                {{movilidad.nombre_movilidad}}</div>
+                        </div>
+                    </td>
+                    <td style="text-align: center;">
+                        <div *ngFor="let institucion of instituciones">
+                            <div *ngIf="institucion._id == estudiante.Inscripcion.nombre_institucion">
+                                {{institucion.nombre_institucion}}</div>
+                        </div>
+                    </td>
+
+                  <td> {{estudiante.Inscripcion.estado}} </td>
+
+                    <td> <button class="submit" (click)="editarInscripcion(estudiante._id )"> Editar </button>
+                        <button class="submit" (click)="eliminarInscripcion(estudiante.codigo_est, estudiante )">
+                            Eliminar </button> </td>
                 </tr>
             </tbody>
         </table>

@@ -22,6 +22,9 @@ export class TipoDocumentoService {
     return this.httpClient.post<any>(url, tipoDocumento, httpOptions).toPromise();
   }
 
-
+  public getDocumento(): Promise<any> {
+    const url = `${environment.backend.tipoDocumento}getDocumento/`; 
+    return this.httpClient.get<any>(url).toPromise();
+  }
 
 }

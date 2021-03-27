@@ -6,6 +6,8 @@ import { PaisesService } from './../../services/paises.service';
 import { DepartamentosService } from './../../services/departamentos.service';
 import { CiudadesService } from './../../services/ciudades.service';
 import { InstitucionCooperanteService } from './../../services/institucion-cooperante.service';
+import { Router } from '@angular/router';
+import { DatosInstitucionComponent } from './../datos-institucion/datos-institucion.component';
 
 
 @Component({
@@ -18,14 +20,18 @@ export class InstitucionCooperantesComponent implements OnInit {
   public paises: any;
   public departamentos: any;
   public ciudades: any;
+  public instituciones: any;
+  public institucionesCooperantes: any;
+
 
   public formularioInstitucionCooperante: FormGroup;
   constructor(private formBuilder: FormBuilder,
-    
+
     public InstitucionCooperanteService: InstitucionCooperanteService,
     public PaisesService: PaisesService,
     public DepartamentosService: DepartamentosService,
     public CiudadesService: CiudadesService,
+    private router: Router,
     public dialog: MatDialog) {
 
     this.formularioInstitucionCooperante = this.formBuilder.group({
@@ -41,12 +47,10 @@ export class InstitucionCooperantesComponent implements OnInit {
   }
 
 
-  async ngOnInit(): Promise <void> {
+  async ngOnInit(): Promise<void> {
     this.paises = await this.PaisesService.getPais();
-    this.departamentos = await this.DepartamentosService.getDepartamentos();
-    this.ciudades = await this.CiudadesService.getCiudades();
-
-    
+    this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
+    this.instituciones = await this.InstitucionCooperanteService.getAllInstitucionesCooperantes();
   }
 
   getNoValido(input: string) {
@@ -60,7 +64,7 @@ export class InstitucionCooperantesComponent implements OnInit {
         control.markAsTouched();
       });
     }
-    const crearInstitucionCooperante =  this.formularioInstitucionCooperante.value;
+    const crearInstitucionCooperante = this.formularioInstitucionCooperante.value;
     console.log(crearInstitucionCooperante)
 
     const institucionCooperante = {
@@ -81,10 +85,27 @@ export class InstitucionCooperantesComponent implements OnInit {
     this.formularioInstitucionCooperante.reset();
   }
 
-  openDialog() {
-    this.dialog.open(EditarInstitucionComponent);
+  public editarInstitucion(id: any) {
+    this.router.navigateByUrl('/editar-institucion?_id=' + id);
+  }
+    
+
+  abrirEditarInstitucion(institucion) {
+    console.log(institucion)
+    this.dialog.open(EditarInstitucionComponent, institucion);
   }
 
+  onOptionsSelectedDepartment(codigo_pais: string) {
+    this.DepartamentosService.getDepartamentos(codigo_pais).then((state) => {
+      this.departamentos = state
+    })
+  }
+
+  onOptionsSelectedCity(codigo_departamento: string) {
+    this.CiudadesService.getCiudades(codigo_departamento).then((cities) => {
+      this.ciudades = cities
+    })
+  }
 
 
 }

@@ -1,0 +1,181 @@
+<body>
+
+
+    <header>
+        <section id="title">
+
+            <div id="titulo">
+                Sistema de relaciones exteriores
+                <br />
+                Módulo de movilidad académica - Externos movilidad
+            </div>
+
+        </section> 
+    </header>
+
+    <section id="body">
+
+        <div id="name">
+            <h3> Criterios de consulta</h3>
+        </div>
+
+        <br />
+
+        <form [formGroup]="formularioConsultarExterno" class="row justify-content-center form">
+
+            <div class="form-group col-md-2">
+                <label for="ano" class=" label ">Año </label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control"  formControlName="ano_inscrip">
+                    <option value="">Seleccione..</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                </select>
+
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="periodo" class=" label ">Periodo </label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control"  formControlName="periodo_inscrip">
+                    <option value="">Seleccione..</option>
+                    <option value="1"> 1 </option>
+                    <option value="2"> 2 </option>
+                </select>
+
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="tipoMovilidad" class=" label ">Tipo de movilidad </label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control" formControlName="tipo_movilidad">
+                    <option value="">Seleccione..</option>
+                    <option *ngFor="let tipoMovilidad of tiposMovilidad" value="{{tipoMovilidad._id}}">
+                        {{tipoMovilidad.nombre_movilidad}} </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="institucionCooperante" class=" label ">Institución cooperante </label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control"  formControlName="nombre_institucion" placeholder="Institución cooperante">
+                    <option value="">Seleccione..</option>
+                    <option *ngFor="let institucion of instituciones" value="{{institucion._id}}">
+                        {{institucion.nombre_institucion}} </option>
+
+                </select>
+
+            </div>
+
+            <div class=" form-group col-md-2 ">
+                <label for="documento_id" class="label ">Número de documento </label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control"  formControlName="documento_id" placeholder="Número de documento">
+
+            </div>
+
+            <div class=" form-group col-md-2 ">
+                <label for="" class=" "> </label>
+            </div>
+
+            <div class="form-group col-md-4">
+
+            </div>
+
+
+            <div class="form-group col-md-6">
+                <div class="row justify-content-end">
+
+                    <button class="submit" (click)="consultarExterno()"> Consultar </button>
+
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <div class="row justify-content-start">
+
+                    <button class="submit" type=""> Cancelar </button>
+
+
+                </div>
+            </div>
+
+
+
+        </form>
+
+
+
+
+    </section>
+
+
+    <section id="body">
+
+        <div id="name">
+            <h3> Listado de inscritos</h3>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="center"> Doc. Identidad </th>
+                    <th scope="col" class="center"> Nombre </th>
+                    <th scope="col" class="center"> Tipo movilidad </th>
+                    <th scope="col" class="center"> Institución cooperante </th>
+                    <th scope="col" class="center"> Estado </th>
+                    <th scope="col" class="center"> Acciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let externo of externos">
+
+
+
+                    <td style="text-align: center;">
+                        <div *ngIf="externo.aspExtPersonal"> {{externo.aspExtPersonal.documento_id}} </div>
+                        {{externo.documento_id}}
+                    </td>
+                  
+                    <td style="text-align: center;">
+                        <div *ngIf="externo.aspExtPersonal"> {{externo.aspExtPersonal.primer_nombre}}
+                            {{externo.aspExtPersonal.primer_apellido}}</div>
+                        {{externo.primer_nombre}} {{externo.primer_apellido}}
+                    </td>
+                    
+                    <td style="text-align: center;">
+                        <div *ngFor="let movilidad of tiposMovilidad">
+                            <div *ngIf="movilidad._id == externo.Inscripcion.tipo_movilidad">
+                                {{movilidad.nombre_movilidad}}</div>
+                        </div>
+                    </td>
+                    <td style="text-align: center;">
+                        <div *ngFor="let institucion of instituciones">
+                            <div *ngIf="institucion._id == externo.Inscripcion.nombre_institucion">
+                                {{institucion.nombre_institucion}}</div>
+                        </div>
+                    </td>
+
+                   <td>{{externo.Inscripcion.estado}}</td>
+                    <td> <button class="submit" (click)="editarInscripcion(externo._id )"> Editar </button> 
+                     <button class="submit" (click)="eliminarInscripcion(externo.documento_id, externo )"> Eliminar </button> </td>
+                </tr>
+            </tbody>
+        </table>
+
+ 
+    </section>

@@ -16,4 +16,10 @@ public url: String;
     return this.httpClient.get<any>(url).toPromise();
   }
 
+  public getTipoMovilidadById(_id: any): Promise<any> {
+    const url = `${environment.backend.tipoMovilidad}getTipoMovilidadById/${_id}`;
+    return this.httpClient.get<any>(url).toPromise();
+  }
+
+
 }

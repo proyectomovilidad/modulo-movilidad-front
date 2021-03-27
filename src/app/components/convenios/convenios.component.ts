@@ -7,6 +7,7 @@ import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
 import { ProgramasService } from './../../services/programas.service';
 import { ConveniosService } from './../../services/convenios.service';
 import { TipoConvenioService } from './../../services/tipo-convenio.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,9 +22,10 @@ export class ConveniosComponent implements OnInit {
   public programas: any;
   public tiposMovilidad: any;
   public tiposConvenio: any;
-
+  public convenios: any;
 
   public formularioCrearConvenio: FormGroup;
+  public formularioConsultarConvenio: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
     public ConveniosService: ConveniosService,
@@ -31,7 +33,9 @@ export class ConveniosComponent implements OnInit {
     public InstitucionCooperanteService: InstitucionCooperanteService,
     public ProgramasService: ProgramasService,
     public TipoMovilidadService: TipoMovilidadService,
-    public TipoConvenioService: TipoConvenioService
+    public TipoConvenioService: TipoConvenioService,
+    private router: Router,
+
 
   ) {
     this.formularioCrearConvenio = this.formBuilder.group({
@@ -39,6 +43,8 @@ export class ConveniosComponent implements OnInit {
       version_convenio: ['', Validators.required],
       programa_acad: ['', Validators.required],
       promedio: [0, Validators.required],
+      cred_cursados: [0, Validators.required],
+      cred_cursar: [0, Validators.required],
       cupo: [0, Validators.required],
       estado_convenio: ['', Validators.required],
       fecha_inicio: [Date, Validators.required],
@@ -48,10 +54,15 @@ export class ConveniosComponent implements OnInit {
       tipo_movilidad: ['', Validators.required],
       nombre_institucion: ['', Validators.required],
       pais: ['', Validators.required],
-
-
-
     });
+
+    this.formularioConsultarConvenio = this.formBuilder.group({
+      _id: [],
+      tipo_movilidad: [],
+      nombre_institucion: [],
+      estado_convenio: []
+    });
+
   }
 
   async ngOnInit(): Promise<void> {
@@ -61,7 +72,7 @@ export class ConveniosComponent implements OnInit {
     this.programas = await this.ProgramasService.getProgramaAcademico();
     this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
     this.tiposConvenio = await this.TipoConvenioService.getTipoConvenio();
-
+    this.convenios = await this.ConveniosService.getAllConvenios();
 
   }
 
@@ -86,6 +97,8 @@ export class ConveniosComponent implements OnInit {
       version_convenio: crearConvenio.version_convenio,
       programa_acad: crearConvenio.programa_acad,
       promedio: crearConvenio.promedio,
+      creditos_cursados: crearConvenio.creditos_cursados,
+      creditos_cursar: crearConvenio.creditos_cursar,
       cupo: crearConvenio.cupo,
       estado_convenio: crearConvenio.estado_convenio,
       fecha_inicio: crearConvenio.fecha_inicio,
@@ -94,9 +107,9 @@ export class ConveniosComponent implements OnInit {
       tipo_convenio: crearConvenio.tipo_convenio,
       tipo_movilidad: crearConvenio.tipo_movilidad,
       nombre_institucion: crearConvenio.nombre_institucion,
-      pais: crearConvenio.pais,
-    }
-
+      pais: crearConvenio.pais, 
+    } 
+ 
     const convenioGuardado = await this.ConveniosService.saveConvenio(convenio);
     console.log(convenioGuardado);
 
@@ -104,4 +117,45 @@ export class ConveniosComponent implements OnInit {
 
   }
 
+  async consultarConvenio() {
+    if (this.formularioConsultarConvenio.invalid) {
+      return Object.values(this.formularioConsultarConvenio.controls).forEach(control => {
+        control.markAsTouched();
+      });
+    }
+
+    const consultarConvenio = this.formularioConsultarConvenio.value;
+    console.log(consultarConvenio)
+
+
+    const consulta = {
+      "convenio._id": consultarConvenio._id,
+      "convenio.estado_convenio": consultarConvenio.estado_convenio,
+
+      "TipoMovilidad._id": consultarConvenio.tipo_movilidad,
+      "InstitucionCooperante._id": consultarConvenio.nombre_institucion
+      
+    }
+  
+    this.convenios = await this.ConveniosService.consultarConvenios(consulta)
+    console.log("resultado", this.convenios)
+
+  }
+
+  limpiarFormulario() {
+    this.formularioCrearConvenio.reset();
+  }
+
+  public editarConvenio(id: any) {
+    this.router.navigateByUrl('/editar-convenio?_id=' + id);
+  }
+
+  async eliminarConvenio(id: any, obj: any) {
+    let respuesta = await this.ConveniosService.deleteConvenio(id);
+    console.log(respuesta); 
+    if (respuesta.status) {
+  
+        this.convenios.splice(this.convenios.indexOf(obj),1)
+      }
+    }
 }

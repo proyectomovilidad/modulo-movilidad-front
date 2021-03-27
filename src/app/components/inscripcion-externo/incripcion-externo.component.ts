@@ -9,7 +9,7 @@ import { InstitucionCooperanteService } from './../../services/institucion-coope
 import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
 import { ProgramasService } from './../../services/programas.service';
-
+import { ConveniosService } from './../../services/convenios.service';
 
 @Component({ 
   selector: 'app-incripcion-externo',
@@ -25,6 +25,7 @@ export class IncripcionExternoComponent implements OnInit {
   public programas : any;
   public documentosId : any;
   public tiposMovilidad: any;
+  public convenios: [];
   
 
 
@@ -38,6 +39,7 @@ export class IncripcionExternoComponent implements OnInit {
     public ProgramasService: ProgramasService,
     public TiposDocumentosIdService: TiposDocumentosIdService,
     public TipoMovilidadService: TipoMovilidadService,
+    public ConveniosService: ConveniosService,
     
     ) { 
 
@@ -46,7 +48,9 @@ export class IncripcionExternoComponent implements OnInit {
         tipo_doc_id: ['', Validators.required],
         documento_id: [0, Validators.required],
         primer_nombre: ['', Validators.required],
+        segundo_nombre: ['',],
         primer_apellido: ['', Validators.required],
+        segundo_apellido: [''],
         genero: ['', Validators.required],
         programa_acad: ['', Validators.required],
         prog_acad_uis: ['', Validators.required],
@@ -64,31 +68,38 @@ export class IncripcionExternoComponent implements OnInit {
         fecha_inscripcion: [Date, Validators.required],
         ano_inscrip: ['', Validators.required],
         celular: [0, Validators.required],
+        telefono: [0],
         correo: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
         tipo_movilidad: ['', Validators.required],
-        nombre_institucion: ['', Validators.required]
-        
+        nombre_institucion: ['', Validators.required],
+        nombre_convenio:  ['', Validators.required]
 
       });
   
     }
 
   async ngOnInit(): Promise<void>  {
-
-    this.ciudades = await this.CiudadesService.getCiudades();
     this.paises = await this.PaisesService.getPais();
-    this.departamentos = await this.DepartamentosService.getDepartamentos();
     this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
     this.programas = await this.ProgramasService.getProgramaAcademico();
     this.documentosId = await this.TiposDocumentosIdService.getTipoDocumentoId();
     this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
+    //this.convenios = await this.ConveniosService.getAllConvenios();
   }
-
+ 
  
   getNoValido(input: string) {
     return this.formularioInscripcionExterno.get(input).invalid && 
     this.formularioInscripcionExterno.get(input).touched;
   }
+
+  async externoSave(aspExtPersonal: any) {
+    const aspExtPersonalGuardado = await this.InscripcionExternoService.saveAspExtPersonal(aspExtPersonal);
+    console.log(aspExtPersonalGuardado);
+    return aspExtPersonalGuardado;
+
+
+  } 
 
  async guardarFormulario() {
     if (this.formularioInscripcionExterno.invalid) {
@@ -97,30 +108,34 @@ export class IncripcionExternoComponent implements OnInit {
       });   
     }
 
-    const inscribirExterno = this.formularioInscripcionExterno.value;
-    console.log(inscribirExterno)
+    const inscribirExternoPersonal = this.formularioInscripcionExterno.value;
+    console.log(inscribirExternoPersonal)
 
     const aspExtPersonal = { 
 
-      tipo_doc_id: inscribirExterno.tipo_doc_id,
-      documento_id: inscribirExterno.documento_id,
-      primer_nombre: inscribirExterno.primer_nombre,
-      primer_apellido:inscribirExterno.primer_apellido,
-      genero:inscribirExterno.genero,
-      fecha_nacimiento:inscribirExterno.fecha_nacimiento,
-      pais_nacimiento:inscribirExterno.pais_nacimiento,
-      pais_res:inscribirExterno.pais_res,
-      departamento:inscribirExterno.departamento,
-      ciudad: inscribirExterno.ciudad,
-      direccion: inscribirExterno.direccion,
-      celular:inscribirExterno.celular,
-      correo:inscribirExterno.correo,
+      tipo_doc_id: inscribirExternoPersonal.tipo_doc_id,
+      documento_id: inscribirExternoPersonal.documento_id,
+      primer_nombre: inscribirExternoPersonal.primer_nombre,
+      segundo_nombre: inscribirExternoPersonal.segundo_nombre,
+      primer_apellido:inscribirExternoPersonal.primer_apellido,
+      segundo_apellido:inscribirExternoPersonal.segundo_apellido,
+      genero:inscribirExternoPersonal.genero,
+      fecha_nacimiento:inscribirExternoPersonal.fecha_nacimiento,
+      pais_nacimiento:inscribirExternoPersonal.pais_nacimiento,
+      pais_res:inscribirExternoPersonal.pais_res,
+      departamento:inscribirExternoPersonal.departamento,
+      ciudad: inscribirExternoPersonal.ciudad,
+      direccion: inscribirExternoPersonal.direccion,
+      celular:inscribirExternoPersonal.celular,
+      telefono:inscribirExternoPersonal.telefono,
+      correo:inscribirExternoPersonal.correo,
     }
 
     const inscribirExternoAcademic = this.formularioInscripcionExterno.value;
 
     const aspExtAcademic = {
      
+      documento_id: inscribirExternoAcademic.documento_id,
       semestre: inscribirExternoAcademic.semestre ,      
       promedio:inscribirExternoAcademic.promedio,
       programa_acad: inscribirExternoAcademic.programa_acad,
@@ -133,14 +148,59 @@ export class IncripcionExternoComponent implements OnInit {
       prog_acad_uis: inscribirExternoAcademic.prog_acad_uis
     }
 
+    const inscribirExterno = this.formularioInscripcionExterno.value;
+
+    const inscribir = {
+
+      tipo_movilidad: inscribirExterno.tipo_movilidad,
+      nombre_institucion: inscribirExterno.nombre_institucion,
+      nombre_convenio: inscribirExterno.nombre_convenio,
+      documento_id: inscribirExterno.documento_id
+
+    }
 
     const aspExtPersonalGuardado = await this.InscripcionExternoService.saveAspExtPersonal(aspExtPersonal);
     console.log(aspExtPersonalGuardado);
 
-    const aspExtAcademicGuardado = await this.InscripcionExternoService.saveAspExtAcademic(aspExtAcademic);
-    console.log(aspExtAcademicGuardado);
+   if (aspExtPersonalGuardado.status==true){ 
+     const aspExtAcademicGuardado = await this.InscripcionExternoService.saveAspExtAcademic(aspExtAcademic);
+    console.log(aspExtAcademicGuardado); 
+    if (aspExtAcademicGuardado.status==true){
+      const externoGuardado = await this.InscripcionExternoService.saveInscripcion(inscribir);
+      console.log("Inscripción", externoGuardado); // Aquí se incluye la ventana emergente con el mensaje de guardado existoso
+    }}
 
     this.formularioInscripcionExterno.reset();
   }
+
+  limpiarFormulario() {
+    this.formularioInscripcionExterno.reset();
+  }
+
+  onOptionsSelectedDepartment(codigo_pais: string) {
+    this.DepartamentosService.getDepartamentos(codigo_pais).then((state) => {
+      this.departamentos = state
+    })
+}
+
+onOptionsSelectedCity(codigo_departamento: string) {
+  this.CiudadesService.getCiudades(codigo_departamento).then((cities) => {
+    this.ciudades = cities
+  })
+}
+
+movilidadConvenio(tipo_movilidad: String) {
+  console.log("tiposMovilidad", tipo_movilidad)
+   this.ConveniosService.getConvenioByTipoMovilidad(tipo_movilidad).then((convenio) => {
+    this.convenios= convenio
+  })
+}
+
+convenioInstitucion(codigo_inst: String) {
+  console.log("codigoInst", codigo_inst)
+   this.ConveniosService.getConvenioByInstitucion(codigo_inst).then((convenio) => {
+    this.convenios= convenio
+  })
+}
 
 }
