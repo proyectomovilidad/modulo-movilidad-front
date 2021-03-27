@@ -69,7 +69,7 @@
         </div>
   
         <div class="form-group col-md-4">
-          <input type="text" class="form-control" id="segundoNombre" placeholder="Segundo nombre">
+          <input type="text" class="form-control" formControlName="segundo_nombre" placeholder="Segundo nombre">
   
         </div>
   
@@ -91,7 +91,7 @@
         </div>
   
         <div class="form-group col-md-4">
-          <input type="text" class="form-control" id="segundoApellido" placeholder="Segundo apellido">
+          <input type="text" class="form-control" formControlName="segundo_apellido"  placeholder="Segundo apellido">
   
         </div>
   
@@ -102,9 +102,9 @@
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="genero" [class.is-invalid]="getNoValido('genero')">
             <option value="">Seleccione..</option>
-            <option value="item 1"> Femenino </option>
-            <option value="item 2"> Masculino </option>
-            <option value="item 3"> Otro </option>
+            <option value="femenino"> Femenino </option>
+            <option value="masculino"> Masculino </option>
+            <option value="otro"> Otro </option>
           
           </select>
   
@@ -159,8 +159,8 @@
           <select class="form-control" formControlName="periodo_inscrip"
             [class.is-invalid]="getNoValido('periodo_inscrip')">
             <option value="">Seleccione..</option>
-            <option value="item 1"> 1 </option>
-            <option value="item 1"> 2 </option>
+            <option value="1"> 1 </option>
+            <option value="2"> 2 </option>
           </select>
   
         </div>
@@ -173,7 +173,12 @@
           <select class="form-control" formControlName="ano_inscrip" [class.is-invalid]="getNoValido('ano_inscrip')">
   
             <option value="">Seleccione..</option>
-            <option value="item 1"> dato </option>
+            <option value="2016"> 2016 </option>
+            <option value="2017"> 2017 </option>
+            <option value="2018"> 2018 </option>
+            <option value="2019"> 2019 </option>
+            <option value="2020"> 2020 </option>
+
           </select>
   
         </div>
@@ -238,11 +243,11 @@
         </div>
   
         <div class="form-group col-md-4">
-          <select class="form-control" formControlName="tipo_recursos"
-            [class.is-invalid]="getNoValido('tipo_recursos')">
-            <option value="">Seleccione..</option>
-            <option value="item 1"> dato </option>
-          </select>
+          <input type="text" formControlName="tipo_recursos" class="form-control" placeholder="Tipo de recursos"
+            [class.is-invalid]="getNoValido('tipo_recursos')" />
+          <small class="mensaje-error" *ngIf="getNoValido('tipo_recursos')">
+            El campo tipo de recursos es obligatorio.
+          </small>
   
         </div>
   
@@ -269,7 +274,7 @@
         <div class="form-group col-md-6">
           <div class="row justify-content-start">
   
-            <button class="submit"  type=""> Cancelar </button>
+            <button class="submit"  (click)="limpiarFormulario()"> Cancelar </button>
   
   
           </div>

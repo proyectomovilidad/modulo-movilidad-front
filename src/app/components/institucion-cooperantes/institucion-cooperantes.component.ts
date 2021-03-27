@@ -21,6 +21,8 @@ export class InstitucionCooperantesComponent implements OnInit {
   public departamentos: any;
   public ciudades: any;
   public instituciones: any;
+  public institucionesCooperantes: any;
+
 
   public formularioInstitucionCooperante: FormGroup;
   constructor(private formBuilder: FormBuilder,
@@ -47,6 +49,7 @@ export class InstitucionCooperantesComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.paises = await this.PaisesService.getPais();
+    this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
     this.instituciones = await this.InstitucionCooperanteService.getAllInstitucionesCooperantes();
   }
 

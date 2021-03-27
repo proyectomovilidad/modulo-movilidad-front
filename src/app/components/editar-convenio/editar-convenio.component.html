@@ -1,0 +1,260 @@
+
+<body>
+
+
+    <header>
+
+
+        <section id="title">
+
+            <div id="titulo">
+                Sistema de relaciones exteriores
+                <br />
+                Módulo de movilidad académica - Editar convenio
+            </div>
+
+        </section>
+
+
+    </header>
+
+    <section id="body">
+
+        <div id="name">
+            <h3> Editar </h3>
+        </div>
+
+        <br />
+
+        <form [formGroup]="formularioEditarConvenio" class="row justify-content-center form">
+
+
+
+            <div class="form-group col-md-2">
+                <label class="label ">Nombre convenio *</label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <input type="text" formControlName="nombre_convenio" class="form-control" placeholder="Nombre convenio"
+                    [class.is-invalid]="getNoValido('nombre_convenio')" />
+                <small class="mensaje-error" *ngIf="getNoValido('nombre_convenio')">
+                    El campo nombre convenio es obligatorio.
+                </small>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="versionConvenio" class="label ">Versión convenio *</label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <input type="text" formControlName="version_convenio" class="form-control"
+                    placeholder="Versión convenio" [class.is-invalid]="getNoValido('version_convenio')" />
+                <small class="mensaje-error" *ngIf="getNoValido('version_convenio')">
+                    El campo versión convenio es obligatorio.
+                </small>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="programaAcademico" class=" label">Programa académico *</label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control" id="programaAcademico" formControlName="programa_acad"
+                    [class.is-invalid]="getNoValido('programa_acad')">
+                    <option value="">Seleccione..</option>
+                    <option *ngFor="let programa of programas"  value="{{programa._id}}"> {{programa.nombre_programaAcademico}}  </option>     
+                </select>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="promedio" class="label ">Promedio *</label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" formControlName="promedio" placeholder="Promedio"
+                    [class.is-invalid]="getNoValido('promedio')" />
+                <small class="mensaje-error" *ngIf="getNoValido('promedio')">
+                    El campo promedio es obligatorio.
+                </small>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label class="label ">Créditos aprobados *</label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" formControlName="cred_cursados" placeholder="Créditos aprobados"
+                    [class.is-invalid]="getNoValido('cred_cursados')" />
+                <small class="mensaje-error" *ngIf="getNoValido('cred_cursados')">
+                    El campo promedio es obligatorio.
+                </small>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label class="label ">Créditos a cursar *</label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" formControlName="cred_cursar" placeholder="Créditos a cursar"
+                    [class.is-invalid]="getNoValido('cred_cursar')" />
+                <small class="mensaje-error" *ngIf="getNoValido('cred_cursar')">
+                    El campo promedio es obligatorio.
+                </small>
+            </div>
+
+
+
+            <div class="form-group col-md-2">
+                <label for="cupo" class="label ">Cupo *</label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" formControlName="cupo" placeholder="Cupo"
+                    [class.is-invalid]="getNoValido('cupo')" />
+                <small class="mensaje-error" *ngIf="getNoValido('cupo')">
+                    El campo cupo es obligatorio.
+                </small>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="estadoConvenio" class=" label">Estado convenio *</label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control" id="estadoConvenio" formControlName="estado_convenio"
+                    [class.is-invalid]="getNoValido('estado_convenio')">
+                    <option value="">Seleccione..</option>
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                    <option value="vigente">Vigente</option>
+                    <option value="no vigente">No vigente</option>
+
+                </select>
+            </div>
+
+
+            <div class="form-group col-md-2">
+                <label class="label "> Fecha inicio *</label>
+              </div>
+        
+              <div class="form-group col-md-4">
+                <input required readonly class="input input-date1" 
+                  [matDatepicker]="fechaInicio" formControlName="fecha_inicio" (click)="fechaInicio.open()"
+                  [class.is-invalid]="getNoValido('fecha_inicio')" />
+                <small class="mensaje-error" *ngIf="getNoValido('fecha_inicio')">
+                  El campo fecha inicio vigencia es obligatorio.
+                </small>
+                <mat-datepicker #fechaInicio></mat-datepicker>    
+              </div>
+
+
+
+              <div class="form-group col-md-2">
+                <label class="label "> Fecha final *</label>
+              </div>
+        
+              <div class="form-group col-md-4">
+                <input required readonly class="input input-date1" 
+                  [matDatepicker]="fechaFinal" formControlName="fecha_final" (click)="fechaFinal.open()"
+                  [class.is-invalid]="getNoValido('fecha_final')" />
+                <small class="mensaje-error" *ngIf="getNoValido('fecha_final')">
+                  El campo fecha final es obligatorio.
+                </small>
+                <mat-datepicker #fechaFinal></mat-datepicker>    
+              </div>
+
+
+              <div class="form-group col-md-2">
+                <label class="label "> Fecha suscripción *</label>
+              </div>
+        
+              <div class="form-group col-md-4">
+                <input required readonly class="input input-date1" 
+                  [matDatepicker]="fechaSuscripcion" formControlName="fecha_suscripcion" (click)="fechaSuscripcion.open()"
+                  [class.is-invalid]="getNoValido('fecha_suscripcion')" />
+                <small class="mensaje-error" *ngIf="getNoValido('fecha_suscripcion')">
+                  El campo fecha suscripción es obligatorio.
+                </small>
+                <mat-datepicker #fechaSuscripcion></mat-datepicker>    
+              </div>
+
+
+
+            <div class="form-group col-md-2">
+                <label for="tipoConvenio" class=" label">Tipo convenio *</label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control"  formControlName="tipo_convenio"
+                    [class.is-invalid]="getNoValido('tipo_convenio')">
+                    <option value="">Seleccione..</option>
+                    <option *ngFor="let tipoConvenio of tiposConvenio"  value="{{tipoConvenio._id}}"> {{tipoConvenio.nombre_tipo_convenio}}  </option>     
+                </select>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="tipoMovilidad" class=" label">Tipo movilidad *</label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control" id="tipoMovilidad" formControlName="tipo_movilidad"
+                    [class.is-invalid]="getNoValido('tipo_movilidad')">
+                    <option value="">Seleccione..</option>
+                    <option *ngFor="let tipoMovilidad of tiposMovilidad"  value="{{tipoMovilidad._id}}"> {{tipoMovilidad.nombre_movilidad}}  </option>     
+                </select>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="institucionCooperante" class="label "> Institución cooperante *</label>
+              </div>
+        
+              <div class="form-group col-md-4">
+                <select class="form-control" formControlName="nombre_institucion"
+                  [class.is-invalid]="getNoValido('nombre_institucion')">
+                  <option value="">Seleccione..</option>
+                  <option *ngFor="let institucionCooperante of institucionesCooperantes"  value="{{institucionCooperante._id}}"> {{institucionCooperante.nombre_institucion}}  </option>     
+                </select>
+              </div>
+
+              <div class="form-group col-md-2">
+                <label for="pais" class=" label ">País </label>
+            </div>
+
+            <div class="form-group col-md-4">
+                <select class="form-control" id="pais" formControlName="pais"
+                [class.is-invalid]="getNoValido('pais')">
+                <option value="">Seleccione..</option>
+                <option *ngFor="let pais of paises"  value="{{pais._id}}"> {{pais.nombre_pais}}  </option>     
+                       </select>
+            </div>
+
+
+            <div class=" form-group col-md-2 ">
+                <label for="" class=" "> </label>
+            </div>
+
+            <div class="form-group col-md-4">
+
+            </div>
+
+
+            <div class="form-group col-md-6">
+                <div class="row justify-content-end">
+
+                    <button class="submit" (click)="guardarFormulario()"> Guardar </button>
+
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <div class="row justify-content-start">
+
+                    <button class="submit"  (click)="cancelarEdicion()"> Cancelar </button>
+
+
+                </div>
+            </div>
+
+        </form>
+
+    </section>

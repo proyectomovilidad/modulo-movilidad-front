@@ -1,0 +1,123 @@
+<section id="body">
+
+    <div id="name">
+        <h3> Fechas movilidad saliente</h3>
+    </div>
+    <br />
+
+    <form [formGroup]="formfechamovilidadsaliente" class="row justify-content-center form">
+
+        <div class="form-group col-md-2">
+            <label for="fecha_inicio_mov_saliente" class="label ">Fecha inicio movilidad saliente *</label>
+        </div>
+
+        <div class="form-group col-md-4">
+            <input required readonly class="input input-date1" placeholder="fecha nacimiento"
+                [matDatepicker]="fechaInicioMovSaliente" formControlName="fecha_inicio_mov_saliente"
+                (click)="fechaInicioMovSaliente.open()" [class.is-invalid]="getNoValidoSaliente('fecha_inicio_mov_saliente')" />
+            <small class="mensaje-error" *ngIf="getNoValidoSaliente('fecha_inicio_mov_saliente')">
+                El campo fecha de nacimiento es obligatorio.
+            </small>
+            <mat-datepicker #fechaInicioMovSaliente></mat-datepicker>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="fecha_final_mov_saliente" class="label ">Fecha final movilidad saliente *</label>
+        </div>
+
+        <div class="form-group col-md-4">
+            <input required readonly class="input input-date1" placeholder="fecha nacimiento"
+                [matDatepicker]="fechaFinalMovSaliente" formControlName="fecha_final_mov_saliente"
+                (click)="fechaFinalMovSaliente.open()"
+                [class.is-invalid]="getNoValidoSaliente('fecha_final_mov_saliente')" />
+            <small class="mensaje-error" *ngIf="getNoValidoSaliente('fecha_final_mov_saliente')">
+                El campo fecha de nacimiento es obligatorio.
+            </small>
+            <mat-datepicker #fechaFinalMovSaliente></mat-datepicker>
+        </div>
+
+        <div class="form-group col-md-4">
+        </div>
+
+        <div class="form-group col-md-4">
+        </div>
+        
+
+
+        <div class="form-group col-md-6">
+            <div class="row justify-content-start">
+                <button class="submit" (click)="guardarFormularioSaliente()"> Guardar </button>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <div class="row justify-content-start">
+                <button class="submit" type=""> Cancelar </button>
+            </div>
+        </div>
+
+    </form>
+</section>
+
+<section id="body">
+
+    <div id="name">
+        <h3> Fechas movilidad entrante</h3>
+    </div>
+
+    <br />
+
+    <form [formGroup]="formfechamovilidadentrante" class="row justify-content-center form">
+
+        <div class="form-group col-md-2">
+            <label for="fecha_inicio_mov_entrante" class="label ">Fecha inicio movilidad entrante *</label>
+        </div>
+
+        <div class="form-group col-md-4">
+            <input required readonly class="input input-date1" placeholder="fecha nacimiento"
+                [matDatepicker]="fechaInicioMovEntrante" formControlName="fecha_inicio_mov_entrante"
+                (click)="fechaInicioMovEntrante.open()" [class.is-invalid]="getNoValidoEntrante('fecha_inicio_mov_entrante')" />
+            <small class="mensaje-error" *ngIf="getNoValidoEntrante('fecha_inicio_mov_entrante')">
+                El campo fecha de nacimiento es obligatorio.
+            </small>
+            <mat-datepicker #fechaInicioMovEntrante></mat-datepicker>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="fecha_final_mov_entrante" class="label ">Fecha final movilidad entrante *</label>
+        </div>
+
+        <div class="form-group col-md-4">
+            <input required readonly class="input input-date1" placeholder="fecha nacimiento"
+                [matDatepicker]="fechaFinalMovEntrante" formControlName="fecha_final_mov_entrante"
+                (click)="fechaFinalMovEntrante.open()"
+                [class.is-invalid]="getNoValidoEntrante('fecha_final_mov_saliente')" />
+            <small class="mensaje-error" *ngIf="getNoValidoEntrante('fecha_final_mov_entrante')">
+                El campo fecha de nacimiento es obligatorio.
+            </small>
+            <mat-datepicker #fechaFinalMovEntrante></mat-datepicker>
+        </div>
+
+
+        <div class="form-group col-md-6">
+            <div class="row justify-content-start">
+
+                <button class="submit" (click)="guardarFormularioEntrante()"> Guardar </button>
+
+
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <div class="row justify-content-start">
+
+                <button class="submit" type=""> Cancelar </button>
+
+
+            </div>
+        </div>
+
+
+
+    </form>
+</section>

@@ -164,6 +164,8 @@
             <div class="form-group col-md-4">
                 <select class="form-control" id="nombre_institucion">
                     <option value="">Seleccione..</option>
+                    <option *ngFor="let institucionCooperante of institucionesCooperantes"  value="{{institucionCooperante._id}}"> {{institucionCooperante.nombre_institucion}}  </option>
+
                 </select>
 
             </div>
@@ -175,6 +177,7 @@
             <div class="form-group col-md-4">
                 <select class="form-control" id="pais">
                     <option value="">Seleccione..</option>
+                    <option *ngFor="let pais of paises"  value="{{pais.codigo_pais}}"> {{pais.nombre_pais}}  </option>
                 </select>
 
             </div>
@@ -212,7 +215,6 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col" class="center"> Id </th>
                     <th scope="col" class="center"> Nombre </th>
                     <th scope="col" class="center"> País </th>
                     <th scope="col" class="center"> Ciudad </th>
@@ -224,7 +226,6 @@
             </thead>
             <tbody>
                 <tr  *ngFor="let institucion of instituciones">
-                    <td> {{institucion.documento_id}} </td>
                     <td> {{institucion.nombre_institucion}}</td>
                     <td>  {{institucion.pais}}</td>
                     <td>  {{institucion.ciudad}}</td>

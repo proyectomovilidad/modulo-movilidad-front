@@ -29,7 +29,7 @@ export class InstitucionCooperanteService {
   }
 
    public getInstitucionCooperanteById(_id: any): Promise<any> {
-    const url = `${environment.backend.institucionCooperante}getInstitucionCooperanteById/:_id`;
+    const url = `${environment.backend.institucionCooperante}getInstitucionCooperanteById/${_id}`;
     return this.httpClient.get<any>(url).toPromise();
   }
 
@@ -37,5 +37,21 @@ export class InstitucionCooperanteService {
     const url = `${environment.backend.institucionCooperante}getInstitucionCooperante/`;
     return this.httpClient.get<any>(url).toPromise();
   }
+
+  public getInstitucionByTipoMovilidad(_id: any): Promise<any> {
+    const url = `${environment.backend.institucionCooperante}getInstitucionByTipoMovilidad/${_id}`;
+    return this.httpClient.get<any>(url).toPromise();
+  }
+  public updateInstitucionCooperante(institucionCooperante: any, _id: any): Promise<any> {
+    const url = `${environment.backend.institucionCooperante}/${_id}`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.httpClient.post<any>(url, institucionCooperante, httpOptions).toPromise();
+  }
+
+
 }
  

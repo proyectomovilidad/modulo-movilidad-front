@@ -6,7 +6,7 @@ import { CiudadesService } from './../../services/ciudades.service';
 import { InstitucionCooperanteService } from './../../services/institucion-cooperante.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InscripcionEstudianteService } from 'src/app/services/inscripcion-estudiante.service';
-
+ 
 @Component({
   selector: 'app-editar-institucion',
   templateUrl: './editar-institucion.component.html',
@@ -19,7 +19,7 @@ export class EditarInstitucionComponent implements OnInit {
   public departamentos: any;
   public ciudades: any;
   public instituciones: any;
-  public estudiantes: any;
+  public institucionElegida: any;
   public formularioEditarInstitucionCooperante: FormGroup;
 
   constructor(
@@ -48,6 +48,24 @@ export class EditarInstitucionComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.paises =  this.PaisesService.getPais();
     
+    const id = this.route.snapshot.queryParams._id
+    this.instituciones = await this.InstitucionCooperanteService.getInstitucionCooperanteById(id);
+
+    if(this.instituciones[0]){
+      const institucion = this.instituciones[0];
+      this.institucionElegida = institucion;
+    
+      this.formularioEditarInstitucionCooperante.controls.nombre_institucion.setValue(institucion.nombre_institucion);
+      this.formularioEditarInstitucionCooperante.controls.pais.setValue(institucion.pais);
+      this.formularioEditarInstitucionCooperante.controls.departamento.setValue(institucion.departamento);
+      this.formularioEditarInstitucionCooperante.controls.ciudad.setValue(institucion.ciudad);
+      this.formularioEditarInstitucionCooperante.controls.direccion.setValue(institucion.direccion);
+      this.formularioEditarInstitucionCooperante.controls.telefono.setValue(institucion.telefono);
+      this.formularioEditarInstitucionCooperante.controls.email.setValue(institucion.email);
+    
+    }
+
+
   } 
 
 
@@ -77,10 +95,8 @@ export class EditarInstitucionComponent implements OnInit {
 
     }
 
-    const institucionCooperanteGuardada = await this.InstitucionCooperanteService.saveInstitucionCooperante(institucionCooperante);
-    console.log(institucionCooperanteGuardada);
-
-    this.formularioEditarInstitucionCooperante.reset();
+    const institucionCooperanteEditado = await this.InstitucionCooperanteService.updateInstitucionCooperante(institucionCooperante, this.institucionElegida._id);
+    console.log(institucionCooperanteEditado);
   }
 
   onOptionsSelectedDepartment(codigo_pais: string) {

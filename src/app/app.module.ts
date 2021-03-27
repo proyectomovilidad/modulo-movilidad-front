@@ -26,6 +26,7 @@ import { ConveniosService } from './services/convenios.service';
 import { TipoConvenioService } from './services/tipo-convenio.service';
 import { ConvocatoriaService } from './services/convocatoria.service';
 import { TipoProyectoService } from './services/tipo-proyecto.service';
+import { InicioSesionService } from './services/inicio-sesion.service';
 
 
 
@@ -41,15 +42,12 @@ import { IncripcionExternoComponent } from './components/inscripcion-externo/inc
 import { CambiarEstadoComponent } from './components/cambiar-estado/cambiar-estado.component';
 import { ErrorComponent } from './components/error/error.component';
 import { CargaDocumentosComponent } from './components/carga-documentos/carga-documentos.component';
-import { AccesoComponent } from './components/acceso/acceso.component';
 import { RevisionDocumentosComponent } from './components/revision-documentos/revision-documentos.component';
 import { ConsultarDocumentosComponent } from './components/consultar-documentos/consultar-documentos.component';
 import { ObservacionesComponent } from './components/observaciones/observaciones.component';
 import { SolicitudApoyosComponent } from './components/solicitud-apoyos/solicitud-apoyos.component';
 import { SolicitudApoyosRelextComponent } from './components/solicitud-apoyos-relext/solicitud-apoyos-relext.component';
-import { AdministracionMenusComponent } from './components/administracion-menus/administracion-menus.component';
 import { CrearMenuComponent } from './components/crear-menu/crear-menu.component';
-import { ConsultarMenuComponent } from './components/consultar-menu/consultar-menu.component';
 import { GuardadoExitosoComponent } from './components/guardado-exitoso/guardado-exitoso.component';
 import { InstitucionCooperantesComponent } from './components/institucion-cooperantes/institucion-cooperantes.component';
 import { EditarInstitucionComponent } from './components/editar-institucion/editar-institucion.component';
@@ -67,6 +65,11 @@ import { DatosInstitucionComponent } from './components/datos-institucion/datos-
 import { EditarDocumentoComponent } from './components/editar-documento/editar-documento.component';
 import { ProfesoresModuloComponent } from './components/profesores-modulo/profesores-modulo.component';
 import { EditarProfesorComponent } from './components/editar-profesor/editar-profesor.component';
+import { ExternosMovilidadComponent } from './components/externos-movilidad/externos-movilidad.component';
+import { EditarExternoComponent } from './components/editar-externo/editar-externo.component';
+import { EditarConvenioComponent } from './components/editar-convenio/editar-convenio.component';
+import { InicioSesionComponent } from './components/inicio-sesion/inicio-sesion.component';
+import { EntornoMovilidadComponent } from './components/entorno-movilidad/entorno-movilidad.component';
 
 
 
@@ -80,15 +83,12 @@ import { EditarProfesorComponent } from './components/editar-profesor/editar-pro
     ErrorComponent,
     CambiarEstadoComponent,
     CargaDocumentosComponent,
-    AccesoComponent,
     RevisionDocumentosComponent,
     ConsultarDocumentosComponent,
     ObservacionesComponent,
     SolicitudApoyosComponent,
     SolicitudApoyosRelextComponent,
-    AdministracionMenusComponent,
     CrearMenuComponent,
-    ConsultarMenuComponent,
     GuardadoExitosoComponent,
     InstitucionCooperantesComponent,
     EditarInstitucionComponent,
@@ -105,6 +105,11 @@ import { EditarProfesorComponent } from './components/editar-profesor/editar-pro
     EditarDocumentoComponent,
     ProfesoresModuloComponent,
     EditarProfesorComponent,
+    ExternosMovilidadComponent,
+    EditarExternoComponent,
+    EditarConvenioComponent,
+    InicioSesionComponent,
+    EntornoMovilidadComponent,
     
   ],
   entryComponents: [ObservacionesComponent],
@@ -137,7 +142,8 @@ BrowserModule,
     ConveniosService,
     TipoConvenioService,
     ConvocatoriaService,
-    TipoProyectoService
+    TipoProyectoService,
+    InicioSesionService
     
   ],
   bootstrap: [AppComponent]
