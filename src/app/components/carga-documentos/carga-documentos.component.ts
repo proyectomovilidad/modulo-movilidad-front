@@ -32,9 +32,7 @@ export class CargaDocumentosComponent implements OnInit {
     return this.formularioDocumentos.get('campo') as FormArray;
   }
 
-public caragarDatos(id: any) {
-this.router.navigateByUrl('/inscripcion-estudiante?_id=' + id);
-    
+public cargarDatos(id: any) {   
  }
 
 
