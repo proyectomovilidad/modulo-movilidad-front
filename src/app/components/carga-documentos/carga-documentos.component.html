@@ -31,17 +31,15 @@
                         <th scope="col" class="center"> Nombre </th>
                         <th scope="col" class="center">Carga de archivo</th>
                         <th scope="col" class="center">Observaciones</th>
-                        <th scope="col" class="center">Estado</th>
                         <th scope="col" class="center">Acciones</th>
                     </tr>
 
                     <tr *ngFor="let documento of documentos">
                         <td> {{documento.nombre_documento}}</td>
-                        <td> <button (click)="caragarDatos(documento._id )"> cargar
+                        <td> <button> cargar
                         </button> </td>
                         <td> </td>
-                        <td> {{documento.estado_documento}} </td>
-                        <td><button (click)="caragarDatos(documento._id )"> eliminar
+                        <td><button> eliminar
                         </button></td>
                     </tr>
                 </thead>
