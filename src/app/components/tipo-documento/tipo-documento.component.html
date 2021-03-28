@@ -42,19 +42,8 @@
 
             </div>
 
-
-            <div class="form-group col-md-2">
-                <label for="estadoDoc" class="label "> Estado *</label>
-            </div>
-
             <div class="form-group col-md-4">
-                <select class="form-control" formControlName="estado_documento"
-                    [class.is-invalid]="getNoValido('estado_documento')">
-                    <option value="">Seleccione..</option>
-                    <option value="Activo">Activo</option>
-                    <option value="Inactivo">Inactivo</option>
-                </select>
-
+            
             </div>
 
 
@@ -68,7 +57,7 @@
 
             <div class="form-group col-md-6">
                 <div class="row justify-content-start">
-                    <button class="submit" type=""> Cancelar </button>
+                    <button class="submit" > Cancelar </button>
                 </div>
             </div>
         </form>
@@ -87,7 +76,7 @@
 
 
             <div class=" form-group col-md-2 ">
-                <label for="id" class="label ">Id * </label>
+                <label for="id" class="label ">Id </label>
             </div>
 
             <div class="form-group col-md-4">
@@ -96,34 +85,12 @@
             </div>
 
             <div class=" form-group col-md-2 ">
-                <label for="nombre" class="label ">Nombre * </label>
+                <label for="nombre" class="label ">Nombre </label>
             </div>
 
             <div class="form-group col-md-4">
                 <input type="text" class="form-control" id="nombre_doc">
 
-            </div>
-
-
-            <div class="form-group col-md-2">
-                <label for="estadoDoc" class="label "> Estado *</label>
-            </div>
-
-            <div class="form-group col-md-4">
-                <select class="form-control">
-                    <option value="">Seleccione..</option>
-                    <option value="Item 1">Activo</option>
-                    <option value="Item 2">Inactivo</option>
-                </select>
-
-            </div>
-
-            <div class=" form-group col-md-2 ">
-                <label for="" class=" "> </label>
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="" class=" "> </label>
             </div>
 
 
@@ -165,7 +132,6 @@
                 <tr>
                     <th scope="col" class="center"> Id </th>
                     <th scope="col" class="center"> Nombre </th>
-                    <th scope="col" class="center"> Estado </th>
                     <th scope="col" class="center"> Acciones </th>
                 </tr>
             </thead>
@@ -175,7 +141,6 @@
 
                     <td>{{documento._id}}</td>
                     <td>{{documento.nombre_documento}}</td>
-                    <td>{{documento.estado_documento}}</td>
                     <td><button class="submit" (click)="editarDocumento(documento._id )"> Editar </button></td>
                 </tr>
 
