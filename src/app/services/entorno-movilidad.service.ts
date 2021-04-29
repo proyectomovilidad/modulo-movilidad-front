@@ -12,21 +12,34 @@ export class EntornoMovilidadService {
 
   public saveFechasMovSaliente(movilidadSaliente: any): Promise<any> {
     const url = `${environment.backend.entornoMovilidad}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, movilidadSaliente, httpOptions).toPromise();
+
+    return this.httpClient.post<any>(url, movilidadSaliente, this.getHeaders()).toPromise();
   }
 
   public saveFechasMovEntrante(movilidadEntrante: any): Promise<any> {
     const url = `${environment.backend.entornoMovilidad}`;
+
+    return this.httpClient.post<any>(url, movilidadEntrante, this.getHeaders()).toPromise();
+  }
+
+  public saveFechasMovilidad(formData: any): Promise<any>{
+    const url = `${environment.backend.entornoMovilidad}`
+
+    return this.httpClient.post<any>(url, formData, this.getHeaders()).toPromise();    
+  }
+
+  public getFechasByStatus(periodo, tipo): Promise<any>{
+    const url = `${environment.backend.entornoMovilidad}/getFechasByStatus/${periodo}/${tipo}`
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();    
+  }
+
+  private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'authorization': `Bearer ${environment.TOKEN}`,        
+        'ContentType': 'application/json'
       })
     };
-    return this.httpClient.post<any>(url, movilidadEntrante, httpOptions).toPromise();
+    return httpOptions
   }
 }

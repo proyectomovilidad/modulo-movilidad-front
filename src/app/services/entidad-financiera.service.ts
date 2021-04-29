@@ -14,12 +14,18 @@ export class EntidadFinancieraService {
 
   public saveEntidadFinanciera(entidadFinanciera: any): Promise<any> {
     const url = `${environment.backend.entidadFinanciera}`;
+
+    return this.httpClient.post<any>(url, entidadFinanciera, this.getHeaders()).toPromise();
+  }
+
+  private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'authorization': `Bearer ${environment.TOKEN}`,        
+        'ContentType': 'application/json'
       })
     };
-    return this.httpClient.post<any>(url, entidadFinanciera, httpOptions).toPromise();
+    return httpOptions
   }
 
 }

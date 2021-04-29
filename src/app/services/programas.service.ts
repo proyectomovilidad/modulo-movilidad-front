@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -14,7 +14,22 @@ export class ProgramasService {
 
   public getProgramaAcademico(): Promise<any> {
     const url = `${environment.backend.programaAcademico}getProgramaAcademico/`; 
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
+  }
+
+  getProgramaAcademicoByInstitucion(institucionId): Promise<any> {
+    const url = `${environment.backend.programaAcademico}getProgramaAcademicoByInstitucion/${institucionId}`; 
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
+  }
+
+  private getHeaders(): any{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'authorization': `Bearer ${environment.TOKEN}`,        
+        'ContentType': 'application/json'
+      })
+    };
+    return httpOptions
   }
 }
 

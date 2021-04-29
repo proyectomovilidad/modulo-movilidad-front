@@ -14,120 +14,98 @@ export class InscripcionEstudianteService {
 
   public saveAspUisPersonal(aspUisPersonal: any): Promise<any> {
     const url = `${environment.backend.aspUisPersonal}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, aspUisPersonal, httpOptions).toPromise();
+    
+    return this.httpClient.post<any>(url, aspUisPersonal, this.getHeaders()).toPromise();
   }
 
 
   public UpdateAspUisPersonal(aspUisPersonal: any, _id: any): Promise<any> {
     const url = `${environment.backend.aspUisPersonal}${_id}`;
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'authorization': `Bearer ${environment.TOKEN}`, //Se agrega en todo lo que necesite autorización
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, aspUisPersonal, httpOptions).toPromise();
+    return this.httpClient.post<any>(url, aspUisPersonal, this.getHeaders()).toPromise();
   } 
 
   public getAspUisPersonal(_id: any): Promise<any> {
     const url = `${environment.backend.aspUisPersonal}getAspUisPersonalById/${_id}`;
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
   public getAllAspUisPersonal(): Promise<any> {
     const url = `${environment.backend.aspUisPersonal}getAspiranteUisPersonal/`;
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
 
   public saveAspUisAcademic(aspUisAcademic: any): Promise<any> {
     const url = `${environment.backend.aspUisAcademic}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, aspUisAcademic, httpOptions).toPromise();
+    
+    return this.httpClient.post<any>(url, aspUisAcademic, this.getHeaders()).toPromise();
   }
   
   public updateAspUisAcademic(aspUisAcademic: any, _id: any): Promise<any> {
     const url = `${environment.backend.aspUisAcademic}/${_id}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'authorization': `Bearer ${environment.TOKEN}`, //Se agrega en todo lo que necesite autorización
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, aspUisAcademic, httpOptions).toPromise();
+
+    return this.httpClient.post<any>(url, aspUisAcademic, this.getHeaders()).toPromise();
   }
 
   public getAspUisAcademic(_id: any): Promise<any> {
    // const url = `${environment.backend.aspUisAcademic}getAspUisAcademicById/${_id}`;
     const url = `${environment.backend.aspUisAcademic}getAspUisAcademicById/:_id`;
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
   public getAllAspUisAcademic(): Promise<any> {
     const url = `${environment.backend.aspUisAcademic}getAspiranteUisAcademic/`;
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
 
   public saveInscripcion(inscripcion: any): Promise<any> {
     const url = `${environment.backend.inscripcion}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, inscripcion, httpOptions).toPromise();
+    
+    return this.httpClient.post<any>(url, inscripcion, this.getHeaders()).toPromise();
   }
 
 
   public updateInscripcion(inscripcion: any, _id: any): Promise<any> {
     const url = `${environment.backend.inscripcion}/${_id}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'authorization': `Bearer ${environment.TOKEN}`, //Se agrega en todo lo que necesite autorización
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, inscripcion, httpOptions).toPromise();
+
+    return this.httpClient.post<any>(url, inscripcion, this.getHeaders()).toPromise();
   }
 
 
   public deleteInscripcion( _id: any): Promise<any> {
     const url = `${environment.backend.aspUisAcademic}deleteAspiranteUisAcademic/${_id}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.delete<any>(url).toPromise();
+    
+    return this.httpClient.delete<any>(url, this.getHeaders()).toPromise();
   }
 
   public getAspirantesUisPersonal(): Promise<any> {
     const url = `${environment.backend.aspUisPersonal}getAspirantesUisPersonal/`;
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
   public consultarEstudiantes(consulta) {
     const url = `${environment.backend.aspUisPersonal}consultarEstudiantes/`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, consulta, httpOptions).toPromise();
+    
+    return this.httpClient.post<any>(url, consulta, this.getHeaders()).toPromise();
 
   }
 
-  
+  public cambiarEstadoInscripcionById(estado, id): Promise<any>{
+   const url = `${environment.backend.inscripcion}cambiarEstadoInscripcionById/${id}`;
+   
+   return this.httpClient.post<any>(url, estado, this.getHeaders()).toPromise();
+ 
+  }
 
+  private getHeaders(): any{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'authorization': `Bearer ${environment.TOKEN}`,        
+        'ContentType': 'application/json'
+      })
+    };
+    return httpOptions
+  }
 }

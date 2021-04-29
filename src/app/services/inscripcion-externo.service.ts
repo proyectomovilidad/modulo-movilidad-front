@@ -14,111 +14,89 @@ export class InscripcionExternoService {
 
   public saveAspExtPersonal(aspExtPersonal: any): Promise<any> {
     const url = `${environment.backend.aspExtPersonal}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, aspExtPersonal, httpOptions).toPromise();
+
+    return this.httpClient.post<any>(url, aspExtPersonal, this.getHeaders()).toPromise();
   }
 
   public saveAspExtAcademic(aspExtAcademic: any): Promise<any> {
     const url = `${environment.backend.aspExtAcademic}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, aspExtAcademic, httpOptions).toPromise();
+
+    return this.httpClient.post<any>(url, aspExtAcademic, this.getHeaders()).toPromise();
   }
 
  
   public saveInscripcion(inscripcion: any): Promise<any> {
     const url = `${environment.backend.inscripcion}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, inscripcion, httpOptions).toPromise();
+
+    return this.httpClient.post<any>(url, inscripcion, this.getHeaders()).toPromise();
   }
 
   public getAspExternoPersonal(_id: any): Promise<any> {
     const url = `${environment.backend.aspExtPersonal}getAspExtPersonalById/${_id}`;
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
   public getAspExternoAcademic(_id: any): Promise<any> {
    const url = `${environment.backend.aspExtAcademic}getAspExtAcademicById/${_id}`;
    //const url = `${environment.backend.aspUisAcademic}getAspExtAcademicById/:_id`; 
-   return this.httpClient.get<any>(url).toPromise();
+   return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
   public getAllAspExternoPersonal(): Promise<any> {
     const url = `${environment.backend.aspExtPersonal}getAspiranteExtPersonal/`;
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
   public getAllAspExternoAcademic(): Promise<any> {
     const url = `${environment.backend.aspExtAcademic}getAspiranteExtAcademic/`;
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
   
   public UpdateAspExtPersonal(aspExtPersonal: any, _id: any): Promise<any> {
     const url = `${environment.backend.aspExtPersonal}${_id}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, aspExtPersonal, httpOptions).toPromise();
+
+    return this.httpClient.post<any>(url, aspExtPersonal, this.getHeaders()).toPromise();
   } 
 
   public updateAspExtAcademic(aspExtAcademic: any, _id: any): Promise<any> {
     const url = `${environment.backend.aspExtAcademic}/${_id}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, aspExtAcademic, httpOptions).toPromise();
+
+    return this.httpClient.post<any>(url, aspExtAcademic, this.getHeaders()).toPromise();
   }
 
   public updateInscripcion(inscripcion: any, _id: any): Promise<any> {
     const url = `${environment.backend.inscripcion}/${_id}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, inscripcion, httpOptions).toPromise();
+
+    return this.httpClient.post<any>(url, inscripcion, this.getHeaders()).toPromise();
   }
 
   public deleteInscripcion( _id: any): Promise<any> {
     const url = `${environment.backend.aspExtAcademic}deleteAspiranteExtAcademicById/${_id}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.delete<any>(url).toPromise();
+
+    return this.httpClient.delete<any>(url, this.getHeaders()).toPromise();
   }
 
   public getAspirantesExtPersonal(): Promise<any> {
     const url = `${environment.backend.aspExtPersonal}getAspirantesExtPersonal/`;
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
   public consultarExternos(consulta) {
     const url = `${environment.backend.aspExtPersonal}consultarExternos/`;
+
+    return this.httpClient.post<any>(url, consulta, this.getHeaders()).toPromise();
+
+  }
+
+  private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'authorization': `Bearer ${environment.TOKEN}`,        
+        'ContentType': 'application/json'
       })
     };
-    return this.httpClient.post<any>(url, consulta, httpOptions).toPromise();
-
+    return httpOptions
   }
 
 

@@ -51,6 +51,7 @@ export class InicioSesionComponent implements OnInit {
   let resultado = await this.InicioSesionService.iniciarSesion(datosInicioSesion)
   if (resultado.status == true){
     environment.TOKEN = resultado.token
+    environment.user = resultado.usuario
   }
     console.log("resultado", resultado)
     console.log("enviroment", environment.TOKEN)

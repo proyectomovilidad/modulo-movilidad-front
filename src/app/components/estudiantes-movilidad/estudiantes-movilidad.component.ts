@@ -20,6 +20,15 @@ export class EstudiantesMovilidadComponent implements OnInit {
   public estudiantes: any;
   public academic: any;
   public consulta: any;
+  public estados = [
+    {val: -1, nm: 'No Inscrito'},
+    {val: 0, nm: 'Cancelado'},
+    {val: 1, nm:"Inscrito"},
+    {val: 2, nm:"Carga documentos"},
+    {val: 3, nm:"Movilidad"},
+    {val: 4, nm:"Finalizado"},
+    {val: 5, nm:"Prorroga"},    
+  ]
 
   public formularioConsultarEstudiante: FormGroup;
   constructor(
@@ -45,7 +54,15 @@ export class EstudiantesMovilidadComponent implements OnInit {
 
     this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
     this.instituciones = await this.InstitucionCooperanteService.getInstitucionCooperante();
-    this.estudiantes = await this.inscripcionEstudianteService.getAspirantesUisPersonal();
+    
+    this.inscripcionEstudianteService.getAspirantesUisPersonal().then(resp=>{
+
+      if(resp.status == true){
+        this.estudiantes = resp.estudiantes
+      }else if(resp.permiso == false){
+        this.router.navigateByUrl('/')
+      }
+    });
     this.academic = await this.inscripcionEstudianteService.getAllAspUisAcademic();
 
   }
@@ -55,7 +72,15 @@ export class EstudiantesMovilidadComponent implements OnInit {
     this.router.navigateByUrl('/editar-inscripcion?_id=' + id);
     // this.router.navigateByUrl('/editar-inscripcion/' + id);
   }
+  
 
+  public cambiarEstado(e, inscripcionId){
+    if(e.value){
+      this.inscripcionEstudianteService.cambiarEstadoInscripcionById({estado: e.value}, inscripcionId).then(resp=>{
+        console.log('actualizado: ',resp)
+      })
+    }
+  }
 
 
   getNoValido(input: string) {

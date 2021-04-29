@@ -22,4 +22,14 @@ export class InicioSesionService {
     };
     return this.httpClient.post<any>(url, datos, httpOptions).toPromise();
   }
+
+  private getHeaders(): any{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'authorization': `Bearer ${environment.TOKEN}`,        
+        'ContentType': 'application/json'
+      })
+    };
+    return httpOptions
+  }
 }

@@ -10,20 +10,22 @@ import { EntornoMovilidadService } from './../../services/entorno-movilidad.serv
   styleUrls: ['./entorno-movilidad.component.css']
 })
 export class EntornoMovilidadComponent implements OnInit {
-
-  private EntornoMovilidadService: EntornoMovilidadService
+  
   public formfechamovilidadsaliente: FormGroup;
   public formfechamovilidadentrante: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,) {
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,
+    private entornoMovilidadService: EntornoMovilidadService) {
     this.formfechamovilidadsaliente = this.formBuilder.group({
       fecha_inicio_mov_saliente: [Date, Validators.required],
       fecha_final_mov_saliente: [Date, Validators.required],
+      periodo: []
     })
 
     this.formfechamovilidadentrante = this.formBuilder.group({
       fecha_inicio_mov_entrante: [Date, Validators.required],
       fecha_final_mov_entrante: [Date, Validators.required],
+      periodo: []
     })
   }
 
@@ -48,13 +50,18 @@ export class EntornoMovilidadComponent implements OnInit {
     console.log(fechasMovilidadSaliente)
 
     const movilidadSaliente = {
-
-      fecha_inicio_mov_saliente: fechasMovilidadSaliente.fecha_inicio_mov_saliente,
-      fecha_final_mov_saliente: fechasMovilidadSaliente.fecha_final_mov_saliente
+      fecha_inicio: fechasMovilidadSaliente.fecha_inicio_mov_saliente.toString(),
+      fecha_final: fechasMovilidadSaliente.fecha_final_mov_saliente.toString(),
+      periodo: fechasMovilidadSaliente.periodo,
+      tipo: 0
     }
 
-    const fechasMovSalienteGuardado = await this.EntornoMovilidadService.saveFechasMovSaliente(movilidadSaliente);
-    console.log();
+    console.log('fecha: ', new Date(fechasMovilidadSaliente.fecha_final_mov_saliente.toString()))
+
+    const fechasMovSalienteGuardado = await this.entornoMovilidadService.saveFechasMovilidad(movilidadSaliente).then(res=>{
+      console.log(res)
+    });
+    
 
     this.formfechamovilidadsaliente.reset();
 
@@ -80,11 +87,13 @@ export class EntornoMovilidadComponent implements OnInit {
 
     const movilidadEntrante = {
 
-      fecha_inicio_mov_saliente: fechasMovilidadEntrante.fecha_inicio_mov_saliente,
-      fecha_final_mov_saliente: fechasMovilidadEntrante.fecha_final_mov_saliente
+      fecha_inicio: fechasMovilidadEntrante.fecha_inicio_mov_saliente,
+      fecha_final: fechasMovilidadEntrante.fecha_final_mov_saliente,
+      periodo: fechasMovilidadEntrante.periodo,
+      tipo: 1
     }
 
-    const fechasMovEntranteGuardado = await this.EntornoMovilidadService.saveFechasMovEntrante(movilidadEntrante);
+    const fechasMovEntranteGuardado = await this.entornoMovilidadService.saveFechasMovilidad(movilidadEntrante);
     console.log();
 
     this.formfechamovilidadentrante.reset();

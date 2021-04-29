@@ -13,6 +13,16 @@ export class CiudadesService {
 
   public getCiudades(codigo_departamento): Promise<any> {
     const url = `${environment.backend.ciudad}getCiudades/`
-    return this.httpClient.post<any>(url, { codigo_departamento: codigo_departamento }).toPromise()
+    return this.httpClient.post<any>(url, { codigo_departamento: codigo_departamento }, this.getHeaders()).toPromise()
+  }
+
+  private getHeaders(): any{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'authorization': `Bearer ${environment.TOKEN}`,        
+        'ContentType': 'application/json'
+      })
+    };
+    return httpOptions
   }
 }

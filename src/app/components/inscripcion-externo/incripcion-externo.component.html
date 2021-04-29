@@ -346,7 +346,7 @@
         </div>
 
         <div class="form-group col-md-4">
-          <select #codigo_inst class="form-control" formControlName="nombre_institucion" [class.is-invalid]="getNoValido('nombre_institucion')"  (change)='convenioInstitucion(codigo_inst.value)' >
+          <select #codigo_inst class="form-control" formControlName="nombre_institucion" [class.is-invalid]="getNoValido('nombre_institucion')"  (change)='onOptionsSelectedProgAcademico(codigo_inst.value)' >
             <option value="">Seleccione..</option>
             <option *ngFor="let institucionCooperante of institucionesCooperantes"  value="{{institucionCooperante._id}}"> {{institucionCooperante.nombre_institucion}}  </option>
 
@@ -359,7 +359,7 @@
         </div>
 
         <div class="form-group col-md-4">
-          <select class="form-control"  formControlName="prog_acad_uis" [class.is-invalid]="getNoValido('prog_acad_uis')" >
+          <select #prog_academico class="form-control"  formControlName="prog_acad_uis" [class.is-invalid]="getNoValido('prog_acad_uis')" (change)='onOptionsSelectedTipoMovilidad(codigo_inst.value, prog_academico.value)' >
             <option value="">Seleccione..</option>
             <option *ngFor="let programa of programas"  value="{{programa._id}}"> {{programa.nombre_programaAcademico}}  </option>
           </select>
@@ -372,7 +372,7 @@
         </div>
 
         <div class="form-group col-md-4">
-          <select #tipoMovilidad class="form-control" formControlName="tipo_movilidad" [class.is-invalid]="getNoValido('tipo_movilidad')" (change)='movilidadConvenio(tipoMovilidad.value)' >
+          <select #tipoMovilidad class="form-control" formControlName="tipo_movilidad" [class.is-invalid]="getNoValido('tipo_movilidad')" (change)='onOptionsSelectedConvenios( prog_academico.value, codigo_inst.value, tipoMovilidad.value)' >
             <option value="">Seleccione..</option>
             <option *ngFor="let tipoMovilidad of tiposMovilidad"  value="{{tipoMovilidad._id}}"> {{tipoMovilidad.nombre_movilidad}}  </option>
           </select>

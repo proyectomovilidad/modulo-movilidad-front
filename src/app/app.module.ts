@@ -27,6 +27,8 @@ import { TipoConvenioService } from './services/tipo-convenio.service';
 import { ConvocatoriaService } from './services/convocatoria.service';
 import { TipoProyectoService } from './services/tipo-proyecto.service';
 import { InicioSesionService } from './services/inicio-sesion.service';
+import { CargaDocumentoService } from './services/carga-documento.service';
+import { EntornoMovilidadService } from './services/entorno-movilidad.service';
 
 
 
@@ -143,7 +145,9 @@ BrowserModule,
     TipoConvenioService,
     ConvocatoriaService,
     TipoProyectoService,
-    InicioSesionService
+    InicioSesionService,
+    CargaDocumentoService,
+    EntornoMovilidadService
     
   ],
   bootstrap: [AppComponent]

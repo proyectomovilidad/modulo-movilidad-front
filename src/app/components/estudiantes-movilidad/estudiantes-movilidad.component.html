@@ -173,7 +173,13 @@
                         </div>
                     </td>
 
-                  <td> {{estudiante.Inscripcion.estado}} </td>
+                  <td>
+                     
+                    <select #estado class="form-control" (change)="cambiarEstado(estado, estudiante.Inscripcion._id)" >             
+                      <option value="">{{estudiante.Inscripcion.estado}}</option>      
+                      <option  *ngFor="let estado of estados" value="{{estado.val}}">{{estado.nm}}</option>                      
+                    </select>
+                  </td>
 
                     <td> <button class="submit" (click)="editarInscripcion(estudiante._id )"> Editar </button>
                         <button class="submit" (click)="eliminarInscripcion(estudiante.codigo_est, estudiante )">

@@ -15,17 +15,23 @@ export class TipoConvenioService {
   
   public saveTipoConvenio(tipoConvenio: any): Promise<any> {
     const url = `${environment.backend.tipoConvenio}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, tipoConvenio, httpOptions).toPromise();
+
+    return this.httpClient.post<any>(url, tipoConvenio, this.getHeaders()).toPromise();
   }
 
   public getTipoConvenio(): Promise<any> {
     const url = `${environment.backend.tipoConvenio}getTipoConvenio/`; 
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
+  }
+
+  private getHeaders(): any{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'authorization': `Bearer ${environment.TOKEN}`,        
+        'ContentType': 'application/json'
+      })
+    };
+    return httpOptions
   }
 }
  

@@ -14,12 +14,18 @@ export class TipoApoyoService {
  
   public saveTipoApoyo(tipoApoyo: any): Promise<any> {
     const url = `${environment.backend.tipoApoyo}`;
+
+    return this.httpClient.post<any>(url, tipoApoyo, this.getHeaders()).toPromise();
+  }
+
+  private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'authorization': `Bearer ${environment.TOKEN}`,        
+        'ContentType': 'application/json'
       })
     };
-    return this.httpClient.post<any>(url, tipoApoyo, httpOptions).toPromise();
+    return httpOptions
   }
 
 

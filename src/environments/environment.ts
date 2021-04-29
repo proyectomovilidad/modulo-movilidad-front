@@ -29,20 +29,15 @@ export const environment = {
     inscripcion: BASE + '/inscripcion/',
     autenticacion: BASE + '/autenticacion/',
     entornoMovilidad: BASE + '/entornoMovilidad/',
-
-
-
-
-
-
-
-    
+    cargaDocumento: BASE + '/cargaDocumentos/'    
     
     
    
   },
 
-  TOKEN: ''
+  TOKEN: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjb3JyZW8iOiJleEBleC5jb20iLCJsaW1pdGVUaWVtcG8iOjE2MTk3Mjc5MDgsImZlY2hhIjoxNjE5NjQxNTA4LCJyb2wiOjMsIl9pZCI6InVuZGVmaW5lZCJ9.JP_fZUHurlqK9OryHHKZ489lJawf66zeVD8WBAZAmLc',
+  user: {Inscripcion:{estado: null}}
+
 };
 
 /*

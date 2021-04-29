@@ -1,75 +1,58 @@
 <body>
-
-    <header>
-
-        <section id="titulo">
-            Sistema de relaciones exteriores
-            <br />
-            Módulo de movilidad académica - Carga de documentos
-        </section>
-
-    </header>
-
-
-    <section id="body">
-
-
-        <div id="name">
-            <h3> Listado de documentos</h3>
-        </div>
-
-        <br />
-
-        <form [formGroup]="formularioDocumentos">
-
-
-
-            <table class="table table-bordered">
-
-                <thead>
-                    <tr>
-                        <th scope="col" class="center"> Nombre </th>
-                        <th scope="col" class="center">Carga de archivo</th>
-                        <th scope="col" class="center">Observaciones</th>
-                        <th scope="col" class="center">Acciones</th>
-                    </tr>
-
-                    <tr *ngFor="let documento of documentos">
-                        <td> {{documento.nombre_documento}}</td>
-                        <td> <button> cargar
-                        </button> </td>
-                        <td> </td>
-                        <td><button> eliminar
-                        </button></td>
-                    </tr>
-                </thead>
-
-                <tbody formArrayName="campo">
-                    <tr *ngFor="let control of campo.controls; let i= index">
-
-
-                        <td>
-                            <input class="form-control" type="text" [formControlName]="i" />
-
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <button class="btn btn-danger" (click)="eliminarCampo(i)"></button>
-                        </td>
-                    </tr>
-
-
-
-                </tbody>
-            </table>
-
-
-            <button type="button" class="submit" (click)="agregarCampo()"> Agregar campo </button>
-
-        </form>
-
-
+  <header>
+    <section id="titulo">
+      Sistema de relaciones exteriores
+      <br />
+      Módulo de movilidad académica - Carga de documentos
     </section>
+  </header>
+
+  <section id="body">
+    <div id="name">
+      <h3> Listado de documentos</h3>
+    </div>
+
+    <br />
+
+    <form [formGroup]="formularioDocumentos" enctype="multipart/form-data">
+      <p>{{mensajeErr}}</p>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" class="center"> Nombre </th>
+            <th scope="col" class="center">Carga de archivo</th>
+            <th scope="col" class="center">Observaciones</th>
+            <th scope="col" class="center">Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody formArrayName="campo">
+          <tr *ngFor="let documento of documentos">
+            <td> {{documento.nombre_documento}}</td>
+            <td>
+              <input type="file" #documento_{{documento.nombre_documento}} (change)="saveFile($event, '12345442', documento._id)" >
+            </td>
+            <td></td>
+            <td>
+              <button (click)="eliminarDocumento('12345442', documento._id)" >Eliminar</button>
+              <button>cargar</button> 
+              <!-- <button> eliminar</button> -->
+            </td>
+          </tr>
+
+          <tr *ngFor="let control of campo.controls; let i= index">
+            <td>
+              <input class="form-control" type="text" [formControlName]="i" />
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <!-- <td><button class="btn btn-danger" (click)="eliminarCampo(i)"></button> </td>-->
+          </tr>
+        </tbody>
+      </table>
+
+        <!--<button type="button" class="submit" (click)="agregarCampo()"> Agregar campo </button> -->
+    </form>
+  </section>
 </body>

@@ -19,71 +19,66 @@ export class ConveniosService {
         'Content-Type': 'application/json'
       })
     };
-    return this.httpClient.post<any>(url, convenio, httpOptions).toPromise();
+    return this.httpClient.post<any>(url, convenio, this.getHeaders()).toPromise();
   }
 
   public getAllConvenios(): Promise<any> {
     const url = `${environment.backend.convenio}getConvenios/`;
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
   public getConvenio(_id: any): Promise<any> {
     const url = `${environment.backend.convenio}getConvenioById/${_id}`;
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
   public getConvenioByTipoMovilidad(_id: any): Promise<any> {
     const url = `${environment.backend.convenio}getConvenioByTipoMovilidad/${_id}`;
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
   public getConvenioByInstitucion(_id: any): Promise<any> {
     const url = `${environment.backend.convenio}getConvenioByInstitucion/${_id}`;
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
   public updateConvenio(convenio: any, _id: any): Promise<any> {
     const url = `${environment.backend.convenio}/${_id}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }) 
-    };
-    return this.httpClient.put<any>(url, convenio, httpOptions).toPromise();
+
+    return this.httpClient.put<any>(url, convenio, this.getHeaders()).toPromise();
+  }
+
+  public getConvenioByProgAcadInstTipoMov(progAcadId: string, instId: string, tipoMovId: string): Promise<any>{
+    const url = `${environment.backend.convenio}getConvenioByProgAcadInstTipoMov/${progAcadId}/${instId}/${tipoMovId}`;
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();    
   }
 
   public deleteConvenio( _id: any): Promise<any> {
     const url = `${environment.backend.convenio}deleteConvenio/${_id}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.delete<any>(url).toPromise();
+
+    return this.httpClient.delete<any>(url, this.getHeaders()).toPromise();
   }
 
   public getConveniosConsulta(): Promise<any> {
     const url = `${environment.backend.convenio}getConveviosConsulta/`; //Visualizar todos los profesores existentes
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'authorization': `Bearer ${environment.TOKEN}`,
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.get<any>(url, httpOptions).toPromise();
+
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
   public consultarConvenios(consulta) {
     const url = `${environment.backend.convenio}consultarConvenios/`; //Consulta por criterios de consulta
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'authorization': `Bearer ${environment.TOKEN}`,
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, consulta, httpOptions).toPromise();
+
+    return this.httpClient.post<any>(url, consulta, this.getHeaders()).toPromise();
 
   }
 
-
+  private getHeaders(): any{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'authorization': `Bearer ${environment.TOKEN}`,        
+        'ContentType': 'application/json'
+      })
+    };
+    return httpOptions
+  }
 }

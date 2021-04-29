@@ -14,17 +14,23 @@ export class TipoDocumentoService {
  
   public saveTipoDocumento(tipoDocumento: any): Promise<any> {
     const url = `${environment.backend.tipoDocumento}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.httpClient.post<any>(url, tipoDocumento, httpOptions).toPromise();
+
+    return this.httpClient.post<any>(url, tipoDocumento, this.getHeaders()).toPromise();
   }
 
   public getDocumento(): Promise<any> {
     const url = `${environment.backend.tipoDocumento}getDocumento/`; 
-    return this.httpClient.get<any>(url).toPromise();
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
+  }
+
+  private getHeaders(): any{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'authorization': `Bearer ${environment.TOKEN}`,        
+        'ContentType': 'application/json'
+      })
+    };
+    return httpOptions
   }
 
 }

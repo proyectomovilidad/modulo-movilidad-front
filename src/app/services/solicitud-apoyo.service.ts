@@ -14,12 +14,18 @@ export class SolicitudApoyoService {
  
   public saveSolicitudApoyo(solicitudApoyo: any): Promise<any> {
     const url = `${environment.backend.solicitudPresentada}`;
+       
+    return this.httpClient.post<any>(url, solicitudApoyo, this.getHeaders()).toPromise();
+  }
+
+  private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'authorization': `Bearer ${environment.TOKEN}`,        
+        'ContentType': 'application/json'
       })
     };
-    return this.httpClient.post<any>(url, solicitudApoyo, httpOptions).toPromise();
+    return httpOptions
   }
 
 

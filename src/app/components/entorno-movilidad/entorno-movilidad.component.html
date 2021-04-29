@@ -36,10 +36,18 @@
             <mat-datepicker #fechaFinalMovSaliente></mat-datepicker>
         </div>
 
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-2">
+            <label for="ano" class=" label ">Periodo </label>
         </div>
 
         <div class="form-group col-md-4">
+            <select class="form-control"  formControlName="periodo">
+                <option value="">Seleccione..</option>
+                <option value="2032-2">2032-2</option>
+                <option value="2020-2">2020-2</option>
+                <option value="2021-1">2021-1</option>
+                <option value="2021-2">2021-2</option>
+            </select>
         </div>
         
 
@@ -91,11 +99,25 @@
             <input required readonly class="input input-date1" placeholder="fecha nacimiento"
                 [matDatepicker]="fechaFinalMovEntrante" formControlName="fecha_final_mov_entrante"
                 (click)="fechaFinalMovEntrante.open()"
-                [class.is-invalid]="getNoValidoEntrante('fecha_final_mov_saliente')" />
+                [class.is-invalid]="getNoValidoEntrante('fecha_final_mov_entrante')" />
             <small class="mensaje-error" *ngIf="getNoValidoEntrante('fecha_final_mov_entrante')">
                 El campo fecha de nacimiento es obligatorio.
             </small>
             <mat-datepicker #fechaFinalMovEntrante></mat-datepicker>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="ano" class=" label ">Periodo </label>
+        </div>
+
+        <div class="form-group col-md-4">
+            <select class="form-control"  formControlName="periodo">
+                <option value="">Seleccione..</option>
+                <option value="2020-1">2020-1</option>
+                <option value="2020-2">2020-2</option>
+                <option value="2021-1">2021-1</option>
+                <option value="2021-2">2021-2</option>
+            </select>
         </div>
 
 

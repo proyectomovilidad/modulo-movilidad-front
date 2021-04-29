@@ -10,6 +10,8 @@ import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
 import { ProgramasService } from './../../services/programas.service';
 import { ConveniosService } from './../../services/convenios.service';
+import { EntornoMovilidadService } from './../../services/entorno-movilidad.service';
+import { Router } from '@angular/router';
 
 @Component({ 
   selector: 'app-incripcion-externo',
@@ -30,7 +32,7 @@ export class IncripcionExternoComponent implements OnInit {
 
 
   public formularioInscripcionExterno: FormGroup;
-  constructor(private formBuilder: FormBuilder,
+  constructor( private router: Router,private EntornoMovilidadService: EntornoMovilidadService, private formBuilder: FormBuilder,
     public InscripcionExternoService: InscripcionExternoService,
     public PaisesService: PaisesService,
     public DepartamentosService: DepartamentosService,
@@ -79,12 +81,24 @@ export class IncripcionExternoComponent implements OnInit {
     }
 
   async ngOnInit(): Promise<void>  {
+    let date = new Date()
+    const periodo = `${date.getFullYear()}-${(date.getMonth() < 6 ? 1 : 2)}`
+
+    this.EntornoMovilidadService.getFechasByStatus(periodo, 1).then(resp=>{      
+      let inicio = new Date(resp.fecha_inicio)
+      let fin = new Date(resp.fecha_final)
+
+      if(date < inicio || date > fin){
+        this.router.navigateByUrl('/')        
+      }
+    })
+    
     this.paises = await this.PaisesService.getPais();
-    this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
-    this.programas = await this.ProgramasService.getProgramaAcademico();
     this.documentosId = await this.TiposDocumentosIdService.getTipoDocumentoId();
-    this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
-    //this.convenios = await this.ConveniosService.getAllConvenios();
+    this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
+    // this.programas = await this.ProgramasService.getProgramaAcademico();
+    // this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
+    // this.convenios = await this.ConveniosService.getAllConvenios();
   }
  
  
@@ -128,7 +142,7 @@ export class IncripcionExternoComponent implements OnInit {
       direccion: inscribirExternoPersonal.direccion,
       celular:inscribirExternoPersonal.celular,
       telefono:inscribirExternoPersonal.telefono,
-      correo:inscribirExternoPersonal.correo,
+      correo:inscribirExternoPersonal.correo
     }
 
     const inscribirExternoAcademic = this.formularioInscripcionExterno.value;
@@ -155,7 +169,8 @@ export class IncripcionExternoComponent implements OnInit {
       tipo_movilidad: inscribirExterno.tipo_movilidad,
       nombre_institucion: inscribirExterno.nombre_institucion,
       nombre_convenio: inscribirExterno.nombre_convenio,
-      documento_id: inscribirExterno.documento_id
+      documento_id: inscribirExterno.documento_id,
+      admitido: -1
 
     }
 
@@ -187,6 +202,40 @@ onOptionsSelectedCity(codigo_departamento: string) {
   this.CiudadesService.getCiudades(codigo_departamento).then((cities) => {
     this.ciudades = cities
   })
+}
+
+onOptionsSelectedProgAcademico(institucionId: string){
+  this.programas = []
+  this.tiposMovilidad = []
+  this.convenios = []
+
+  if(institucionId) 
+  {
+    this.ProgramasService.getProgramaAcademicoByInstitucion(institucionId).then(programs=>{
+      programs.forEach(element=>{this.programas.push(element.programaAcademico)})
+    })    
+  }
+}
+
+onOptionsSelectedTipoMovilidad(progAcadId: string, instId: string){
+  this.tiposMovilidad = []
+  this.convenios = []
+
+  if(progAcadId && instId) {
+    this.TipoMovilidadService.getTipoMovilidadByInstProgAcad(instId, progAcadId).then(tiposMov=>{
+      tiposMov.forEach(element=>{this.tiposMovilidad.push(element.tipoMovilidad)})    
+    })
+  }
+}
+
+onOptionsSelectedConvenios(progAcadId: string, instId: string, tipoMovId: string){
+  this.convenios = []
+
+  if(progAcadId && instId && tipoMovId){
+    this.ConveniosService.getConvenioByProgAcadInstTipoMov(progAcadId, instId, tipoMovId).then(convns=>{     
+      this.convenios = convns
+    })
+  }
 }
 
 movilidadConvenio(tipo_movilidad: String) {

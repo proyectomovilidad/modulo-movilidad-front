@@ -12,6 +12,8 @@ import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
 import { ConveniosService } from './../../services/convenios.service';
 import { MatDialog } from '@angular/material/dialog';
 import { GuardadoExitosoComponent } from './../guardado-exitoso/guardado-exitoso.component';
+import { EntornoMovilidadService } from './../../services/entorno-movilidad.service';
+import { Router } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
 
@@ -33,7 +35,7 @@ export class InscripcionEstudianteComponent implements OnInit {
 
   public formularioInscripcionEstudiante: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private router: Router, private EntornoMovilidadService: EntornoMovilidadService, private formBuilder: FormBuilder,
     public InscripcionEstudianteService: InscripcionEstudianteService,
     public PaisesService: PaisesService,
     public DepartamentosService: DepartamentosService,
@@ -80,6 +82,18 @@ export class InscripcionEstudianteComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    let date = new Date()
+    const periodo = `${date.getFullYear()}-${(date.getMonth() < 6 ? 1 : 2)}`
+
+    this.EntornoMovilidadService.getFechasByStatus(periodo, 1).then(resp=>{      
+      let inicio = new Date(resp.fecha_inicio)
+      let fin = new Date(resp.fecha_final)
+
+      if(date < inicio || date > fin){
+        this.router.navigateByUrl('/')        
+      }
+    })
+
     //this.ciudades = await this.CiudadesService.getCiudades();
     this.paises = await this.PaisesService.getPais();
     //this.departamentos = await this.DepartamentosService.getDepartamentos();
@@ -158,8 +172,8 @@ export class InscripcionEstudianteComponent implements OnInit {
       tipo_movilidad: inscribirEstudiante.tipo_movilidad,
       nombre_institucion: inscribirEstudiante.nombre_institucion,
       nombre_convenio: inscribirEstudiante.nombre_convenio,
-      codigo_est: inscribirEstudiante.codigo_est
-
+      codigo_est: inscribirEstudiante.codigo_est,
+      admitido: -1      
     }
 
      const aspUisPersonalGuardado = await this.InscripcionEstudianteService.saveAspUisPersonal(aspUisPersonal);
@@ -198,6 +212,25 @@ export class InscripcionEstudianteComponent implements OnInit {
     this.CiudadesService.getCiudades(codigo_departamento).then((cities) => {
       this.ciudades = cities
     })
+  }
+
+  onOptionsSelectedInstitucion(tipoMovId: string){
+    this.institucionesCooperantes = []
+    if(tipoMovId){      
+      this.InstitucionCooperanteService.getInstitucionByTipoMovilidad(tipoMovId).then(instituciones=>{
+        instituciones.forEach(element=>{this.institucionesCooperantes.push(element.institucionCooperante)})
+      })
+    }
+  }
+
+  onOptionsSelectedConvenio(instId: string){
+    this.convenios = []
+    if(instId){
+      this.ConveniosService.getConvenioByInstitucion(instId).then((convenio) => {
+        console.log('result convenio: ',convenio)
+        this.convenios= convenio
+      })   
+    }
   }
 
   movilidadConvenio(tipo_movilidad: String) {

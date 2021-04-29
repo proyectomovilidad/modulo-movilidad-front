@@ -379,7 +379,7 @@
 
       <div class="form-group col-md-4">
         <select #tipoMovilidad class="form-control" formControlName="tipo_movilidad"
-          [class.is-invalid]="getNoValido('tipo_movilidad')" (change)='movilidadConvenio(tipoMovilidad.value)'>
+          [class.is-invalid]="getNoValido('tipo_movilidad')" (change)='onOptionsSelectedInstitucion(tipoMovilidad.value)'>
           <option value="">Seleccione..</option>
           <option *ngFor="let tipoMovilidad of tiposMovilidad"  value="{{tipoMovilidad._id}}"> {{tipoMovilidad.nombre_movilidad}}  </option>
         </select>
@@ -391,8 +391,8 @@
       </div>
 
       <div class="form-group col-md-4">
-        <select class="form-control" formControlName="nombre_institucion"
-          [class.is-invalid]="getNoValido('nombre_institucion')">
+        <select #instCooperante class="form-control" formControlName="nombre_institucion"
+          [class.is-invalid]="getNoValido('nombre_institucion')" (change)='onOptionsSelectedConvenio(instCooperante.value)' >
           <option value="">Seleccione..</option>
           <option *ngFor="let institucion of institucionesCooperantes"  value="{{institucion._id}}"> {{institucion.nombre_institucion}}  </option>
          
