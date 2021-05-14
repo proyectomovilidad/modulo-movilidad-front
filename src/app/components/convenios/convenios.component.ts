@@ -150,6 +150,10 @@ export class ConveniosComponent implements OnInit {
     this.router.navigateByUrl('/editar-convenio?_id=' + id);
   }
 
+  public verConvenio(id: any) {
+    this.router.navigateByUrl('/visualizar-convenio?_id=' + id);
+  }
+
   async eliminarConvenio(id: any, obj: any) {
     let respuesta = await this.ConveniosService.deleteConvenio(id);
     console.log(respuesta); 

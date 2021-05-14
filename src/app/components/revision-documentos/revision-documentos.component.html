@@ -39,7 +39,10 @@
                     <td>{{documento.nombre_documento}}</td>
                     <td></td>
                     <td>  {{documento.estado_documento}} </td>
-                    <td> <button class="submit" (click)="openDialog()"> Editar </button></td>
+                    <td> 
+                      <button class="submit" (click)="openDialog()"> Editar </button>
+                      <button class="submit" (click)="descargarDocumentoByNombre(documento._id)" >Descargar</button>
+                    </td>
 
                 </tr>
 
@@ -52,7 +55,7 @@
             <div class="form-group col-md-6">
                 <div class="row justify-content-end">
 
-                    <button class="submit"  type="submit"> Guardar </button>
+                    <button class="submit"  type="submit" (click)="actualizarEstadoInscripcion()" > avanzar </button>
 
                 </div>
             </div>

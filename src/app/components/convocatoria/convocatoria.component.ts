@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { InstitucionCooperanteService } from './../../services/institucion-cooperante.service';
@@ -14,7 +16,7 @@ export class ConvocatoriaComponent implements OnInit {
 
   public institucionesCooperantes: any;
   public tiposProyecto: any;
-
+  public convocatorias: any;
   public formularioCrearConvocatoria: FormGroup;
 
 
@@ -22,7 +24,7 @@ export class ConvocatoriaComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,  
     public InstitucionCooperanteService: InstitucionCooperanteService,
     public ConvocatoriaService: ConvocatoriaService,
-    public TipoProyectoService:TipoProyectoService,
+    public TipoProyectoService:TipoProyectoService,   private router: Router,
     ) {
 
     this.formularioCrearConvocatoria = this.formBuilder.group({
@@ -41,7 +43,8 @@ export class ConvocatoriaComponent implements OnInit {
  async ngOnInit(): Promise<void> {
     this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
     this.tiposProyecto = await this.TipoProyectoService.getTiposProyecto();
-
+    this.convocatorias = await this.ConvocatoriaService.getConvocatorias()
+  console.log('convo: ',this.convocatorias)
   }
 
   getNoValido(input: string) {
@@ -77,6 +80,14 @@ export class ConvocatoriaComponent implements OnInit {
     this.formularioCrearConvocatoria.reset();
 
 }
+
+  getInstitucion(id){
+    return this.institucionesCooperantes.find(x=> x._id == id) || {}
+  }
+
+  visualizar(id){
+      this.router.navigateByUrl('/visualizar-convocatoria?_id=' + id);    
+  }
 }
 
  

@@ -89,6 +89,13 @@ export class InscripcionExternoService {
 
   }
 
+  public cambiarEstadoInscripcionById(estado, id): Promise<any>{
+   const url = `${environment.backend.inscripcion}cambiarEstadoInscripcionById/${id}`;
+   
+   return this.httpClient.post<any>(url, estado, this.getHeaders()).toPromise();
+  
+  }
+
   private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({

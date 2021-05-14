@@ -1,0 +1,55 @@
+<body>
+
+
+<header>
+  <section id="titulo">
+    Sistema de relaciones exteriores
+    <br />
+    Módulo de movilidad académica - convocatoria
+  </section>  
+</header>
+
+
+
+  <section id="body">
+
+ <body>
+
+
+ <header>
+   <section id="titulo">
+     Sistema de relaciones exteriores
+     <br />
+     Módulo de movilidad académica - Convocatoria
+   </section>  
+ </header>
+
+
+
+   <section id="body">
+
+   <div>
+     <p><strong>ID: </strong> {{convocatoria._id}}</p>
+     <p><strong>Nombre convocatoria: </strong>{{convocatoria.nombre_convocatoria}}</p>
+     <p>
+        <strong>Nombre institucion: </strong>
+       {{getInstitucion(convocatoria.nombre_institucion).nombre_institucion}}
+     </p>
+     <p><strong>periodo: </strong>{{convocatoria.periodo_convocatoria}}</p>
+     <p><strong>tipo proyecto: </strong>{{convocatoria.tipo_proyecto}}</p>
+     <p><strong>Estado: </strong>{{convocatoria.estado_convocatoria}}</p>
+     <p><strong>Fecha Inicial: </strong>{{convocatoria.fecha_inicio}}</p>
+     <p><strong>Fecha Final: </strong>{{convocatoria.fecha_final}}</p>
+     <p><strong>Fecha Suscripcion: </strong>{{convocatoria.fecha_suscripcion}}</p>
+     <p><strong>Link Inscripcion: </strong>{{convocatoria.link_inscripcion}}</p>
+   </div>  
+   <button class="submit"  (click)="volver()" >Volver</button>
+   </section>
+
+ 
+
+ </body> 
+  </section>
+
+
+</body>

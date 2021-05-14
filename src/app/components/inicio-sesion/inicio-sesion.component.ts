@@ -48,17 +48,18 @@ export class InicioSesionComponent implements OnInit {
     const datosInicioSesion = this.formularioInicioSesion.value;
 
 
-  let resultado = await this.InicioSesionService.iniciarSesion(datosInicioSesion)
-  if (resultado.status == true){
-    environment.TOKEN = resultado.token
-    environment.user = resultado.usuario
+    let resultado = await this.InicioSesionService.iniciarSesion(datosInicioSesion)
+    if (resultado.status){
+      localStorage.setItem('token', resultado.token)
+      localStorage.setItem('user', JSON.stringify(resultado.usuario))
+      environment.TOKEN = resultado.token
+      environment.user = resultado.usuario
+      this.router.navigateByUrl('/')
+    }   
   }
-    console.log("resultado", resultado)
-    console.log("enviroment", environment.TOKEN)
 
-
+  cerrarSesion(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
   }
-
-
-
 }

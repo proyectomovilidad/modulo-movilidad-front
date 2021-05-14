@@ -1,0 +1,12 @@
+<form [formGroup]="formularioTpDocumento" enctype="multipart/form-data">
+
+  <div formArrayName="nombre_documento" >
+  	<div *ngFor="let control of campo.controls; let i= index">  	  
+  	  <input class="form-control" type="text" [formControlName]="i" />
+  	  <!-- <td><button class="btn btn-danger" (click)="eliminarCampo(i)"></button> </td>-->
+  	</div>	
+  </div>
+
+  <button class="submit" (click)="agregarCampo()"> Agregar </button>
+  <button class="submit" (click)="guardarFormulario()"> Guardar </button>
+</form>

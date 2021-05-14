@@ -90,7 +90,7 @@ export class InscripcionEstudianteComponent implements OnInit {
       let fin = new Date(resp.fecha_final)
 
       if(date < inicio || date > fin){
-        this.router.navigateByUrl('/')        
+        //this.router.navigateByUrl('/')        
       }
     })
 

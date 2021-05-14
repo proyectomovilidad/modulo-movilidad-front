@@ -17,6 +17,12 @@ export class DepartamentosService {
     return this.httpClient.post<any>(url, {codigo_pais: codigo_pais}, this.getHeaders()).toPromise()
   }
 
+
+  public getAllDepartamentos(): Promise < any > {
+    const url = `${environment.backend.departamento}getAllDepartamentos/`
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise()
+  }
+
   private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({

@@ -366,8 +366,7 @@
 
                 <tr *ngFor="let convenio of convenios">
 
-                    <td style="text-align: center;">
-                        <div *ngIf="convenio.convenio"> {{convenio.convenio._id}} </div>
+                    <td style="text-align: center;">                        
                         {{convenio._id}}
                     </td>
 
@@ -388,6 +387,8 @@
                         <div *ngFor="let institucionCooperante of institucionesCooperantes">
                             <div *ngIf="institucionCooperante._id == convenio.nombre_institucion">
                                 {{institucionCooperante.nombre_institucion}}</div>
+                            <div *ngIf="convenio.convenio && institucionCooperante._id == convenio.convenio.nombre_institucion">
+                                {{institucionCooperante.nombre_institucion}}</div>
                         </div>  
 
                     </td>
@@ -396,12 +397,15 @@
                         <div *ngFor="let tipoMovilidad of tiposMovilidad">
                             <div *ngIf="tipoMovilidad._id == convenio.tipo_movilidad">
                                 {{tipoMovilidad.nombre_movilidad}}</div>
+                            <div *ngIf="convenio.convenio && tipoMovilidad._id == convenio.convenio.tipo_movilidad">
+                                {{tipoMovilidad.nombre_movilidad}}</div>
                         </div>  
 
                     <td> 
 
                     
                         
+                        <button class="submit" (click)="verConvenio(convenio._id )"> ver </button>
                         <button class="submit" (click)="editarConvenio(convenio._id )"> Editar </button>
                         <button class="submit" (click)="eliminarConvenio(convenio._id, convenio )"> Eliminar </button>
                     

@@ -17,6 +17,7 @@ export class CargaDocumentosComponent implements OnInit {
   public formularioDocumentos: FormGroup;
   public estudiantes: any;
   public documentos: any;
+  public estudiante: any;
   file: File;
   mensajeErr: any;
   constructor(private formBuilder: FormBuilder,
@@ -31,22 +32,35 @@ export class CargaDocumentosComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     if(environment.user.Inscripcion.estado != '2'){
-      this.router.navigateByUrl('/');      
+      //this.router.navigateByUrl('/');      
     }
 
-
-    this.estudiantes = await this.inscripcionEstudianteService.getAllAspUisPersonal();
-    this.documentos = await this.TipoDocumentoService.getDocumento();
+    this.estudiante = environment.user
+    this.inscripcionEstudianteService.getAllAspUisPersonal().then(resp=>{
+      if(resp.status){
+        //this.estudiante = resp.data
+        this.getDocumentos()
+      }
+    });
+    //this.documentos = await this.TipoDocumentoService.getDocumento();
   }
  
   get campo() {
     return this.formularioDocumentos.get('campo') as FormArray;
   }
 
- public cargarDatos(id: any) {   
- }
+  public cargarDatos(id: any) {   
+  }
+
+  getDocumentos(){
+    console.log('url: ',this.estudiante)
+    this.TipoDocumentoService.getDocumentoByConvenio(this.estudiante.Inscripcion.nombre_convenio).then(resp=>{
+      console.log('respuesta: ', resp)
+      if(resp.status)this.documentos = resp.data;
+    });
+  }
   
-  saveFile(e, inscripcionId, tipoDocumentoId){
+  saveFile(e, indid, tipoDocumentoId){
     let formData = new FormData()
     this.file = e.target.files[0]
 
@@ -55,7 +69,7 @@ export class CargaDocumentosComponent implements OnInit {
     if(['pdf', 'PDF'].includes(extension) ){
       //se agrega el archivo subido a un formulario 
       //              |campo| |archivo|  |nombre de archivo|
-      formData.append('file', this.file, `${inscripcionId}-${tipoDocumentoId}.${extension}` )
+      formData.append('file', this.file, `${this.estudiante.Inscripcion._id}-${tipoDocumentoId}.${extension}` )
       
       this.CargaDocumentoService.saveDocumentoFile(formData).then(res=>{
         console.log(res)
@@ -73,7 +87,7 @@ export class CargaDocumentosComponent implements OnInit {
     this.formularioDocumentos = this.formBuilder.group ({
 
       campo: this.formBuilder.array([
-      ]) 
+      ])   
     });
   } 
   
@@ -83,7 +97,7 @@ export class CargaDocumentosComponent implements OnInit {
   }
 
   eliminarDocumento(inscripcionId, tipoDocumentoId){
-    const fileName = `${inscripcionId}-${tipoDocumentoId}.pdf`
+    const fileName = `${this.estudiante.Inscripcion._id}-${tipoDocumentoId}.pdf`
     this.CargaDocumentoService.eliminarDocumentoByNombre(fileName).then(resp=>{
       console.log(resp)
     })

@@ -4,6 +4,7 @@ import { ProfesoresService } from './../../services/profesores.service';
 import { Router } from '@angular/router';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
 import { ConvocatoriaService } from './../../services/convocatoria.service';
+
 @Component({
   selector: 'app-profesores',
   templateUrl: './profesores.component.html',
@@ -100,8 +101,5 @@ export class ProfesoresComponent implements OnInit {
   limpiarFormulario() {
     this.formularioInscripcionProfesor.reset();
   }
-
-
-
-
+ 
 }

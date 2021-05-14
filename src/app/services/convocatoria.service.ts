@@ -23,6 +23,11 @@ export class ConvocatoriaService {
     return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
+  public getConvocatoriaById(id): Promise<any>{
+    const url = `${environment.backend.convocatoria}getConvocatoriaById/${id}`;
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
+  }
+
   private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({

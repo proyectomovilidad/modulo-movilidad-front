@@ -1,0 +1,25 @@
+<body>
+
+
+<header>
+  <section id="titulo">
+    Sistema de relaciones exteriores
+    <br />
+    Módulo de movilidad académica - Selección movilidad
+  </section>  
+</header>
+
+
+
+  <section id="body">
+  <div>
+     <p *ngFor="let std of profesor">
+       <strong>{{std[0]}}: </strong>
+       {{std[1]}}
+     </p>
+  </div>  
+  <button class="submit" (click)="volver()">Volver</button> 
+  </section>
+
+
+</body>

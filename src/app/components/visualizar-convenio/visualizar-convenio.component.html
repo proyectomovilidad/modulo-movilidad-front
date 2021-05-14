@@ -1,0 +1,43 @@
+<body>
+
+
+<header>
+  <section id="titulo">
+    Sistema de relaciones exteriores
+    <br />
+    Módulo de movilidad académica - Convenio
+  </section>  
+</header>
+
+
+
+  <section id="body">
+
+  <div>
+    <p><strong>ID: </strong> {{convenio.convenio._id}}</p>
+    <p><strong>Nombre: </strong>{{convenio.convenio.nombre_convenio}}</p>
+    <p><strong>Nombre institucion: </strong>{{convenio.InstitucionCooperante.nombre_institucion}}</p>
+    <p><strong>pais: </strong>{{getPais(convenio.convenio.pais).nombre_pais}}</p>
+    <p>
+      <strong>Programa academico: </strong>
+      {{getPrograma(convenio.convenio.programa_acad).nombre_programaAcademico }}      
+    </p>
+    <p><strong>Promedio: </strong>{{convenio.convenio.promedio}}</p>
+    <p>
+      <strong>tipo convenio: </strong>
+      {{getConvenio(convenio.convenio.tipo_convenio).nombre_tipo_convenio}}
+    </p>
+    <p><strong>tipo Movilidad: </strong>{{convenio.TipoMovilidad.nombre_movilidad}}</p>
+    <p><strong>version convenio: </strong>{{convenio.convenio.version_convenio}}</p>
+    <p><strong>Creditos Cursados: </strong>{{convenio.convenio.cred_cursados}}</p>
+    <p><strong>Creditos a Cursar: </strong> {{convenio.convenio.cred_cursar}} </p>
+    <p><strong>Cupo: </strong>{{convenio.convenio.cupo}}</p>
+    <p><strong>Estado: </strong>{{convenio.convenio.estado_convenio}}</p>
+    <p><strong>Fecha Inicial: </strong>{{convenio.convenio.fecha_inicio}}</p>
+    <p><strong>Fecha Final: </strong>{{convenio.convenio.fecha_final}}</p>
+    <p><strong>Fecha Suscripcion: </strong>{{convenio.convenio.fecha_suscripcion}}</p>
+  </div>  
+  </section>
+<button class="submit" (click)="volver()">volver</button>
+
+</body>

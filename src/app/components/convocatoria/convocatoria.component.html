@@ -137,7 +137,7 @@
             <div class="form-group col-md-4">
                 <select class="form-control" formControlName="tipo_proyecto"
                     [class.is-invalid]="getNoValido('tipo_proyecto')">
-                    <option value="">Seleccione..</option>
+                    <option value="5fb314172d3f26d6886ebdbd">Seleccione..</option>
                     <option *ngFor="let tipoProyecto of tiposProyecto"  value="{{tipoProyecto._id}}"> {{tipoProyecto.nombre_tipoProyecto}}  </option>
                 </select>
             </div>   
@@ -288,18 +288,19 @@
                     <th scope="col" class="center"> Nombre convocatoria </th>
                     <th scope="col" class="center"> Estado convocatoria </th>
                     <th scope="col" class="center"> Institución cooperante </th>
+
                     <th scope="col" class="center"> Acciones </th>
                 </tr>
             </thead>
             <tbody>
 
-                <tr>
-
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+               
+                <tr *ngFor="let convocatoria of convocatorias">
+                    <td>{{convocatoria._id}}</td>
+                    <td>{{convocatoria.nombre_convocatoria}} </td>
+                    <td>{{convocatoria.estado_convocatoria}}</td>
+                    <td>{{getInstitucion(convocatoria.nombre_institucion).nombre_institucion}}</td>
+                    <td><button class="submit" (click)="visualizar(convocatoria._id)" >Ver</button></td>
                 </tr>
 
             </tbody>

@@ -126,6 +126,10 @@ export class EstudiantesMovilidadComponent implements OnInit {
 
   }
 
+  visualizar(id){
+    this.router.navigateByUrl('/visualizar-estudiante?_id=' + id);
+  }
+
 
 }
 

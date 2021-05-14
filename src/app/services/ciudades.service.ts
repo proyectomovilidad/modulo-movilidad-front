@@ -16,6 +16,11 @@ export class CiudadesService {
     return this.httpClient.post<any>(url, { codigo_departamento: codigo_departamento }, this.getHeaders()).toPromise()
   }
 
+  public getAllCiudades(): Promise<any> {
+    const url = `${environment.backend.ciudad}getAllCiudades/`
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise()
+  }
+
   private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -9,11 +10,17 @@ import { Component } from '@angular/core';
 })
 
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'modulo-movilidad-angular';
 
 
+  ngOnInit() {  	
+  	environment.TOKEN = localStorage.getItem('token')
+  	environment.user = JSON.parse(localStorage.getItem('user'))
 
+  	console.log('token: ', environment.TOKEN)
+  	console.log('Usuario: ', environment.user)
+  }
 }
 
 

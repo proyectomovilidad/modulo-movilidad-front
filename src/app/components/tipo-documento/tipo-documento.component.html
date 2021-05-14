@@ -26,12 +26,10 @@
         <br />
 
         <form [formGroup]="formularioCrearDocumento" class="row justify-content-center form">
-
-
-
             <div class="form-group col-md-2">
-                <label for="nombreDocumento" class="label ">Nombre documento *</label>
+              <label for="nombreDocumento" class="label ">Nombre documento *</label>
             </div>
+            
 
             <div class="form-group col-md-4">
                 <input type="text" formControlName="nombre_documento" class="form-control"
@@ -42,9 +40,16 @@
 
             </div>
 
-            <div class="form-group col-md-4">
-            
+            <div class="form-group col-md-2">
+              <label for="estadoDocumento" class="label ">Estado Documento*</label>
             </div>
+            <div class="form-group col-md-4">
+              <select class="form-control" formControlName="estado_documento"  [class.is-invalid]="getNoValido('estado_documento')">
+                <option value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
+                
+              </select>
+            </div>            
 
 
             <div class="form-group col-md-6">
@@ -61,6 +66,53 @@
                 </div>
             </div>
         </form>
+    </section>
+
+    <section>
+
+      <div id="name">
+          <h3> Agregar Documento a Convenio </h3>
+      </div>
+
+      <br />
+      <form [formGroup]="formCrearTipoDocumentoConvenio" class="row justify-content-center form">
+          <div class="form-group col-md-2">
+            <label for="nombreDocumento" class="label ">Tipo documento *</label>
+          </div>
+          
+
+          <div class="form-group col-md-4">
+              <select class="form-control" formControlName="tp_documento_id"  [class.is-invalid]="getNoValidoTpDoc('tp_documento_id')">
+              <option value="">Seleccione..</option>
+              <option *ngFor="let tp_documento of documentos"  value="{{tp_documento.tipoDocumento._id}}"> {{tp_documento.tipoDocumento.nombre_documento}}  </option>
+            </select>
+          </div>
+
+
+          <div class="form-group col-md-2">
+            <label for="convenioId" class="label ">Convenio*</label>
+          </div>
+          <div class="form-group col-md-4">
+            <select class="form-control" formControlName="convenio_id"  [class.is-invalid]="getNoValidoTpDoc('convenio_id')">
+              <option value="">Seleccione..</option>
+              <option *ngFor="let convenio of convenios"  value="{{convenio._id}}"> {{convenio.nombre_convenio}}  </option>
+            </select>
+          </div>           
+
+          <div class="form-group col-md-6">
+              <div class="row justify-content-end">
+
+                  <button class="submit" (click)="guardarFormularioTipoDocumentoConvenio()"> Crear </button>
+
+              </div>
+          </div>
+
+          <div class="form-group col-md-6">
+              <div class="row justify-content-start">
+                  <button class="submit" > Cancelar </button>
+              </div>
+          </div>
+      </form>  
     </section>
 
 
@@ -132,6 +184,7 @@
                 <tr>
                     <th scope="col" class="center"> Id </th>
                     <th scope="col" class="center"> Nombre </th>
+                    <th scope="col" class="center"> Convenios </th>
                     <th scope="col" class="center"> Acciones </th>
                 </tr>
             </thead>
@@ -140,7 +193,13 @@
                 <tr *ngFor="let documento of documentos">
 
                     <td>{{documento._id}}</td>
-                    <td>{{documento.nombre_documento}}</td>
+                    <td>{{documento.tipoDocumento.nombre_documento}}</td>
+                    <td>
+                      <div *ngFor="let documentoConvenio of documento.documentoConvenio">
+                        <a role="button" title="Eliminar convenio" (click)="eliminarTipoDocumentoConvenio(documentoConvenio._id)">
+                        {{findConvenio(documento.convenios,documentoConvenio.convenio_id).nombre_convenio}}</a>
+                      </div>
+                    </td>
                     <td><button class="submit" (click)="editarDocumento(documento._id )"> Editar </button></td>
                 </tr>
 

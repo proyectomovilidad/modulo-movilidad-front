@@ -30,7 +30,12 @@ import { EditarExternoComponent } from './components/editar-externo/editar-exter
 import { EditarConvenioComponent } from './components/editar-convenio/editar-convenio.component';
 import { InicioSesionComponent } from './components/inicio-sesion/inicio-sesion.component';
 import { EntornoMovilidadComponent } from './components/entorno-movilidad/entorno-movilidad.component';
-
+import { CrearTipoDocumentoComponent } from './components/crear-tipo-documento/crear-tipo-documento.component'
+import { VisualizarConvenioComponent } from './components/visualizar-convenio/visualizar-convenio.component';
+import { VisualizarConvocatoriaComponent } from './components/visualizar-convocatoria/visualizar-convocatoria.component';
+import { VisualizarEstudianteComponent  } from './components/visualizar-estudiante/visualizar-estudiante.component';
+import { VisualizarExternoComponent } from './components/visualizar-externo/visualizar-externo.component';
+import { VisualizarProfesorComponent } from './components/visualizar-profesor/visualizar-profesor.component';
 
 
 
@@ -66,8 +71,12 @@ const appRoutes: Routes = [
   {path: 'editar-convenio', component:EditarConvenioComponent},
   {path: 'inicio-sesion', component:InicioSesionComponent},
   {path: 'entorno-movilidad', component:EntornoMovilidadComponent},
-
-
+  {path: 'crear-tipo-documento', component:CrearTipoDocumentoComponent}, 
+  {path: 'visualizar-convenio',component: VisualizarConvenioComponent },
+  {path: 'visualizar-convocatoria',component: VisualizarConvocatoriaComponent },
+  {path: 'visualizar-estudiante',component: VisualizarEstudianteComponent },
+  {path: 'visualizar-externo',component: VisualizarExternoComponent },
+  {path: 'visualizar-profesor',component: VisualizarProfesorComponent },
 
 
 

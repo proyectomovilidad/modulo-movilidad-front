@@ -77,4 +77,8 @@ export class ProfesoresModuloComponent implements OnInit {
     }
   }
 
+  visualizar(id){
+    this.router.navigateByUrl('/visualizar-profesor?_id='+id)
+  }
+
 }

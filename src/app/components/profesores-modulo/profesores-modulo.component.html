@@ -114,7 +114,9 @@
                     </td>
                     <td> <div *ngIf="profesor.profesores"> {{profesor.profesores.duracion}} </div>  
                         {{profesor.duracion}} días</td>
-                    <td> <button class="submit" (click)="editarProfesor(profesor._id )"> Editar </button>
+                    <td>
+                        <button class="submit" (click)="visualizar(profesor._id)" > Ver</button> 
+                        <button class="submit" (click)="editarProfesor(profesor._id )"> Editar </button>
                         <button class="submit" (click)="eliminarProfesor(profesor.documento_id, profesor )"> Eliminar
                         </button> </td>
 

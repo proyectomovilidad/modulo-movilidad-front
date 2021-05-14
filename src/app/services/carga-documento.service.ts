@@ -18,6 +18,7 @@ export class CargaDocumentoService {
 
   public getDocumentosByNombre(fileName): Promise<any>{
   	const url = `${environment.backend.cargaDocumento}getDocumentosByNombre/${fileName}`
+    window.open(url, '_blank');
   	return this.httpClient.get<any>(url, this.getHeaders()).toPromise()
   }
 

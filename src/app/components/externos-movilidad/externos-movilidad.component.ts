@@ -19,7 +19,15 @@ export class ExternosMovilidadComponent implements OnInit {
   public academic: any;
   public consulta: any;
   public formularioConsultarExterno: FormGroup;
-
+  public estados = [
+    {val: -1, nm: 'No Inscrito'},
+    {val: 0, nm: 'Cancelado'},
+    {val: 1, nm:"Inscrito"},
+    {val: 2, nm:"Carga documentos"},
+    {val: 3, nm:"Movilidad"},
+    {val: 4, nm:"Finalizado"},
+    {val: 5, nm:"Prorroga"},    
+  ]
 
   constructor(
     public TipoMovilidadService: TipoMovilidadService,
@@ -56,6 +64,15 @@ export class ExternosMovilidadComponent implements OnInit {
       this.formularioConsultarExterno.get(input).touched;
   }
 
+  public cambiarEstado(e, inscripcionId){
+    if(e.value){
+      this.inscripcionExternoService.cambiarEstadoInscripcionById({estado: e.value}, inscripcionId).then(resp=>{
+        console.log('actualizado: ',resp)
+      })
+    }
+  }
+
+
   async consultarExterno() {
     if (this.formularioConsultarExterno.invalid) {
       return Object.values(this.formularioConsultarExterno.controls).forEach(control => {
@@ -91,5 +108,9 @@ export class ExternosMovilidadComponent implements OnInit {
       this.externos.splice(this.externos.indexOf(obj), 1)
     }
 
+  }
+
+  visualizar(id){
+    this.router.navigateByUrl(`/visualizar-externo?_id=${id}`)
   }
 }

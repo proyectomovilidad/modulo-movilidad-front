@@ -83,17 +83,29 @@
             <tbody>
               
                 <tr *ngFor="let estudiante of estudiantes"> 
-                    
-                    <td>  <div *ngIf="estudiante.aspUisPersonal"> {{estudiante.aspUisPersonal.codigo_est}} </div> 
-                        {{estudiante.codigo_est}}</td>
+                  <td>  
+                    <div *ngIf="estudiante.aspUisPersonal"> {{estudiante.aspUisPersonal.codigo_est}} </div> 
+                        {{estudiante.codigo_est}}
+                  </td>
                     <td>
                         <div *ngIf="estudiante.aspUisPersonal"> {{estudiante.aspUisPersonal.primer_nombre}}
                             {{estudiante.aspUisPersonal.primer_apellido}}</div>
                         {{estudiante.primer_nombre}} {{estudiante.primer_apellido}}</td>
                     <td>
-                        
-                <button class="submit" (click)="revisarDocumento(estudiante._id )"> Consultar </button> </td>
-                
+                  <button class="submit" (click)="revisarDocumentoUis(estudiante.codigo_est )"> Consultar </button> </td>
+                </tr>
+
+                <tr *ngFor="let estudiante of externos"> 
+                  <td>  
+                    <div *ngIf="estudiante.aspExtPersonal"> {{estudiante.aspExtPersonal.documento_id}} </div> 
+                        {{estudiante.documento_id}}
+                  </td>
+                    <td>
+                        <div *ngIf="estudiante.aspExtPersonal"> {{estudiante.aspExtPersonal.primer_nombre}}
+                            {{estudiante.aspExtPersonal.primer_apellido}}</div>
+                        {{estudiante.primer_nombre}} {{estudiante.primer_apellido}}</td>
+                    <td>
+                  <button class="submit" (click)="revisarDocumentoExt(estudiante.documento_id )"> Consultar </button> </td>
                 </tr>
 
             </tbody>

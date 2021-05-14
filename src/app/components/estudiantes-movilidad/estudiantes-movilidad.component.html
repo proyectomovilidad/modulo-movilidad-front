@@ -181,7 +181,9 @@
                     </select>
                   </td>
 
-                    <td> <button class="submit" (click)="editarInscripcion(estudiante._id )"> Editar </button>
+                    <td>
+                      <button class="submit" (click)="visualizar(estudiante._id)" >Ver</button>
+                      <button class="submit" (click)="editarInscripcion(estudiante._id )"> Editar </button>
                         <button class="submit" (click)="eliminarInscripcion(estudiante.codigo_est, estudiante )">
                             Eliminar </button> </td>
                 </tr>

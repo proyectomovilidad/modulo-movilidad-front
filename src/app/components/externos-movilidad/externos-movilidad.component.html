@@ -170,8 +170,15 @@
                         </div>
                     </td>
 
-                   <td>{{externo.Inscripcion.estado}}</td>
-                    <td> <button class="submit" (click)="editarInscripcion(externo._id )"> Editar </button> 
+                   <td>
+                       <select #estado class="form-control" (change)="cambiarEstado(estado, externo.Inscripcion._id)" >             
+                         <option value="">{{externo.Inscripcion.estado}}</option>      
+                         <option  *ngFor="let estado of estados" value="{{estado.val}}">{{estado.nm}}</option>                      
+                       </select>
+                   </td>
+                    <td>
+                        <button class="submit" (click)="visualizar(externo._id)" >Ver</button> 
+                        <button class="submit" (click)="editarInscripcion(externo._id )"> Editar </button> 
                      <button class="submit" (click)="eliminarInscripcion(externo.documento_id, externo )"> Eliminar </button> </td>
                 </tr>
             </tbody>

@@ -73,6 +73,11 @@ export class InscripcionEstudianteService {
     return this.httpClient.post<any>(url, inscripcion, this.getHeaders()).toPromise();
   }
 
+  public updateInscripcionStatus(inscripcion: any, _id: any): Promise<any> {
+    const url = `${environment.backend.inscripcion}updateInscripcionStatus/${_id}`;
+
+    return this.httpClient.post<any>(url, inscripcion, this.getHeaders()).toPromise();
+  }
 
   public deleteInscripcion( _id: any): Promise<any> {
     const url = `${environment.backend.aspUisAcademic}deleteAspiranteUisAcademic/${_id}`;
@@ -97,6 +102,11 @@ export class InscripcionEstudianteService {
    
    return this.httpClient.post<any>(url, estado, this.getHeaders()).toPromise();
  
+  }
+
+  public getInscripcionByEstudiante(field, value): Promise<any> {    
+    const url = `${environment.backend.inscripcion}getInscripcionByEstudiante/${field}/${value}`;
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
   private getHeaders(): any{

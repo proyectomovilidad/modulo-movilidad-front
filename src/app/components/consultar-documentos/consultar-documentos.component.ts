@@ -35,13 +35,22 @@ export class ConsultarDocumentosComponent implements OnInit {
 
   }
 
-  async ngOnInit(): Promise<void> {
-    this.estudiantes = await this.InscripcionEstudianteService.getAllAspUisPersonal();
-    this.externos = await this.InscripcionExternoService.getAllAspExternoPersonal();
+  ngOnInit(){
+    this.InscripcionEstudianteService.getAllAspUisPersonal().then(resp=>{      
+      if(resp.status) this.estudiantes = resp.data;
+    });
+
+    this.InscripcionExternoService.getAllAspExternoPersonal().then(resp=>{      
+      this.externos = resp
+    });
   }
 
-  public revisarDocumento(id: any) {
-    this.router.navigateByUrl('/revision-documentos?_id=' + id);
+  public revisarDocumentoUis(codigo_est: any) {
+    this.router.navigateByUrl('/revision-documentos?codigo_est=' + codigo_est);
+  }
+
+  public revisarDocumentoExt(documento_id: any) {
+    this.router.navigateByUrl('/revision-documentos?documento_id=' + documento_id);
   }
 
   limpiarFormulario() {
