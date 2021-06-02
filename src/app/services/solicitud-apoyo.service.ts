@@ -13,8 +13,7 @@ export class SolicitudApoyoService {
 
  
   public saveSolicitudApoyo(solicitudApoyo: any): Promise<any> {
-    const url = `${environment.backend.solicitudPresentada}`;
-       
+    const url = `${environment.backend.solicitudPresentada}`;       
     return this.httpClient.post<any>(url, solicitudApoyo, this.getHeaders()).toPromise();
   }
 

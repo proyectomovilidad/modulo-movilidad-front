@@ -25,14 +25,14 @@
         <form [formGroup]="formularioSolicitudApoyos" class="row justify-content-center form">
 
             <div class="form-group col-md-2">
-                <label for="tipoApoyo" class=" label ">Tipo apoyo * </label>
+                <label class=" label ">Tipo apoyo * </label>
             </div>
 
             <div class="form-group col-md-4">
                 <select class="form-control" id="tipo_apoyo" formControlName="tipo_apoyo" 
                 [class.is-invalid]="getNoValido('tipo_apoyo')">
                   <option value="">Seleccione..</option>
-                  <option value="item 1">Seleccione..</option>               
+                  <option *ngFor="let tipoapoyo of tiposApoyo"  value="{{tipoapoyo._id}}">{{tipoapoyo.nombre_tipo_apoyo}} </option>               
                 </select>
             </div>
 
@@ -44,7 +44,12 @@
                 <select class="form-control" formControlName="entidad_financiera"
                     [class.is-invalid]="getNoValido('entidad_financiera')">
                     <option value="">Seleccione..</option>
-                    <option value="item 1"> dato</option>
+                    <option value="1">Bancolombia</option>
+                    <option value="2">Colpatria</option>
+                    <option value="3">Banco de Bogotá</option>
+                    <option value="4">Banco de Occidente</option>
+                    <option value="5">Bancoomeva</option>
+                    <option value="6">Banco Popular</option>
 
                 </select>
 
@@ -102,7 +107,7 @@
             <div class="form-group col-md-6">
                 <div class="row justify-content-end">
 
-                    <button class="submit" style="font-weight: bold;" (click)=" guardarFormulario()"> Guardar </button>
+                    <button class="submit" style="font-weight: bold;" (click)="guardarFormulario()"> Guardar </button>
 
                 </div>
             </div>

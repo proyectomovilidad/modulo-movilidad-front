@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SolicitudApoyoService } from './../../services/solicitud-apoyo.service';
+import { TipoApoyoService } from './../../services/tipo-apoyo.service';
+
 
 
 
@@ -12,10 +14,12 @@ import { SolicitudApoyoService } from './../../services/solicitud-apoyo.service'
 })
 export class SolicitudApoyosComponent implements OnInit {
 
+  public tiposApoyo: any;
   public formularioSolicitudApoyos: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
     public SolicitudApoyoService: SolicitudApoyoService,
+    public TipoApoyoService: TipoApoyoService,
 
 
    ) { 
@@ -25,13 +29,13 @@ export class SolicitudApoyosComponent implements OnInit {
         tipo_apoyo: ['', Validators.required],
         entidad_financiera: ['', Validators.required],
         fecha_solicitud: [Date, Validators.required],
-        estrato: ['', Validators.required],
         numero_cuenta: [0, Validators.required],
         tipo_cuenta: ['', Validators.required],
       }); 
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.tiposApoyo = await this.TipoApoyoService.getApoyo();
   }
 
   
@@ -54,7 +58,6 @@ export class SolicitudApoyosComponent implements OnInit {
       tipo_apoyo:  crearSolicitudApoyos.tipo_apoyo,
       entidad_financiera: crearSolicitudApoyos.entidad_financiera ,
       fecha_solicitud: crearSolicitudApoyos.fecha_solicitud ,
-      estrato: crearSolicitudApoyos.estrato ,
       numero_cuenta: crearSolicitudApoyos.numero_cuenta ,
       tipo_cuenta:crearSolicitudApoyos.tipo_cuenta
      
