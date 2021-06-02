@@ -1,20 +1,15 @@
 <body>
 
-
     <header>
 
 
         <section id="title">
-
             <div id="titulo">
                 Sistema de relaciones exteriores
                 <br />
                 Módulo de movilidad académica - Apoyos
             </div>
-
         </section>
-
-
     </header>
 
     <section id="body">
@@ -77,67 +72,58 @@
     </section>
 
 
-    <section id="body">
+    <section>
 
         <div id="name">
-            <h3> Criterios de consulta </h3>
+            <h3> Agregar Documento a Convenio </h3>
         </div>
-
+  
         <br />
-
         <form class="row justify-content-center form">
-
-
-            <div class=" form-group col-md-2 ">
-                <label for="id" class="label ">Id * </label>
+            <div class="form-group col-md-2">
+              <label class="label ">Tipo apoyo *</label>
             </div>
-
+            
+  
             <div class="form-group col-md-4">
-                <input type="text" class="form-control" id="_id">
-
+                <select class="form-control" >
+                <option value="">Seleccione..</option>
+                <option  value=""> </option>
+              </select>
             </div>
-
-            <div class=" form-group col-md-2 ">
-                <label for="nombre" class="label ">Nombre * </label>
+  
+  
+            <div class="form-group col-md-2">
+              <label class="label ">Estrato *</label>
             </div>
-
             <div class="form-group col-md-4">
-                <input type="text" class="form-control" id="nombre_doc">
-
-            </div>
-
-
+              <select class="form-control" >
+                <option value="">Seleccione..</option>
+                <option *ngFor=""  value="">  </option>
+              </select>
+            </div>           
+  
             <div class="form-group col-md-6">
                 <div class="row justify-content-end">
-
-                    <button class="submit" type="submit"> Consultar </button>
-
+  
+                    <button class="submit" > Agregar </button>
+  
                 </div>
             </div>
-
+  
             <div class="form-group col-md-6">
                 <div class="row justify-content-start">
-
-                    <button class="submit" type=""> Cancelar </button>
-
-
+                    <button class="submit" > Cancelar </button>
                 </div>
             </div>
-
-
-
-        </form>
-
-
-
-
-    </section>
+        </form>  
+      </section>
 
 
     <section id="body">
 
         <div id="name">
-            <h3> Listado de documentos</h3>
+            <h3> Listado de apoyos</h3>
         </div>
 
         <table class="table table-bordered">
@@ -145,16 +131,19 @@
                 <tr>
                     <th scope="col" class="center"> Id </th>
                     <th scope="col" class="center"> Nombre </th>
+                    <th scope="col" class="center"> Estrato </th>
                     <th scope="col" class="center"> Acciones </th>
                 </tr>
             </thead>
             <tbody>
 
-                <tr>
+                <tr *ngFor="let apoyo of apoyos"> 
 
+                    <td>{{apoyo._id}}</td>
+                    <td>{{apoyo.nombre_tipo_apoyo}}</td>
                     <td></td>
-                    <td></td>
-                    <td></td>
+                    <td> <button class="submit" (click)="eliminarApoyo(apoyo._id, apoyo )" >Eliminar</button></td>
+                
                 </tr>
 
             </tbody>

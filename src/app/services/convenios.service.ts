@@ -55,7 +55,6 @@ export class ConveniosService {
 
   public deleteConvenio( _id: any): Promise<any> {
     const url = `${environment.backend.convenio}deleteConvenio/${_id}`;
-
     return this.httpClient.delete<any>(url, this.getHeaders()).toPromise();
   }
 

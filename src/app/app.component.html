@@ -1,4 +1,10 @@
 
+<body> <header> 
+ 
+</header>
+
+
+
 <aside id="sidebar">
   <nav id="menu">
     <ul>
@@ -9,17 +15,25 @@
   <li> <a [routerLink] = "['/entorno-movilidad']" [routerLinkActive]="['actived']"> Entorno movilidad </a> </li>
   <li> <a [routerLink] = "['/inscripcion-externo']" [routerLinkActive]="['actived']"> Movilidad entrante</a> </li>
   <li> <a [routerLink] = "['/inscripcion-estudiante']" [routerLinkActive]="['actived']"> Movilidad saliente </a> </li>
-  <li> <a [routerLink] = "['/cambiar-estado']" [routerLinkActive]="['actived']"> Cambiar estado</a> </li>
   <li> <a [routerLink] = "['/carga-documentos']" [routerLinkActive]="['actived']"> Carga documentos</a> </li>
   <li> <a [routerLink] = "['/consultar-documentos']" [routerLinkActive]="['actived']"> Consultar documentos</a> </li>
   <li> <a [routerLink] = "['/revision-documentos']" [routerLinkActive]="['actived']"> Revisión documentos</a> </li>
+  <li> <a [routerLink] = "['/tipo-documento']" [routerLinkActive]="['actived']"> Tipo documentos</a> </li>
+  <li> <a [routerLink] = "['/tipo-apoyo']" [routerLinkActive]="['actived']"> Tipo apoyos</a> </li>
   <li> <a [routerLink] = "['/solicitud-apoyos']" [routerLinkActive]="['actived']"> Solicitud apoyos</a> </li>
+  <li> <a [routerLink] = "['/solicitud-apoyos-relext']" [routerLinkActive]="['actived']"> Consultar apoyos</a> </li>
   <li> <a [routerLink] = "['/profesores-movilidad']" [routerLinkActive]="['actived']"> Profesores movilidad</a> </li>
 
-
+ 
 </ul>
   </nav>
 </aside>
+
+<section id="top"> 
+  <img src="assets/image/banner.jpg" height="" width="100%">
+</section>
+
+</body>
 
 
 <router-outlet> </router-outlet>

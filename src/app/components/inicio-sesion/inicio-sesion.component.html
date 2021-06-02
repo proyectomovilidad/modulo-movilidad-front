@@ -8,7 +8,7 @@
 
     <form [formGroup]="formularioInicioSesion" class="row justify-content-center form">
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-2">
             <label class=" label ">Usuario </label>
         </div>
 
@@ -17,16 +17,8 @@
 
         </div>
 
-        
-        <div class="form-group col-md-4">
-        </div>
 
-        <div class="form-group col-md-4">
-
-        </div>
-     
-
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-2">
             <label class=" label ">Contraseña </label>
         </div>
 
@@ -42,40 +34,33 @@
           <div class="form-group col-md-4">
             <select class="form-control" formControlName="rol" >
               <option value="">Seleccione..</option>
+              <option value="administrador"> Administrador </option>
               <option value="estudianteUis"> Estudiante Uis </option>
               <option value="estudianteExt"> Estudiante Ext</option>
               <option value="profesor"> Profesor </option>
-              
-            
+              <option value="profesionalrelext"> Profesional RELEXT </option>           
             </select>
-    
           </div>
 
-
-        <div class="form-group col-md-6">
-            <div class="row justify-content-start">
-
-                <button class="submit" (click)="inicioSesion()"> Consultar </button>
-
-
-            </div>
+          <div class="form-group col-md-2">
         </div>
 
-
-
+        <div class="form-group col-md-4">
+        </div>
 
 
 
         <div class="form-group col-md-6">
             <div class="row justify-content-start">
-
-                <button class="submit" type=""> Cancelar </button>
-
-
+                <button class="submit"  style="font-weight: bold;" (click)="inicioSesion()"> Ingresar </button>
             </div>
         </div>
 
-
+        <div class="form-group col-md-6">
+            <div class="row justify-content-start">
+                <button class="submit" style="font-weight: bold;" > Salir </button>
+            </div>
+        </div>
 
     </form>
 </section>

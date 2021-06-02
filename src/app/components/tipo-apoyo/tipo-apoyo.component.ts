@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TipoApoyoService } from './../../services/tipo-apoyo.service';
 
-
+ 
 @Component({
   selector: 'app-tipo-apoyo',
   templateUrl: './tipo-apoyo.component.html',
@@ -10,6 +10,7 @@ import { TipoApoyoService } from './../../services/tipo-apoyo.service';
 })
 export class TipoApoyoComponent implements OnInit {
 
+  public apoyos: any;
   public formularioCrearApoyo: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
@@ -21,7 +22,9 @@ export class TipoApoyoComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  
+ async ngOnInit(): Promise<void> {
+    this.apoyos = await this.TipoApoyoService.getApoyo()
   }
 
   getNoValido(input: string) {
@@ -48,6 +51,14 @@ export class TipoApoyoComponent implements OnInit {
 
 
     this.formularioCrearApoyo.reset();
+  }
+
+  async eliminarApoyo(id: any, obj: any) {
+    let respuesta = await this.TipoApoyoService.deleteApoyo(id);
+    console.log(respuesta);
+    if (respuesta.status) {
+      this.apoyos.splice(this.apoyos.indexOf(obj), 1)
+    }
   }
 
 

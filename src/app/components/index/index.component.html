@@ -25,18 +25,17 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title class="label-accordion">
-            Estudiante pregrado
+            Estudiantes
           </mat-panel-title>
 
         </mat-expansion-panel-header>
         <mat-radio-group aria-label="Seleccione una opción">
-          <mat-radio-button value="movilidad-entrante" class="font-body"> Movilidad entrante </mat-radio-button>
-          <br />
-          <br />
-          <mat-radio-button value="movilidad-saliente" class="font-body"> Movilidad saliente </mat-radio-button>
+
+          <button class="inscripcion" style="font-weight: bold;" (click)="movilidadentrante()" >Movilidad entrante </button>
+          <button class="inscripcion" style="font-weight: bold;" (click)= "movilidadsalientente()">Movilidad saliente </button>
+
           <br />
         
-          <button class="boton" style="font-weight: bold;" type="">Guardar </button>
         </mat-radio-group>
       </mat-expansion-panel>
 
@@ -44,19 +43,16 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title class="label-accordion">
-            Estudiante postgrado
+            Profesores
           </mat-panel-title>
 
         </mat-expansion-panel-header>
 
 
         <mat-radio-group aria-label="Seleccione una opción">
-          <mat-radio-button value="movilidad-entrante"> Movilidad entrante </mat-radio-button>
-          <br />
-          <br />
-          <mat-radio-button value="movilidad-saliente"> Movilidad saliente </mat-radio-button>
-          <br />
-          <button class="submit" type="submit"> Guardar </button>
+        
+          <button class="inscripcion" (click)="profesores()"> Profesores </button>
+
         </mat-radio-group>
 
 

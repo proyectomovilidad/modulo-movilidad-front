@@ -41,7 +41,6 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './components/index/index.component';
 import { InscripcionEstudianteComponent } from './components/inscripcion-estudiante/inscripcion-estudiante.component';
 import { IncripcionExternoComponent } from './components/inscripcion-externo/incripcion-externo.component';
-import { CambiarEstadoComponent } from './components/cambiar-estado/cambiar-estado.component';
 import { ErrorComponent } from './components/error/error.component';
 import { CargaDocumentosComponent } from './components/carga-documentos/carga-documentos.component';
 import { RevisionDocumentosComponent } from './components/revision-documentos/revision-documentos.component';
@@ -49,7 +48,6 @@ import { ConsultarDocumentosComponent } from './components/consultar-documentos/
 import { ObservacionesComponent } from './components/observaciones/observaciones.component';
 import { SolicitudApoyosComponent } from './components/solicitud-apoyos/solicitud-apoyos.component';
 import { SolicitudApoyosRelextComponent } from './components/solicitud-apoyos-relext/solicitud-apoyos-relext.component';
-import { CrearMenuComponent } from './components/crear-menu/crear-menu.component';
 import { GuardadoExitosoComponent } from './components/guardado-exitoso/guardado-exitoso.component';
 import { InstitucionCooperantesComponent } from './components/institucion-cooperantes/institucion-cooperantes.component';
 import { EditarInstitucionComponent } from './components/editar-institucion/editar-institucion.component';
@@ -87,14 +85,12 @@ import { VisualizarProfesorComponent } from './components/visualizar-profesor/vi
     IncripcionExternoComponent,
     IndexComponent,
     ErrorComponent,
-    CambiarEstadoComponent,
     CargaDocumentosComponent,
     RevisionDocumentosComponent,
     ConsultarDocumentosComponent,
     ObservacionesComponent,
     SolicitudApoyosComponent,
     SolicitudApoyosRelextComponent,
-    CrearMenuComponent,
     GuardadoExitosoComponent,
     InstitucionCooperantesComponent,
     EditarInstitucionComponent,

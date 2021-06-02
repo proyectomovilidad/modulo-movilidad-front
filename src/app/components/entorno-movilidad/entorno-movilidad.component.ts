@@ -100,4 +100,11 @@ export class EntornoMovilidadComponent implements OnInit {
 
   }
 
+  limpiarFormularioEntrante() {
+    this.formfechamovilidadentrante.reset();
+  }
+
+  limpiarFormularioSaliente() {
+    this.formfechamovilidadsaliente.reset();
+  }
 } 

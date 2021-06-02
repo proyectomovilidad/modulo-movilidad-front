@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ConvocatoriaService {
+export class ConvocatoriaService { 
   
   public url: String;
 
@@ -27,6 +27,13 @@ export class ConvocatoriaService {
     const url = `${environment.backend.convocatoria}getConvocatoriaById/${id}`;
     return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
+
+  public deleteConvocatoria( _id: any): Promise<any> {
+    const url = `${environment.backend.convocatoria}deleteConvocatoria/${_id}`;
+
+    return this.httpClient.delete<any>(url).toPromise();
+  }
+
 
   private getHeaders(): any{
     const httpOptions = {

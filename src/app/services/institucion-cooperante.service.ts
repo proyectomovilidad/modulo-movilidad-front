@@ -44,6 +44,12 @@ export class InstitucionCooperanteService {
     return this.httpClient.post<any>(url, institucionCooperante, this.getHeaders()).toPromise();
   }
 
+  public deleteInstitucionCooperante( _id: any): Promise<any> {
+    const url = `${environment.backend.institucionCooperante}deleteInstitucionCooperante/${_id}`;
+
+    return this.httpClient.delete<any>(url, this.getHeaders()).toPromise();
+  }
+
   private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({

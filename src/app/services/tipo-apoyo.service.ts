@@ -9,13 +9,24 @@ export class TipoApoyoService {
 
   public url: String;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { } 
 
  
   public saveTipoApoyo(tipoApoyo: any): Promise<any> {
     const url = `${environment.backend.tipoApoyo}`;
 
     return this.httpClient.post<any>(url, tipoApoyo, this.getHeaders()).toPromise();
+  }
+
+  public getApoyo(): Promise<any> {
+    const url = `${environment.backend.tipoApoyo}getApoyo/`;
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
+  }
+
+  public deleteApoyo( _id: any): Promise<any> {
+    const url = `${environment.backend.tipoApoyo}deleteApoyo/${_id}`;
+
+    return this.httpClient.delete<any>(url, this.getHeaders()).toPromise();
   }
 
   private getHeaders(): any{

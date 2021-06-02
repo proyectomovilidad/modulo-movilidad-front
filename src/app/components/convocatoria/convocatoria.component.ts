@@ -21,11 +21,11 @@ export class ConvocatoriaComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder,  
+  constructor(private formBuilder: FormBuilder,
     public InstitucionCooperanteService: InstitucionCooperanteService,
     public ConvocatoriaService: ConvocatoriaService,
-    public TipoProyectoService:TipoProyectoService,   private router: Router,
-    ) {
+    public TipoProyectoService: TipoProyectoService, private router: Router,
+  ) {
 
     this.formularioCrearConvocatoria = this.formBuilder.group({
       nombre_convocatoria: ['', Validators.required],
@@ -35,16 +35,16 @@ export class ConvocatoriaComponent implements OnInit {
       fecha_final: [Date, Validators.required],
       fecha_suscripcion: [Date, Validators.required],
       nombre_institucion: ['', Validators.required],
-      tipo_proyecto: ['', Validators.required],    
+      tipo_proyecto: ['', Validators.required],
       link_inscripcion: ['', Validators.required],
-   });
+    });
   }
 
- async ngOnInit(): Promise<void> {
+  async ngOnInit(): Promise<void> {
     this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
     this.tiposProyecto = await this.TipoProyectoService.getTiposProyecto();
     this.convocatorias = await this.ConvocatoriaService.getConvocatorias()
-  console.log('convo: ',this.convocatorias)
+    console.log('convo: ', this.convocatorias)
   }
 
   getNoValido(input: string) {
@@ -64,30 +64,38 @@ export class ConvocatoriaComponent implements OnInit {
 
     const convocatoria = {
 
-      nombre_convocatoria: crearConvocatoria.nombre_convocatoria ,
-      estado_convocatoria:crearConvocatoria.estado_convocatoria ,
+      nombre_convocatoria: crearConvocatoria.nombre_convocatoria,
+      estado_convocatoria: crearConvocatoria.estado_convocatoria,
       periodo_convocatoria: crearConvocatoria.periodo_convocatoria,
-      fecha_inicio:crearConvocatoria.fecha_inicio ,
-      fecha_final:crearConvocatoria.fecha_final ,
-      fecha_suscripcion:crearConvocatoria.fecha_suscripcion ,
-      nombre_institucion:crearConvocatoria.nombre_institucion ,
-      tipo_proyecto:crearConvocatoria.tipo_proyecto ,    
-      link_inscripcion:crearConvocatoria.link_inscripcion ,
+      fecha_inicio: crearConvocatoria.fecha_inicio,
+      fecha_final: crearConvocatoria.fecha_final,
+      fecha_suscripcion: crearConvocatoria.fecha_suscripcion,
+      nombre_institucion: crearConvocatoria.nombre_institucion,
+      tipo_proyecto: crearConvocatoria.tipo_proyecto,
+      link_inscripcion: crearConvocatoria.link_inscripcion,
     }
     const convocatoriaGuardada = await this.ConvocatoriaService.saveConvocatoria(convocatoria);
     console.log(convocatoriaGuardada);
 
     this.formularioCrearConvocatoria.reset();
 
-}
-
-  getInstitucion(id){
-    return this.institucionesCooperantes.find(x=> x._id == id) || {}
   }
 
-  visualizar(id){
-      this.router.navigateByUrl('/visualizar-convocatoria?_id=' + id);    
+  async eliminarConvocatoria(id: any, obj: any) {
+    let respuesta = await this.ConvocatoriaService.deleteConvocatoria(id);
+    console.log(respuesta);
+    if (respuesta.status) {
+      this.convocatorias.splice(this.convocatorias.indexOf(obj), 1)
+    }
+  }
+
+
+  getInstitucion(id) {
+    return this.institucionesCooperantes.find(x => x._id == id) || {}
+  }
+
+  visualizar(id) {
+    this.router.navigateByUrl('/visualizar-convocatoria?_id=' + id);
   }
 }
 
- 

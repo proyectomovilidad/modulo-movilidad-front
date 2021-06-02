@@ -220,7 +220,7 @@
                     <th scope="col" class="center"> Ciudad </th>
                     <th scope="col" class="center"> Correo </th>
                     <th scope="col" class="center"> Teléfono </th>
-                    <th scope="col" class="center"> Acciones </th>
+                    <th scope="col" class="center"> Acciones </th> 
 
                 </tr>
             </thead>
@@ -233,6 +233,9 @@
                     <td>  {{institucion.telefono}}  </td>
                     <td> 
                         <button class="submit" (click)="editarInstitucion(institucion._id )"> Editar </button> 
+                   
+                        <button class="submit" (click)="eliminarInstitucionCooperante(institucion._id, institucion )"> Eliminar  </button> 
+
                     </td>
                    
                 </tr>

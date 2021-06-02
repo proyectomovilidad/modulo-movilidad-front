@@ -25,9 +25,10 @@ export class EstudiantesMovilidadComponent implements OnInit {
     {val: 0, nm: 'Cancelado'},
     {val: 1, nm:"Inscrito"},
     {val: 2, nm:"Carga documentos"},
-    {val: 3, nm:"Movilidad"},
-    {val: 4, nm:"Finalizado"},
-    {val: 5, nm:"Prorroga"},    
+    {val: 3, nm:"Postulado"},
+    {val: 4, nm:"Movilidad"},
+    {val: 5, nm:"Prorroga"},
+    {val: 5, nm:"Finalizado"},    
   ]
 
   public formularioConsultarEstudiante: FormGroup;

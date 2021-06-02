@@ -106,6 +106,14 @@ export class InstitucionCooperantesComponent implements OnInit {
       this.ciudades = cities
     })
   }
+ 
+  async eliminarInstitucionCooperante(id: any, obj: any) {
+    let respuesta = await this.InstitucionCooperanteService.deleteInstitucionCooperante(id);
+    console.log(respuesta);
+    if (respuesta.status) {
 
+      this.instituciones.splice(this.instituciones.indexOf(obj), 1)
+    }
+  }
 
 }

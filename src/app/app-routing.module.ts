@@ -5,7 +5,6 @@ import { InscripcionEstudianteComponent } from './components/inscripcion-estudia
 import { IncripcionExternoComponent } from './components/inscripcion-externo/incripcion-externo.component';
 import { IndexComponent } from './components/index/index.component';
 import { ErrorComponent } from './components/error/error.component';
-import { CambiarEstadoComponent } from './components/cambiar-estado/cambiar-estado.component';
 import { CargaDocumentosComponent } from './components/carga-documentos/carga-documentos.component';
 import { RevisionDocumentosComponent } from './components/revision-documentos/revision-documentos.component';
 import { ConsultarDocumentosComponent } from './components/consultar-documentos/consultar-documentos.component';
@@ -45,7 +44,6 @@ const appRoutes: Routes = [
   {path: 'inicio', component: IndexComponent},
   {path: 'inscripcion-externo', component: IncripcionExternoComponent},
   {path: 'inscripcion-estudiante', component: InscripcionEstudianteComponent},
-  {path: 'cambiar-estado', component: CambiarEstadoComponent},
   {path: 'carga-documentos', component: CargaDocumentosComponent},
   {path: 'revision-documentos', component:RevisionDocumentosComponent},
   {path: 'consultar-documentos', component:ConsultarDocumentosComponent},
