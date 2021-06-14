@@ -13,7 +13,7 @@ import { ConveniosService } from './../../services/convenios.service';
 import { EntornoMovilidadService } from './../../services/entorno-movilidad.service';
 import { Router } from '@angular/router';
 
-@Component({ 
+@Component({
   selector: 'app-incripcion-externo',
   templateUrl: './incripcion-externo.component.html',
   styleUrls: ['./incripcion-externo.component.css']
@@ -28,7 +28,7 @@ export class IncripcionExternoComponent implements OnInit {
   public documentosId : any;
   public tiposMovilidad: any;
   public convenios: [];
-  
+
 
 
   public formularioInscripcionExterno: FormGroup;
@@ -42,11 +42,11 @@ export class IncripcionExternoComponent implements OnInit {
     public TiposDocumentosIdService: TiposDocumentosIdService,
     public TipoMovilidadService: TipoMovilidadService,
     public ConveniosService: ConveniosService,
-    
-    ) { 
+
+    ) {
 
       this.formularioInscripcionExterno = this.formBuilder.group({
-        
+
         tipo_doc_id: ['', Validators.required],
         documento_id: [0, Validators.required],
         primer_nombre: ['', Validators.required],
@@ -77,22 +77,22 @@ export class IncripcionExternoComponent implements OnInit {
         nombre_convenio:  ['', Validators.required]
 
       });
-  
+
     }
 
   async ngOnInit(): Promise<void>  {
     let date = new Date()
     const periodo = `${date.getFullYear()}-${(date.getMonth() < 6 ? 1 : 2)}`
 
-    this.EntornoMovilidadService.getFechasByStatus(periodo, 1).then(resp=>{      
+    this.EntornoMovilidadService.getFechasByStatus(periodo, 1).then(resp=>{
       let inicio = new Date(resp.fecha_inicio)
       let fin = new Date(resp.fecha_final)
 
       if(date < inicio || date > fin){
-        //this.router.navigateByUrl('/')        
+        this.router.navigateByUrl('/')
       }
     })
-    
+
     this.paises = await this.PaisesService.getPais();
     this.documentosId = await this.TiposDocumentosIdService.getTipoDocumentoId();
     this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
@@ -100,10 +100,10 @@ export class IncripcionExternoComponent implements OnInit {
     // this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
     // this.convenios = await this.ConveniosService.getAllConvenios();
   }
- 
- 
+
+
   getNoValido(input: string) {
-    return this.formularioInscripcionExterno.get(input).invalid && 
+    return this.formularioInscripcionExterno.get(input).invalid &&
     this.formularioInscripcionExterno.get(input).touched;
   }
 
@@ -113,19 +113,19 @@ export class IncripcionExternoComponent implements OnInit {
     return aspExtPersonalGuardado;
 
 
-  } 
+  }
 
  async guardarFormulario() {
     if (this.formularioInscripcionExterno.invalid) {
       return Object.values(this.formularioInscripcionExterno.controls).forEach(control => {
         control.markAsTouched();
-      });   
+      });
     }
 
     const inscribirExternoPersonal = this.formularioInscripcionExterno.value;
     console.log(inscribirExternoPersonal)
 
-    const aspExtPersonal = { 
+    const aspExtPersonal = {
 
       tipo_doc_id: inscribirExternoPersonal.tipo_doc_id,
       documento_id: inscribirExternoPersonal.documento_id,
@@ -148,9 +148,9 @@ export class IncripcionExternoComponent implements OnInit {
     const inscribirExternoAcademic = this.formularioInscripcionExterno.value;
 
     const aspExtAcademic = {
-     
+
       documento_id: inscribirExternoAcademic.documento_id,
-      semestre: inscribirExternoAcademic.semestre ,      
+      semestre: inscribirExternoAcademic.semestre ,
       promedio:inscribirExternoAcademic.promedio,
       programa_acad: inscribirExternoAcademic.programa_acad,
       cred_cursados: inscribirExternoAcademic.cred_cursados,
@@ -177,9 +177,9 @@ export class IncripcionExternoComponent implements OnInit {
     const aspExtPersonalGuardado = await this.InscripcionExternoService.saveAspExtPersonal(aspExtPersonal);
     console.log(aspExtPersonalGuardado);
 
-   if (aspExtPersonalGuardado.status==true){ 
+   if (aspExtPersonalGuardado.status==true){
      const aspExtAcademicGuardado = await this.InscripcionExternoService.saveAspExtAcademic(aspExtAcademic);
-    console.log(aspExtAcademicGuardado); 
+    console.log(aspExtAcademicGuardado);
     if (aspExtAcademicGuardado.status==true){
       const externoGuardado = await this.InscripcionExternoService.saveInscripcion(inscribir);
       console.log("Inscripción", externoGuardado); // Aquí se incluye la ventana emergente con el mensaje de guardado existoso
@@ -209,11 +209,11 @@ onOptionsSelectedProgAcademico(institucionId: string){
   this.tiposMovilidad = []
   this.convenios = []
 
-  if(institucionId) 
+  if(institucionId)
   {
     this.ProgramasService.getProgramaAcademicoByInstitucion(institucionId).then(programs=>{
       programs.forEach(element=>{this.programas.push(element.programaAcademico)})
-    })    
+    })
   }
 }
 
@@ -223,7 +223,7 @@ onOptionsSelectedTipoMovilidad(progAcadId: string, instId: string){
 
   if(progAcadId && instId) {
     this.TipoMovilidadService.getTipoMovilidadByInstProgAcad(instId, progAcadId).then(tiposMov=>{
-      tiposMov.forEach(element=>{this.tiposMovilidad.push(element.tipoMovilidad)})    
+      tiposMov.forEach(element=>{this.tiposMovilidad.push(element.tipoMovilidad)})
     })
   }
 }
@@ -232,7 +232,7 @@ onOptionsSelectedConvenios(progAcadId: string, instId: string, tipoMovId: string
   this.convenios = []
 
   if(progAcadId && instId && tipoMovId){
-    this.ConveniosService.getConvenioByProgAcadInstTipoMov(progAcadId, instId, tipoMovId).then(convns=>{     
+    this.ConveniosService.getConvenioByProgAcadInstTipoMov(progAcadId, instId, tipoMovId).then(convns=>{
       this.convenios = convns
     })
   }

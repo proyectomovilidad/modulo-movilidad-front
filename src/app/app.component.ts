@@ -14,9 +14,13 @@ export class AppComponent implements OnInit {
   title = 'modulo-movilidad-angular';
 
 
-  ngOnInit() {  	
+  ngOnInit() {
   	environment.TOKEN = localStorage.getItem('token')
-  	environment.user = JSON.parse(localStorage.getItem('user'))
+    const user = JSON.parse(localStorage.getItem('user'));
+
+  	if(user) {
+      environment.user = user;
+    }
 
   	console.log('token: ', environment.TOKEN)
   	console.log('Usuario: ', environment.user)

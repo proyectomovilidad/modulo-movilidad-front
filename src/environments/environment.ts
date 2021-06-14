@@ -29,14 +29,21 @@ export const environment = {
     inscripcion: BASE + '/inscripcion/',
     autenticacion: BASE + '/autenticacion/',
     entornoMovilidad: BASE + '/entornoMovilidad/',
-    cargaDocumento: BASE + '/cargaDocumentos/'    
-    
-    
-   
+    cargaDocumento: BASE + '/cargaDocumentos/'
   },
 
   TOKEN: '',
-  user: {Inscripcion:{estado: null}}
+  user: {role: -1, Inscripcion: {estado: null}},
+  unauthorizedPage: '/',
+  entidadesFinancieras: [
+    {codigo: '1', nombre: 'Bancolombia'},
+    {codigo: '2', nombre: 'Colpatria'},
+    {codigo: '3', nombre: 'Banco de Bogotá'},
+    {codigo: '4', nombre: 'Banco de Occidente'},
+    {codigo: '5', nombre: 'Bancoomeva'},
+    {codigo: '6', nombre: 'Banco Popular'},
+  ],
+  tipoCuentas: [{codigo: '1', nombre: 'Ahorros'}, {codigo: '2', nombre: 'Corriente'}]
 
 };
 

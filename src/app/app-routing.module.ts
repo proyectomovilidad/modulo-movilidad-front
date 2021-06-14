@@ -35,7 +35,9 @@ import { VisualizarConvocatoriaComponent } from './components/visualizar-convoca
 import { VisualizarEstudianteComponent  } from './components/visualizar-estudiante/visualizar-estudiante.component';
 import { VisualizarExternoComponent } from './components/visualizar-externo/visualizar-externo.component';
 import { VisualizarProfesorComponent } from './components/visualizar-profesor/visualizar-profesor.component';
-
+import { EditarTipoApoyoComponent } from './components/editar-tipo-apoyo/editar-tipo-apoyo.component';
+import {SolicitudApoyosEstComponent} from './components/solicitud-apoyos-est/solicitud-apoyos-est.component';
+import {EditarConvocatoriaComponent} from './components/editar-convocatoria/editar-convocatoria.component';
 
 
 const appRoutes: Routes = [
@@ -44,13 +46,13 @@ const appRoutes: Routes = [
   {path: 'inicio', component: IndexComponent},
   {path: 'inscripcion-externo', component: IncripcionExternoComponent},
   {path: 'inscripcion-estudiante', component: InscripcionEstudianteComponent},
-  {path: 'carga-documentos', component: CargaDocumentosComponent},
+  {path: 'carga-documentos', component: CargaDocumentosComponent, data: {roles: [2, 3]}},
   {path: 'revision-documentos', component:RevisionDocumentosComponent},
   {path: 'consultar-documentos', component:ConsultarDocumentosComponent},
-  {path: 'solicitud-apoyos', component:SolicitudApoyosComponent},
+  {path: 'solicitud-apoyos', component:SolicitudApoyosComponent, data: {roles: [2]}},
   {path: 'solicitud-apoyos-relext', component:SolicitudApoyosRelextComponent},
   {path: 'guardado-exitoso', component:GuardadoExitosoComponent},
-  {path: 'institucion-cooperante', component:InstitucionCooperantesComponent},
+  {path: 'institucion-cooperante', component:InstitucionCooperantesComponent, data: {roles: [4]}},
   {path: 'editar-institucion', component:EditarInstitucionComponent},
   {path: 'estudiantes-movilidad', component:EstudiantesMovilidadComponent},
   {path: 'tipo-documento', component:TipoDocumentoComponent},
@@ -58,7 +60,7 @@ const appRoutes: Routes = [
   {path: 'entidad-financiera', component:EntidadFinancieraComponent},
   {path: 'profesores', component:ProfesoresComponent},
   {path: 'convenios', component:ConveniosComponent},
-  {path: 'convocatoria', component:ConvocatoriaComponent},
+  {path: 'convocatoria', component:ConvocatoriaComponent, data: {roles: [4]}},
   {path: 'editar-inscripcion', component:EditarInscripcionComponent},
  //{path: 'editar-inscripcion/:_id', component:EditarInscripcionComponent},
   {path: 'editar-documento', component:EditarDocumentoComponent},
@@ -69,23 +71,17 @@ const appRoutes: Routes = [
   {path: 'editar-convenio', component:EditarConvenioComponent},
   {path: 'inicio-sesion', component:InicioSesionComponent},
   {path: 'entorno-movilidad', component:EntornoMovilidadComponent},
-  {path: 'crear-tipo-documento', component:CrearTipoDocumentoComponent}, 
+  {path: 'crear-tipo-documento', component:CrearTipoDocumentoComponent},
   {path: 'visualizar-convenio',component: VisualizarConvenioComponent },
-  {path: 'visualizar-convocatoria',component: VisualizarConvocatoriaComponent },
+  {path: 'visualizar-convocatoria',component: VisualizarConvocatoriaComponent, data: {roles: [4]} },
   {path: 'visualizar-estudiante',component: VisualizarEstudianteComponent },
   {path: 'visualizar-externo',component: VisualizarExternoComponent },
   {path: 'visualizar-profesor',component: VisualizarProfesorComponent },
-
-
-
-
-
-  
-
+  { path: 'editar-tipo-apoyo', component: EditarTipoApoyoComponent },
+  { path: 'solicitud-apoyos-est', component: SolicitudApoyosEstComponent, data: { roles: [1, 5]} },
+  { path: 'editar-convocatoria', component: EditarConvocatoriaComponent, data: { roles: [1, 5]} },
 
   {path: '**', component: ErrorComponent }
-
-
 ];
 
 export const appRoutingProviders: any [] = [];

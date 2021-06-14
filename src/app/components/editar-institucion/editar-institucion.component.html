@@ -40,7 +40,7 @@
         <select #country class="form-control" id="pais" formControlName="pais"
         [class.is-invalid]="getNoValido('pais')"  (change)='onOptionsSelectedDepartment(country.value)'>
         <option value="">Seleccione..</option>
-        <option *ngFor="let pais of paises"  value="{{pais.codigo_pais}}"> {{pais.nombre_pais}}  </option>     
+        <option *ngFor="let pais of paises"  value="{{pais.codigo_pais}}"> {{pais.nombre_pais}}  </option>
                </select>
 
     </div>
@@ -131,7 +131,7 @@
       <div class="form-group col-md-6">
         <div class="row justify-content-start">
 
-          <button class="submit" type=""> Cancelar </button>
+          <button class="submit" type="" (click)="regresar()" > Cancelar </button>
 
 
         </div>

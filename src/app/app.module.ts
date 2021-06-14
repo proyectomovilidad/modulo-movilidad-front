@@ -76,6 +76,10 @@ import { VisualizarConvocatoriaComponent } from './components/visualizar-convoca
 import { VisualizarEstudianteComponent  } from './components/visualizar-estudiante/visualizar-estudiante.component';
 import { VisualizarExternoComponent } from './components/visualizar-externo/visualizar-externo.component';
 import { VisualizarProfesorComponent } from './components/visualizar-profesor/visualizar-profesor.component';
+import { CustomDialogComponent } from './components/custom-dialog/custom-dialog.component';
+import { EditarTipoApoyoComponent } from './components/editar-tipo-apoyo/editar-tipo-apoyo.component';
+import { SolicitudApoyosEstComponent } from './components/solicitud-apoyos-est/solicitud-apoyos-est.component';
+import { EditarConvocatoriaComponent } from './components/editar-convocatoria/editar-convocatoria.component';
 
 
 @NgModule({
@@ -118,7 +122,11 @@ import { VisualizarProfesorComponent } from './components/visualizar-profesor/vi
     VisualizarEstudianteComponent,
     VisualizarExternoComponent,
     VisualizarProfesorComponent,
-    
+    CustomDialogComponent,
+    EditarTipoApoyoComponent,
+    SolicitudApoyosEstComponent,
+    EditarConvocatoriaComponent,
+
   ],
   entryComponents: [ObservacionesComponent],
   imports: [
@@ -154,7 +162,7 @@ BrowserModule,
     InicioSesionService,
     CargaDocumentoService,
     EntornoMovilidadService
-    
+
   ],
   bootstrap: [AppComponent]
 })

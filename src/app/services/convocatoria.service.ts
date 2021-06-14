@@ -6,8 +6,8 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ConvocatoriaService { 
-  
+export class ConvocatoriaService {
+
   public url: String;
 
   constructor(private httpClient: HttpClient) { }
@@ -30,19 +30,26 @@ export class ConvocatoriaService {
 
   public deleteConvocatoria( _id: any): Promise<any> {
     const url = `${environment.backend.convocatoria}deleteConvocatoria/${_id}`;
-
-    return this.httpClient.delete<any>(url).toPromise();
+    return this.httpClient.delete<any>(url, this.getHeaders()).toPromise();
   }
 
+  public consultarConvocatorias(consulta): Promise<any> {
+    const url = `${environment.backend.convocatoria}consultar/`;
+    return this.httpClient.post<any>(url, consulta, this.getHeaders()).toPromise();
+  }
+
+  updateConvocatoria(id, convocatoria): Promise<any> {
+    const url = `${environment.backend.convocatoria}/${id}`;
+    return this.httpClient.post<any>(url, convocatoria, this.getHeaders()).toPromise();
+  }
 
   private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({
-        'authorization': `Bearer ${environment.TOKEN}`,        
+        'authorization': `Bearer ${environment.TOKEN}`,
         'ContentType': 'application/json'
       })
     };
     return httpOptions
   }
-
 }

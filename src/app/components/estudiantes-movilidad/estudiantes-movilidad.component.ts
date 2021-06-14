@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { InscripcionEstudianteService } from 'src/app/services/inscripcion-estudiante.service';
 
 
-@Component({ 
+@Component({
   selector: 'app-estudiantes-movilidad',
   templateUrl: './estudiantes-movilidad.component.html',
   styleUrls: ['./estudiantes-movilidad.component.css']
@@ -28,7 +28,7 @@ export class EstudiantesMovilidadComponent implements OnInit {
     {val: 3, nm:"Postulado"},
     {val: 4, nm:"Movilidad"},
     {val: 5, nm:"Prorroga"},
-    {val: 5, nm:"Finalizado"},    
+    {val: 5, nm:"Finalizado"},
   ]
 
   public formularioConsultarEstudiante: FormGroup;
@@ -55,17 +55,17 @@ export class EstudiantesMovilidadComponent implements OnInit {
 
     this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
     this.instituciones = await this.InstitucionCooperanteService.getInstitucionCooperante();
-    
+
     this.inscripcionEstudianteService.getAspirantesUisPersonal().then(resp=>{
 
       if(resp.status == true){
-        this.estudiantes = resp.estudiantes
+          this.estudiantes = resp.estudiantes
       }else if(resp.permiso == false){
         this.router.navigateByUrl('/')
       }
     });
     this.academic = await this.inscripcionEstudianteService.getAllAspUisAcademic();
-
+    console.log('estudiantes: ', this.estudiantes);
   }
 
 
@@ -73,7 +73,7 @@ export class EstudiantesMovilidadComponent implements OnInit {
     this.router.navigateByUrl('/editar-inscripcion?_id=' + id);
     // this.router.navigateByUrl('/editar-inscripcion/' + id);
   }
-  
+
 
   public cambiarEstado(e, inscripcionId){
     if(e.value){

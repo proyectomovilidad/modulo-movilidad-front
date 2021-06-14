@@ -12,8 +12,8 @@
         </section>
     </header>
 
- 
-  
+
+
     <section id="body">
 
         <div id="name">
@@ -29,10 +29,10 @@
             </div>
 
             <div class="form-group col-md-4">
-                <select class="form-control" id="tipo_apoyo" formControlName="tipo_apoyo" 
+                <select class="form-control" id="tipo_apoyo" formControlName="tipo_apoyo"
                 [class.is-invalid]="getNoValido('tipo_apoyo')">
                   <option value="">Seleccione..</option>
-                  <option *ngFor="let tipoapoyo of tiposApoyo"  value="{{tipoapoyo._id}}">{{tipoapoyo.nombre_tipo_apoyo}} </option>               
+                  <option *ngFor="let tipoapoyo of tiposApoyo"  value="{{tipoapoyo._id}}">{{tipoapoyo.nombre_tipo_apoyo}} </option>
                 </select>
             </div>
 
@@ -44,12 +44,7 @@
                 <select class="form-control" formControlName="entidad_financiera"
                     [class.is-invalid]="getNoValido('entidad_financiera')">
                     <option value="">Seleccione..</option>
-                    <option value="1">Bancolombia</option>
-                    <option value="2">Colpatria</option>
-                    <option value="3">Banco de Bogotá</option>
-                    <option value="4">Banco de Occidente</option>
-                    <option value="5">Bancoomeva</option>
-                    <option value="6">Banco Popular</option>
+                    <option *ngFor="let entidad of entidadesFinancieras" value="{{entidad.codigo}}">{{entidad.nombre}}</option>
 
                 </select>
 
@@ -78,9 +73,8 @@
             <div class="form-group col-md-4">
                 <select class="form-control" formControlName="tipo_cuenta"
                 [class.is-invalid]="getNoValido('tipo_cuenta')">
-                <option value="">Seleccione..</option> 
-                <option value="1"> ahorros</option>
-                <option value="2"> corriente</option>
+                <option value="">Seleccione..</option>
+                <option *ngFor="let cuenta of tipoCuentas" value="{{cuenta.codigo}}"> {{cuenta.nombre}}</option>
                 </select>
             </div>
 
@@ -89,21 +83,21 @@
             </div>
 
             <div class="form-group col-md-4">
-                <input type="text" class="form-control" formControlName="numero_cuenta" 
+                <input type="text" class="form-control" formControlName="numero_cuenta"
                  [class.is-invalid]="getNoValido('numero_cuenta')" />
                 <small class="mensaje-error" *ngIf="getNoValido('numero_cuenta')">
                   El campo número de cuenta es obligatorio.
                 </small>
-                 
+
 
             </div>
 
             <div class="form-group col-md-6">
                 <div class="row justify-content-end">
-        
+
                 </div>
               </div>
-        
+
             <div class="form-group col-md-6">
                 <div class="row justify-content-end">
 
@@ -140,20 +134,25 @@
                 <tr>
                     <th scope="col" class="center"> Id </th>
                     <th scope="col" class="center"> Tipo apoyo </th>
+                    <th scope="col" class="center"> Fecha </th>
+                    <th scope="col" class="center"> Entidad Financiera </th>
+                    <th scope="col" class="center"> Tipo cuenta </th>
+                    <th scope="col" class="center"> Numero cuenta </th>
                     <th scope="col" class="center"> Estado solicitud </th>
-                   
-                    
+
+
                 </tr>
             </thead>
             <tbody>
-                <tr>
-    
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  
-                   
-                </tr>
+            <tr *ngFor="let solicitud of solicitudes">
+              <td>{{solicitud._id}}</td>
+              <td>{{solicitud.TipoApoyos.nombre_tipo_apoyo}}</td>
+              <td>{{solicitud.fecha_solicitud | date:'yyyy-MM-dd' }}</td>
+              <td>{{getEntidad(solicitud.entidad_financiera)}}</td>
+              <td>{{getTipoCuenta(solicitud.tipo_cuenta)}}</td>
+              <td>{{solicitud.numero_cuenta}}</td>
+              <td>{{getEstado(solicitud.estado)}}</td>
+            </tr>
             </tbody>
         </table>
     </section>

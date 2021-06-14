@@ -28,14 +28,14 @@
 
         <tbody formArrayName="campo">
           <tr *ngFor="let documento of documentos">
-            <td> {{documento.nombre_documento}}</td>
+            <td> {{documento.tipoDocumento.nombre_documento}}</td>
             <td>
               <input type="file" #documento_{{documento.nombre_documento}} (change)="saveFile($event, '12345442', documento._id)" >
             </td>
             <td></td>
             <td>
               <button (click)="eliminarDocumento('12345442', documento._id)" >Eliminar</button>
-              <button>cargar</button> 
+              <button>cargar</button>
               <!-- <button> eliminar</button> -->
             </td>
           </tr>

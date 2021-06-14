@@ -1,251 +1,246 @@
 <body>
-    <header>
-
-
-        <section id="title">
-
-            <div id="titulo">
-                Sistema de relaciones exteriores
-                <br />
-                Módulo de movilidad académica - Instituciones cooperantes
-            </div>
-
-        </section>
-    </header>
-
-    <section id="body">
-
-        <div id="name">
-            <h3> Crear</h3>
-        </div>
-
-        <br />
-
-        <form  [formGroup]="formularioInstitucionCooperante" class="row justify-content-center form">
-
-            <div  class="form-group col-md-2">
-                <label for="nombreInstitucion" class="label ">Nombre *</label>
-              </div>
-        
-              <div class="form-group col-md-4">
-                <input type="text" class="form-control" formControlName="nombre_institucion" 
-                [class.is-invalid]="getNoValido('nombre_institucion')" />
-              <small class="mensaje-error" *ngIf="getNoValido('nombre_institucion')">
-                El campo nombre es obligatorio.
-              </small>
-                       
-              </div>
-
-            <div class="form-group col-md-2">
-                <label for="pais" class=" label ">País </label>
-            </div>
-
-            <div class="form-group col-md-4">
-                <select #country class="form-control" id="pais" formControlName="pais"
-                [class.is-invalid]="getNoValido('pais')"  (change)='onOptionsSelectedDepartment(country.value)'>
-                <option value="">Seleccione..</option>
-                <option *ngFor="let pais of paises"  value="{{pais.codigo_pais}}"> {{pais.nombre_pais}}  </option>     
-                       </select>
-
-            </div>
-
-            <div class="form-group col-md-2">
-                <label for="departamento" class=" label ">Departamento </label>
-            </div>
-
-            <div class="form-group col-md-4">
-                <select #department class="form-control" formControlName="departamento" [class.is-invalid]="getNoValido('departamento')"
-                (change)='onOptionsSelectedCity(department.value)'>
-                    <option value="">Seleccione..</option>
-                    <option *ngFor="let departamento of departamentos"  value="{{departamento.codigo_departamento}}"> {{departamento.nombre_departamento}}  </option>
-                </select>
-
-            </div>
-
-            <div class="form-group col-md-2">
-                <label for="ciudad" class=" label ">Ciudad </label>
-            </div>
-
-            <div class="form-group col-md-4">
-                <select class="form-control" id="ciudad" formControlName="ciudad" [class.is-invalid]="getNoValido('ciudad')">
-                    <option value="">Seleccione..</option>
-                    <option *ngFor="let ciudad of ciudades"  value="{{ciudad._id}}">{{ciudad.nombre_ciudad}}</option>
-                </select>
+<header>
 
-            </div>
-
-            <div class="form-group col-md-2">
-                <label for="direccion" class="label ">Dirección *</label>
-              </div>
-        
-              <div class="form-group col-md-4">
-                <input type="text" class="form-control"  formControlName="direccion" 
-                [class.is-invalid]="getNoValido('direccion')" />
-              <small class="mensaje-error" *ngIf="getNoValido('direccion')">
-                El campo dirección es obligatorio.
-              </small>
-                       
-              </div>
 
-              <div class="form-group col-md-2">
-                <label for="telefono" class="label ">Teléfono *</label>
-              </div>
-        
-              <div class="form-group col-md-4">
-                <input type="text" class="form-control"  formControlName="telefono" 
-                [class.is-invalid]="getNoValido('telefono')" />
-              <small class="mensaje-error" *ngIf="getNoValido('telefono')">
-                El campo teléfono es obligatorio.
-              </small>
-                       
-              </div>
+  <section id="title">
 
+    <div id="titulo">
+      Sistema de relaciones exteriores
+      <br />
+      Módulo de movilidad académica - Instituciones cooperantes
+    </div>
 
-              <div class="form-group col-md-2">
-                <label for="correo" class="label ">Correo *</label>
-              </div>
-        
-              <div class="form-group col-md-4">
-                <input type="text" class="form-control"  formControlName="email" placeholder="correo@hotmail.com"
-                [class.is-invalid]="getNoValido('email')" />
-              <small class="mensaje-error" *ngIf="getNoValido('email')">
-                El campo correo es obligatorio.
-              </small>
-                       
-              </div>
+  </section>
+</header>
 
-              
-              <div class="form-group col-md-2">
-                <label ></label>
-              </div>
-        
-              <div class="form-group col-md-4">
-                    
-              </div>
+<section id="body">
 
+  <div id="name">
+    <h3> Crear</h3>
+  </div>
 
-                <div class="form-group col-md-6">
-                    <div class="row justify-content-end">
+  <br />
 
-                        <button class="submit"  type="submit" (click)="guardarFormulario()"> Crear </button>
+  <form  [formGroup]="formularioInstitucionCooperante" class="row justify-content-center form">
 
-                    </div>
-                </div> 
+    <div  class="form-group col-md-2">
+      <label for="nombreInstitucion" class="label ">Nombre *</label>
+    </div>
 
-                <div class="form-group col-md-6">
-                    <div class="row justify-content-start">
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control" formControlName="nombre_institucion"
+             [class.is-invalid]="getNoValido('nombre_institucion')" />
+      <small class="mensaje-error" *ngIf="getNoValido('nombre_institucion')">
+        El campo nombre es obligatorio.
+      </small>
 
-                        <button class="submit"  type=""> Cancelar </button>
+    </div>
 
+    <div class="form-group col-md-2">
+      <label for="pais" class=" label ">País </label>
+    </div>
 
-                    </div>
-                </div>
+    <div class="form-group col-md-4">
+      <select #country class="form-control" id="pais" formControlName="pais"
+              [class.is-invalid]="getNoValido('pais')"  (change)='onOptionsSelectedDepartment(country.value)'>
+        <option value="">Seleccione..</option>
+        <option *ngFor="let pais of paises"  value="{{pais.codigo_pais}}"> {{pais.nombre_pais}}  </option>
+      </select>
 
-        </form>
+    </div>
 
-    </section>
+    <div class="form-group col-md-2">
+      <label for="departamento" class=" label ">Departamento </label>
+    </div>
 
+    <div class="form-group col-md-4">
+      <select #department class="form-control" formControlName="departamento" [class.is-invalid]="getNoValido('departamento')"
+              (change)='onOptionsSelectedCity(department.value)'>
+        <option value="">Seleccione..</option>
+        <option *ngFor="let departamento of departamentos"  value="{{departamento.codigo_departamento}}"> {{departamento.nombre_departamento}}  </option>
+      </select>
 
-    <section id="body">
+    </div>
 
-        <div id="name">
-            <h3> Criterios de consulta</h3>
-        </div>
+    <div class="form-group col-md-2">
+      <label for="ciudad" class=" label ">Ciudad </label>
+    </div>
 
-        <br />
+    <div class="form-group col-md-4">
+      <select class="form-control" id="ciudad" formControlName="ciudad" [class.is-invalid]="getNoValido('ciudad')">
+        <option value="">Seleccione..</option>
+        <option *ngFor="let ciudad of ciudades"  value="{{ciudad._id}}">{{ciudad.nombre_ciudad}}</option>
+      </select>
 
-        <form class="row justify-content-center form">
+    </div>
 
-          
-              <div class="form-group col-md-2">
-                <label for="nombre_institucion" class=" label ">Nombre </label>
-            </div>
+    <div class="form-group col-md-2">
+      <label for="direccion" class="label ">Dirección *</label>
+    </div>
 
-            <div class="form-group col-md-4">
-                <select class="form-control" id="nombre_institucion">
-                    <option value="">Seleccione..</option>
-                    <option *ngFor="let institucionCooperante of institucionesCooperantes"  value="{{institucionCooperante._id}}"> {{institucionCooperante.nombre_institucion}}  </option>
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control"  formControlName="direccion"
+             [class.is-invalid]="getNoValido('direccion')" />
+      <small class="mensaje-error" *ngIf="getNoValido('direccion')">
+        El campo dirección es obligatorio.
+      </small>
 
-                </select>
+    </div>
 
-            </div>
+    <div class="form-group col-md-2">
+      <label for="telefono" class="label ">Teléfono *</label>
+    </div>
 
-            <div class="form-group col-md-2">
-                <label for="pais" class=" label ">País </label>
-            </div>
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control"  formControlName="telefono"
+             [class.is-invalid]="getNoValido('telefono')" />
+      <small class="mensaje-error" *ngIf="getNoValido('telefono')">
+        El campo teléfono es obligatorio.
+      </small>
 
-            <div class="form-group col-md-4">
-                <select class="form-control" id="pais">
-                    <option value="">Seleccione..</option>
-                    <option *ngFor="let pais of paises"  value="{{pais.codigo_pais}}"> {{pais.nombre_pais}}  </option>
-                </select>
+    </div>
 
-            </div>
 
-                <div class="form-group col-md-6">
-                    <div class="row justify-content-end">
+    <div class="form-group col-md-2">
+      <label for="correo" class="label ">Correo *</label>
+    </div>
 
-                        <button class="submit"  type="submit"> Consultar </button>
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control"  formControlName="email" placeholder="correo@hotmail.com"
+             [class.is-invalid]="getNoValido('email')" />
+      <small class="mensaje-error" *ngIf="getNoValido('email')">
+        El campo correo es obligatorio.
+      </small>
 
-                    </div>
-                </div> 
+    </div>
 
-                <div class="form-group col-md-6">
-                    <div class="row justify-content-start">
 
-                        <button class="submit"  type=""> Cancelar </button>
+    <div class="form-group col-md-2">
+      <label ></label>
+    </div>
 
-                    </div>
-                </div>
+    <div class="form-group col-md-4">
 
-        </form>
+    </div>
 
 
+    <div class="form-group col-md-6">
+      <div class="row justify-content-end">
 
+        <button class="submit"  type="submit" (click)="guardarFormulario()"> Crear </button>
 
-    </section>
+      </div>
+    </div>
 
+    <div class="form-group col-md-6">
+      <div class="row justify-content-start">
 
-    <section id="body">
+        <button class="submit"  type=""> Cancelar </button>
 
-        <div id="name">
-            <h3> Listado de inscritos</h3>
-        </div>
 
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col" class="center"> Nombre </th>
-                    <th scope="col" class="center"> País </th>
-                    <th scope="col" class="center"> Ciudad </th>
-                    <th scope="col" class="center"> Correo </th>
-                    <th scope="col" class="center"> Teléfono </th>
-                    <th scope="col" class="center"> Acciones </th> 
+      </div>
+    </div>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr  *ngFor="let institucion of instituciones">
-                    <td> {{institucion.nombre_institucion}}</td>
-                    <td>  {{institucion.pais}}</td>
-                    <td>  {{institucion.ciudad}}</td>
-                    <td>  {{institucion.email}}</td>
-                    <td>  {{institucion.telefono}}  </td>
-                    <td> 
-                        <button class="submit" (click)="editarInstitucion(institucion._id )"> Editar </button> 
-                   
-                        <button class="submit" (click)="eliminarInstitucionCooperante(institucion._id, institucion )"> Eliminar  </button> 
+  </form>
 
-                    </td>
-                   
-                </tr>
-               
+</section>
 
-            </tbody>
-        </table>
 
+<section id="body">
 
-    </section>
+  <div id="name">
+    <h3> Criterios de consulta</h3>
+  </div>
+
+  <br />
+
+  <form [formGroup]="formConsulta" class="row justify-content-center form">
+
+    <div class="form-group col-md-2">
+      <label for="pais" class=" label ">País </label>
+    </div>
+
+    <div class="form-group col-md-4">
+      <select formControlName="pais" class="form-control" id="pais">
+        <option value="">Seleccione..</option>
+        <option *ngFor="let pais of paises"  value="{{pais.codigo_pais}}"> {{pais.nombre_pais}}  </option>
+      </select>
+
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="correo" class=" label ">Correo </label>
+    </div>
+
+    <div class="form-group col-md-4">
+      <input formControlName="email" class="form-control" id="email">
+
+    </div>
+
+    <div class="form-group col-md-6">
+      <div class="row justify-content-end">
+
+        <button class="submit"  type="submit" (click)="consultar()" > Consultar </button>
+
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <div class="row justify-content-start">
+
+        <button class="submit"  type="" (click)="cancelarConsulta()" > Cancelar </button>
+
+      </div>
+    </div>
+
+  </form>
+
+
+
+
+</section>
+
+
+<section id="body">
+
+  <div id="name">
+    <h3> Listado de inscritos</h3>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th scope="col" class="center"> Nombre </th>
+      <th scope="col" class="center"> País </th>
+      <th scope="col" class="center"> Ciudad </th>
+      <th scope="col" class="center"> Correo </th>
+      <th scope="col" class="center"> Teléfono </th>
+      <th scope="col" class="center"> Acciones </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr  *ngFor="let institucion of instituciones">
+      <td> {{institucion.nombre_institucion}}</td>
+      <td>  {{getPais(institucion.pais)}}</td>
+      <td>  {{getCiudad(institucion.ciudad)}}</td>
+      <td>  {{institucion.email}}</td>
+      <td>  {{institucion.telefono}}  </td>
+      <td>
+        <button class="submit" (click)="editarInstitucion(institucion._id )"> Editar </button>
+
+        <button class="submit" (click)="eliminarInstitucionCooperante(institucion._id, institucion )"> Eliminar  </button>
+
+      </td>
+
+    </tr>
+
+
+    </tbody>
+  </table>
+
+
+</section>
 
 
 

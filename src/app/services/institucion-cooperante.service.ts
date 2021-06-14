@@ -49,11 +49,15 @@ export class InstitucionCooperanteService {
 
     return this.httpClient.delete<any>(url, this.getHeaders()).toPromise();
   }
+  consultar(consulta: any): Promise<any> {
+    const url = `${environment.backend.institucionCooperante}consultar`;
+    return this.httpClient.post<any>(url, consulta, this.getHeaders()).toPromise();
+  }
 
   private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({
-        'authorization': `Bearer ${environment.TOKEN}`,        
+        'authorization': `Bearer ${environment.TOKEN}`,
         'ContentType': 'application/json'
       })
     }
@@ -62,5 +66,5 @@ export class InstitucionCooperanteService {
   }
 
 
+
 }
- 

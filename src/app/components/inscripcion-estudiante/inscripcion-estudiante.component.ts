@@ -85,12 +85,12 @@ export class InscripcionEstudianteComponent implements OnInit {
     let date = new Date()
     const periodo = `${date.getFullYear()}-${(date.getMonth() < 6 ? 1 : 2)}`
 
-    this.EntornoMovilidadService.getFechasByStatus(periodo, 1).then(resp=>{      
+    this.EntornoMovilidadService.getFechasByStatus(periodo, 1).then(resp=>{
       let inicio = new Date(resp.fecha_inicio)
       let fin = new Date(resp.fecha_final)
-
+      console.log(resp)
       if(date < inicio || date > fin){
-        //this.router.navigateByUrl('/')        
+        this.router.navigateByUrl('/')
       }
     })
 
@@ -103,11 +103,11 @@ export class InscripcionEstudianteComponent implements OnInit {
     this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
   }
 
-  
+
   getNoValido(input: string) {
     return this.formularioInscripcionEstudiante.get(input).invalid &&
-      this.formularioInscripcionEstudiante.get(input).touched; 
-      
+      this.formularioInscripcionEstudiante.get(input).touched;
+
   }
 
    async estudianteSave(aspUisPersonal: any) {
@@ -116,7 +116,7 @@ export class InscripcionEstudianteComponent implements OnInit {
     return aspUisPersonalGuardado;
 
 
-  } 
+  }
 
 
   async guardarFormulario() {
@@ -173,7 +173,7 @@ export class InscripcionEstudianteComponent implements OnInit {
       nombre_institucion: inscribirEstudiante.nombre_institucion,
       nombre_convenio: inscribirEstudiante.nombre_convenio,
       codigo_est: inscribirEstudiante.codigo_est,
-      admitido: -1      
+      admitido: -1
     }
 
      const aspUisPersonalGuardado = await this.InscripcionEstudianteService.saveAspUisPersonal(aspUisPersonal);
@@ -189,7 +189,7 @@ export class InscripcionEstudianteComponent implements OnInit {
      }
 
      console.log(aspUisPersonalGuardado);
-  
+
     this.formularioInscripcionEstudiante.reset();
 
 
@@ -199,7 +199,7 @@ export class InscripcionEstudianteComponent implements OnInit {
   limpiarFormulario() {
     this.formularioInscripcionEstudiante.reset();
   }
- 
+
 
   onOptionsSelectedDepartment(codigo_pais: string) {
     this.DepartamentosService.getDepartamentos(codigo_pais).then((state) => {
@@ -216,7 +216,7 @@ export class InscripcionEstudianteComponent implements OnInit {
 
   onOptionsSelectedInstitucion(tipoMovId: string){
     this.institucionesCooperantes = []
-    if(tipoMovId){      
+    if(tipoMovId){
       this.InstitucionCooperanteService.getInstitucionByTipoMovilidad(tipoMovId).then(instituciones=>{
         instituciones.forEach(element=>{this.institucionesCooperantes.push(element.institucionCooperante)})
       })
@@ -229,7 +229,7 @@ export class InscripcionEstudianteComponent implements OnInit {
       this.ConveniosService.getConvenioByInstitucion(instId).then((convenio) => {
         console.log('result convenio: ',convenio)
         this.convenios= convenio
-      })   
+      })
     }
   }
 

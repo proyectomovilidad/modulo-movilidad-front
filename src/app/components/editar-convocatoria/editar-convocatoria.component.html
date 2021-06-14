@@ -1,4 +1,3 @@
-<body>
 <header>
   <section id="title">
 
@@ -19,7 +18,7 @@
 
   <br />
 
-  <form [formGroup]="formularioCrearConvocatoria" class="row justify-content-center form">
+  <form [formGroup]="formConvocatoria" class="row justify-content-center form">
 
 
 
@@ -169,7 +168,7 @@
     <div class="form-group col-md-6">
       <div class="row justify-content-end">
 
-        <button class="submit" (click)="guardarFormulario()"> Crear </button>
+        <button class="submit" (click)="actualizar()"> Crear </button>
 
       </div>
     </div>
@@ -177,7 +176,7 @@
     <div class="form-group col-md-6">
       <div class="row justify-content-start">
 
-        <button class="submit" type=""> Cancelar </button>
+        <button class="submit" type="" (click)="regresar()" > Cancelar </button>
 
 
       </div>
@@ -187,130 +186,3 @@
 
 </section>
 
-
-<section id="body">
-
-  <div id="name">
-    <h3> Criterios de consulta </h3>
-  </div>
-
-  <br />
-
-  <form [formGroup]="formConsulta" class="row justify-content-center form">
-
-
-    <div class=" form-group col-md-2 ">
-      <label  class="label ">Número de convocatoria * </label>
-    </div>
-
-    <div class="form-group col-md-4">
-      <input type="text" formControlName="_id" class="form-control" id="_id">
-
-    </div>
-
-    <div class="form-group col-md-2">
-      <label for="tipoProyecto" class=" label ">Tipo de proyecto </label>
-    </div>
-
-    <div class="form-group col-md-4">
-      <select class="form-control" id="tipoProyecto" formControlName="tipo_proyecto" >
-        <option value="">Seleccione..</option>
-        <option *ngFor="let tipoProyecto of tiposProyecto"  value="{{tipoProyecto._id}}">
-          {{tipoProyecto.nombre_tipoProyecto}}
-        </option>
-      </select>
-    </div>
-
-    <div class="form-group col-md-2">
-      <label for="institucionCooperante" class=" label ">Institución cooperante </label>
-    </div>
-
-    <div class="form-group col-md-4">
-      <select class="form-control" id="institucionCooperante" placeholder="Institución cooperante" formControlName="nombre_institucion" >
-        <option value="">Seleccione..</option>
-        <option *ngFor="let institucionCooperante of institucionesCooperantes"  value="{{institucionCooperante._id}}">
-          {{institucionCooperante.nombre_institucion}}
-        </option>
-      </select>
-
-    </div>
-
-    <div class="form-group col-md-2">
-      <label  class=" label ">Estado convocatoria </label>
-    </div>
-
-    <div class="form-group col-md-4">
-      <select class="form-control"  placeholder="Estado convocatoria" required formControlName="estado">
-        <option value="">Seleccione..</option>
-        <option value="vigente">Vigente</option>
-        <option value="no vigente">No vigente</option>
-        <option value="activo">Activo</option>
-        <option value="inactivo">incativo</option>
-      </select>
-
-    </div>
-
-
-    <div class="form-group col-md-6">
-      <div class="row justify-content-end">
-
-        <button class="submit" type="submit" (click)="getConsulta()" > Consultar </button>
-      </div>
-    </div>
-
-    <div class="form-group col-md-6">
-      <div class="row justify-content-start">
-
-        <button class="submit" type="" (click)="cancelarConsulta()"> Cancelar </button>
-
-
-      </div>
-    </div>
-
-
-
-  </form>
-</section>
-
-
-<section id="body">
-
-  <div id="name">
-    <h3> Listado de convocatorias</h3>
-  </div>
-
-  <table class="table table-bordered">
-    <thead>
-    <tr>
-      <th scope="col" class="center"> Id </th>
-      <th scope="col" class="center"> Nombre convocatoria </th>
-      <th scope="col" class="center"> Estado convocatoria </th>
-      <th scope="col" class="center"> Institución cooperante </th>
-
-      <th scope="col" class="center"> Acciones </th>
-    </tr>
-    </thead>
-    <tbody>
-
-
-    <tr *ngFor="let convocatoria of convocatorias">
-      <td>{{convocatoria._id}}</td>
-      <td>{{convocatoria.convocatoria.nombre_convocatoria}} </td>
-      <td>{{convocatoria.convocatoria.estado_convocatoria}}</td>
-      <td>{{convocatoria.InstitucionCooperante.nombre_institucion}}</td>
-      <td>
-        <button class="submit" (click)="visualizar(convocatoria._id)" >Ver</button>
-        <button class="submit" (click)="editar(convocatoria._id)" >Editar</button>
-        <button class="submit" (click)="eliminarConvocatoria(convocatoria._id, convocatoria )" >Eliminar</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-
-
-</section>
-
-
-
-
-</body>

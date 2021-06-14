@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
 
 
 @Component({
@@ -10,10 +12,12 @@ import { Router } from '@angular/router';
 export class IndexComponent implements OnInit {
 
   constructor(     private router: Router,
+                   public dialog: MatDialog
      ) { }
 
   ngOnInit(): void {
-    console.log(new Date())
+    console.log(new Date());
+    // this.dialog.open(CustomDialogComponent, { data: {title: 'ejemplo', message: 'probando esto!', type: 'alert'}});
   }
 
   public movilidadentrante() {

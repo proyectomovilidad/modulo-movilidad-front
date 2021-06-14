@@ -1,0 +1,71 @@
+<section id="body">
+
+  <div id="name">
+    <h3> Crear </h3>
+  </div>
+
+  <br />
+
+  <form  [formGroup]="formularioEditarApoyo" class="row justify-content-center form">
+
+
+
+    <div class="form-group col-md-2">
+      <label for="nombreApoyo" class="label ">Nombre apoyo *</label>
+    </div>
+
+    <div class="form-group col-md-10">
+      <input id="nombreApoyo" type="text" formControlName="nombre_tipo_apoyo" class="form-control" placeholder="Nombre apoyo"
+             [class.is-invalid]="getNoValido('nombre_tipo_apoyo')" />
+      <small class="mensaje-error" *ngIf="getNoValido('nombre_tipo_apoyo')">
+        El campo nombre apoyo es obligatorio.
+      </small>
+
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="estratoApoyo" class="label ">estratos *</label>
+    </div>
+
+    <div class="form-group col-md-6">
+      <input id="estratoApoyo" type="text" formControlName="estratos_tipo_apoyo" class="form-control" placeholder="1,2,4"
+             [class.is-invalid]="getNoValido('estratos_tipo_apoyo')" />
+      <small class="mensaje-error" *ngIf="getNoValido('estratos_tipo_apoyo')">
+        El campo estratos apoyo es obligatorio. separe cada estrato por coma(,).
+      </small>
+
+    </div>
+    <div class=" form-group col-md-2 ">
+      <label for="" class=" "> </label>
+    </div>
+
+    <div class="form-group col-md-4">
+
+    </div>
+
+
+    <div class="form-group col-md-6">
+      <div class="row justify-content-end">
+
+        <button class="submit"  (click)="actualizar()"> Actualizar </button>
+
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <div class="row justify-content-start">
+        <button class="submit" type="" (click)="regresar()"> Regresar </button>
+      </div>
+    </div>
+
+
+
+  </form>
+
+
+
+
+</section>
+
+
+<section>

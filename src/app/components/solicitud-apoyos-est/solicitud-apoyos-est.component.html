@@ -77,24 +77,28 @@
   <table class="table table-bordered">
     <thead>
     <tr>
-      <th scope="col" class="center"> Código estudiante </th>
-      <th scope="col" class="center"> Documento </th>
-      <th scope="col" class="center"> Nombre </th>
-      <th scope="col" class="center"> opciones </th>
+      <th scope="col" class="center"> Tipo apoyo </th>
+      <th scope="col" class="center"> Fecha </th>
+      <th scope="col" class="center"> Entidad Financiera </th>
+      <th scope="col" class="center"> Tipo de cuenta </th>
+      <th scope="col" class="center"> Numero de cuenta </th>
+      <th scope="col" class="center"> Opciones </th>
 
 
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let estudiante of estudiantes">
-      <td>{{estudiante.codigo_est}}</td>
-      <td>{{estudiante.documento_id}}</td>
+    <tr *ngFor="let solicitud of solicitudes">
+      <td>{{solicitud.TipoApoyos.nombre_tipo_apoyo}}</td>
+      <td>{{solicitud.fecha_solicitud | date:'yyyy-MM-dd' }}</td>
+      <td>{{getEntidad(solicitud.entidad_financiera)}}</td>
+      <td>{{getTipoCuenta(solicitud.tipo_cuenta)}}</td>
+      <td>{{solicitud.numero_cuenta}}</td>
       <td>
-        {{estudiante.primer_nombre}} {{estudiante.segundo_nombre}}
-        {{estudiante.primer_apellido}} {{estudiante.segundo_apellido}}
-      </td>
-      <td>
-        <button (click)="verSolicitudes(estudiante.documento_id)">Ver Solicitudes</button>
+        <select #estado class="form-control" (change)="editarEstado(solicitud._id, estado.value)" >
+          <option value="">--{{getEstado(solicitud.estado)}}--</option>
+          <option  *ngFor="let estado of estados" value="{{estado.val}}">{{estado.nm}}</option>
+        </select>
       </td>
 
     </tr>

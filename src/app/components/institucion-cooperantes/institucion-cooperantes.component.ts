@@ -8,6 +8,7 @@ import { CiudadesService } from './../../services/ciudades.service';
 import { InstitucionCooperanteService } from './../../services/institucion-cooperante.service';
 import { Router } from '@angular/router';
 import { DatosInstitucionComponent } from './../datos-institucion/datos-institucion.component';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
 
 
 @Component({
@@ -22,18 +23,18 @@ export class InstitucionCooperantesComponent implements OnInit {
   public ciudades: any;
   public instituciones: any;
   public institucionesCooperantes: any;
-
-
   public formularioInstitucionCooperante: FormGroup;
+  public formConsulta: FormGroup;
+  public ciudadesD: any;
+
   constructor(private formBuilder: FormBuilder,
-
-    public InstitucionCooperanteService: InstitucionCooperanteService,
-    public PaisesService: PaisesService,
-    public DepartamentosService: DepartamentosService,
-    public CiudadesService: CiudadesService,
-    private router: Router,
-    public dialog: MatDialog) {
-
+              public InstitucionCooperanteService: InstitucionCooperanteService,
+              public PaisesService: PaisesService,
+              public DepartamentosService: DepartamentosService,
+              public CiudadesService: CiudadesService,
+              private router: Router,
+              public dialog: MatDialog
+  ) {
     this.formularioInstitucionCooperante = this.formBuilder.group({
       nombre_institucion: ['', Validators.required],
       pais: ['', Validators.required],
@@ -44,11 +45,25 @@ export class InstitucionCooperantesComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]]
     });
 
+    this.formConsulta = this.formBuilder.group({
+      _id: [''],
+      nombre_institucion: [''],
+      pais: [''],
+      departamento: [''],
+      ciudad: [''],
+      email: ['']
+    });
+
   }
 
 
   async ngOnInit(): Promise<void> {
     this.paises = await this.PaisesService.getPais();
+    this.CiudadesService.getAllCiudades().then(resp => {
+      if (resp.status === true) {
+        this.ciudadesD = resp.data;
+      }
+    });
     this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
     this.instituciones = await this.InstitucionCooperanteService.getAllInstitucionesCooperantes();
   }
@@ -82,13 +97,19 @@ export class InstitucionCooperantesComponent implements OnInit {
     const institucionCooperanteGuardada = await this.InstitucionCooperanteService.saveInstitucionCooperante(institucionCooperante);
     console.log(institucionCooperanteGuardada);
 
+    let code = institucionCooperanteGuardada._id ? 201 : 210;
+
+    this.dialog.open(CustomDialogComponent, { data: { code: code, message: institucionCooperanteGuardada.message}});
+    this.instituciones = await this.InstitucionCooperanteService.getAllInstitucionesCooperantes();
+
+
     this.formularioInstitucionCooperante.reset();
   }
 
   public editarInstitucion(id: any) {
     this.router.navigateByUrl('/editar-institucion?_id=' + id);
   }
-    
+
 
   abrirEditarInstitucion(institucion) {
     console.log(institucion)
@@ -106,14 +127,56 @@ export class InstitucionCooperantesComponent implements OnInit {
       this.ciudades = cities
     })
   }
- 
+
   async eliminarInstitucionCooperante(id: any, obj: any) {
     let respuesta = await this.InstitucionCooperanteService.deleteInstitucionCooperante(id);
     console.log(respuesta);
-    if (respuesta.status) {
-
-      this.instituciones.splice(this.instituciones.indexOf(obj), 1)
+    let code = 213;
+    if (respuesta.status === true) {
+      this.instituciones.splice(this.instituciones.indexOf(obj), 1);
+      code = 214;
     }
+    this.dialog.open(CustomDialogComponent, { data: { code: code, message: respuesta.message}});
   }
 
+  consultar() {
+    const dataForm = this.formConsulta.value;
+
+    const consulta = {
+      "_id": dataForm._id,
+      "nombre_institucion": dataForm.nombre_institucion,
+      "pais": dataForm.pais,
+      "departamento": dataForm.departamento,
+      "ciudad": dataForm.ciudad,
+      "email": dataForm.email
+    }
+
+    this.InstitucionCooperanteService.consultar(consulta).then(resp => {
+      if (resp.status == true) {
+        this.instituciones = resp.data;
+      }
+    });
+  }
+
+  cancelarConsulta() {
+    this.InstitucionCooperanteService.consultar({}).then(resp => {
+      if (resp.status == true) {
+        this.instituciones = resp.data;
+      }
+    });
+
+    this.formConsulta.reset();
+  }
+
+  getPais(codigo) {
+    const pais = this.paises.find(x => x.codigo_pais == codigo) || {nombre_pais: '--No existe--'}
+    return pais.nombre_pais
+  }
+
+  getCiudad(id){
+    console.log(this.ciudadesD)
+    const result = this.ciudadesD.find(x=> x._id == id)
+
+    return result ? result.nombre_ciudad : '-No Existe-'
+  }
 }

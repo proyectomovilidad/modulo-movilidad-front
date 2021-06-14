@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { InscripcionEstudianteService } from 'src/app/services/inscripcion-estudiante.service';
 import { TipoDocumentoService } from './../../services/tipo-documento.service';
 import { CargaDocumentoService } from './../../services/carga-documento.service';
 import { environment } from 'src/environments/environment';
+import {MatDialog} from '@angular/material/dialog';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
 
 
 @Component({
@@ -22,17 +24,23 @@ export class CargaDocumentosComponent implements OnInit {
   mensajeErr: any;
   constructor(private formBuilder: FormBuilder,
               private router: Router,
+              private route: ActivatedRoute,
               private inscripcionEstudianteService: InscripcionEstudianteService,
               private TipoDocumentoService: TipoDocumentoService,
-              private CargaDocumentoService: CargaDocumentoService) {
-    
-    this.crearCampo(); 
-  
-  }  
+              private CargaDocumentoService: CargaDocumentoService,
+              private dialog: MatDialog,
+  ) {
+
+    this.crearCampo();
+
+  }
 
   async ngOnInit(): Promise<void> {
-    if(environment.user.Inscripcion.estado != '2'){
-      //this.router.navigateByUrl('/');      
+    const user = environment.user;
+
+    if(user.Inscripcion.estado !== '2' || !this.route.snapshot.data['roles'].includes(user.role)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
+      this.dialog.open(CustomDialogComponent, { data: { code: 403}});
     }
 
     this.estudiante = environment.user
@@ -44,12 +52,12 @@ export class CargaDocumentosComponent implements OnInit {
     });
     //this.documentos = await this.TipoDocumentoService.getDocumento();
   }
- 
+
   get campo() {
     return this.formularioDocumentos.get('campo') as FormArray;
   }
 
-  public cargarDatos(id: any) {   
+  public cargarDatos(id: any) {
   }
 
   getDocumentos(){
@@ -59,7 +67,7 @@ export class CargaDocumentosComponent implements OnInit {
       if(resp.status)this.documentos = resp.data;
     });
   }
-  
+
   saveFile(e, indid, tipoDocumentoId){
     let formData = new FormData()
     this.file = e.target.files[0]
@@ -67,14 +75,14 @@ export class CargaDocumentosComponent implements OnInit {
     let extension = this.file.name.split('.').pop()
 
     if(['pdf', 'PDF'].includes(extension) ){
-      //se agrega el archivo subido a un formulario 
+      //se agrega el archivo subido a un formulario
       //              |campo| |archivo|  |nombre de archivo|
       formData.append('file', this.file, `${this.estudiante.Inscripcion._id}-${tipoDocumentoId}.${extension}` )
-      
+
       this.CargaDocumentoService.saveDocumentoFile(formData).then(res=>{
         console.log(res)
       })
-      this.mensajeErr = '' 
+      this.mensajeErr = ''
     }else{
       this.mensajeErr = "seleccione un archivo valido"
       console.log("archivo no es valido")
@@ -82,18 +90,18 @@ export class CargaDocumentosComponent implements OnInit {
 
   }
 
-    
-  crearCampo(){ 
+
+  crearCampo(){
     this.formularioDocumentos = this.formBuilder.group ({
 
       campo: this.formBuilder.array([
-      ])   
+      ])
     });
-  } 
-  
+  }
+
 
   agregarCampo() {
-    this.campo.push(this.formBuilder.control('', Validators.required) ); 
+    this.campo.push(this.formBuilder.control('', Validators.required) );
   }
 
   eliminarDocumento(inscripcionId, tipoDocumentoId){
@@ -106,12 +114,12 @@ export class CargaDocumentosComponent implements OnInit {
   eliminarCampo( i : number) {
 
     this.campo.removeAt(i);
-      
+
   }
-  
- 
- 
+
+
+
 
 
 }
- 
+
