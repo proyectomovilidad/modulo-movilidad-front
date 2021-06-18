@@ -29,7 +29,8 @@ export const environment = {
     inscripcion: BASE + '/inscripcion/',
     autenticacion: BASE + '/autenticacion/',
     entornoMovilidad: BASE + '/entornoMovilidad/',
-    cargaDocumento: BASE + '/cargaDocumentos/'
+    cargaDocumento: BASE + '/cargaDocumentos/',
+    usuarios: BASE + '/usuarios/'
   },
 
   TOKEN: '',

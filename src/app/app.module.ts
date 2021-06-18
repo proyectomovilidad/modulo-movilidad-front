@@ -80,6 +80,8 @@ import { CustomDialogComponent } from './components/custom-dialog/custom-dialog.
 import { EditarTipoApoyoComponent } from './components/editar-tipo-apoyo/editar-tipo-apoyo.component';
 import { SolicitudApoyosEstComponent } from './components/solicitud-apoyos-est/solicitud-apoyos-est.component';
 import { EditarConvocatoriaComponent } from './components/editar-convocatoria/editar-convocatoria.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { EditarUsuarioComponent } from './components/editar-usuario/editar-usuario.component';
 
 
 @NgModule({
@@ -126,6 +128,8 @@ import { EditarConvocatoriaComponent } from './components/editar-convocatoria/ed
     EditarTipoApoyoComponent,
     SolicitudApoyosEstComponent,
     EditarConvocatoriaComponent,
+    UsuariosComponent,
+    EditarUsuarioComponent,
 
   ],
   entryComponents: [ObservacionesComponent],

@@ -38,6 +38,8 @@ import { VisualizarProfesorComponent } from './components/visualizar-profesor/vi
 import { EditarTipoApoyoComponent } from './components/editar-tipo-apoyo/editar-tipo-apoyo.component';
 import {SolicitudApoyosEstComponent} from './components/solicitud-apoyos-est/solicitud-apoyos-est.component';
 import {EditarConvocatoriaComponent} from './components/editar-convocatoria/editar-convocatoria.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { EditarUsuarioComponent } from './components/editar-usuario/editar-usuario.component';
 
 
 const appRoutes: Routes = [
@@ -80,7 +82,8 @@ const appRoutes: Routes = [
   { path: 'editar-tipo-apoyo', component: EditarTipoApoyoComponent },
   { path: 'solicitud-apoyos-est', component: SolicitudApoyosEstComponent, data: { roles: [1, 5]} },
   { path: 'editar-convocatoria', component: EditarConvocatoriaComponent, data: { roles: [1, 5]} },
-
+  { path: 'usuarios', component: UsuariosComponent},
+  { path: 'editar-usuario', component: EditarUsuarioComponent},
   {path: '**', component: ErrorComponent }
 ];
 
