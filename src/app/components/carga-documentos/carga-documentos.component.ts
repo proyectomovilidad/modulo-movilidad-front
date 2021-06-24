@@ -25,10 +25,11 @@ export class CargaDocumentosComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
+              private dialog: MatDialog,
+
               private inscripcionEstudianteService: InscripcionEstudianteService,
               private TipoDocumentoService: TipoDocumentoService,
               private CargaDocumentoService: CargaDocumentoService,
-              private dialog: MatDialog,
   ) {
 
     this.crearCampo();
@@ -38,7 +39,7 @@ export class CargaDocumentosComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const user = environment.user;
 
-    if(user.Inscripcion.estado !== '2' || !this.route.snapshot.data['roles'].includes(user.role)){
+    if(user.Inscripcion.estado !== '2' || !this.route.snapshot.data['roles'].includes(user.rol)){
       this.router.navigateByUrl(environment.unauthorizedPage);
       this.dialog.open(CustomDialogComponent, { data: { code: 403}});
     }

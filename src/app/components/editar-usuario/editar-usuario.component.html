@@ -1,0 +1,70 @@
+<section id="body">
+
+  <div id="name">
+    <h3> Crear </h3>
+  </div>
+
+  <br />
+
+  <form [formGroup]="formUsuario" class="row justify-content-center form">
+
+
+
+    <div class="form-group col-md-2">
+      <label class="label ">Coreo*</label>
+    </div>
+
+    <div class="form-group col-md-4">
+      <input type="text" formControlName="correo" class="form-control" placeholder="Correo"
+             [class.is-invalid]="getNoValido('correo')" />
+      <small class="mensaje-error" *ngIf="getNoValido('correo')">
+        El campo Correo es obligatorio.
+      </small>
+    </div>
+
+    <div class="form-group col-md-2">
+      <label class="label ">Contraseña *</label>
+    </div>
+
+    <div class="form-group col-md-4">
+      <input type="password" formControlName="contrasena" class="form-control"
+             placeholder="Contraseña" [class.is-invalid]="getNoValido('contrasena')" />
+      <small class="mensaje-error" *ngIf="getNoValido('contrasena')">
+        El campo Contraseña es obligatorio.
+      </small>
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="programaAcademico" class=" label">Rol *</label>
+    </div>
+
+    <div class="form-group col-md-4">
+      <select class="form-control" id="rol" formControlName="rol"
+              [class.is-invalid]="getNoValido('rol')">
+        <option value="">Seleccione..</option>
+        <option *ngFor="let rol of roles" value="{{rol.val}}">
+          {{rol.texto}} </option>
+      </select>
+    </div>
+
+
+    <div class="form-group col-md-6">
+      <div class="row justify-content-end">
+
+        <button class="submit" (click)="actualizar()"> Crear </button>
+
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <div class="row justify-content-start">
+
+        <button class="submit" type="button"  (click)="cancelar()"> Cancelar </button>
+
+
+      </div>
+    </div>
+
+  </form>
+
+</section>

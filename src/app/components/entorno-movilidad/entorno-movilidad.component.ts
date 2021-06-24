@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { EntornoMovilidadService } from './../../services/entorno-movilidad.service';
+import {MatDialog} from '@angular/material/dialog';
+import {environment} from '../../../environments/environment';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
 
 
 @Component({
@@ -10,12 +13,15 @@ import { EntornoMovilidadService } from './../../services/entorno-movilidad.serv
   styleUrls: ['./entorno-movilidad.component.css']
 })
 export class EntornoMovilidadComponent implements OnInit {
-  
+
   public formfechamovilidadsaliente: FormGroup;
   public formfechamovilidadentrante: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,
-    private entornoMovilidadService: EntornoMovilidadService) {
+              private entornoMovilidadService: EntornoMovilidadService,
+              private router: Router,
+              private dialog: MatDialog,
+  ) {
     this.formfechamovilidadsaliente = this.formBuilder.group({
       fecha_inicio_mov_saliente: [Date, Validators.required],
       fecha_final_mov_saliente: [Date, Validators.required],
@@ -29,7 +35,16 @@ export class EntornoMovilidadComponent implements OnInit {
     })
   }
 
+  public entornos_mov:any = []
+
   ngOnInit(): void {
+    const user = environment.user;
+
+    if(!this.route.snapshot.data['roles'].includes(user.rol)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
+      this.dialog.open(CustomDialogComponent, { data: { code: 403}});
+    }
+    this.obtenerDatos();
   }
 
   getNoValidoSaliente(input: string) {
@@ -58,10 +73,10 @@ export class EntornoMovilidadComponent implements OnInit {
 
     console.log('fecha: ', new Date(fechasMovilidadSaliente.fecha_final_mov_saliente.toString()))
 
-    const fechasMovSalienteGuardado = await this.entornoMovilidadService.saveFechasMovilidad(movilidadSaliente).then(res=>{
-      console.log(res)
+    this.entornoMovilidadService.saveFechasMovilidad(movilidadSaliente).then(res=>{
+      this.obtenerDatos();
     });
-    
+
 
     this.formfechamovilidadsaliente.reset();
 
@@ -97,7 +112,7 @@ export class EntornoMovilidadComponent implements OnInit {
     console.log();
 
     this.formfechamovilidadentrante.reset();
-
+    this.obtenerDatos();
   }
 
   limpiarFormularioEntrante() {
@@ -107,4 +122,24 @@ export class EntornoMovilidadComponent implements OnInit {
   limpiarFormularioSaliente() {
     this.formfechamovilidadsaliente.reset();
   }
-} 
+
+  editar(_id: any) {
+    this.router.navigateByUrl('/editar-entorno-movilidad?_id=' + _id);
+  }
+
+  eliminarEntorno(_id: any) {
+    this.entornoMovilidadService.eliminarEntorno(_id).then( resp => {
+      if (resp.status === true) {
+        this.obtenerDatos();
+      }
+    })
+  }
+
+  private obtenerDatos() {
+    this.entornoMovilidadService.getFechas().then( resp => {
+      if (resp.status === true) {
+        this.entornos_mov = resp.data;
+      }
+    })
+  }
+}

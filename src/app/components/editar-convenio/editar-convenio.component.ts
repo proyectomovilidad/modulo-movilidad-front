@@ -9,6 +9,9 @@ import { ConveniosService } from './../../services/convenios.service';
 import { TipoConvenioService } from './../../services/tipo-convenio.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {environment} from '../../../environments/environment';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
 
 
 @Component({
@@ -37,8 +40,9 @@ export class EditarConvenioComponent implements OnInit {
     public ProgramasService: ProgramasService,
     public TipoMovilidadService: TipoMovilidadService,
     public TipoConvenioService: TipoConvenioService,
-    private router: Router,
-    private route: ActivatedRoute,
+              private router: Router,
+              private route: ActivatedRoute,
+              private dialog: MatDialog,
   ) {
     this.formularioEditarConvenio = this.formBuilder.group({
       nombre_convenio: ['', Validators.required],
@@ -60,6 +64,13 @@ export class EditarConvenioComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    const user = environment.user;
+
+    if(!this.route.snapshot.data['roles'].includes(user.rol)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
+      this.dialog.open(CustomDialogComponent, { data: { code: 403}});
+    }
+
     this.paises = await this.PaisesService.getPais();
     this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
     this.programas = await this.ProgramasService.getProgramaAcademico();

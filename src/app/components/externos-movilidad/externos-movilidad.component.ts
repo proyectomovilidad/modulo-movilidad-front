@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
 import { InstitucionCooperanteService } from './../../services/institucion-cooperante.service';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { InscripcionExternoService } from './../../services/inscripcion-externo.service';
+import {MatDialog} from '@angular/material/dialog';
+import {environment} from '../../../environments/environment';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
 
 @Component({
   selector: 'app-externos-movilidad',
@@ -26,7 +29,7 @@ export class ExternosMovilidadComponent implements OnInit {
     {val: 2, nm:"Carga documentos"},
     {val: 3, nm:"Movilidad"},
     {val: 4, nm:"Finalizado"},
-    {val: 5, nm:"Prorroga"},    
+    {val: 5, nm:"Prorroga"},
   ]
 
   constructor(
@@ -34,7 +37,9 @@ export class ExternosMovilidadComponent implements OnInit {
     public InstitucionCooperanteService: InstitucionCooperanteService,
     private formBuilder: FormBuilder,
 
+    private route: ActivatedRoute,
     private router: Router,
+    private dialog: MatDialog,
     private inscripcionExternoService: InscripcionExternoService) {
 
     this.formularioConsultarExterno = this.formBuilder.group({
@@ -45,9 +50,15 @@ export class ExternosMovilidadComponent implements OnInit {
       tipo_movilidad: [],
       nombre_institucion: []
     });
-  } 
+  }
 
   async ngOnInit(): Promise<void> {
+    const user = environment.user;
+
+    if(!this.route.snapshot.data['roles'].includes(user.rol)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
+      this.dialog.open(CustomDialogComponent, { data: { code: 403}});
+    }
 
     this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
     this.instituciones = await this.InstitucionCooperanteService.getInstitucionCooperante();

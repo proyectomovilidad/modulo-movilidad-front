@@ -4,6 +4,7 @@ import { ProfesoresService } from './../../services/profesores.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
+import {environment} from '../../../environments/environment';
 
 
 @Component({
@@ -31,10 +32,13 @@ export class ProfesoresModuloComponent implements OnInit {
     });
   }
 
+  usuario_id = environment.user._id
+  rol = environment.user.rol
+
   async ngOnInit(): Promise<void> {
     this.convocatorias = await this.ConvocatoriaService.getConvocatorias();
-    this.profesores = await this.ProfesoresService.getProfesoresConsulta();
-    console.log(this.profesores)
+    this.profesores = await this.ProfesoresService.consultarProfesores({});
+    console.log('profesores: ',this.profesores)
   }
 
   public editarProfesor(id: any) {
@@ -51,7 +55,7 @@ export class ProfesoresModuloComponent implements OnInit {
       return Object.values(this.formularioConsultarProfesor.controls).forEach(control => {
         control.markAsTouched();
       });
-    } 
+    }
 
     const consultarProfesor = this.formularioConsultarProfesor.value;
 

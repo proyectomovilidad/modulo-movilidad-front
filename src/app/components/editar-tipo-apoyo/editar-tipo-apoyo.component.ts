@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-editar-tipo-apoyo',
@@ -25,6 +26,13 @@ export class EditarTipoApoyoComponent implements OnInit {
 
 
   ngOnInit(): void {
+    const user = environment.user;
+
+    if(!this.route.snapshot.data['roles'].includes(user.rol)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
+      this.dialog.open(CustomDialogComponent, { data: { code: 403}});
+    }
+
     this.formularioEditarApoyo = this.formBuilder.group({
       nombre_tipo_apoyo: ['', Validators.required],
       estratos_tipo_apoyo: ['', Validators.required]

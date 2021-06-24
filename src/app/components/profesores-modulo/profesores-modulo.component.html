@@ -39,7 +39,7 @@
             <div class="form-group col-md-4">
                 <select class="form-control" formControlName="codigo_conv">
                     <option value="">Seleccione..</option>
-                    <option *ngFor="let convocatoria of convocatorias" value="{{convocatoria.codigo_conv}}">  <!-- Valor que corresponde a la base de datos--> 
+                    <option *ngFor="let convocatoria of convocatorias" value="{{convocatoria.codigo_conv}}">  <!-- Valor que corresponde a la base de datos-->
                         {{convocatoria.nombre_convocatoria}}</option>
 
 
@@ -99,7 +99,7 @@
                         <div *ngIf="profesor.profesores"> {{profesor.profesores.documento_id}} </div>
                         {{profesor.documento_id}}
                     </td>
-                    
+
                     <td>
                         <div *ngIf="profesor.profesores"> {{profesor.profesores.primer_nombre}}
                             {{profesor.profesores.primer_apellido}} </div>
@@ -112,12 +112,12 @@
                                 {{convocatoria.nombre_convocatoria}}</div>
                         </div>
                     </td>
-                    <td> <div *ngIf="profesor.profesores"> {{profesor.profesores.duracion}} </div>  
+                    <td> <div *ngIf="profesor.profesores"> {{profesor.profesores.duracion}} </div>
                         {{profesor.duracion}} días</td>
                     <td>
-                        <button class="submit" (click)="visualizar(profesor._id)" > Ver</button> 
-                        <button class="submit" (click)="editarProfesor(profesor._id )"> Editar </button>
-                        <button class="submit" (click)="eliminarProfesor(profesor.documento_id, profesor )"> Eliminar
+                        <button class="submit" (click)="visualizar(profesor._id)" > Ver</button>
+                        <button class="submit" (click)="editarProfesor(profesor._id )" *ngIf="[1,5].includes(rol) || usuario_id == profesor._id" > Editar </button>
+                        <button class="submit" (click)="eliminarProfesor(profesor.documento_id, profesor )" *ngIf="[1,5].includes(rol)" > Eliminar
                         </button> </td>
 
                 </tr>

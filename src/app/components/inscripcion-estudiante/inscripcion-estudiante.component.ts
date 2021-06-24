@@ -16,6 +16,8 @@ import { EntornoMovilidadService } from './../../services/entorno-movilidad.serv
 import { Router } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
+import {environment} from '../../../environments/environment';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
 
 @Component({
   selector: 'app-inscripcion-estudiante',
@@ -82,6 +84,13 @@ export class InscripcionEstudianteComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    const user = environment.user;
+
+    if(!this.route.snapshot.data['roles'].includes(user.rol)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
+      this.dialog.open(CustomDialogComponent, { data: { code: 403}});
+    }
+
     let date = new Date()
     const periodo = `${date.getFullYear()}-${(date.getMonth() < 6 ? 1 : 2)}`
 
@@ -91,6 +100,7 @@ export class InscripcionEstudianteComponent implements OnInit {
       console.log(resp)
       if(date < inicio || date > fin){
         this.router.navigateByUrl('/')
+        this.dialog.open(CustomDialogComponent, { data: { message: 'No hay fechas abiertas', title: 'Prohibido', type: 'warning' }});
       }
     })
 

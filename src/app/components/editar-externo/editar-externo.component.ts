@@ -7,11 +7,14 @@ import { InstitucionCooperanteService } from './../../services/institucion-coope
 import { ProgramasService } from './../../services/programas.service';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
 import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ConvocatoriaComponent } from './../convocatoria/convocatoria.component';
 import { ConveniosService } from './../../services/convenios.service';
 import { InscripcionExternoService } from './../../services/inscripcion-externo.service';
- 
+import {MatDialog} from '@angular/material/dialog';
+import {environment} from '../../../environments/environment';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
+
 @Component({
   selector: 'app-editar-externo',
   templateUrl: './editar-externo.component.html',
@@ -43,7 +46,9 @@ export class EditarExternoComponent implements OnInit {
     public TipoMovilidadService: TipoMovilidadService,
     public InscripcionExternoService: InscripcionExternoService,
     public ConveniosService: ConveniosService,
-    private route: ActivatedRoute,
+              private router: Router,
+              private route: ActivatedRoute,
+              private dialog: MatDialog,
   ) {
 
     this.formularioEditarExterno = this.formBuilder.group({
@@ -82,6 +87,13 @@ export class EditarExternoComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    const user = environment.user;
+
+    if(!this.route.snapshot.data['roles'].includes(user.rol)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
+      this.dialog.open(CustomDialogComponent, { data: { code: 403}});
+    }
+
     this.paises = await this.PaisesService.getPais();
     this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
     this.programas = await this.ProgramasService.getProgramaAcademico();

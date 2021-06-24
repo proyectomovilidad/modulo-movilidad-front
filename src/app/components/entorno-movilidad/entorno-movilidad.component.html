@@ -10,7 +10,7 @@
   </header>
 
 <section id="body">
- 
+
     <div id="name">
         <h3> Fechas movilidad saliente</h3>
     </div>
@@ -60,7 +60,7 @@
                 <option value="2021-2">2021-2</option>
             </select>
         </div>
-        
+
         <div class="form-group col-md-2">
         </div>
 
@@ -164,4 +164,41 @@
     </form>
 </section>
 
-</body> 
+
+ <section id="body">
+
+   <div id="name">
+     <h3> Listado de Entorno Movilidad</h3>
+   </div>
+
+   <table class="table table-bordered">
+     <thead>
+     <tr>
+       <th scope="col" class="center"> Tipo </th>
+       <th scope="col" class="center"> Periodo </th>
+       <th scope="col" class="center"> Fecha Inicio </th>
+       <th scope="col" class="center"> Fecha Fin </th>
+       <th scope="col" class="center"> Acciones </th>
+     </tr>
+     </thead>
+     <tbody>
+
+
+     <tr *ngFor="let entorno of entornos_mov">
+       <td>{{entorno.tipo == 1 ? 'Movilidad Entrante' : 'Movilidad Saliente' }}</td>
+       <td>{{entorno.periodo}} </td>
+       <td>{{entorno.fecha_inicio | date: "dd-MM-yyyy" }}</td>
+       <td>{{entorno.fecha_final | date: "dd-MM-yyyy" }}</td>
+       <td>
+         <button class="submit" (click)="editar(entorno._id)" >Editar</button>
+         <button class="submit" (click)="eliminarEntorno(entorno._id )" >Eliminar</button>
+       </td>
+     </tr>
+     </tbody>
+   </table>
+
+
+ </section>
+
+
+</body>

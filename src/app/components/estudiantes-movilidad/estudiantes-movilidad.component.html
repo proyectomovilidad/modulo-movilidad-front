@@ -108,7 +108,7 @@
             <div class="form-group col-md-6">
                 <div class="row justify-content-start">
 
-                    <button class="submit" type=""> Cancelar </button>
+                    <button class="submit" type="" (click)="cnacelarConsulta()" > Cancelar </button>
 
 
                 </div>
@@ -174,10 +174,10 @@
                     </td>
 
                   <td>
-                     
-                    <select #estado class="form-control" (change)="cambiarEstado(estado, estudiante.Inscripcion._id)" >             
-                      <option value="">{{estudiante.Inscripcion.estado}}</option>      
-                      <option  *ngFor="let estado of estados" value="{{estado.val}}">{{estado.nm}}</option>                      
+
+                    <select #estado class="form-control" (change)="cambiarEstado(estado, estudiante.Inscripcion._id)" >
+                      <option value="">{{estudiante.Inscripcion.estado}}</option>
+                      <option  *ngFor="let estado of estados" value="{{estado.val}}">{{estado.nm}}</option>
                     </select>
                   </td>
 

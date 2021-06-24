@@ -44,7 +44,7 @@ export class SolicitudApoyosComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    if(this.user.Inscripcion.estado != '2' && !this.route.snapshot.data['roles'].includes(this.user.role)){
+    if(this.user.Inscripcion.estado != '2' && !this.route.snapshot.data['roles'].includes(this.user.rol)){
       this.router.navigateByUrl(environment.unauthorizedPage);
       this.dialog.open(CustomDialogComponent, { data: { code: 403}});
     }

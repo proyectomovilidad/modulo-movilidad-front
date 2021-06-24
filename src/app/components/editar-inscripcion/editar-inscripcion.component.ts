@@ -7,10 +7,13 @@ import { InstitucionCooperanteService } from './../../services/institucion-coope
 import { ProgramasService } from './../../services/programas.service';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
 import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { InscripcionEstudianteService } from './../../services/inscripcion-estudiante.service';
 import { ConvocatoriaComponent } from './../convocatoria/convocatoria.component';
 import { ConveniosService } from './../../services/convenios.service';
+import {environment} from '../../../environments/environment';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-editar-inscripcion',
@@ -43,7 +46,9 @@ export class EditarInscripcionComponent implements OnInit {
     public TipoMovilidadService: TipoMovilidadService,
     public InscripcionEstudianteService: InscripcionEstudianteService,
     public ConveniosService: ConveniosService,
-    private route: ActivatedRoute,
+              private router: Router,
+              private route: ActivatedRoute,
+              private dialog: MatDialog,
   ) {
     this.formularioEditarEstudiante = this.formBuilder.group({
       codigo_est: [0, Validators.required],
@@ -79,6 +84,13 @@ export class EditarInscripcionComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    const user = environment.user;
+
+    if(!this.route.snapshot.data['roles'].includes(user.rol)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
+      this.dialog.open(CustomDialogComponent, { data: { code: 403}});
+    }
+
     this.paises = await this.PaisesService.getPais();
     this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
     this.programas = await this.ProgramasService.getProgramaAcademico();

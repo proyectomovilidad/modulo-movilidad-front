@@ -1,0 +1,181 @@
+<body>
+<header>
+
+
+  <section id="title">
+
+    <div id="titulo">
+      Sistema de relaciones exteriores
+      <br />
+      Módulo de usuarios
+    </div>
+
+  </section>
+
+
+  <section id="body">
+
+    <div id="name">
+      <h3> Crear </h3>
+    </div>
+
+    <br />
+
+    <form [formGroup]="formUsuario" class="row justify-content-center form">
+
+
+
+      <div class="form-group col-md-2">
+        <label class="label ">Coreo*</label>
+      </div>
+
+      <div class="form-group col-md-4">
+        <input type="text" formControlName="correo" class="form-control" placeholder="Correo"
+               [class.is-invalid]="getNoValido('correo')" />
+        <small class="mensaje-error" *ngIf="getNoValido('correo')">
+          El campo Correo es obligatorio.
+        </small>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label class="label ">Contraseña *</label>
+      </div>
+
+      <div class="form-group col-md-4">
+        <input type="password" formControlName="contrasena" class="form-control"
+               placeholder="Contraseña" [class.is-invalid]="getNoValido('contrasena')" />
+        <small class="mensaje-error" *ngIf="getNoValido('contrasena')">
+          El campo Contraseña es obligatorio.
+        </small>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="programaAcademico" class=" label">Rol *</label>
+      </div>
+
+      <div class="form-group col-md-4">
+        <select class="form-control" id="rol" formControlName="rol"
+                [class.is-invalid]="getNoValido('rol')">
+          <option value="">Seleccione..</option>
+          <option *ngFor="let rol of roles" value="{{rol.val}}">
+            {{rol.texto}} </option>
+        </select>
+      </div>
+
+
+      <div class="form-group col-md-6">
+        <div class="row justify-content-end">
+
+          <button class="submit" (click)="guardarUsuario()"> Crear </button>
+
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <div class="row justify-content-start">
+
+          <button class="submit" type="button"  (click)="cancelarConsulta()"> Cancelar </button>
+
+
+        </div>
+      </div>
+
+    </form>
+
+  </section>
+
+  <section id="body">
+
+    <div id="name">
+      <h3> Criterios de consulta </h3>
+    </div>
+
+    <br />
+
+    <form [formGroup]="formConsulta" class="row justify-content-center form">
+
+
+      <div class=" form-group col-md-2 ">
+        <label class="label ">correo * </label>
+      </div>
+
+      <div class="form-group col-md-4">
+        <input type="text" class="form-control" formControlName="correo">
+
+      </div>
+
+      <div class="form-group col-md-2">
+        <label class=" label ">rol </label>
+      </div>
+
+      <div class="form-group col-md-4">
+        <select class="form-control"  formControlName="rol">
+          <option value="">Seleccione..</option>
+          <option *ngFor="let rol of roles" value="{{rol.val}}">
+            {{rol.texto}} </option>
+        </select>
+
+      </div>
+
+
+      <div class="form-group col-md-6">
+        <div class="row justify-content-end">
+
+          <button class="submit" (click)="consultar()"> Consultar </button>
+
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <div class="row justify-content-start">
+
+          <button class="submit" type="" (click)="limpiarFormulario()" > Cancelar </button>
+
+
+        </div>
+      </div>
+
+
+
+    </form>
+  </section>
+
+  <section id="body">
+
+    <div id="name">
+      <h3> Listado de Usuarios</h3>
+    </div>
+
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th scope="col" class="center"> Id </th>
+        <th scope="col" class="center"> Correo </th>
+        <th scope="col" class="center"> Rol </th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr *ngFor="let usuario of usuarios">
+        <td style="text-align: center;">
+          {{usuario._id}}
+        </td>
+        <td>
+          {{usuario.correo}}
+        </td>
+        <td style="text-align: center;">
+          {{getRol(usuario.rol)}}
+        </td>
+        <td>
+          <button class="submit" (click)="editar(usuario._id )"> Editar </button>
+          <button class="submit" (click)="eliminar(usuario._id)"> Eliminar </button>
+      </tr>
+
+      </tbody>
+    </table>
+
+
+  </section>
+
+</header>
+</body>

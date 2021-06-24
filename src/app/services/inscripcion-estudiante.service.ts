@@ -8,13 +8,13 @@ import { environment } from 'src/environments/environment';
 export class InscripcionEstudianteService {
 
   public url: String;
- 
-  constructor( private httpClient: HttpClient) { 
+
+  constructor( private httpClient: HttpClient) {
   }
 
   public saveAspUisPersonal(aspUisPersonal: any): Promise<any> {
     const url = `${environment.backend.aspUisPersonal}`;
-    
+
     return this.httpClient.post<any>(url, aspUisPersonal, this.getHeaders()).toPromise();
   }
 
@@ -23,7 +23,7 @@ export class InscripcionEstudianteService {
     const url = `${environment.backend.aspUisPersonal}${_id}`;
 
     return this.httpClient.post<any>(url, aspUisPersonal, this.getHeaders()).toPromise();
-  } 
+  }
 
   public getAspUisPersonal(_id: any): Promise<any> {
     const url = `${environment.backend.aspUisPersonal}getAspUisPersonalById/${_id}`;
@@ -38,10 +38,10 @@ export class InscripcionEstudianteService {
 
   public saveAspUisAcademic(aspUisAcademic: any): Promise<any> {
     const url = `${environment.backend.aspUisAcademic}`;
-    
+
     return this.httpClient.post<any>(url, aspUisAcademic, this.getHeaders()).toPromise();
   }
-  
+
   public updateAspUisAcademic(aspUisAcademic: any, _id: any): Promise<any> {
     const url = `${environment.backend.aspUisAcademic}/${_id}`;
 
@@ -62,7 +62,7 @@ export class InscripcionEstudianteService {
 
   public saveInscripcion(inscripcion: any): Promise<any> {
     const url = `${environment.backend.inscripcion}`;
-    
+
     return this.httpClient.post<any>(url, inscripcion, this.getHeaders()).toPromise();
   }
 
@@ -81,7 +81,7 @@ export class InscripcionEstudianteService {
 
   public deleteInscripcion( _id: any): Promise<any> {
     const url = `${environment.backend.aspUisAcademic}deleteAspiranteUisAcademic/${_id}`;
-    
+
     return this.httpClient.delete<any>(url, this.getHeaders()).toPromise();
   }
 
@@ -90,21 +90,21 @@ export class InscripcionEstudianteService {
     return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
-  public consultarEstudiantes(consulta) {
+  public consultarEstudiantes(consulta): Promise <any> {
     const url = `${environment.backend.aspUisPersonal}consultarEstudiantes/`;
-    
+
     return this.httpClient.post<any>(url, consulta, this.getHeaders()).toPromise();
 
   }
 
   public cambiarEstadoInscripcionById(estado, id): Promise<any>{
    const url = `${environment.backend.inscripcion}cambiarEstadoInscripcionById/${id}`;
-   
+
    return this.httpClient.post<any>(url, estado, this.getHeaders()).toPromise();
- 
+
   }
 
-  public getInscripcionByEstudiante(field, value): Promise<any> {    
+  public getInscripcionByEstudiante(field, value): Promise<any> {
     const url = `${environment.backend.inscripcion}getInscripcionByEstudiante/${field}/${value}`;
     return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
@@ -112,7 +112,7 @@ export class InscripcionEstudianteService {
   private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({
-        'authorization': `Bearer ${environment.TOKEN}`,        
+        'authorization': `Bearer ${environment.TOKEN}`,
         'ContentType': 'application/json'
       })
     };

@@ -24,7 +24,7 @@ export class VisualizarConvocatoriaComponent implements OnInit {
   async ngOnInit() {
     const user = environment.user;
 
-    if( !this.route.snapshot.data['roles'].includes(user.role)){
+    if( !this.route.snapshot.data['roles'].includes(user.rol)){
       this.router.navigateByUrl(environment.unauthorizedPage);
       this.dialog.open(CustomDialogComponent, { data: { code: 403}});
     }

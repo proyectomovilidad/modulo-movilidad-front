@@ -5,6 +5,9 @@ import { ProfesoresService } from './../../services/profesores.service';
 import { Router } from '@angular/router';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
 import { ActivatedRoute } from '@angular/router';
+import {environment} from '../../../environments/environment';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 
 @Component({
@@ -27,8 +30,9 @@ export class EditarProfesorComponent implements OnInit {
     private ProfesoresService: ProfesoresService,
     private ConvocatoriaService: ConvocatoriaService,
     private TiposDocumentosIdService: TiposDocumentosIdService,
-    private router: Router,
-    private route: ActivatedRoute,
+              private router: Router,
+              private route: ActivatedRoute,
+              private dialog: MatDialog,
   ) {
 
     this.formularioEditarProfesor = this.formBuilder.group({
@@ -39,7 +43,7 @@ export class EditarProfesorComponent implements OnInit {
       primer_apellido: ['', Validators.required],
       segundo_apellido: [''],
       genero: ['', Validators.required],
-      nombre_convocatoria: ['', Validators.required],
+      codigo_conv: ['', Validators.required],
       actividad: ['', Validators.required],
       duracion: ['', Validators.required],
       periodo_inscrip: ['', Validators.required],
@@ -54,6 +58,13 @@ export class EditarProfesorComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    const user = environment.user;
+
+    if(!this.route.snapshot.data['roles'].includes(user.rol)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
+      this.dialog.open(CustomDialogComponent, { data: { code: 403}});
+    }
+
     this.profesores = await this.ProfesoresService.getAllProfesores();
     this.convocatorias = await this.ConvocatoriaService.getConvocatorias();
     this.tiposDocumento = await this.TiposDocumentosIdService.getTipoDocumentoId();
@@ -75,7 +86,7 @@ export class EditarProfesorComponent implements OnInit {
       this.formularioEditarProfesor.controls.segundo_apellido.setValue(profesor.segundo_apellido);
       this.formularioEditarProfesor.controls.genero.setValue(profesor.genero);
       this.formularioEditarProfesor.controls.actividad.setValue(profesor.actividad);
-      this.formularioEditarProfesor.controls.nombre_convocatoria.setValue(profesor.nombre_convocatoria);
+      this.formularioEditarProfesor.controls.codigo_conv.setValue(profesor.codigo_conv);
       this.formularioEditarProfesor.controls.duracion.setValue(profesor.duracion);
       this.formularioEditarProfesor.controls.periodo_inscrip.setValue(profesor.periodo_inscrip);
       this.formularioEditarProfesor.controls.ano_inscrip.setValue(profesor.ano_inscrip);
@@ -115,7 +126,7 @@ export class EditarProfesorComponent implements OnInit {
       primer_apellido: editarProfesor.primer_apellido,
       segundo_apellido: editarProfesor.segundo_apellido,
       genero: editarProfesor.genero,
-      nombre_convocatoria: editarProfesor.nombre_convocatoria,
+      codigo_conv: editarProfesor.codigo_conv,
       actividad: editarProfesor.actividad,
       duracion: editarProfesor.duracion,
       periodo_inscrip: editarProfesor.periodo_inscrip,

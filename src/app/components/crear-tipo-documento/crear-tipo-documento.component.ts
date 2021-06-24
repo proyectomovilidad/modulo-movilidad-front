@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { GuardadoExitosoComponent } from './../guardado-exitoso/guardado-exitoso.component';
+import {ActivatedRoute, Router} from '@angular/router';
+import {environment} from '../../../environments/environment';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
 
 @Component({
   selector: 'app-crear-tipo-documento',
@@ -12,10 +15,12 @@ export class CrearTipoDocumentoComponent implements OnInit {
   convenio_id: String = '';
 
   public formularioTpDocumento: FormGroup;
-  constructor(private formBuilder: FormBuilder, 
-               public dialog: MatDialog) { 
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private route: ActivatedRoute,
+              private dialog: MatDialog,) {
 
-    this.formularioTpDocumento = this.formBuilder.group({            
+    this.formularioTpDocumento = this.formBuilder.group({
       nombre_documento: this.formBuilder.array([])
     });
 
@@ -26,18 +31,24 @@ export class CrearTipoDocumentoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const user = environment.user;
+
+    if( !this.route.snapshot.data['roles'].includes(user.rol)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
+      this.dialog.open(CustomDialogComponent, { data: { code: 403}});
+    }
   }
 
   getNoValido(input: string) {
-    return this.formularioTpDocumento.get(input).invalid && 
+    return this.formularioTpDocumento.get(input).invalid &&
     this.formularioTpDocumento.get(input).touched;
   }
 
   guardarFormulario() {
     if (this.formularioTpDocumento.invalid) {
       return Object.values(this.formularioTpDocumento.controls).forEach(control => {
-        control.markAsTouched();        
-      });   
+        control.markAsTouched();
+      });
     }
 
     console.log('formulario: ', this.formularioTpDocumento.value)
@@ -48,13 +59,13 @@ export class CrearTipoDocumentoComponent implements OnInit {
 
     this.formularioTpDocumento.reset();
   }
-  
+
   get campo() {
     return this.formularioTpDocumento.get('nombre_documento') as FormArray;
   }
 
   agregarCampo() {
-    this.campo.push(this.formBuilder.control('', Validators.required) ); 
+    this.campo.push(this.formBuilder.control('', Validators.required) );
   }
 
 }

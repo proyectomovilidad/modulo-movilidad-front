@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
 import { InstitucionCooperanteService } from './../../services/institucion-cooperante.service';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { InscripcionEstudianteService } from 'src/app/services/inscripcion-estudiante.service';
+import {environment} from '../../../environments/environment';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 
 @Component({
@@ -38,7 +41,9 @@ export class EstudiantesMovilidadComponent implements OnInit {
     public InstitucionCooperanteService: InstitucionCooperanteService,
     private formBuilder: FormBuilder,
 
+    private route: ActivatedRoute,
     private router: Router,
+    private dialog: MatDialog,
     private inscripcionEstudianteService: InscripcionEstudianteService) {
 
     this.formularioConsultarEstudiante = this.formBuilder.group({
@@ -52,7 +57,12 @@ export class EstudiantesMovilidadComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    const user = environment.user;
 
+    if(!this.route.snapshot.data['roles'].includes(user.rol)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
+      this.dialog.open(CustomDialogComponent, { data: { code: 403}});
+    }
     this.tiposMovilidad = await this.TipoMovilidadService.getTipoMovilidad();
     this.instituciones = await this.InstitucionCooperanteService.getInstitucionCooperante();
 
@@ -131,6 +141,10 @@ export class EstudiantesMovilidadComponent implements OnInit {
     this.router.navigateByUrl('/visualizar-estudiante?_id=' + id);
   }
 
+  public async cnacelarConsulta() {
+    this.formularioConsultarEstudiante.reset();
+    this.estudiantes = await this.inscripcionEstudianteService.consultarEstudiantes({});
+  }
 
 }
 

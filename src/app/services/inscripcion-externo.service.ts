@@ -24,7 +24,7 @@ export class InscripcionExternoService {
     return this.httpClient.post<any>(url, aspExtAcademic, this.getHeaders()).toPromise();
   }
 
- 
+
   public saveInscripcion(inscripcion: any): Promise<any> {
     const url = `${environment.backend.inscripcion}`;
 
@@ -38,7 +38,7 @@ export class InscripcionExternoService {
 
   public getAspExternoAcademic(_id: any): Promise<any> {
    const url = `${environment.backend.aspExtAcademic}getAspExtAcademicById/${_id}`;
-   //const url = `${environment.backend.aspUisAcademic}getAspExtAcademicById/:_id`; 
+   //const url = `${environment.backend.aspUisAcademic}getAspExtAcademicById/:_id`;
    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
@@ -52,12 +52,12 @@ export class InscripcionExternoService {
     return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
-  
+
   public UpdateAspExtPersonal(aspExtPersonal: any, _id: any): Promise<any> {
     const url = `${environment.backend.aspExtPersonal}${_id}`;
 
     return this.httpClient.post<any>(url, aspExtPersonal, this.getHeaders()).toPromise();
-  } 
+  }
 
   public updateAspExtAcademic(aspExtAcademic: any, _id: any): Promise<any> {
     const url = `${environment.backend.aspExtAcademic}/${_id}`;
@@ -82,24 +82,23 @@ export class InscripcionExternoService {
     return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
   }
 
-  public consultarExternos(consulta) {
+  public consultarExternos(consulta): Promise<any> {
     const url = `${environment.backend.aspExtPersonal}consultarExternos/`;
 
     return this.httpClient.post<any>(url, consulta, this.getHeaders()).toPromise();
-
   }
 
   public cambiarEstadoInscripcionById(estado, id): Promise<any>{
    const url = `${environment.backend.inscripcion}cambiarEstadoInscripcionById/${id}`;
-   
+
    return this.httpClient.post<any>(url, estado, this.getHeaders()).toPromise();
-  
+
   }
 
   private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({
-        'authorization': `Bearer ${environment.TOKEN}`,        
+        'authorization': `Bearer ${environment.TOKEN}`,
         'ContentType': 'application/json'
       })
     };

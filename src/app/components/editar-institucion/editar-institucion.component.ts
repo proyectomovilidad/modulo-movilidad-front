@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { InscripcionEstudianteService } from 'src/app/services/inscripcion-estudiante.service';
 import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-editar-institucion',
@@ -47,6 +48,13 @@ export class EditarInstitucionComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    const user = environment.user;
+
+    if(!this.route.snapshot.data['roles'].includes(user.rol)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
+      this.dialog.open(CustomDialogComponent, { data: { code: 403}});
+    }
+
     this.paises =  await this.PaisesService.getPais();
 
     const id = this.route.snapshot.queryParams._id

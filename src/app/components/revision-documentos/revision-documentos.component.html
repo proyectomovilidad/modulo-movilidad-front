@@ -35,11 +35,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let documento of documentos">
-                   
-                    <td>{{documento.nombre_documento}}</td>
+
+                    <td>{{documento.tipoDocumento.nombre_documento}}</td>
                     <td></td>
                     <td>  {{documento.estado_documento}} </td>
-                    <td> 
+                    <td>
                       <button class="submit" (click)="openDialog()"> Editar </button>
                       <button class="submit" (click)="descargarDocumentoByNombre(documento._id)" >Descargar</button>
                     </td>
@@ -71,7 +71,7 @@
 
         </form>
 
-        
+
 
     </section>
 

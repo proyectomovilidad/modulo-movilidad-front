@@ -29,11 +29,12 @@ export const environment = {
     inscripcion: BASE + '/inscripcion/',
     autenticacion: BASE + '/autenticacion/',
     entornoMovilidad: BASE + '/entornoMovilidad/',
-    cargaDocumento: BASE + '/cargaDocumentos/'
+    cargaDocumento: BASE + '/cargaDocumentos/',
+    usuarios: BASE + '/usuarios/'
   },
 
   TOKEN: '',
-  user: {role: -1, Inscripcion: {estado: null}},
+  user: {_id: '', rol: -1, Inscripcion: {estado: null}},
   unauthorizedPage: '/',
   entidadesFinancieras: [
     {codigo: '1', nombre: 'Bancolombia'},
@@ -43,7 +44,14 @@ export const environment = {
     {codigo: '5', nombre: 'Bancoomeva'},
     {codigo: '6', nombre: 'Banco Popular'},
   ],
-  tipoCuentas: [{codigo: '1', nombre: 'Ahorros'}, {codigo: '2', nombre: 'Corriente'}]
+  tipoCuentas: [{codigo: '1', nombre: 'Ahorros'}, {codigo: '2', nombre: 'Corriente'}],
+  roles: [
+    { val: 1, texto: 'Administrador' },
+    { val: 2, texto: 'Estudiante' },
+    { val: 3, texto: 'EstudianteExterno' },
+    { val: 4, texto: 'Profesor' },
+    { val: 5, texto: 'ProfesionalRelext' }
+  ]
 
 };
 

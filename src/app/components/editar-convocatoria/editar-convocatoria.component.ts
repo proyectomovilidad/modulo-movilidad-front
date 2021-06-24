@@ -33,6 +33,7 @@ export class EditarConvocatoriaComponent implements OnInit {
       nombre_institucion: ['', Validators.required],
       tipo_proyecto: ['', Validators.required],
       link_inscripcion: ['', Validators.required],
+      codigo_conv: ['', Validators.required]
     });
   }
 
@@ -46,8 +47,8 @@ export class EditarConvocatoriaComponent implements OnInit {
     this.id = this.route.snapshot.queryParams._id
     const user = environment.user;
 
-    if( !this.route.snapshot.data['roles'].includes(user.role)){
-      // this.router.navigateByUrl(environment.unauthorizedPage);
+    if( !this.route.snapshot.data['roles'].includes(user.rol)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
       this.dialog.open(CustomDialogComponent, { data: { code: 403}});
     }
     this.institucionesCooperantes = await this.institucionCooperanteService.getInstitucionCooperante();
@@ -66,7 +67,8 @@ export class EditarConvocatoriaComponent implements OnInit {
           fecha_suscripcion: this.convocatoria.fecha_suscripcion,
           nombre_institucion: this.convocatoria.nombre_institucion,
           tipo_proyecto: this.convocatoria.tipo_proyecto,
-          link_inscripcion: this.convocatoria.link_inscripcion})
+          link_inscripcion: this.convocatoria.link_inscripcion,
+          codigo_conv: '002'})
       }
     });
   }

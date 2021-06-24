@@ -17,7 +17,7 @@
 
     </header>
 
-    <section id="body">
+    <section id="body" *ngIf="[1,5].includes(rol)" >
 
         <div id="name">
             <h3> Crear </h3>
@@ -366,7 +366,7 @@
 
                 <tr *ngFor="let convenio of convenios">
 
-                    <td style="text-align: center;">                        
+                    <td style="text-align: center;">
                         {{convenio._id}}
                     </td>
 
@@ -389,7 +389,7 @@
                                 {{institucionCooperante.nombre_institucion}}</div>
                             <div *ngIf="convenio.convenio && institucionCooperante._id == convenio.convenio.nombre_institucion">
                                 {{institucionCooperante.nombre_institucion}}</div>
-                        </div>  
+                        </div>
 
                     </td>
 
@@ -399,16 +399,16 @@
                                 {{tipoMovilidad.nombre_movilidad}}</div>
                             <div *ngIf="convenio.convenio && tipoMovilidad._id == convenio.convenio.tipo_movilidad">
                                 {{tipoMovilidad.nombre_movilidad}}</div>
-                        </div>  
+                        </div>
 
-                    <td> 
+                    <td>
 
-                    
-                        
+
+
                         <button class="submit" (click)="verConvenio(convenio._id )"> ver </button>
-                        <button class="submit" (click)="editarConvenio(convenio._id )"> Editar </button>
-                        <button class="submit" (click)="eliminarConvenio(convenio._id, convenio )"> Eliminar </button>
-                    
+                        <button class="submit" (click)="editarConvenio(convenio._id )" *ngIf="[1,5].includes(rol)" > Editar </button>
+                        <button class="submit" (click)="eliminarConvenio(convenio._id, convenio )" *ngIf="[1,5].includes(rol)" > Eliminar </button>
+
                 </tr>
 
             </tbody>

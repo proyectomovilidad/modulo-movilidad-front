@@ -25,18 +25,38 @@ export class EntornoMovilidadService {
   public saveFechasMovilidad(formData: any): Promise<any>{
     const url = `${environment.backend.entornoMovilidad}`
 
-    return this.httpClient.post<any>(url, formData, this.getHeaders()).toPromise();    
+    return this.httpClient.post<any>(url, formData, this.getHeaders()).toPromise();
   }
 
   public getFechasByStatus(periodo, tipo): Promise<any>{
     const url = `${environment.backend.entornoMovilidad}/getFechasByStatus/${periodo}/${tipo}`
-    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();    
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
+  }
+
+  public getFechas(): Promise<any>{
+    const url = `${environment.backend.entornoMovilidad}/getFechas/`
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
+  }
+
+  public eliminarEntorno(id): Promise<any> {
+    const url = `${environment.backend.entornoMovilidad}/eliminarEntorno/${id}`
+    return this.httpClient.delete<any>(url, this.getHeaders()).toPromise();
+  }
+
+  getEntornoMovilidadById(id: any): Promise<any> {
+    const url = `${environment.backend.entornoMovilidad}/getEntornoMovilidadById/${id}`
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise();
+  }
+
+  updateEntornoMovilidad(id: any, dataEntorno: any): Promise<any> {
+    const url = `${environment.backend.entornoMovilidad}updateEntornoMov/${id}`;
+    return this.httpClient.post<any>(url, dataEntorno, this.getHeaders()).toPromise();
   }
 
   private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({
-        'authorization': `Bearer ${environment.TOKEN}`,        
+        'authorization': `Bearer ${environment.TOKEN}`,
         'ContentType': 'application/json'
       })
     };

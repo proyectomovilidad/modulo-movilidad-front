@@ -1,0 +1,67 @@
+<section id="body">
+
+  <div id="name">
+    <h3> Fechas movilidad saliente</h3>
+  </div>
+  <br />
+
+  <form [formGroup]="formEntorno" class="row justify-content-center form">
+
+    <div class="form-group col-md-2">
+      <label for="fecha_inicio_movilidad" class="label ">Fecha inicio movilidad *</label>
+    </div>
+
+    <div class="form-group col-md-4">
+      <input required readonly class="input input-date1" placeholder="fecha nacimiento"
+             [matDatepicker]="fechaInicioMovilidad" formControlName="fecha_inicio_movilidad"
+             (click)="fechaInicioMovilidad.open()" [class.is-invalid]="getNoValido('fecha_inicio_movilidad')" />
+      <small class="mensaje-error" *ngIf="getNoValido('fecha_inicio_movilidad')">
+        El campo fecha de nacimiento es obligatorio.
+      </small>
+      <mat-datepicker #fechaInicioMovilidad></mat-datepicker>
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="fecha_final_movilidad" class="label ">Fecha final movilidad *</label>
+    </div>
+
+    <div class="form-group col-md-4">
+      <input required class="input input-date1" placeholder="fecha final"
+             [matDatepicker]="fechaFinalMovilidad" formControlName="fecha_final_movilidad"
+             (click)="fechaFinalMovilidad.open()"
+             [class.is-invalid]="getNoValido('fecha_final_movilidad')" />
+      <!--- <input type="text"  formControlName="fecha_final_movilidad">-->
+      <small class="mensaje-error" *ngIf="getNoValido('fecha_final_movilidad')">
+        El campo fecha de nacimiento es obligatorio.
+      </small>
+      <mat-datepicker #fechaFinalMovilidad></mat-datepicker>
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="ano" class=" label ">Periodo </label>
+    </div>
+
+    <div class="form-group col-md-4">
+      <input type="text" formControlName="periodo" >
+    </div>
+
+    <div class="form-group col-md-2">
+    </div>
+
+    <div class="form-group col-md-4">
+    </div>
+
+    <div class="form-group col-md-6">
+      <div class="row justify-content-start">
+        <button class="submit" (click)="actualizar()"> Guardar </button>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <div class="row justify-content-start">
+        <button class="submit" (click)="regresar()"> Regresar </button>
+      </div>
+    </div>
+
+  </form>
+</section>

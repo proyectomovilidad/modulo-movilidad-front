@@ -28,7 +28,7 @@ export class RevisionDocumentosComponent implements OnInit {
   }
 
 
-  ngOnInit(){   
+  ngOnInit(){
     const codigo_est = this.route.snapshot.queryParams.codigo_est
     const documento_id = this.route.snapshot.queryParams.documento_id
 
@@ -49,12 +49,13 @@ export class RevisionDocumentosComponent implements OnInit {
       })
     }
 
-   
+
   }
 
   getDocumentos(){
     this.TipoDocumentoService.getDocumentoByConvenio(this.estudiante.nombre_convenio).then(resp=>{
       if(resp.status)this.documentos = resp.data;
+      console.log(resp.data)
     });
   }
 

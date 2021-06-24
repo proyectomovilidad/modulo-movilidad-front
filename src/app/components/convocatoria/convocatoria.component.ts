@@ -44,6 +44,7 @@ export class ConvocatoriaComponent implements OnInit {
       nombre_institucion: ['', Validators.required],
       tipo_proyecto: ['', Validators.required],
       link_inscripcion: ['', Validators.required],
+      codigo_conv: ['', Validators.required],
     });
 
     this.formConsulta = this.formBuilder.group({
@@ -54,11 +55,14 @@ export class ConvocatoriaComponent implements OnInit {
     });
   }
 
+  rol = environment.user.rol
+  roles = [1, 4, 5]
+
   async ngOnInit(): Promise<void> {
     const user = environment.user;
 
-    if( !this.route.snapshot.data['roles'].includes(user.role)){
-     // this.router.navigateByUrl(environment.unauthorizedPage);
+    if( !this.route.snapshot.data['roles'].includes(user.rol)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
       this.dialog.open(CustomDialogComponent, { data: { code: 403}});
     }
 

@@ -7,7 +7,10 @@ import { TipoMovilidadService } from './../../services/tipo-movilidad.service';
 import { ProgramasService } from './../../services/programas.service';
 import { ConveniosService } from './../../services/convenios.service';
 import { TipoConvenioService } from './../../services/tipo-convenio.service';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {environment} from '../../../environments/environment';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 
 @Component({
@@ -34,7 +37,10 @@ export class ConveniosComponent implements OnInit {
     public ProgramasService: ProgramasService,
     public TipoMovilidadService: TipoMovilidadService,
     public TipoConvenioService: TipoConvenioService,
-    private router: Router,
+              private router: Router,
+              private route: ActivatedRoute,
+              private dialog: MatDialog,
+
 
 
   ) {
@@ -64,9 +70,14 @@ export class ConveniosComponent implements OnInit {
     });
 
   }
+  rol = environment.user.rol
 
   async ngOnInit(): Promise<void> {
-
+    let user = environment.user;
+    if(!this.route.snapshot.data['roles'].includes(user.rol)){
+      this.router.navigateByUrl(environment.unauthorizedPage);
+      this.dialog.open(CustomDialogComponent, { data: { code: 403}});
+    }
     this.paises = await this.PaisesService.getPais();
     this.institucionesCooperantes = await this.InstitucionCooperanteService.getInstitucionCooperante();
     this.programas = await this.ProgramasService.getProgramaAcademico();
@@ -107,9 +118,9 @@ export class ConveniosComponent implements OnInit {
       tipo_convenio: crearConvenio.tipo_convenio,
       tipo_movilidad: crearConvenio.tipo_movilidad,
       nombre_institucion: crearConvenio.nombre_institucion,
-      pais: crearConvenio.pais, 
-    } 
- 
+      pais: crearConvenio.pais,
+    }
+
     const convenioGuardado = await this.ConveniosService.saveConvenio(convenio);
     console.log(convenioGuardado);
 
@@ -134,9 +145,9 @@ export class ConveniosComponent implements OnInit {
 
       "TipoMovilidad._id": consultarConvenio.tipo_movilidad,
       "InstitucionCooperante._id": consultarConvenio.nombre_institucion
-      
+
     }
-  
+
     this.convenios = await this.ConveniosService.consultarConvenios(consulta)
     console.log("resultado", this.convenios)
 
@@ -156,9 +167,9 @@ export class ConveniosComponent implements OnInit {
 
   async eliminarConvenio(id: any, obj: any) {
     let respuesta = await this.ConveniosService.deleteConvenio(id);
-    console.log(respuesta); 
+    console.log(respuesta);
     if (respuesta.status) {
-  
+
         this.convenios.splice(this.convenios.indexOf(obj),1)
       }
     }

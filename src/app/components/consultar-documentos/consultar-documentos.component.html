@@ -1,118 +1,127 @@
 <body>
 
 
-    <header>
+<header>
 
 
-        <section id="title">
+  <section id="title">
 
-            <div id="titulo">
-                Sistema de relaciones exteriores
-                <br />
-                Módulo de movilidad académica - Consultar documentos
-            </div>
+    <div id="titulo">
+      Sistema de relaciones exteriores
+      <br />
+      Módulo de movilidad académica - Consultar documentos
+    </div>
 
-        </section>
-
-
-    </header>
-
-    <section id="body">
-
-        <div id="name">
-            <h3> Criterios de consulta</h3>
-        </div>
-
-        <br />
-
-        <form [formGroup]="formularioConsultarEstudiante" class="row justify-content-center form">
-
-    
-            <div class=" form-group col-md-2 ">
-                <label  class="label ">Código estudiante </label>
-            </div>
-
-            <div class="form-group col-md-4">
-                <input type="text" class="form-control"  formControlName="codigo_est"placeholder="Código estudiante" >
-
-            </div>
-
-                <div class=" form-group col-md-2 ">
-                    <label> </label>
-                </div>
-
-                <div class="form-group col-md-4">
-                </div>
+  </section>
 
 
-                <div class="form-group col-md-6">
-                    <div class="row justify-content-end">
+</header>
 
-                        <button class="submit" (click)="consultarEstudiante()"> Consultar </button>
+<section id="body">
 
-                    </div>
-                </div> 
+  <div id="name">
+    <h3> Criterios de consulta</h3>
+  </div>
 
-                <div class="form-group col-md-6">
-                    <div class="row justify-content-start">
+  <br />
 
-                        <button class="submit"  (click)="limpiarFormulario()" > Cancelar </button>
+  <form [formGroup]="formularioConsultarEstudiante" class="row justify-content-center form">
 
+    <div class=" form-group col-md-2 ">
+      <label  class="label ">Código estudiante </label>
+    </div>
 
-                    </div>
-                </div>
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control"  formControlName="codigo_est" placeholder="Código estudiante" >
+    </div>
 
-        </form>
-    </section>
+    <div class=" form-group col-md-2 ">
+      <label  class="label ">Documento id </label>
+    </div>
 
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control"  formControlName="documento_id"placeholder="documento externo" >
+    </div>
 
-    <section id="body">
+    <div class=" form-group col-md-2 ">
+      <label> </label>
+    </div>
 
-        <div id="name">
-            <h3> Listado de inscritos</h3>
-        </div>
-
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col" class="center"> Id </th>
-                    <th scope="col" class="center"> Nombre </th>
-                    <th scope="col" class="center"> Acciones </th>
-                </tr>
-            </thead>
-            <tbody>
-              
-                <tr *ngFor="let estudiante of estudiantes"> 
-                  <td>  
-                    <div *ngIf="estudiante.aspUisPersonal"> {{estudiante.aspUisPersonal.codigo_est}} </div> 
-                        {{estudiante.codigo_est}}
-                  </td>
-                    <td>
-                        <div *ngIf="estudiante.aspUisPersonal"> {{estudiante.aspUisPersonal.primer_nombre}}
-                            {{estudiante.aspUisPersonal.primer_apellido}}</div>
-                        {{estudiante.primer_nombre}} {{estudiante.primer_apellido}}</td>
-                    <td>
-                  <button class="submit" (click)="revisarDocumentoUis(estudiante.codigo_est )"> Consultar </button> </td>
-                </tr>
-
-                <tr *ngFor="let estudiante of externos"> 
-                  <td>  
-                    <div *ngIf="estudiante.aspExtPersonal"> {{estudiante.aspExtPersonal.documento_id}} </div> 
-                        {{estudiante.documento_id}}
-                  </td>
-                    <td>
-                        <div *ngIf="estudiante.aspExtPersonal"> {{estudiante.aspExtPersonal.primer_nombre}}
-                            {{estudiante.aspExtPersonal.primer_apellido}}</div>
-                        {{estudiante.primer_nombre}} {{estudiante.primer_apellido}}</td>
-                    <td>
-                  <button class="submit" (click)="revisarDocumentoExt(estudiante.documento_id )"> Consultar </button> </td>
-                </tr>
-
-            </tbody>
-        </table>
+    <div class="form-group col-md-4">
+    </div>
 
 
-    </section>
+    <div class="form-group col-md-6">
+      <div class="row justify-content-end">
+
+        <button class="submit" (click)="consultarEstudiante()"> Consultar </button>
+
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <div class="row justify-content-start">
+
+        <button class="submit"  (click)="cancelarConsulta()" > Cancelar </button>
+
+
+      </div>
+    </div>
+
+  </form>
+</section>
+
+
+<section id="body">
+
+  <div id="name">
+    <h3> Listado de inscritos</h3>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th scope="col" class="center"> codigo Estudiante / Documento id </th>
+      <th scope="col" class="center"> Nombre </th>
+      <th scope="col" class="center"> Acciones </th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let estudiante of estudiantes">
+      <td>
+        <div *ngIf="estudiante.aspUisPersonal"> {{estudiante.aspUisPersonal.codigo_est}} </div>
+        {{estudiante.codigo_est}}
+      </td>
+      <td>
+        <div *ngIf="estudiante.aspUisPersonal"> {{estudiante.aspUisPersonal.primer_nombre}}
+          {{estudiante.aspUisPersonal.primer_apellido}}</div>
+        {{estudiante.primer_nombre}} {{estudiante.primer_apellido}}</td>
+      <td>
+        <button class="submit" *ngIf="estudiante.aspUisPersonal" (click)="revisarDocumentoUis(estudiante.aspUisPersonal.codigo_est )"> Consultar </button>
+        <button class="submit" *ngIf="estudiante.codigo_est" (click)="revisarDocumentoUis(estudiante.codigo_est )"> Consultar </button> </td>
+    </tr>
+
+    <tr *ngFor="let estudiant of externos">
+      <td>
+        <div *ngIf="estudiant.aspExtPersonal"> {{estudiant.aspExtPersonal.documento_id}} </div>
+        {{estudiant.documento_id}}
+      </td>
+      <td>
+        <div *ngIf="estudiant.aspExtPersonal"> {{estudiant.aspExtPersonal.primer_nombre}}
+          {{estudiant.aspExtPersonal.primer_apellido}}</div>
+        {{estudiant.primer_nombre}} {{estudiant.primer_apellido}}</td>
+      <td>
+
+        <button class="submit" *ngIf="estudiant.aspExtPersonal" (click)="revisarDocumentoExt(estudiant.aspExtPersonal.documento_id )"> Consultar </button>
+        <button class="submit" *ngIf="estudiant.documento_id" (click)="revisarDocumentoExt(estudiant.documento_id )"> Consultar </button> </td>
+    </tr>
+
+    </tbody>
+  </table>
+
+
+</section>
 
 
 

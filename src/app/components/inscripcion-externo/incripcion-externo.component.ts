@@ -12,6 +12,8 @@ import { ProgramasService } from './../../services/programas.service';
 import { ConveniosService } from './../../services/convenios.service';
 import { EntornoMovilidadService } from './../../services/entorno-movilidad.service';
 import { Router } from '@angular/router';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-incripcion-externo',
@@ -42,8 +44,10 @@ export class IncripcionExternoComponent implements OnInit {
     public TiposDocumentosIdService: TiposDocumentosIdService,
     public TipoMovilidadService: TipoMovilidadService,
     public ConveniosService: ConveniosService,
+               public dialog: MatDialog,
 
-    ) {
+
+  ) {
 
       this.formularioInscripcionExterno = this.formBuilder.group({
 
@@ -83,13 +87,14 @@ export class IncripcionExternoComponent implements OnInit {
   async ngOnInit(): Promise<void>  {
     let date = new Date()
     const periodo = `${date.getFullYear()}-${(date.getMonth() < 6 ? 1 : 2)}`
-
+    console.log(periodo)
     this.EntornoMovilidadService.getFechasByStatus(periodo, 1).then(resp=>{
       let inicio = new Date(resp.fecha_inicio)
       let fin = new Date(resp.fecha_final)
-
+      // validar que hallan fechas activas
       if(date < inicio || date > fin){
         this.router.navigateByUrl('/')
+        this.dialog.open(CustomDialogComponent, { data: { message: 'No hay fechas abiertas', title: 'Prohibido', type: 'warning' }});
       }
     })
 
