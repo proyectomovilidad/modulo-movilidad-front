@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UsuariosService} from '../../services/usuarios.service';
@@ -12,6 +13,7 @@ import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
   styleUrls: ['./editar-usuario.component.css']
 })
 export class EditarUsuarioComponent implements OnInit {
+
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,

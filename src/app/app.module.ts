@@ -79,6 +79,7 @@ import { CustomDialogComponent } from './components/custom-dialog/custom-dialog.
 import { EditarTipoApoyoComponent } from './components/editar-tipo-apoyo/editar-tipo-apoyo.component';
 import { SolicitudApoyosEstComponent } from './components/solicitud-apoyos-est/solicitud-apoyos-est.component';
 import { EditarConvocatoriaComponent } from './components/editar-convocatoria/editar-convocatoria.component';
+
 import { EditarEntornoMovilidadComponent } from './components/editar-entorno-movilidad/editar-entorno-movilidad.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { EditarUsuarioComponent } from './components/editar-usuario/editar-usuario.component';
@@ -129,7 +130,9 @@ import {UsuariosService} from './services/usuarios.service';
     EditarTipoApoyoComponent,
     SolicitudApoyosEstComponent,
     EditarConvocatoriaComponent,
+
     EditarEntornoMovilidadComponent,
+
     UsuariosComponent,
     EditarUsuarioComponent,
 

@@ -83,6 +83,7 @@ const appRoutes: Routes = [
   { path: 'editar-tipo-apoyo', component: EditarTipoApoyoComponent , data: { roles: [1,5]}},
   { path: 'solicitud-apoyos-est', component: SolicitudApoyosEstComponent, data: { roles: [1, 2, 5]} },
   { path: 'editar-convocatoria', component: EditarConvocatoriaComponent, data: { roles: [1, 5]} },
+
   { path: 'editar-entorno-movilidad', component: EditarEntornoMovilidadComponent, data: { roles: [ 1, 5 ] } },
   { path: 'usuarios', component: UsuariosComponent, data: { roles: [ 1 ] } },
   { path: 'editar-usuario', component: EditarUsuarioComponent, data: { roles: [1] } },
