@@ -6,6 +6,7 @@ import { DepartamentosService } from './../../services/departamentos.service';
 import { CiudadesService } from './../../services/ciudades.service';
 import { ProgramasService } from '../../services/programas.service';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-visualizar-estudiante',
@@ -42,7 +43,9 @@ export class VisualizarEstudianteComponent implements OnInit {
   	});
   	this.paises = await this.PaisesService.getPais();
 
-    let estudianteR:any = await this.inscripcionEstudianteService.consultarEstudiantes({'aspUisPersonal._id': this.route.snapshot.queryParams._id})
+    const estudianteid: String = environment.user.rol === 2 ? environment.user._id : this.route.snapshot.queryParams._id;
+ console.log("ENVIRONMENT", estudianteid)
+    let estudianteR:any = await this.inscripcionEstudianteService.consultarEstudiantes({'aspUisPersonal._id': estudianteid})
     estudianteR = estudianteR[0]
     
     this.estudiante.push(['_id', estudianteR._id],['DATOS PERSONAL',''])
@@ -70,13 +73,18 @@ export class VisualizarEstudianteComponent implements OnInit {
 
   pushData(elm){
   	if(elm[0] == '_id')return false;
-  	if(['pais','ciudad','departamento','pais_nacimiento', 'tipo_doc_id', 'programa_acad'].includes(elm[0])){
+  	if(['estado', 'pais','ciudad','departamento','pais_nacimiento', 'tipo_doc_id', 'programa_acad'].includes(elm[0])){
   		console.log(elm)
   		let v = eval(`this.get${elm[0]}('${elm[1]}')`)
   		this.estudiante.push([elm[0], v])
   	}else{
   		this.estudiante.push(elm)
   	}
+  }
+
+  getestado(id){
+  	const result = environment.estadosinscripcion.find(x=> x.codigo==id)
+    return result ? result.texto : ''
   }
 
   getpais(id){

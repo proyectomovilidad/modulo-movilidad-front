@@ -185,7 +185,7 @@ export class InscripcionEstudianteComponent implements OnInit {
       codigo_est: inscribirEstudiante.codigo_est,
       admitido: -1
     }
-
+    let code =  210;
      const aspUisPersonalGuardado = await this.InscripcionEstudianteService.saveAspUisPersonal(aspUisPersonal);
      if (aspUisPersonalGuardado.status==false) {
        console.log("El estudiante no se ha guardado")
@@ -195,15 +195,15 @@ export class InscripcionEstudianteComponent implements OnInit {
       if (aspUisAcademicGuardado.status==true){
         const inscritoGuardado = await this.InscripcionEstudianteService.saveInscripcion(inscribir);
         console.log("PruebaInscrito", inscritoGuardado)
+        code = inscritoGuardado.code 
       }
      }
 
      console.log(aspUisPersonalGuardado);
 
-    this.formularioInscripcionEstudiante.reset();
-
-
-
+     //let code = aspUisPersonalGuardado.model._id ? (inscritoGuardado.code) : 210;
+     this.dialog.open(CustomDialogComponent, { data: { code: code}});
+     this.formularioInscripcionEstudiante.reset();
   }
 
   limpiarFormulario() {
@@ -259,6 +259,10 @@ export class InscripcionEstudianteComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(GuardadoExitosoComponent);
+  }
+
+  public cancelar() {
+    this.router.navigateByUrl('/');
   }
 
 }

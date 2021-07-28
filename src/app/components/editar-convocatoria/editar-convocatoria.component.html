@@ -134,11 +134,11 @@
     </div>
 
     <div class="form-group col-md-4">
-      <select class="form-control" formControlName="tipo_proyecto"
-              [class.is-invalid]="getNoValido('tipo_proyecto')">
-        <option value="5fb314172d3f26d6886ebdbd">Seleccione..</option>
-        <option *ngFor="let tipoProyecto of tiposProyecto"  value="{{tipoProyecto._id}}"> {{tipoProyecto.nombre_tipoProyecto}}  </option>
-      </select>
+      <input type="text" formControlName="tipo_proyecto" class="form-control"
+             placeholder="Tipo proyecto" [class.is-invalid]="getNoValido('tipo_proyecto')" />
+      <small class="mensaje-error" *ngIf="getNoValido('tipo_proyecto')">
+        El campo nombre convocatoria es obligatorio.
+      </small>
     </div>
 
 
@@ -166,29 +166,15 @@
       </small>
     </div>
 
-    <div class=" form-group col-md-2 ">
-      <label for="" class=" "> </label>
-    </div>
-
-    <div class="form-group col-md-4">
-
-    </div>
-
-
     <div class="form-group col-md-6">
       <div class="row justify-content-end">
-
-        <button class="submit" (click)="actualizar()"> Crear </button>
-
+        <button class="submit" (click)="actualizar()"> Guardar </button>
       </div>
     </div>
 
     <div class="form-group col-md-6">
       <div class="row justify-content-start">
-
         <button class="submit" type="" (click)="regresar()" > Cancelar </button>
-
-
       </div>
     </div>
 

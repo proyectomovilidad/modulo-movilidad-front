@@ -23,16 +23,7 @@ export class EstudiantesMovilidadComponent implements OnInit {
   public estudiantes: any;
   public academic: any;
   public consulta: any;
-  public estados = [
-    {val: -1, nm: 'No Inscrito'},
-    {val: 0, nm: 'Cancelado'},
-    {val: 1, nm:"Inscrito"},
-    {val: 2, nm:"Carga documentos"},
-    {val: 3, nm:"Postulado"},
-    {val: 4, nm:"Movilidad"},
-    {val: 5, nm:"Prorroga"},
-    {val: 5, nm:"Finalizado"},
-  ]
+  public estados = environment.estadosinscripcion;
 
   public formularioConsultarEstudiante: FormGroup;
   constructor(
@@ -55,6 +46,8 @@ export class EstudiantesMovilidadComponent implements OnInit {
 
     });
   }
+
+  rol = environment.user.rol
 
   async ngOnInit(): Promise<void> {
     const user = environment.user;

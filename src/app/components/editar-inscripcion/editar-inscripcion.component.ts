@@ -223,6 +223,8 @@ export class EditarInscripcionComponent implements OnInit {
     const aspUisAcademicoGuardado = await this.InscripcionEstudianteService.updateAspUisAcademic(aspUisAcademic, this.estudianteElegido.aspUisAcademic._id);
     const inscritoGuardado = await this.InscripcionEstudianteService.updateInscripcion(inscribir, this.estudianteElegido.inscripcion._id);
 
+    this.dialog.open(CustomDialogComponent, { data: {title: 'Actualizado!', message: 'Datos actualizados correctamente!', type: 'alert'}});
+
   }
 
   onOptionsSelectedDepartment(codigo_pais: string) {
@@ -241,6 +243,10 @@ export class EditarInscripcionComponent implements OnInit {
     this.ConveniosService.getConvenioByTipoMovilidad(tipo_movilidad).then((convenio) => {
       this.convenios = convenio
     })
+  }
+
+  public cancelar(){
+    this.router.navigateByUrl('/estudiantes-movilidad');
   }
 
 }

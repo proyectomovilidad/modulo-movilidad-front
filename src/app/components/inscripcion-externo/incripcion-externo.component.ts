@@ -54,7 +54,7 @@ export class IncripcionExternoComponent implements OnInit {
         tipo_doc_id: ['', Validators.required],
         documento_id: [0, Validators.required],
         primer_nombre: ['', Validators.required],
-        segundo_nombre: ['',],
+        segundo_nombre: [''],
         primer_apellido: ['', Validators.required],
         segundo_apellido: [''],
         genero: ['', Validators.required],
@@ -121,12 +121,14 @@ export class IncripcionExternoComponent implements OnInit {
   }
 
  async guardarFormulario() {
-    if (this.formularioInscripcionExterno.invalid) {
+  console.log("mensaje")  
+  if (this.formularioInscripcionExterno.invalid) {
+    console.log("Escribir")
       return Object.values(this.formularioInscripcionExterno.controls).forEach(control => {
         control.markAsTouched();
       });
     }
-
+console.log("mensaje2")
     const inscribirExternoPersonal = this.formularioInscripcionExterno.value;
     console.log(inscribirExternoPersonal)
 
@@ -178,17 +180,22 @@ export class IncripcionExternoComponent implements OnInit {
       admitido: -1
 
     }
-
+    let code =  210;
     const aspExtPersonalGuardado = await this.InscripcionExternoService.saveAspExtPersonal(aspExtPersonal);
-    console.log(aspExtPersonalGuardado);
+    console.log("Dato llego", aspExtPersonalGuardado);
 
-   if (aspExtPersonalGuardado.status==true){
+   if (aspExtPersonalGuardado.status===true){
      const aspExtAcademicGuardado = await this.InscripcionExternoService.saveAspExtAcademic(aspExtAcademic);
-    console.log(aspExtAcademicGuardado);
-    if (aspExtAcademicGuardado.status==true){
+    console.log("llego aspirante", aspExtAcademicGuardado);
+    if (aspExtAcademicGuardado.status===true){
       const externoGuardado = await this.InscripcionExternoService.saveInscripcion(inscribir);
-      console.log("Inscripción", externoGuardado); // Aquí se incluye la ventana emergente con el mensaje de guardado existoso
+      console.log("Inscripción", externoGuardado); 
+      code = externoGuardado.code 
+
+      //let code = aspExtPersonalGuardado.model._id ?  (externoGuardado.code) : 210;
+      // Aquí se incluye la ventana emergente con el mensaje de guardado existoso
     }}
+    this.dialog.open(CustomDialogComponent, { data: { code: code}});
 
     this.formularioInscripcionExterno.reset();
   }

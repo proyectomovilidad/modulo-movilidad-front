@@ -64,7 +64,7 @@ export class EditarTipoApoyoComponent implements OnInit {
     };
 
     this.tipoApoyoService.updateTipoApoyo(tipoApoyo, this.id).then(resp => {
-      this.dialog.open(CustomDialogComponent, { data: {title: 'INFO!', message: 'Actualizado!', type: 'alert'}});
+      this.dialog.open(CustomDialogComponent, { data: {title: 'Actualizado', message: 'Datos actualizados correctamente!', type: 'alert'}});
     });
   }
 

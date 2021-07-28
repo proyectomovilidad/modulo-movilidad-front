@@ -18,7 +18,7 @@ export class EditarUsuarioComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private dialog: MatDialog,
+              public dialog: MatDialog,
   public usuariosService: UsuariosService,
   ) {
     this.formUsuario = this.formBuilder.group({
@@ -67,12 +67,15 @@ export class EditarUsuarioComponent implements OnInit {
       rol: formData.rol
     }
 
-    this.usuariosService.saveUsuario(usuarioData).then( resp => {
-      let codigo = 210;
+      this.usuariosService.saveUsuario(usuarioData).then( resp => {
+        this.dialog.open(CustomDialogComponent, 
+          { data: {title: 'Actualizado', message: 'Datos actualizados correctamente!', type: 'alert'}});
+
+     /* let codigo = 210;
       if (resp.status === true) {
         codigo = 200;
-      }
-    });
+      } */
+    }); 
 
   }
 

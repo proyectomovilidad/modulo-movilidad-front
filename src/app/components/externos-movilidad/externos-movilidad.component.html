@@ -173,7 +173,7 @@
                    <td>
                        <select #estado class="form-control" (change)="cambiarEstado(estado, externo.Inscripcion._id)" >             
                          <option value="">{{externo.Inscripcion.estado}}</option>      
-                         <option  *ngFor="let estado of estados" value="{{estado.val}}">{{estado.nm}}</option>                      
+                         <option  *ngFor="let estado of estados" value="{{estado.codigo}}">{{estado.texto}}</option>                      
                        </select>
                    </td>
                     <td>

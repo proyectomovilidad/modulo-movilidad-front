@@ -97,6 +97,7 @@ export class ConvocatoriaComponent implements OnInit {
       nombre_institucion: crearConvocatoria.nombre_institucion,
       tipo_proyecto: crearConvocatoria.tipo_proyecto,
       link_inscripcion: crearConvocatoria.link_inscripcion,
+      codigo_conv: crearConvocatoria.codigo_conv
     }
     const convocatoriaGuardada = await this.ConvocatoriaService.saveConvocatoria(convocatoria);
     console.log(convocatoriaGuardada);

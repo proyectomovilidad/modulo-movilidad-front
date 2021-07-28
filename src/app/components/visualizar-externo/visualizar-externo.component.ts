@@ -46,7 +46,8 @@ export class VisualizarExternoComponent implements OnInit {
     this.documentos = await this.tiposDocumentosIdService.getTipoDocumentoId();
     this.programaAcad = await this.programasServices.getProgramaAcademico();
 
-    let externoR: any = await this.inscripcionExternoService.consultarExternos({'aspExtPersonal._id': this.route.snapshot.queryParams._id});
+    const estudianteid: String = environment.user.rol === 2 ? environment.user._id : this.route.snapshot.queryParams._id;
+    let externoR: any = await this.inscripcionExternoService.consultarExternos({'aspExtPersonal._id': estudianteid});
 
     externoR = externoR[0];
 
@@ -71,7 +72,7 @@ export class VisualizarExternoComponent implements OnInit {
   pushData(elm){
     if (elm[0] === '_id') {return false; }
 
-    const ext = ['pais', 'ciudad', 'departamento', 'pais_res',
+    const ext = ['estado','pais', 'ciudad', 'departamento', 'pais_res',
      'pais_nacimiento', 'prog_acad_uis', 'tipo_doc_id'];
 
     if (ext.includes(elm[0])){
@@ -82,6 +83,10 @@ export class VisualizarExternoComponent implements OnInit {
     }
   }
 
+  getestado(id){
+  	const result = environment.estadosinscripcion.find(x=> x.codigo==id)
+    return result ? result.texto : ''
+  }
   getpais(id){
     const result = this.paises.find(x => x.codigo_pais == id);
     return result ? result.nombre_pais : '';

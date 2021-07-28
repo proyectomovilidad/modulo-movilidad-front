@@ -295,6 +295,7 @@
           <option value="2018"> 2018 </option>
           <option value="2019"> 2019 </option>
           <option value="2020"> 2020 </option>
+          <option value="2020"> 2021 </option>
         </select>
 
       </div>
@@ -392,9 +393,7 @@
 
       <div class="form-group col-md-6">
         <div class="row justify-content-start">
-
-            <a class="submit" [routerLink] = "['/externos-movilidad']" [routerLinkActive]="['actived']"> Cancelar </a>
-
+          <button class="submit"(click)="cancelar()"> Cancelar </button>
         </div>
       </div>
 

@@ -63,6 +63,12 @@
         </select>
       </div>
 
+      <div class="form-group col-md-2">
+      </div>
+
+      <div class="form-group col-md-4">
+      </div>
+
 
       <div class="form-group col-md-6">
         <div class="row justify-content-end">
@@ -75,7 +81,7 @@
       <div class="form-group col-md-6">
         <div class="row justify-content-start">
 
-          <button class="submit" type="button"  (click)="cancelarConsulta()"> Cancelar </button>
+          <button class="submit" type="button"  (click)="limpiarFormulario()"> Cancelar </button>
 
 
         </div>
@@ -130,7 +136,7 @@
       <div class="form-group col-md-6">
         <div class="row justify-content-start">
 
-          <button class="submit" type="" (click)="limpiarFormulario()" > Cancelar </button>
+          <button class="submit"  (click)="cancelarConsulta()" > Cancelar </button>
 
 
         </div>
@@ -153,6 +159,7 @@
         <th scope="col" class="center"> Id </th>
         <th scope="col" class="center"> Correo </th>
         <th scope="col" class="center"> Rol </th>
+        <th scope="col" class="center"> Acciones </th>
       </tr>
       </thead>
       <tbody>

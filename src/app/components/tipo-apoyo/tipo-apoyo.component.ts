@@ -71,6 +71,8 @@ export class TipoApoyoComponent implements OnInit {
     this.dialog.open(CustomDialogComponent, { data: {title: 'INFO!', message: respuesta.message, type: 'alert'}});
   }
 
-
+  limpiarFormulario() {
+    this.formularioCrearApoyo.reset();
+  }
 
 }

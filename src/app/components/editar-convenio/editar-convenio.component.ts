@@ -139,6 +139,8 @@ export class EditarConvenioComponent implements OnInit {
 
     const convenioEditado = await this.ConveniosService.updateConvenio(convenio, this.convenioElegido._id);
     console.log(convenioEditado);
+    this.dialog.open(CustomDialogComponent, { data: {title: 'Actualizado!', message: 'Datos actualizados correctamente!', type: 'alert'}});
+
 
   }
 

@@ -13,20 +13,24 @@ export class CustomDialogComponent implements OnInit {
   public content: any ;
 
   private messages = [
-    {code: 403, message: 'Permisos insuficientes!', title: 'PROHIBIDO', type: 'warning'},
-    {code: 201, message: 'Creado correctamente', title: 'INFO', type: 'info'},
-    {code: 210, message: 'No pudo ser creado', title: 'INFO', type: 'info'},
-    {code: 211, message: 'Actualizado correctamente', title: 'INFO', type: 'info'},
-    {code: 212, message: 'No pudo ser actualizado', title: 'INFO', type: 'warning'},
-    {code: 213, message: 'No pudo ser eliminado', title: 'INFO', type: 'warning'},
-    {code: 214, message: 'Eliminado correctamente', title: 'INFO', type: 'danger'},
-
+    {code: 403, message: 'Permisos insuficientes!', title: 'Acceso denegado', type: 'warning'},
+    {code: 201, message: 'Creado correctamente', title: 'Nuevo registro'},
+    {code: 210, message: 'No pudo ser creado', title: 'Error'},
+    {code: 211, message: 'Datos actualizados correctamente', title: 'Actualizado'},
+    {code: 212, message: 'No pudo ser actualizado', title: 'Error', type: 'warning'},
+    {code: 213, message: 'No pudo ser eliminado', title: 'Error', type: 'warning'},
+    {code: 214, message: 'Eliminado correctamente', title: 'Eliminado', type: 'danger'},
+    {code: 215, message: 'Los datos han sido guardados y el usuario ha sido inscrito', title: 'Guardado e inscrito'},
+    {code: 216, message: 'Los datos han sido guardados pero el usuario no cumple con los requerimientos del convenio', title: 'No inscrito'},
   ];
 
   ngOnInit(): void {
     if(this.data.code){
       this.content = this.messages.find(x => x.code === this.data.code) || {message: '', title: '', type: 'info'}
-      this.content.message += ' \n' + this.data.message
+      //this.content.message += ' \n' + this.data.message
+      if(this.data.message){
+        this.content.message += ' \n' + this.data.message
+      }
     }else{
       this.content = this.data
     }

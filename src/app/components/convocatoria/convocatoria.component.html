@@ -135,12 +135,20 @@
     </div>
 
     <div class="form-group col-md-4">
+      <input type="text" formControlName="tipo_proyecto" class="form-control"
+             placeholder="Tipo proyecto" [class.is-invalid]="getNoValido('tipo_proyecto')" />
+      <small class="mensaje-error" *ngIf="getNoValido('tipo_proyecto')">
+        El campo nombre convocatoria es obligatorio.
+      </small>
+    </div>
+ <!-- SELECT DE TIPO PROYECTO
+    <div class="form-group col-md-4">
       <select class="form-control" formControlName="tipo_proyecto"
               [class.is-invalid]="getNoValido('tipo_proyecto')">
-        <option value="5fb314172d3f26d6886ebdbd">Seleccione..</option>
+        <option value="">Seleccione..</option>
         <option *ngFor="let tipoProyecto of tiposProyecto"  value="{{tipoProyecto._id}}"> {{tipoProyecto.nombre_tipoProyecto}}  </option>
       </select>
-    </div>
+    </div> !-->
 
 
     <div class="form-group col-md-2">
@@ -165,16 +173,6 @@
       <small class="mensaje-error" *ngIf="getNoValido('codigo_conv')">
         El campo codigo convocatoria es obligatorio.
       </small>
-    </div>
-
-
-
-    <div class=" form-group col-md-2 ">
-      <label for="" class=" "> </label>
-    </div>
-
-    <div class="form-group col-md-4">
-
     </div>
 
 
@@ -221,19 +219,6 @@
     </div>
 
     <div class="form-group col-md-2">
-      <label for="tipoProyecto" class=" label ">Tipo de proyecto </label>
-    </div>
-
-    <div class="form-group col-md-4">
-      <select class="form-control" id="tipoProyecto" formControlName="tipo_proyecto" >
-        <option value="">Seleccione..</option>
-        <option *ngFor="let tipoProyecto of tiposProyecto"  value="{{tipoProyecto._id}}">
-          {{tipoProyecto.nombre_tipoProyecto}}
-        </option>
-      </select>
-    </div>
-
-    <div class="form-group col-md-2">
       <label for="institucionCooperante" class=" label ">Institución cooperante </label>
     </div>
 
@@ -262,6 +247,12 @@
 
     </div>
 
+    <div class="form-group col-md-2">
+    </div>
+
+    <div class="form-group col-md-4">
+      </div>
+
 
     <div class="form-group col-md-6">
       <div class="row justify-content-end">
@@ -273,7 +264,7 @@
     <div class="form-group col-md-6">
       <div class="row justify-content-start">
 
-        <button class="submit" type="" (click)="cancelarConsulta()"> Cancelar </button>
+        <button class="submit"  (click)="cancelarConsulta()"> Cancelar </button>
 
 
       </div>
