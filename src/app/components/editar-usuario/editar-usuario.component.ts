@@ -72,6 +72,8 @@ export class EditarUsuarioComponent implements OnInit {
       if (resp.status === true) {
         codigo = 200;
       }
+      this.dialog.open(CustomDialogComponent, { data: { code: codigo}});
+
     });
 
   }

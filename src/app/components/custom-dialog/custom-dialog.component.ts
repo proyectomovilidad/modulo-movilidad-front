@@ -14,13 +14,14 @@ export class CustomDialogComponent implements OnInit {
 
   private messages = [
     {code: 403, message: 'Permisos insuficientes!', title: 'PROHIBIDO', type: 'warning'},
+    {code: 200, message: 'Solicitud enviada correctamente', title: 'INFO', type: 'info'},
     {code: 201, message: 'Creado correctamente', title: 'INFO', type: 'info'},
     {code: 210, message: 'No pudo ser creado', title: 'INFO', type: 'info'},
     {code: 211, message: 'Actualizado correctamente', title: 'INFO', type: 'info'},
     {code: 212, message: 'No pudo ser actualizado', title: 'INFO', type: 'warning'},
     {code: 213, message: 'No pudo ser eliminado', title: 'INFO', type: 'warning'},
     {code: 214, message: 'Eliminado correctamente', title: 'INFO', type: 'danger'},
-
+    { code: 405, message: 'Seleccione Un Archivo Valido', title: 'INFO', type: 'alert' },
   ];
 
   ngOnInit(): void {

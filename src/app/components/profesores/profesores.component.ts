@@ -4,6 +4,8 @@ import { ProfesoresService } from './../../services/profesores.service';
 import { Router } from '@angular/router';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
 import { ConvocatoriaService } from './../../services/convocatoria.service';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-profesores',
@@ -23,8 +25,9 @@ export class ProfesoresComponent implements OnInit {
     private  ConvocatoriaService: ConvocatoriaService,
     private TiposDocumentosIdService: TiposDocumentosIdService,
     private router: Router,
+              public dialog: MatDialog
   ) {
- 
+
     this.formularioInscripcionProfesor = this.formBuilder.group({
       tipo_doc_id: ['', Validators.required],
       documento_id: [0, Validators.required],
@@ -86,7 +89,7 @@ export class ProfesoresComponent implements OnInit {
       ano_inscrip:inscribirProfesor.ano_inscrip,
       fecha_inscripcion:inscribirProfesor.fecha_inscripcion ,
       celular:inscribirProfesor.celular,
-      correo: inscribirProfesor.correo, 
+      correo: inscribirProfesor.correo,
       financiacion: inscribirProfesor.financiacion,
       tipo_recursos: inscribirProfesor.tipo_recursos ,
 
@@ -94,6 +97,9 @@ export class ProfesoresComponent implements OnInit {
 
     const profesorGuardado = await this.ProfesoresService.saveProfesores(profesor);
     console.log(profesorGuardado);
+    let code = profesorGuardado._id ? 201 : 210;
+    this.dialog.open(CustomDialogComponent, { data: { code: code}});
+
 
     this.formularioInscripcionProfesor.reset();
   }
@@ -101,5 +107,5 @@ export class ProfesoresComponent implements OnInit {
   limpiarFormulario() {
     this.formularioInscripcionProfesor.reset();
   }
- 
+
 }

@@ -225,6 +225,7 @@ export class EditarExternoComponent implements OnInit {
     const aspExtPersonalGuardado = await this.InscripcionExternoService.UpdateAspExtPersonal(aspExtPersonal, this.externoElegido._id);
     const aspExtAcademicoGuardado = await this.InscripcionExternoService.updateAspExtAcademic(aspExtAcademic, this.externoElegido.aspExtAcademic._id);
     const inscritoGuardado = await this.InscripcionExternoService.updateInscripcion(inscribir, this.externoElegido.inscripcion._id);
+    this.dialog.open(CustomDialogComponent, { data: { code: 211}});
 
   }
 

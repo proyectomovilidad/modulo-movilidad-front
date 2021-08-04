@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { TipoDocumentoService } from './../../services/tipo-documento.service';
 import { ConveniosService } from '../../services/convenios.service';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-tipo-documento',
@@ -16,10 +17,13 @@ export class TipoDocumentoComponent implements OnInit {
   public documentos: any;
   public convenios: any;
 
-  constructor(private formBuilder: FormBuilder,private router: Router,
-    public conveniosService: ConveniosService,
-    public TipoDocumentoService: TipoDocumentoService)
-  { 
+  constructor(private formBuilder: FormBuilder,
+              public conveniosService: ConveniosService,
+              public TipoDocumentoService: TipoDocumentoService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private dialog: MatDialog,
+  ) {
     this.formularioCrearDocumento = this.formBuilder.group({
       nombre_documento: ['', Validators.required],
       estado_documento: ['', Validators.required]
@@ -27,13 +31,13 @@ export class TipoDocumentoComponent implements OnInit {
 
     this.formCrearTipoDocumentoConvenio = this.formBuilder.group({
       tp_documento_id: ['', Validators.required],
-      convenio_id: ['', Validators.required],     
+      convenio_id: ['', Validators.required],
     });
 
-    
+
   }
 
-  ngOnInit(){    
+  ngOnInit(){
     this.getDocumentos()
     this.conveniosService.getAllConvenios().then(resp=>{
       this.convenios = resp;
@@ -45,11 +49,11 @@ export class TipoDocumentoComponent implements OnInit {
   }
 
   public getDocumentos(){
-    this.TipoDocumentoService.getDocumentoByConsulta({}).then(resp=>{      
+    this.TipoDocumentoService.getDocumentoByConsulta({}).then(resp=>{
       if(resp.status){
         this.documentos = resp.data;
       }
-        console.log('documentos: ',resp)        
+        console.log('documentos: ',resp)
     });
   }
 
@@ -84,7 +88,7 @@ export class TipoDocumentoComponent implements OnInit {
       }
     });
 
-    
+
     this.formularioCrearDocumento.reset();
   }
 
@@ -109,7 +113,7 @@ export class TipoDocumentoComponent implements OnInit {
         this.getDocumentos()
       }
     });
-    
+
     this.formCrearTipoDocumentoConvenio.reset();
   }
 
@@ -122,8 +126,8 @@ export class TipoDocumentoComponent implements OnInit {
       if(resp.status){
         this.getDocumentos()
       }
-      console.log(resp)      
+      console.log(resp)
     })
   }
-  
+
 }

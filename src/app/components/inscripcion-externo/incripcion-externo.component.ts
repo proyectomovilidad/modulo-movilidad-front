@@ -181,16 +181,19 @@ export class IncripcionExternoComponent implements OnInit {
 
     const aspExtPersonalGuardado = await this.InscripcionExternoService.saveAspExtPersonal(aspExtPersonal);
     console.log(aspExtPersonalGuardado);
-
+    let code = 210;
    if (aspExtPersonalGuardado.status==true){
      const aspExtAcademicGuardado = await this.InscripcionExternoService.saveAspExtAcademic(aspExtAcademic);
     console.log(aspExtAcademicGuardado);
     if (aspExtAcademicGuardado.status==true){
       const externoGuardado = await this.InscripcionExternoService.saveInscripcion(inscribir);
+      code = 201;
       console.log("Inscripción", externoGuardado); // Aquí se incluye la ventana emergente con el mensaje de guardado existoso
     }}
+   this.dialog.open(CustomDialogComponent, { data: { code: code}});
 
-    this.formularioInscripcionExterno.reset();
+
+   this.formularioInscripcionExterno.reset();
   }
 
   limpiarFormulario() {

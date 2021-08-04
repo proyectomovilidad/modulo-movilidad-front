@@ -82,9 +82,13 @@ export class CargaDocumentosComponent implements OnInit {
 
       this.CargaDocumentoService.saveDocumentoFile(formData).then(res=>{
         console.log(res)
+        let code = res.status === true ? 201 : 210;
+        this.dialog.open(CustomDialogComponent, { data: { code: code}});
+
       })
       this.mensajeErr = ''
     }else{
+      this.dialog.open(CustomDialogComponent, { data: { code: 405}});
       this.mensajeErr = "seleccione un archivo valido"
       console.log("archivo no es valido")
     }

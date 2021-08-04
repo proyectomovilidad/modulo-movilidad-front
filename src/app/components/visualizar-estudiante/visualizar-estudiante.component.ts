@@ -6,6 +6,7 @@ import { DepartamentosService } from './../../services/departamentos.service';
 import { CiudadesService } from './../../services/ciudades.service';
 import { ProgramasService } from '../../services/programas.service';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-visualizar-estudiante',
@@ -25,10 +26,11 @@ export class VisualizarEstudianteComponent implements OnInit {
     public DepartamentosService: DepartamentosService,
     private tiposDocumentosIdService: TiposDocumentosIdService,
     public CiudadesService: CiudadesService,
-    private inscripcionEstudianteService: InscripcionEstudianteService, 
+    private inscripcionEstudianteService: InscripcionEstudianteService,
     private route: ActivatedRoute,
     private router: Router,
-    private programasServices: ProgramasService
+    private programasServices: ProgramasService,
+                  private dialog: MatDialog,
    ) { }
 
   async ngOnInit() {
@@ -38,23 +40,23 @@ export class VisualizarEstudianteComponent implements OnInit {
   		if(resp.status)this.ciudades =  resp.data
   	});
   	 this.DepartamentosService.getAllDepartamentos().then(resp=>{
-  		if(resp.status)this.departamentos = resp.data  	
+  		if(resp.status)this.departamentos = resp.data
   	});
   	this.paises = await this.PaisesService.getPais();
 
     let estudianteR:any = await this.inscripcionEstudianteService.consultarEstudiantes({'aspUisPersonal._id': this.route.snapshot.queryParams._id})
     estudianteR = estudianteR[0]
-    
+
     this.estudiante.push(['_id', estudianteR._id],['DATOS PERSONAL',''])
     Object.entries(estudianteR.aspUisPersonal).forEach(element=>{this.pushData(element)})
-    
+
     this.estudiante.push(['DATOS ACADEMICOS',''])
     Object.entries(estudianteR.aspUisAcademic).forEach(element=>{this.pushData(element)})
-    
+
     this.estudiante.push(['DATOS INSTITUCION',''])
     Object.entries(estudianteR.InstitucionCooperante).forEach(element=>{this.pushData(element)})
-    
-    this.estudiante.push(['DATOS MOVILIDAD',''])   
+
+    this.estudiante.push(['DATOS MOVILIDAD',''])
     Object.entries(estudianteR.TipoMovilidad).forEach(element=>{this.pushData(element)})
 
     this.estudiante.push(['DATOS INSCRIPCION',''])
@@ -113,7 +115,7 @@ export class VisualizarEstudianteComponent implements OnInit {
   }
 
   volver(){
-  	this.router.navigateByUrl('/estudiantes-movilidad'); 
+  	this.router.navigateByUrl('/estudiantes-movilidad');
   }
 
 

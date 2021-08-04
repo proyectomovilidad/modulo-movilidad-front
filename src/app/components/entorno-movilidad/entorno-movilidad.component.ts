@@ -75,6 +75,7 @@ export class EntornoMovilidadComponent implements OnInit {
 
     this.entornoMovilidadService.saveFechasMovilidad(movilidadSaliente).then(res=>{
       this.obtenerDatos();
+      this.dialog.open(CustomDialogComponent, { data: { code: 200}});
     });
 
 
@@ -110,6 +111,8 @@ export class EntornoMovilidadComponent implements OnInit {
 
     const fechasMovEntranteGuardado = await this.entornoMovilidadService.saveFechasMovilidad(movilidadEntrante);
     console.log();
+    this.dialog.open(CustomDialogComponent, { data: { code: 200}});
+
 
     this.formfechamovilidadentrante.reset();
     this.obtenerDatos();
@@ -129,9 +132,13 @@ export class EntornoMovilidadComponent implements OnInit {
 
   eliminarEntorno(_id: any) {
     this.entornoMovilidadService.eliminarEntorno(_id).then( resp => {
+      let code = 213;
       if (resp.status === true) {
         this.obtenerDatos();
+        code = 214;
       }
+      this.dialog.open(CustomDialogComponent, { data: { code: code}});
+
     })
   }
 
