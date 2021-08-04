@@ -68,7 +68,7 @@ export class TipoApoyoComponent implements OnInit {
     if (respuesta.status) {
       this.apoyos.splice(this.apoyos.indexOf(obj), 1);
     }
-    this.dialog.open(CustomDialogComponent, { data: {title: 'INFO!', message: respuesta.message, type: 'alert'}});
+    this.dialog.open(CustomDialogComponent, { data: {title: 'Eliminado!', message: "Eliminado correctamente", type: 'alert'}});
   }
 
   limpiarFormulario() {

@@ -302,9 +302,9 @@
       <td>{{convocatoria.convocatoria.estado_convocatoria}}</td>
       <td>{{convocatoria.InstitucionCooperante.nombre_institucion}}</td>
       <td>
-        <button class="submit" (click)="visualizar(convocatoria._id)" >Ver</button>
-        <button class="submit" (click)="editar(convocatoria._id)"  *ngIf="roles.includes(rol)" >Editar</button>
-        <button class="submit" (click)="eliminarConvocatoria(convocatoria._id, convocatoria )" *ngIf="[1,5].includes(rol)" >Eliminar</button>
+        <button class="accion" (click)="visualizar(convocatoria._id)" >Ver</button>
+        <button class="accion" (click)="editar(convocatoria._id)"  *ngIf="roles.includes(rol)" >Editar</button>
+        <button class="accion" (click)="eliminarConvocatoria(convocatoria._id, convocatoria )" *ngIf="[1,5].includes(rol)" >Eliminar</button>
       </td>
     </tr>
     </tbody>
