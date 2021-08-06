@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EntornoMovilidadService} from '../../services/entorno-movilidad.service';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
+
 
 @Component({
   selector: 'app-editar-entorno-movilidad',
@@ -12,7 +14,7 @@ export class EditarEntornoMovilidadComponent implements OnInit {
 
   constructor( private formBuilder: FormBuilder, private route: ActivatedRoute,
                private entornoMovilidadService: EntornoMovilidadService,
-               private router: Router
+               private router: Router,
   ) {
     this.formEntorno = this.formBuilder.group({
       fecha_inicio_movilidad: [Date, Validators.required],
@@ -53,6 +55,7 @@ export class EditarEntornoMovilidadComponent implements OnInit {
       tipo: this.tipo_e
     }
     console.log(dataFrom)
+
     this.entornoMovilidadService.updateEntornoMovilidad(this.id, dataEntorno). then( resp => {
       console.log(resp)
     })

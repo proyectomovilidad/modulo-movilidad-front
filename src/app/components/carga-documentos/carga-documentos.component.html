@@ -21,7 +21,6 @@
           <tr>
             <th scope="col" class="center"> Nombre </th>
             <th scope="col" class="center">Carga de archivo</th>
-            <th scope="col" class="center">Observaciones</th>
             <th scope="col" class="center">Acciones</th>
           </tr>
         </thead>
@@ -30,12 +29,12 @@
           <tr *ngFor="let documento of documentos">
             <td> {{documento.tipoDocumento.nombre_documento}}</td>
             <td>
-              <input type="file" #documento_{{documento.nombre_documento}} (change)="saveFile($event, '12345442', documento._id)" >
+              <span *ngIf="documento.existe" >Documento Cargado  | subir nuevamente?: </span>
+              <input type="file" #documento_{{documento.nombre_documento}} (change)="saveFile($event, '12345442', documento._id)" value="Browse" >
             </td>
-            <td></td>
             <td>
               <button (click)="eliminarDocumento('12345442', documento._id)" >Eliminar</button>
-              <button>cargar</button>
+
               <!-- <button> eliminar</button> -->
             </td>
           </tr>

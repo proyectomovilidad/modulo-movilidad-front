@@ -14,7 +14,7 @@
 
 
     <section id="body">
-   
+
       <div id="name">
         <h3> Inscripción</h3>
       </div>
@@ -48,8 +48,8 @@
           <small class="mensaje-error" *ngIf="getNoValido('documento_id')">
             El campo número de documento es obligatorio.
           </small>
-  
-      
+
+
         </div>
 
         <div class="form-group col-md-2">
@@ -57,7 +57,7 @@
         </div>
 
         <div class="form-group col-md-4">
-          <input type="text" class="form-control" formControlName="primer_nombre"  placeholder="Primer nombre" 
+          <input type="text" class="form-control" formControlName="primer_nombre"  placeholder="Primer nombre"
           [class.is-invalid]="getNoValido('primer_nombre')"/>
           <small class="mensaje-error" *ngIf="getNoValido('primer_nombre')">
           El campo primer nombre es obligatorio.
@@ -78,7 +78,7 @@
         </div>
 
         <div class="form-group col-md-4">
-          <input type="text" class="form-control" formControlName="primer_apellido"  placeholder="Primer apellido" 
+          <input type="text" class="form-control" formControlName="primer_apellido"  placeholder="Primer apellido"
           [class.is-invalid]="getNoValido('primer_apellido')"/>
           <small class="mensaje-error" *ngIf="getNoValido('primer_apellido')">
           El campo primer apellido es obligatorio.
@@ -92,8 +92,8 @@
 
         <div class="form-group col-md-4">
           <input type="text" class="form-control"  formControlName="segundo_apellido" placeholder="Segundo apellido"
-            value="" required>
-        
+            value="">
+
         </div>
 
         <div class="form-group col-md-2">
@@ -114,7 +114,7 @@
         <div class="form-group col-md-2">
           <label for="fechaNacimiento" class="label ">Fecha de nacimiento *</label>
         </div>
-  
+
         <div class="form-group col-md-4">
           <input required readonly class="input input-date1" placeholder="fecha nacimiento"
             [matDatepicker]="fechaNacimiento" formControlName="fecha_nacimiento" (click)="fechaNacimiento.open()"
@@ -148,7 +148,7 @@
             <option value="">Seleccione..</option>
             <option *ngFor="let pais of paises"  value="{{pais.codigo_pais}}"> {{pais.nombre_pais}}  </option>
           </select>
-        
+
         </div>
 
         <div class="form-group col-md-2">
@@ -160,9 +160,9 @@
           (change)='onOptionsSelectedCity(department.value)' >
             <option value="">Seleccione..</option>
             <option *ngFor="let departamento of departamentos"  value="{{departamento.codigo_departamento}}"> {{departamento.nombre_departamento}}  </option>
-         
+
           </select>
-        
+
         </div>
 
         <div class="form-group col-md-2">
@@ -174,9 +174,9 @@
             <option value="">Seleccione..</option>
             <option *ngFor="let ciudad of ciudades"  value="{{ciudad._id}}">{{ciudad.nombre_ciudad}}</option>
 
-         
+
           </select>
-         
+
         </div>
 
         <div class="form-group col-md-2">
@@ -206,12 +206,12 @@
         </div>
 
         <div class="form-group col-md-4">
-          <input type="text" class="form-control" formControlName="celular" 
+          <input type="text" class="form-control" formControlName="celular"
           [class.is-invalid]="getNoValido('celular')" />
           <small class="mensaje-error" *ngIf="getNoValido('celular')">
             El campo celular es obligatorio.
           </small>
-         
+
         </div>
 
         <div class="form-group col-md-2">
@@ -219,11 +219,11 @@
         </div>
 
         <div class="form-group col-md-4">
-          <input type="email" class="form-control" formControlName="correo" placeholder="correo@hotmail.com" 
+          <input type="email" class="form-control" formControlName="correo" placeholder="correo@hotmail.com"
           [class.is-invalid]="getNoValido('correo')"/>
           <small class="mensaje-error" *ngIf="getNoValido('correo')">
           El campo correo es obligatorio.
-          </small> 
+          </small>
 
         </div>
 
@@ -232,7 +232,7 @@
         </div>
 
         <div class="form-group col-md-4">
-          <input type="text" class="form-control" formControlName="programa_acad" placeholder="Programa académico" 
+          <input type="text" class="form-control" formControlName="programa_acad" placeholder="Programa académico"
           [class.is-invalid]="getNoValido('programa_acad')"/>
           <small class="mensaje-error" *ngIf="getNoValido('programa_acad')">
           El campo programa académico es obligatorio.
@@ -277,7 +277,7 @@
         </div>
 
         <div class="form-group col-md-4">
-          <input type="text" class="form-control" formControlName="cred_cursados" placeholder="Créditos cursados" 
+          <input type="text" class="form-control" formControlName="cred_cursados" placeholder="Créditos cursados"
           [class.is-invalid]="getNoValido('cred_cursados')"/>
           <small class="mensaje-error" *ngIf="getNoValido('cred_cursados')">
           El campo créditos cursados es obligatorio.
@@ -289,7 +289,7 @@
         </div>
 
         <div class="form-group col-md-4">
-          <input type="text" class="form-control" formControlName="cred_cursar" placeholder="Créditos a cursar"     
+          <input type="text" class="form-control" formControlName="cred_cursar" placeholder="Créditos a cursar"
           [class.is-invalid]="getNoValido('cred_cursar')"/>
           <small class="mensaje-error" *ngIf="getNoValido('cred_cursar')">
           El campo créditos a cursar es obligatorio.
@@ -326,7 +326,7 @@
           </select>
         </div>
 
-        
+
       <div class="form-group col-md-2">
         <label for="fechaInscripcion" class="label ">Fecha de inscripción *</label>
       </div>
@@ -353,7 +353,7 @@
 
           </select>
         </div>
-     
+
         <div class="form-group col-md-2">
           <label for="programaUIS" class="label ">Programa académico Uis *</label>
         </div>
@@ -363,7 +363,7 @@
             <option value="">Seleccione..</option>
             <option *ngFor="let programa of programas"  value="{{programa._id}}"> {{programa.nombre_programaAcademico}}  </option>
           </select>
-        
+
         </div>
 
 
@@ -381,15 +381,15 @@
         <div class="form-group col-md-2">
           <label for="convenio" class="label "> Nombre convenio *</label>
         </div>
-  
+
         <div class="form-group col-md-4">
           <select class="form-control" formControlName="nombre_convenio"
             [class.is-invalid]="getNoValido('nombre_convenio')">
             <option value="">Seleccione..</option>
             <option *ngFor="let convenio of convenios"  value="{{convenio._id}}"> {{convenio.nombre_convenio}}  </option>
-           
+
           </select>
-  
+
         </div>
 
 

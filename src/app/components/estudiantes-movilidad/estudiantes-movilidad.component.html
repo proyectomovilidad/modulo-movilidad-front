@@ -13,7 +13,7 @@
         </section>
     </header>
 
-    <section id="body">
+    <section id="body"   *ngIf="[1,5].includes(rol)">
 
         <div id="name">
             <h3> Criterios de consulta</h3>
@@ -177,14 +177,14 @@
 
                     <select #estado class="form-control" (change)="cambiarEstado(estado, estudiante.Inscripcion._id)" >
                       <option value="">{{estudiante.Inscripcion.estado}}</option>
-                      <option  *ngFor="let estado of estados" value="{{estado.val}}">{{estado.nm}}</option>
+                      <option  *ngFor="let estado of estados" value="{{estado.codigo}}">{{estado.texto}}</option>
                     </select>
                   </td>
 
                     <td>
-                      <button class="submit" (click)="visualizar(estudiante._id)" >Ver</button>
-                      <button class="submit" (click)="editarInscripcion(estudiante._id )"> Editar </button>
-                        <button class="submit" (click)="eliminarInscripcion(estudiante.codigo_est, estudiante )">
+                      <button class="accion" (click)="visualizar(estudiante._id)" >Ver</button>
+                      <button class="accion" (click)="editarInscripcion(estudiante._id )"> Editar </button>
+                        <button class="accion" (click)="eliminarInscripcion(estudiante.codigo_est, estudiante )">
                             Eliminar </button> </td>
                 </tr>
             </tbody>

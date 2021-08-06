@@ -69,4 +69,8 @@ export class EditarDocumentoComponent implements OnInit {
       this.formularioCrearDocumento.reset();
     }
 
+    public cancelarEdicion() {
+      this.router.navigateByUrl('/tipo-documento');
+    }
+
 }

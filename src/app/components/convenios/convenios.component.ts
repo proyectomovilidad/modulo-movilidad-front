@@ -123,7 +123,8 @@ export class ConveniosComponent implements OnInit {
 
     const convenioGuardado = await this.ConveniosService.saveConvenio(convenio);
     console.log(convenioGuardado);
-
+    let code = convenioGuardado._id ? 201 : 210;
+    this.dialog.open(CustomDialogComponent, { data: { code: code}});
     this.formularioCrearConvenio.reset();
 
   }
@@ -151,6 +152,10 @@ export class ConveniosComponent implements OnInit {
     this.convenios = await this.ConveniosService.consultarConvenios(consulta)
     console.log("resultado", this.convenios)
 
+  }
+
+  public cancelarConsulta() {
+    window.location.reload();
   }
 
   limpiarFormulario() {

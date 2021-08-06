@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {UsuariosService} from '../../services/usuarios.service';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
 import {environment} from '../../../environments/environment';
 
 @Component({
@@ -54,6 +55,9 @@ export class UsuariosComponent implements OnInit {
       contrasena: formData.contrasena,
       rol: formData.rol
     }
+
+   let code = usuarioData.correo ? 201 : 210;
+    this.dialog.open(CustomDialogComponent, { data: { code: code}}); 
 
     this.usuariosService.saveUsuario(usuarioData).then( resp => {
       let codigo = 210;

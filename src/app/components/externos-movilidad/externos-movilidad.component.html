@@ -10,7 +10,7 @@
                 Módulo de movilidad académica - Externos movilidad
             </div>
 
-        </section> 
+        </section>
     </header>
 
     <section id="body">
@@ -150,13 +150,13 @@
                         <div *ngIf="externo.aspExtPersonal"> {{externo.aspExtPersonal.documento_id}} </div>
                         {{externo.documento_id}}
                     </td>
-                  
+
                     <td style="text-align: center;">
                         <div *ngIf="externo.aspExtPersonal"> {{externo.aspExtPersonal.primer_nombre}}
                             {{externo.aspExtPersonal.primer_apellido}}</div>
                         {{externo.primer_nombre}} {{externo.primer_apellido}}
                     </td>
-                    
+
                     <td style="text-align: center;">
                         <div *ngFor="let movilidad of tiposMovilidad">
                             <div *ngIf="movilidad._id == externo.Inscripcion.tipo_movilidad">
@@ -171,18 +171,18 @@
                     </td>
 
                    <td>
-                       <select #estado class="form-control" (change)="cambiarEstado(estado, externo.Inscripcion._id)" >             
-                         <option value="">{{externo.Inscripcion.estado}}</option>      
-                         <option  *ngFor="let estado of estados" value="{{estado.val}}">{{estado.nm}}</option>                      
+                       <select #estado class="form-control" (change)="cambiarEstado(estado, externo.Inscripcion._id)" >
+                         <option value="">{{externo.Inscripcion.estado}}</option>
+                         <option  *ngFor="let estado of estados" value="{{estado.codigo}}">{{estado.texto}}</option>
                        </select>
                    </td>
                     <td>
-                        <button class="submit" (click)="visualizar(externo._id)" >Ver</button> 
-                        <button class="submit" (click)="editarInscripcion(externo._id )"> Editar </button> 
-                     <button class="submit" (click)="eliminarInscripcion(externo.documento_id, externo )"> Eliminar </button> </td>
+                        <button class="submit" (click)="visualizar(externo._id)" >Ver</button>
+                        <button class="accion" (click)="editarInscripcion(externo._id )"> Editar </button>
+                     <button class="accion" (click)="eliminarInscripcion(externo.Inscripcion._id, externo )"> Eliminar </button> </td>
                 </tr>
             </tbody>
         </table>
 
- 
+
     </section>

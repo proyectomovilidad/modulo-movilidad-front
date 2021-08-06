@@ -28,8 +28,6 @@
             <thead>
                 <tr>
                     <th scope="col" class="center"> Nombre </th>
-                    <th scope="col" class="center"> Observaciones </th>
-                    <th scope="col" class="center"> Estado </th>
                     <th scope="col" class="center"> Acciones </th>
                 </tr>
             </thead>
@@ -37,11 +35,9 @@
                 <tr *ngFor="let documento of documentos">
 
                     <td>{{documento.tipoDocumento.nombre_documento}}</td>
-                    <td></td>
-                    <td>  {{documento.estado_documento}} </td>
                     <td>
-                      <button class="submit" (click)="openDialog()"> Editar </button>
-                      <button class="submit" (click)="descargarDocumentoByNombre(documento._id)" >Descargar</button>
+                    <!--  <button class="submit" (click)="openDialog()"> Editar </button> -->
+                      <button class="submit" (click)="descargarDocumentoByNombre(documento._id, documento.tipoDocumento.nombre_documento)" >Descargar</button>
                     </td>
 
                 </tr>

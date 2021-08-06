@@ -16,10 +16,10 @@ export class CargaDocumentoService {
     return this.httpClient.post<any>(url,formData, this.getHeaders()).toPromise()
   }
 
-  public getDocumentosByNombre(fileName): Promise<any>{
-  	const url = `${environment.backend.cargaDocumento}getDocumentosByNombre/${fileName}`
+  public getDocumentosByNombre(fileName, rename){
+  	const url = `${environment.backend.cargaDocumento}getDocumentosByNombre/${fileName}/${rename}`
     window.open(url, '_blank');
-  	return this.httpClient.get<any>(url, this.getHeaders()).toPromise()
+  	//return this.httpClient.get<any>(url, this.getHeaders()).toPromise()
   }
 
   public eliminarDocumentoByNombre(fileName): Promise<any>{
@@ -27,14 +27,21 @@ export class CargaDocumentoService {
   	return this.httpClient.post<any>(url,{}, this.getHeaders()).toPromise()
   }
 
+  public  existsDocumento(fileName): Promise<any>{
+    const url = `${environment.backend.cargaDocumento}existsDocumento/${fileName}`
+    return this.httpClient.get<any>(url, this.getHeaders()).toPromise()
+  }
+
 
   private getHeaders(): any{
     const httpOptions = {
       headers: new HttpHeaders({
-        'authorization': `Bearer ${environment.TOKEN}`,        
+        'authorization': `Bearer ${environment.TOKEN}`,
         'ContentType': 'application/json'
       })
     };
     return httpOptions
   }
+
+
 }

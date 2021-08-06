@@ -29,7 +29,7 @@ export class InicioSesionComponent implements OnInit {
     this.formularioInicioSesion = this.formBuilder.group({
       usuario: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       contrasena: ['', Validators.required],
-      rol: ['', Validators.required]
+      //rol: ['', Validators.required]
 
     });
     }
@@ -58,6 +58,7 @@ export class InicioSesionComponent implements OnInit {
       environment.user = resultado.usuario
       this.router.navigateByUrl('/')
       message = 'Ingreso correctamente.'
+      window.location.reload();
     }else{ message = resultado.message}
 
     this.dialog.open(CustomDialogComponent, { data: { title: 'SESION', message: message}});
@@ -66,5 +67,7 @@ export class InicioSesionComponent implements OnInit {
   cerrarSesion(){
     localStorage.removeItem('token')
     localStorage.removeItem('user')
+    this.router.navigateByUrl('/')
+    window.location.reload();
   }
 }

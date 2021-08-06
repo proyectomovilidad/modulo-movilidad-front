@@ -18,20 +18,24 @@ export class AppComponent implements OnInit {
     { ruta: '/entorno-movilidad', texto: 'Entorno Movilidad', roles: [ 1, 5 ] },
     { ruta: '/inscripcion-externo', texto: 'Movilidad Entrante', roles: [ 1 ] },
     { ruta: '/inscripcion-estudiante', texto: 'Movilidad Saliente', roles: [ 1 ] },
-    { ruta: '/carga-documentos', texto: 'Carga Documentos', roles: [ 1, 3 ] },
+    { ruta: '/carga-documentos', texto: 'Carga Documentos', roles: [ 1, 2, 3 ] },
     { ruta: '/consultar-documentos', texto: 'Consulta Documentos', roles: [ 1 ] },
     { ruta: '/revision-documentos', texto: 'Revision Documentos', roles: [ 1 ] },
     { ruta: '/tipo-documento', texto: 'Tipo Documentos', roles: [ 1,5 ] },
     { ruta: '/tipo-apoyo', texto: 'Tipo Apoyos', roles: [ 1,5 ] },
-    { ruta: '/solicitud-apoyos', texto: 'Solicitud Apoyos', roles: [ 1,5 ] },
+    { ruta: '/solicitud-apoyos', texto: 'Solicitud Apoyos', roles: [ 2 ] },
     { ruta: '/solicitud-apoyos-relext', texto: 'Consultar apoyos', roles: [ 1 ] },
-    { ruta: '/profesores-movilidad', texto: 'Profesores Movilidad', roles: [ 1 ] },
+    { ruta: '/profesores-movilidad', texto: 'Profesores Movilidad', roles: [ 1,4 ] },
     { ruta: '/estudiantes-movilidad', texto: 'Estudiantes Movilidad', roles: [ 1,5 ] },
     { ruta: '/externos-movilidad', texto: 'Externos Movilidad', roles: [ 1,5 ] },
     { ruta: '/convenios', texto: 'Convenios', roles: [ -1, 1, 2, 3, 4, 5 ] },
     { ruta: '/usuarios', texto: 'Usuarios', roles: [ 1 ] },
     { ruta: '/convocatoria', texto: 'Convocatorias', roles: [ -1, 1, 2, 3, 4, 5 ] },
-    { ruta: '/institucion-cooperante', texto: 'Institucion Cooperante', roles: [1,5] }
+    { ruta: '/institucion-cooperante', texto: 'Institucion Cooperante', roles: [1,5] },
+    {ruta:  '/visualizar-estudiante',texto:' Datos estudiante' ,  roles: [2]},
+    {ruta:  '/visualizar-externo',texto:' Datos externo' ,  roles: [3]},
+
+
   ];
 
   public permisos_usuario = [];

@@ -22,15 +22,7 @@ export class ExternosMovilidadComponent implements OnInit {
   public academic: any;
   public consulta: any;
   public formularioConsultarExterno: FormGroup;
-  public estados = [
-    {val: -1, nm: 'No Inscrito'},
-    {val: 0, nm: 'Cancelado'},
-    {val: 1, nm:"Inscrito"},
-    {val: 2, nm:"Carga documentos"},
-    {val: 3, nm:"Movilidad"},
-    {val: 4, nm:"Finalizado"},
-    {val: 5, nm:"Prorroga"},
-  ]
+  public estados = environment.estadosinscripcion;
 
   constructor(
     public TipoMovilidadService: TipoMovilidadService,

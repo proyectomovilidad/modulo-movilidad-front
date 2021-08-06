@@ -141,9 +141,8 @@ export class EditarProfesorComponent implements OnInit {
 
     const profesorEditado = await this.ProfesoresService.updateProfesor(profesor, this.profesorElegido._id);
     console.log(profesorEditado);
+
     this.dialog.open(CustomDialogComponent, { data: { code: 211}});
-
-
   }
 
   public cancelarEdicion() {

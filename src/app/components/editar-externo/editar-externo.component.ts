@@ -227,6 +227,8 @@ export class EditarExternoComponent implements OnInit {
     const inscritoGuardado = await this.InscripcionExternoService.updateInscripcion(inscribir, this.externoElegido.inscripcion._id);
     this.dialog.open(CustomDialogComponent, { data: { code: 211}});
 
+    this.dialog.open(CustomDialogComponent, { data: {title: 'Actualizado!', message: 'Datos actualizados correctamente!', type: 'alert'}});
+
   }
 
   onOptionsSelectedDepartment(codigo_pais: string) {
@@ -245,6 +247,10 @@ movilidadConvenio(tipo_movilidad: String) {
   this.ConveniosService.getConvenioByTipoMovilidad(tipo_movilidad).then((convenio) => {
     this.convenios = convenio
   })
+}
+
+public cancelar(){
+  this.router.navigateByUrl('/externos-movilidad');
 }
 
 

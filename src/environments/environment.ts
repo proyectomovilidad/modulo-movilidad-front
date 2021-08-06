@@ -34,7 +34,7 @@ export const environment = {
   },
 
   TOKEN: '',
-  user: {_id: '', rol: -1, Inscripcion: {estado: null}},
+  user: {_id: '', rol: -1, Inscripcion: {estado: null, _id: null}},
   unauthorizedPage: '/',
   entidadesFinancieras: [
     {codigo: '1', nombre: 'Bancolombia'},
@@ -51,6 +51,18 @@ export const environment = {
     { val: 3, texto: 'EstudianteExterno' },
     { val: 4, texto: 'Profesor' },
     { val: 5, texto: 'ProfesionalRelext' }
+  ],
+
+  estadosinscripcion: [
+    {codigo:-1, texto: "No inscrito"},
+    {codigo:0, texto:  "Cancelado"},
+    {codigo:1, texto:  "Inscrito"},
+    {codigo:2, texto:  "Carga documentos"},
+    {codigo:3, texto:  "Postulado"},
+    {codigo:4, texto: "Movilidad"},
+    {codigo:5, texto:  "Prorroga"},
+    {codigo:6, texto:  "Finalizado"}
+
   ]
 
 };

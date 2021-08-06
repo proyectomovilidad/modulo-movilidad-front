@@ -68,7 +68,7 @@ export class EditarConvocatoriaComponent implements OnInit {
           nombre_institucion: this.convocatoria.nombre_institucion,
           tipo_proyecto: this.convocatoria.tipo_proyecto,
           link_inscripcion: this.convocatoria.link_inscripcion,
-          codigo_conv: '002'})
+          codigo_conv: this.convocatoria.codigo_conv})
       }
     });
   }
