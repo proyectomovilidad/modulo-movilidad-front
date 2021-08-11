@@ -42,7 +42,7 @@ export class SolicitudApoyosRelextComponent implements OnInit {
       return Object.values(this.formConsulta.controls).forEach(control => {
         control.markAsTouched();
       });
-    }
+    } 
 
     const datosConsulta = this.formConsulta.value;
 
