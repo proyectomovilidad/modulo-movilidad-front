@@ -47,8 +47,8 @@ const appRoutes: Routes = [
 
   {path: '', component: IndexComponent},
   {path: 'inicio', component: IndexComponent},
-  {path: 'inscripcion-externo', component: IncripcionExternoComponent, data: {roles: [1,5,-1] } },
-  {path: 'inscripcion-estudiante', component: InscripcionEstudianteComponent, data: { roles: [1,5,-1] }},
+  {path: 'inscripcion-externo', component: IncripcionExternoComponent, data: {roles: [1,3, 5,-1] } },
+  {path: 'inscripcion-estudiante', component: InscripcionEstudianteComponent, data: { roles: [1,2,5,-1] }},
   {path: 'carga-documentos', component: CargaDocumentosComponent, data: {roles: [2, 3]}},
   {path: 'revision-documentos', component:RevisionDocumentosComponent, data: { roles: [1,5]}},
   {path: 'consultar-documentos', component:ConsultarDocumentosComponent, data: { roles: [1,5]}},
