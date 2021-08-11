@@ -59,12 +59,11 @@ export class RevisionDocumentosComponent implements OnInit {
     });
   }
 
-  descargarDocumentoByNombre(documento){
+  descargarDocumentoByNombre(documento, nombreDocumento){
     const nombre = `${this.estudiante._id}-${documento}.pdf`
+    const renombrar = `${this.estudiante.documento_id}-${nombreDocumento}`
 
-    this.cargarDocumentoService.getDocumentosByNombre(nombre).then(resp=>{
-      console.log(resp)
-    })
+    this.cargarDocumentoService.getDocumentosByNombre(nombre, renombrar)
   }
 
   actualizarEstadoInscripcion(){

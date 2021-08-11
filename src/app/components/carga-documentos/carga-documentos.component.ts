@@ -18,7 +18,7 @@ export class CargaDocumentosComponent implements OnInit {
 
   public formularioDocumentos: FormGroup;
   public estudiantes: any;
-  public documentos: any;
+  public documentos: any = [];
   public estudiante: any;
   file: File;
   mensajeErr: any;
@@ -65,7 +65,15 @@ export class CargaDocumentosComponent implements OnInit {
     console.log('url: ',this.estudiante)
     this.TipoDocumentoService.getDocumentoByConvenio(this.estudiante.Inscripcion.nombre_convenio).then(resp=>{
       console.log('respuesta: ', resp)
-      if(resp.status)this.documentos = resp.data;
+      if(resp.status){
+        resp.data.forEach(element => {
+          const fileName = `${this.estudiante.Inscripcion._id}-${element._id}`
+          this.CargaDocumentoService.existsDocumento(fileName).then(resp => {
+            element.existe = resp.existsFile;
+          })
+          this.documentos.push(element)
+        })
+      }
     });
   }
 
@@ -82,9 +90,13 @@ export class CargaDocumentosComponent implements OnInit {
 
       this.CargaDocumentoService.saveDocumentoFile(formData).then(res=>{
         console.log(res)
+        let code = res.status === true ? 201 : 210;
+        this.dialog.open(CustomDialogComponent, { data: { code: code}});
+
       })
       this.mensajeErr = ''
     }else{
+      this.dialog.open(CustomDialogComponent, { data: { code: 405}});
       this.mensajeErr = "seleccione un archivo valido"
       console.log("archivo no es valido")
     }
@@ -118,6 +130,15 @@ export class CargaDocumentosComponent implements OnInit {
 
   }
 
+  async existeDocumeto(file){
+    let existe = false;
+    const fileName = `${this.estudiante.Inscripcion._id}-${file}`
+
+    this.CargaDocumentoService.existsDocumento(fileName).then(resp => {
+      existe = resp.existsFile;
+    })
+    return existe;
+  }
 
 
 

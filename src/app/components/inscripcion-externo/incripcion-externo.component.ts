@@ -55,8 +55,8 @@ export class IncripcionExternoComponent implements OnInit {
         documento_id: [0, Validators.required],
         primer_nombre: ['', Validators.required],
         segundo_nombre: [''],
+        segundo_apellido: ['', false],
         primer_apellido: ['', Validators.required],
-        segundo_apellido: [''],
         genero: ['', Validators.required],
         programa_acad: ['', Validators.required],
         prog_acad_uis: ['', Validators.required],
@@ -121,7 +121,7 @@ export class IncripcionExternoComponent implements OnInit {
   }
 
  async guardarFormulario() {
-  console.log("mensaje")  
+  console.log("mensaje")
   if (this.formularioInscripcionExterno.invalid) {
     console.log("Escribir")
       return Object.values(this.formularioInscripcionExterno.controls).forEach(control => {
@@ -182,26 +182,23 @@ console.log("mensaje2")
     }
     let code =  210;
     const aspExtPersonalGuardado = await this.InscripcionExternoService.saveAspExtPersonal(aspExtPersonal);
+
+   if (aspExtPersonalGuardado.status==true){
     console.log("Dato llego", aspExtPersonalGuardado);
 
-   if (aspExtPersonalGuardado.status===true){
      const aspExtAcademicGuardado = await this.InscripcionExternoService.saveAspExtAcademic(aspExtAcademic);
     console.log("llego aspirante", aspExtAcademicGuardado);
     if (aspExtAcademicGuardado.status===true){
       const externoGuardado = await this.InscripcionExternoService.saveInscripcion(inscribir);
-      console.log("Inscripción", externoGuardado); 
-      code = externoGuardado.code 
-
-      //let code = aspExtPersonalGuardado.model._id ?  (externoGuardado.code) : 210;
-      // Aquí se incluye la ventana emergente con el mensaje de guardado existoso
+      code = externoGuardado.code;
+      console.log("Inscripción", externoGuardado); // Aquí se incluye la ventana emergente con el mensaje de guardado existoso
     }}
-    this.dialog.open(CustomDialogComponent, { data: { code: code}});
-
-    this.formularioInscripcionExterno.reset();
+   this.dialog.open(CustomDialogComponent, { data: { code: code}});
+   //this.formularioInscripcionExterno.reset();
   }
 
   limpiarFormulario() {
-    this.formularioInscripcionExterno.reset();
+    //this.formularioInscripcionExterno.reset();
   }
 
   onOptionsSelectedDepartment(codigo_pais: string) {

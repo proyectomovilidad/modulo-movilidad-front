@@ -222,6 +222,7 @@ export class EditarInscripcionComponent implements OnInit {
     const aspUisPersonalGuardado = await this.InscripcionEstudianteService.UpdateAspUisPersonal(aspUisPersonal, this.estudianteElegido._id);
     const aspUisAcademicoGuardado = await this.InscripcionEstudianteService.updateAspUisAcademic(aspUisAcademic, this.estudianteElegido.aspUisAcademic._id);
     const inscritoGuardado = await this.InscripcionEstudianteService.updateInscripcion(inscribir, this.estudianteElegido.inscripcion._id);
+    this.dialog.open(CustomDialogComponent, { data: { code: 211}});
 
     this.dialog.open(CustomDialogComponent, { data: {title: 'Actualizado!', message: 'Datos actualizados correctamente!', type: 'alert'}});
 

@@ -13,15 +13,19 @@ export class CustomDialogComponent implements OnInit {
   public content: any ;
 
   private messages = [
-    {code: 403, message: 'Permisos insuficientes!', title: 'Acceso denegado', type: 'warning'},
+
+    {code: 200, message: 'Solicitud enviada correctamente', title: 'INFO', type: 'info'},
     {code: 201, message: 'Creado correctamente', title: 'Nuevo registro'},
-    {code: 210, message: 'No pudo ser creado', title: 'Error'},
-    {code: 211, message: 'Datos actualizados correctamente', title: 'Actualizado'},
-    {code: 212, message: 'No pudo ser actualizado', title: 'Error', type: 'warning'},
-    {code: 213, message: 'No pudo ser eliminado', title: 'Error', type: 'warning'},
-    {code: 214, message: 'Eliminado correctamente', title: 'Eliminado', type: 'danger'},
+    {code: 210, message: 'No pudo ser creado', title: 'EROR', type: 'info'},
+    {code: 211, message: 'Datos actualizados correctamente', title: 'ACTUALIZADO', type: 'info'},
+    {code: 212, message: 'No pudo ser actualizado', title: 'ERROR', type: 'warning'},
+    {code: 213, message: 'No pudo ser eliminado', title: 'ERROR', type: 'warning'},
+    {code: 214, message: 'Eliminado correctamente', title: 'ELIMINADO', type: 'danger'},
     {code: 215, message: 'Los datos han sido guardados y el usuario ha sido inscrito', title: 'Guardado e inscrito'},
     {code: 216, message: 'Los datos han sido guardados pero el usuario no cumple con los requerimientos del convenio', title: 'No inscrito'},
+    {code: 405, message: 'Seleccione Un Archivo Valido', title: 'INFO', type: 'alert' },
+    {code: 403, message: 'Permisos insuficientes!', title: 'Acceso denegado', type: 'warning'},
+
   ];
 
   ngOnInit(): void {

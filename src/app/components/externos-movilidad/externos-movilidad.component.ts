@@ -71,6 +71,9 @@ export class ExternosMovilidadComponent implements OnInit {
     if(e.value){
       this.inscripcionExternoService.cambiarEstadoInscripcionById({estado: e.value}, inscripcionId).then(resp=>{
         console.log('actualizado: ',resp)
+        let code = resp ? 211 : 212;
+        this.dialog.open(CustomDialogComponent, { data: { code: code}});
+
       })
     }
   }
@@ -106,11 +109,12 @@ export class ExternosMovilidadComponent implements OnInit {
   async eliminarInscripcion(id: any, obj: any) {
     let respuesta = await this.inscripcionExternoService.deleteInscripcion(id);
     console.log(respuesta);
+    let code = 213;
     if (respuesta.status) {
-
+      code = 214;
       this.externos.splice(this.externos.indexOf(obj), 1)
     }
-
+    this.dialog.open(CustomDialogComponent, { data: { code: code}});
   }
 
   visualizar(id){

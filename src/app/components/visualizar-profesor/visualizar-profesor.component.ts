@@ -3,6 +3,7 @@ import { ProfesoresService } from './../../services/profesores.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
 import { ConvocatoriaService } from '../../services/convocatoria.service'
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-visualizar-profesor',
@@ -18,7 +19,9 @@ export class VisualizarProfesorComponent implements OnInit {
   constructor(private profesoresService: ProfesoresService,
   	private tiposDocumentosIdService: TiposDocumentosIdService,
   	private router: Router,  private route: ActivatedRoute,
-  	public convocatoriaService: ConvocatoriaService) { }
+  	public convocatoriaService: ConvocatoriaService,
+              private dialog: MatDialog
+  ) { }
 
   async ngOnInit() {
   	this.documentos = await this.tiposDocumentosIdService.getTipoDocumentoId();
@@ -44,7 +47,7 @@ export class VisualizarProfesorComponent implements OnInit {
 
   getnombre_convocatoria(id){
     const result = this.convocatorias.find(x=> x._id==id)
-    return result ? result.nombre_convocatoria : '' 
+    return result ? result.nombre_convocatoria : ''
   }
 
   gettipo_doc_id(id){

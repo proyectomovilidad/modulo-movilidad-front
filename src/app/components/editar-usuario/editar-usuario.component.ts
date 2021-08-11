@@ -68,14 +68,19 @@ export class EditarUsuarioComponent implements OnInit {
     }
 
       this.usuariosService.saveUsuario(usuarioData).then( resp => {
-        this.dialog.open(CustomDialogComponent, 
+        this.dialog.open(CustomDialogComponent,
           { data: {title: 'Actualizado', message: 'Datos actualizados correctamente!', type: 'alert'}});
 
      /* let codigo = 210;
       if (resp.status === true) {
         codigo = 200;
+      }
+      this.dialog.open(CustomDialogComponent, { data: { code: codigo}});
+
+    });
+
       } */
-    }); 
+    });
 
   }
 

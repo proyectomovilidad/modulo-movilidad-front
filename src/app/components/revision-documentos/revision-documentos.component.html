@@ -36,8 +36,8 @@
 
                     <td>{{documento.tipoDocumento.nombre_documento}}</td>
                     <td>
-                    <!--  <button class="submit" (click)="openDialog()"> Editar </button> --> 
-                      <button class="submit" (click)="descargarDocumentoByNombre(documento._id)" >Descargar</button>
+                    <!--  <button class="submit" (click)="openDialog()"> Editar </button> -->
+                      <button class="submit" (click)="descargarDocumentoByNombre(documento._id, documento.tipoDocumento.nombre_documento)" >Descargar</button>
                     </td>
 
                 </tr>

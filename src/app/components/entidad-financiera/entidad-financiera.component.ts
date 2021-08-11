@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EntidadFinancieraService } from './../../services/entidad-financiera.service';
+import {CustomDialogComponent} from '../custom-dialog/custom-dialog.component';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
 
 
 @Component({
@@ -14,7 +17,11 @@ export class EntidadFinancieraComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder,
-    public EntidadFinancieraService: EntidadFinancieraService ) {
+              public EntidadFinancieraService: EntidadFinancieraService ,
+              private route: ActivatedRoute,
+              private router: Router,
+              private dialog: MatDialog,
+  ) {
 
     this.formularioCrearEntidad = this.formBuilder.group({
       nombre_entidad: ['', Validators.required]
@@ -44,8 +51,11 @@ export class EntidadFinancieraComponent implements OnInit {
 
     const entidadFinancieraGuardado = await this.EntidadFinancieraService.saveEntidadFinanciera(entidadFinanciera);
     console.log(entidadFinancieraGuardado);
+    let code = 211;
+    this.dialog.open(CustomDialogComponent, { data: { code: code}});
 
-  this.formularioCrearEntidad.reset();
+
+    this.formularioCrearEntidad.reset();
 
   }
 

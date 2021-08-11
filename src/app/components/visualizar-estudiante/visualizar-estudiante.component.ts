@@ -6,6 +6,7 @@ import { DepartamentosService } from './../../services/departamentos.service';
 import { CiudadesService } from './../../services/ciudades.service';
 import { ProgramasService } from '../../services/programas.service';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
+import {MatDialog} from '@angular/material/dialog';
 import { environment } from './../../../environments/environment';
 
 @Component({
@@ -23,41 +24,42 @@ export class VisualizarEstudianteComponent implements OnInit {
   programaAcad:any = [];
 
   constructor(    public PaisesService: PaisesService,
-    public DepartamentosService: DepartamentosService,
-    private tiposDocumentosIdService: TiposDocumentosIdService,
-    public CiudadesService: CiudadesService,
-    private inscripcionEstudianteService: InscripcionEstudianteService, 
-    private route: ActivatedRoute,
-    private router: Router,
-    private programasServices: ProgramasService
-   ) { }
+                  public DepartamentosService: DepartamentosService,
+                  private tiposDocumentosIdService: TiposDocumentosIdService,
+                  public CiudadesService: CiudadesService,
+                  private inscripcionEstudianteService: InscripcionEstudianteService,
+                  private route: ActivatedRoute,
+                  private router: Router,
+                  private programasServices: ProgramasService,
+                  private dialog: MatDialog,
+  ) { }
 
   async ngOnInit() {
     this.documentos = await this.tiposDocumentosIdService.getTipoDocumentoId();
     this.programaAcad = await this.programasServices.getProgramaAcademico();
-  	this.CiudadesService.getAllCiudades().then(resp=>{
-  		if(resp.status)this.ciudades =  resp.data
-  	});
-  	 this.DepartamentosService.getAllDepartamentos().then(resp=>{
-  		if(resp.status)this.departamentos = resp.data  	
-  	});
-  	this.paises = await this.PaisesService.getPais();
+    this.CiudadesService.getAllCiudades().then(resp=>{
+      if(resp.status)this.ciudades =  resp.data
+    });
+    this.DepartamentosService.getAllDepartamentos().then(resp=>{
+      if(resp.status)this.departamentos = resp.data
+    });
+    this.paises = await this.PaisesService.getPais();
 
     const estudianteid: String = environment.user.rol === 2 ? environment.user._id : this.route.snapshot.queryParams._id;
- console.log("ENVIRONMENT", estudianteid)
+    console.log("ENVIRONMENT", estudianteid)
     let estudianteR:any = await this.inscripcionEstudianteService.consultarEstudiantes({'aspUisPersonal._id': estudianteid})
     estudianteR = estudianteR[0]
-    
+
     this.estudiante.push(['_id', estudianteR._id],['DATOS PERSONAL',''])
     Object.entries(estudianteR.aspUisPersonal).forEach(element=>{this.pushData(element)})
-    
+
     this.estudiante.push(['DATOS ACADEMICOS',''])
     Object.entries(estudianteR.aspUisAcademic).forEach(element=>{this.pushData(element)})
-    
+
     this.estudiante.push(['DATOS INSTITUCION',''])
     Object.entries(estudianteR.InstitucionCooperante).forEach(element=>{this.pushData(element)})
-    
-    this.estudiante.push(['DATOS MOVILIDAD',''])   
+
+    this.estudiante.push(['DATOS MOVILIDAD',''])
     Object.entries(estudianteR.TipoMovilidad).forEach(element=>{this.pushData(element)})
 
     this.estudiante.push(['DATOS INSCRIPCION',''])
@@ -72,23 +74,23 @@ export class VisualizarEstudianteComponent implements OnInit {
   }
 
   pushData(elm){
-  	if(elm[0] == '_id')return false;
-  	if(['estado', 'pais','ciudad','departamento','pais_nacimiento', 'tipo_doc_id', 'programa_acad'].includes(elm[0])){
-  		console.log(elm)
-  		let v = eval(`this.get${elm[0]}('${elm[1]}')`)
-  		this.estudiante.push([elm[0], v])
-  	}else{
-  		this.estudiante.push(elm)
-  	}
+    if(elm[0] == '_id')return false;
+    if(['estado', 'pais','ciudad','departamento','pais_nacimiento', 'tipo_doc_id', 'programa_acad'].includes(elm[0])){
+      console.log(elm)
+      let v = eval(`this.get${elm[0]}('${elm[1]}')`)
+      this.estudiante.push([elm[0], v])
+    }else{
+      this.estudiante.push(elm)
+    }
   }
 
   getestado(id){
-  	const result = environment.estadosinscripcion.find(x=> x.codigo==id)
+    const result = environment.estadosinscripcion.find(x=> x.codigo==id)
     return result ? result.texto : ''
   }
 
   getpais(id){
-  	const result = this.paises.find(x=> x.codigo_pais==id)
+    const result = this.paises.find(x=> x.codigo_pais==id)
     return result ? result.nombre_pais : ''
   }
 
@@ -98,14 +100,14 @@ export class VisualizarEstudianteComponent implements OnInit {
   }
 
   getdepartamento(id){
-  	const result = this.departamentos.find(x=> x.codigo_departamento==id)
-  	return result ? result.nombre_departamento : ''
+    const result = this.departamentos.find(x=> x.codigo_departamento==id)
+    return result ? result.nombre_departamento : ''
   }
 
   getciudad(id){
-  	const result = this.ciudades.find(x=> x._id==id)
+    const result = this.ciudades.find(x=> x._id==id)
 
-  	return result ? result.nombre_ciudad : ''
+    return result ? result.nombre_ciudad : ''
   }
 
   getprograma_acad(id){
@@ -121,8 +123,6 @@ export class VisualizarEstudianteComponent implements OnInit {
   }
 
   volver(){
-  	this.router.navigateByUrl('/estudiantes-movilidad'); 
+    this.router.navigateByUrl('/estudiantes-movilidad');
   }
-
-
 }

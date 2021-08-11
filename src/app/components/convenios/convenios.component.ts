@@ -173,9 +173,12 @@ export class ConveniosComponent implements OnInit {
   async eliminarConvenio(id: any, obj: any) {
     let respuesta = await this.ConveniosService.deleteConvenio(id);
     console.log(respuesta);
+    let code = 213;
     if (respuesta.status) {
-
-        this.convenios.splice(this.convenios.indexOf(obj),1)
-      }
+      code = 214;
+      this.convenios.splice(this.convenios.indexOf(obj),1)
     }
+    this.dialog.open(CustomDialogComponent, { data: { code: code}});
+
+  }
 }

@@ -7,6 +7,7 @@ import { CiudadesService } from './../../services/ciudades.service';
 import { TiposDocumentosIdService } from './../../services/tipos-documentos-id.service';
 import { ProgramasService } from '../../services/programas.service';
 import {environment} from '../../../environments/environment';
+import {MatDialog} from '@angular/material/dialog';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class VisualizarExternoComponent implements OnInit {
               public tiposDocumentosIdService: TiposDocumentosIdService,
               public DepartamentosService: DepartamentosService,
               public CiudadesService: CiudadesService,
-              private programasServices: ProgramasService
+              private programasServices: ProgramasService,
+              private dialog: MatDialog,
   ) { }
 
   paises: any = [];

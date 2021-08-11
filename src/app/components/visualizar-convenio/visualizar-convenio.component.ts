@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PaisesService } from '../../services/paises.service';
 import { ProgramasService } from '../../services/programas.service';
 import { TipoConvenioService } from '../../services/tipo-convenio.service';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-visualizar-convenio',
@@ -17,9 +18,14 @@ export class VisualizarConvenioComponent implements OnInit {
   private programasAcad: Array<any> = [];
   private tiposCovenio: Array<any> = [];
 
-  constructor(private conveniosService: ConveniosService, private route: ActivatedRoute,
-  	private paisesService: PaisesService, private programasService: ProgramasService,
-  	private tipoConvenioService: TipoConvenioService,private router: Router) { }
+  constructor(private conveniosService: ConveniosService,
+              private route: ActivatedRoute,
+              private paisesService: PaisesService,
+              private programasService: ProgramasService,
+              private tipoConvenioService: TipoConvenioService,
+              private router: Router,
+              private dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
   	this.paisesService.getPais().then(resp=>{this.paises = resp})
@@ -29,7 +35,7 @@ export class VisualizarConvenioComponent implements OnInit {
   	this.conveniosService.consultarConvenios({'convenio._id': this.route.snapshot.queryParams._id}).then(resp=>{
   		this.convenio = resp[0]
   		console.log(resp[0])
-  	})   
+  	})
   }
 
   public getPais(id){
@@ -45,6 +51,6 @@ export class VisualizarConvenioComponent implements OnInit {
   }
 
   volver(){
-    this.router.navigateByUrl('/convenios');    
+    this.router.navigateByUrl('/convenios');
   }
 }
