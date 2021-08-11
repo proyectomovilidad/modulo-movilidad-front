@@ -70,7 +70,7 @@ export class ConveniosComponent implements OnInit {
     });
 
   }
-  rol = environment.user.rol
+  rol = environment.user.rol 
 
   async ngOnInit(): Promise<void> {
     let user = environment.user;
