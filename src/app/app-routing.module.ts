@@ -72,7 +72,7 @@ const appRoutes: Routes = [
   {path: 'externos-movilidad', component:ExternosMovilidadComponent, data: { roles: [1,5]}},
   {path: 'editar-externo', component:EditarExternoComponent, data: { roles: [1,5, 3]}},
   {path: 'editar-convenio', component:EditarConvenioComponent, data: { roles: [1,5]}},
-  {path: 'inicio-sesion', component:InicioSesionComponent, data: { roles: [1,5]}},
+  {path: 'inicio-sesion', component:InicioSesionComponent, data: { roles: [1,2,3,4,5,-1]}},
   {path: 'entorno-movilidad', component:EntornoMovilidadComponent, data: { roles: [1,5]}},
   {path: 'crear-tipo-documento', component:CrearTipoDocumentoComponent, data: { roles: [1,5]}},
   {path: 'visualizar-convenio',component: VisualizarConvenioComponent , data: { roles: [1,5]}},

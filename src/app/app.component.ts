@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   private permisos_ruta = [
     { ruta: '/inicio', texto: 'Inicio', roles: [ true ] },
     { ruta: '/inicio-sesion', texto: 'Acceso al sistema', roles: [ -1 ] },
+    { ruta: '/inicio-sesion', texto: 'Sesion', roles: [ 1,2,3,4,5 ] },
     { ruta: '/entorno-movilidad', texto: 'Entorno Movilidad', roles: [ 1, 5 ] },
     { ruta: '/inscripcion-externo', texto: 'Movilidad Entrante', roles: [ 1 ] },
     { ruta: '/inscripcion-estudiante', texto: 'Movilidad Saliente', roles: [ 1 ] },
